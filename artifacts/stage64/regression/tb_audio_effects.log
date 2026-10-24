@@ -1,0 +1,29 @@
+Reading E:/modelsim/tcl/vsim/pref.tcl
+
+# 10.6d
+
+# vsim -c work.tb_audio_effects_regression -l sim/tb_audio_effects.transcript -wlf sim/tb_audio_effects.wlf -do "run -all; quit -f" 
+# Start time: 17:39:27 on Oct 23,2026
+# //  ModelSim SE-64 10.6d Feb 24 2018
+# //
+# //  Copyright 1991-2018 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading work.tb_audio_effects(fast)
+# run -all
+# EFFECT 1 impulse_peak=15000 tail_nonzero_samples=11
+# EFFECT 2 impulse_peak=15000 tail_nonzero_samples=0
+# EFFECT 3 impulse_peak=15000 tail_nonzero_samples=335
+# PASS: dry bypass, delay/chorus/reverb impulses, DC bounds, smooth mute, tail retirement and stale RAM protection
+# ** Note: $finish    : sim/tb_audio_effects.v(52)
+#    Time: 97874686 ns  Iteration: 0  Instance: /tb_audio_effects
+# End time: 17:39:36 on Oct 23,2026, Elapsed time: 0:00:09
+# Errors: 0, Warnings: 0

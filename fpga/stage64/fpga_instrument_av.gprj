@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE gowin-fpga-project>
+<Project>
+    <Template>FPGA</Template>
+    <Version>5</Version>
+    <Device name="GW5AST-138C" pn="GW5AST-LV138PG484AC1/I0">gw5ast138c-007</Device>
+    <FileList>
+        <File path="rtl/audio_scope_uart.v" type="file.verilog" enable="1"/>
+        <File path="rtl/v3_hardware_top.v" type="file.verilog" enable="1"/>
+        <File path="rtl/mcp3008_dual_scanner.v" type="file.verilog" enable="1"/>
+        <File path="rtl/v3_analog_input.v" type="file.verilog" enable="1"/>
+        <File path="rtl/v3_instrument_top.v" type="file.verilog" enable="1"/>
+        <File path="rtl/keypad_165.v" type="file.verilog" enable="1"/>
+        <File path="rtl/mcp3008_scanner.v" type="file.verilog" enable="1"/>
+        <File path="rtl/v3_performance_input.v" type="file.verilog" enable="1"/>
+        <File path="rtl/keyboard_note_events.v" type="file.verilog" enable="1"/>
+        <File path="rtl/song_instrument_top.v" type="file.verilog" enable="1"/>
+        <File path="rtl/uart_byte_cdc.v" type="file.verilog" enable="1"/>
+        <File path="rtl/instrument_production_link.v" type="file.verilog" enable="1"/>
+        <File path="rtl/hc05_commands.v" type="file.verilog" enable="1"/>
+        <File path="rtl/uart_line_router.v" type="file.verilog" enable="1"/>
+        <File path="rtl/uart_line_tx_mux.v" type="file.verilog" enable="1"/>
+        <File path="rtl/instrument_shared_uart.v" type="file.verilog" enable="1"/>
+        <File path="rtl/song_control_uart.v" type="file.verilog" enable="1"/>
+        <File path="rtl/song_uploaded_player.v" type="file.verilog" enable="1"/>
+        <File path="rtl/song_upload_playback.v" type="file.verilog" enable="1"/>
+        <File path="rtl/song_score_validator.v" type="file.verilog" enable="1"/>
+        <File path="rtl/song_upload_store.v" type="file.verilog" enable="1"/>
+        <File path="rtl/song_upload_frame_rx.v" type="file.verilog" enable="1"/>
+        <File path="rtl/song_upload_parse.v" type="file.verilog" enable="1"/>
+        <File path="rtl/song_upload_reply.v" type="file.verilog" enable="1"/>
+        <File path="rtl/song_upload_link.v" type="file.verilog" enable="1"/>
+        <File path="rtl/song_upload_uart.v" type="file.verilog" enable="1"/>
+        <File path="rtl/mcp3008_reader.v" type="file.verilog" enable="1"/>
+        <File path="rtl/fsr_performance_input.v" type="file.verilog" enable="1"/>
+        <File path="rtl/fsr_instrument_top.v" type="file.verilog" enable="1"/>
+        <File path="rtl/i2c_byte_master.v" type="file.verilog" enable="0"/>
+        <File path="rtl/i2c_register_master.v" type="file.verilog" enable="0"/>
+        <File path="rtl/gt911_touch.v" type="file.verilog" enable="0"/>
+        <File path="rtl/touch_preview.v" type="file.verilog" enable="0"/>
+        <File path="rtl/uart_8n1.v" type="file.verilog" enable="1"/>
+        <File path="rtl/hc05_link.v" type="file.verilog" enable="1"/>
+        <File path="rtl/audio_pll/audio_pll.v" type="file.verilog" enable="1"/>
+        <File path="rtl/audio_pll/audio_pll_mod.v" type="file.verilog" enable="1"/>
+        <File path="rtl/audio_sample_cdc.v" type="file.verilog" enable="1"/>
+        <File path="rtl/spectrum_analyzer.v" type="file.verilog" enable="1"/>
+        <File path="rtl/visual_feedback.v" type="file.verilog" enable="1"/>
+        <File path="rtl/additive_bank_32.v" type="file.verilog" enable="1"/>
+        <File path="rtl/polyphony_bank_32.v" type="file.verilog" enable="1"/>
+        <File path="rtl/concurrent_test_source.v" type="file.verilog" enable="1"/>
+        <File path="rtl/audio_effects.v" type="file.verilog" enable="1"/>
+        <File path="rtl/reverb_comb.v" type="file.verilog" enable="1"/>
+        <File path="rtl/performance_controls.v" type="file.verilog" enable="1"/>
+        <File path="rtl/audio_voice_mixer.v" type="file.verilog" enable="1"/>
+        <File path="rtl/pitch_expression.v" type="file.verilog" enable="1"/>
+        <File path="rtl/expression_audition.v" type="file.verilog" enable="1"/>
+        <File path="rtl/song_player.v" type="file.verilog" enable="1"/>
+        <File path="rtl/song_timeline.v" type="file.verilog" enable="1"/>
+        <File path="rtl/song_timeline_rom.v" type="file.verilog" enable="1"/>
+        <File path="rtl/song_timing.v" type="file.verilog" enable="1"/>
+        <File path="rtl/song_score_twinkle.v" type="file.verilog" enable="1"/>
+        <File path="rtl/song_score_ode.v" type="file.verilog" enable="1"/>
+        <File path="rtl/note_event_voice.v" type="file.verilog" enable="1"/>
+        <File path="rtl/physical_string_voice.v" type="file.verilog" enable="1"/>
+        <File path="rtl/string_pitch_control.v" type="file.verilog" enable="1"/>
+        <File path="rtl/physical_string_bank.v" type="file.verilog" enable="1"/>
+        <File path="rtl/instrument_control.v" type="file.verilog" enable="1"/>
+        <File path="rtl/status_bundle_cdc.v" type="file.verilog" enable="1"/>
+        <File path="rtl/av_top.v" type="file.verilog" enable="1"/>
+        <File path="rtl/keyboard_light_status.v" type="file.verilog" enable="1"/>
+        <File path="rtl/ws2812_tx.v" type="file.verilog" enable="1"/>
+        <File path="rtl/key_debounce.v" type="file.verilog" enable="1"/>
+        <File path="rtl/lcd_pll/lcd_pll.v" type="file.verilog" enable="1"/>
+        <File path="rtl/lcd_pll/lcd_pll_mod.v" type="file.verilog" enable="1"/>
+        <File path="rtl/lcd_test_pattern.v" type="file.verilog" enable="1"/>
+        <File path="rtl/lcd_timing_800x480.v" type="file.verilog" enable="1"/>
+        <File path="rtl/pt8211_tx.v" type="file.verilog" enable="1"/>
+        <File path="src/pll_init.v" type="file.verilog" enable="1"/>
+        <File path="constraints/fpga_instrument_av.cst" type="file.cst" enable="1"/>
+        <File path="constraints/fpga_instrument_av.sdc" type="file.sdc" enable="1"/>
+    </FileList>
+</Project>

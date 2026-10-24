@@ -1,0 +1,26 @@
+Reading E:/modelsim/tcl/vsim/pref.tcl
+
+# 10.6d
+
+# vsim -c work.tb_poly_mix_fast_strobe_regression -l sim/tb_poly_mix_fast_strobe.transcript -wlf sim/tb_poly_mix_fast_strobe.wlf -do "run -all; quit -f" 
+# Start time: 17:38:03 on Oct 23,2026
+# //  ModelSim SE-64 10.6d Feb 24 2018
+# //
+# //  Copyright 1991-2018 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading work.tb_poly_mix_fast_strobe(fast)
+# run -all
+# PASS: sub-bound 16-clock strobe diverges from frozen stage9 on 59440 of 60000 cycles (reference nonzero=59920), so the 64-clock piano contract is observable, not assumed
+# ** Note: $finish    : sim/tb_poly_mix_fast_strobe.v(64)
+#    Time: 600236 ns  Iteration: 0  Instance: /tb_poly_mix_fast_strobe
+# End time: 17:38:04 on Oct 23,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0

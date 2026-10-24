@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#211e1b"><title>行者无疆 · Mineradio</title><link rel="stylesheet" href="fpga/mobile.css"><script src="fpga/native-rpc.js"></script></head>
+<body>
+  <header><div><small>MINERADIO × FPGA</small><h1>行者无疆</h1></div><span>音乐，交给你的乐器。</span></header>
+  <nav aria-label="工作区"><button id="music-tab" aria-pressed="true">音乐来源</button><button id="instrument-tab" aria-pressed="false">转谱与乐器</button></nav>
+  <main id="music-panel">
+    <section><h2>从喜欢的音乐开始</h2><p>搜索网易云歌曲，或从音乐 App 分享音频文件／网易云歌曲链接到本 App。原声试听后，导入转谱工作台。</p>
+      <form id="search-form"><input id="keywords" type="search" maxlength="150" required placeholder="曲名 / 歌手 / 网易云歌曲链接" aria-label="搜索歌曲"><button>查找</button></form>
+      <p id="music-status" role="status">普通 MP3 / WAV / FLAC 可直接导入；专属加密文件不支持。</p><ul id="search-results"></ul>
+    </section>
+    <section><h2 id="current-title">还没有选择歌曲</h2><audio id="music-audio" controls preload="metadata"></audio><div class="actions"><button id="import-local">导入本地音频</button><button id="convert-current" disabled>将这首歌转为 FPGA 曲谱 →</button></div><input id="local-audio" type="file" accept="audio/*,.mp3,.wav,.flac,.m4a,.ogg" hidden><p>转谱得到音符，FPGA 用自身音色重奏；不传送 MP3 原声。复杂歌曲请先选旋律清晰的片段。</p></section>
+    <footer>基于 XxHuberrr / Mineradio（GPL-3.0-only）<br><a href="LICENSE">开源许可证</a> · <a href="NOTICE.md">上游声明</a></footer>
+  </main>
+  <iframe id="instrument" src="instrument/index.html" title="曲谱工作台与 BLE 控制" allow="bluetooth" hidden></iframe>
+  <script type="module" src="fpga/mobile.js"></script>
+</body></html>

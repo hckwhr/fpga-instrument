@@ -1,0 +1,5 @@
+/build/
+/build-host/
+/sdkconfig
+/sdkconfig.old
+/.em_skill.json

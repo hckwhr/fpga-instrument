@@ -1,0 +1,27 @@
+Reading E:/modelsim/tcl/vsim/pref.tcl
+
+# 10.6d
+
+# vsim -c work.tb_string_load_top_regression -l sim/tb_string_load_top.transcript -wlf sim/tb_string_load_top.wlf -do "run -all; quit -f" 
+# Start time: 17:37:09 on Oct 23,2026
+# //  ModelSim SE-64 10.6d Feb 24 2018
+# //
+# //  Copyright 1991-2018 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading work.tb_string_load_top(fast)
+# run -all
+# METRICS stereo_frames=7123 nonzero_frames=6861 eight_voice_slots=6550 peak_pcm=17974 chord_requests=39 writes=156
+# PASS: production eight-string load, PT8211 stereo/cadence/headroom, display count payload, menu cancel/restart, no string or DFT deadline miss
+# ** Note: $finish    : sim/tb_string_load_top.v(76)
+#    Time: 72943250 ns  Iteration: 1  Instance: /tb_string_load_top
+# End time: 17:37:13 on Oct 23,2026, Elapsed time: 0:00:04
+# Errors: 0, Warnings: 0

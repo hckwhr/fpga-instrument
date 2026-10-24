@@ -1,0 +1,37 @@
+Reading E:/modelsim/tcl/vsim/pref.tcl
+
+# 10.6d
+
+# vsim -c work.tb_effects_audition_regression -l sim/tb_effects_audition.transcript -wlf sim/tb_effects_audition.wlf -do "run -all; quit -f" 
+# Start time: 17:40:16 on Oct 23,2026
+# //  ModelSim SE-64 10.6d Feb 24 2018
+# //
+# //  Copyright 1991-2018 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading work.tb_effects_audition(fast)
+# run -all
+# AUDITION strength=0 target=2 peak=3952 different_samples=132135
+# AUDITION strength=0 target=3 peak=4209 different_samples=57044
+# AUDITION strength=0 target=4 peak=3952 different_samples=100841
+# AUDITION strength=1 target=2 peak=2883 different_samples=138412
+# AUDITION strength=1 target=3 peak=3966 different_samples=57090
+# AUDITION strength=1 target=4 peak=2635 different_samples=106318
+# AUDITION strength=1 target=5 peak=6904 different_samples=58598
+# AUDITION strength=1 target=6 peak=5270 different_samples=60706
+# AUDITION strength=2 target=2 peak=2603 different_samples=138394
+# AUDITION strength=2 target=3 peak=4396 different_samples=57085
+# AUDITION strength=2 target=4 peak=1511 different_samples=106313
+# PASS: production av_top delay/chorus/reverb/force/strings A-B routing, LCD payload, headroom, separators and string deadlines
+# ** Note: $finish    : sim/tb_effects_audition.v(73)
+#    Time: 888440876 ns  Iteration: 0  Instance: /tb_effects_audition
+# End time: 17:42:46 on Oct 23,2026, Elapsed time: 0:02:30
+# Errors: 0, Warnings: 0

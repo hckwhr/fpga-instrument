@@ -1,0 +1,30 @@
+Reading E:/modelsim/tcl/vsim/pref.tcl
+
+# 10.6d
+
+# vsim -c work.tb_poly_pitch_half_fast_strobe_regression -l sim/tb_poly_pitch_half_fast_strobe.transcript -wlf sim/tb_poly_pitch_half_fast_strobe.wlf -do "run -all; quit -f" 
+# Start time: 17:35:53 on Oct 23,2026
+# //  ModelSim SE-64 10.6d Feb 24 2018
+# //
+# //  Copyright 1991-2018 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_poly_pitch_half_fast_strobe(fast)
+# Loading work.polyphony_bank_32(fast)
+# Loading work.stage54e_polyphony_bank_32(fast)
+# run -all
+# Pitch shared lanes=16 period=8 negative=1 checks=9961 phase_diff=157008 pcm_diff=8329 retunes=40 allocations=32
+# PASS: sub-bound 8-clock half-shared pitch produces phase AND PCM divergence from frozen 54e
+# ** Note: $finish    : E:/Gowin/workspace/v3_uart115200_stage64_20261023/sim/tb_poly_pitch_shared.sv(199)
+#    Time: 131060 ns  Iteration: 2  Instance: /tb_poly_pitch_half_fast_strobe
+# End time: 17:35:54 on Oct 23,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0

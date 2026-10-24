@@ -1,0 +1,34 @@
+{
+  "extends": null,
+  "electronDist": "node_modules/electron/dist",
+  "afterPack": "build/after-pack.js",
+  "toolsets": { "winCodeSign": "1.1.0" },
+  "asar": false,
+  "files": [
+    "desktop/**/*", "public/**/*", "build/**/*", "cuefield/**/*",
+    "server.js", "*-api.js", "qishui-auth-v6.js", "qishui-qr-login.js",
+    "qishui-auth-v6/**/*", "qishui-audio-decryptor/**/*", "dj-analyzer.js",
+    "LICENSE", "NOTICE.md", "docs/THIRD_PARTY_PORTS.md", "package.json",
+    "!desktop/wallpaper-preload.js", "!public/wallpaper.html",
+    "!public/index.*.html", "public/index.html"
+  ],
+  "appId": "com.xingzhewujiang.fpgavedio",
+  "productName": "FPGAvedio",
+  "directories": { "output": "dist-fpga", "buildResources": "build" },
+  "extraMetadata": {
+    "name": "fpgavedio",
+    "productName": "FPGAvedio",
+    "mineradio": {
+      "runtimeName": "FPGAvedio",
+      "appUserModelId": "com.xingzhewujiang.fpgavedio",
+      "update": { "disabled": true, "provider": "none", "preview": false, "preferMirrors": false, "mirrors": [] }
+    }
+  },
+  "win": { "executableName": "FPGAvedio", "icon": "build/icon.ico", "signAndEditExecutable": false },
+  "nsis": {
+    "shortcutName": "FPGAvedio",
+    "include": "build/installer-fpga.nsh",
+    "artifactName": "FPGAvedio-${version}-Setup.${ext}"
+  },
+  "publish": null
+}

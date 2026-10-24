@@ -1,0 +1,27 @@
+Reading E:/modelsim/tcl/vsim/pref.tcl
+
+# 10.6d
+
+# vsim -c work.tb_string_expression_top_regression -l sim/tb_string_expression_top.transcript -wlf sim/tb_string_expression_top.wlf -do "run -all; quit -f" 
+# Start time: 17:37:08 on Oct 23,2026
+# //  ModelSim SE-64 10.6d Feb 24 2018
+# //
+# //  Copyright 1991-2018 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading work.tb_string_expression_top(fast)
+# run -all
+# METRICS stereo_frames=11335 nonzero_frames=11073 eight_voice_slots=10762 peak_pcm=18376 chord_requests=39 writes=156 fractional_updates=10394 max_busy_clocks=512
+# PASS: production eight-string expression, virtual ADC bend/timeout/fallback, manual vibrato/off, bounded delay, PT8211 cadence/headroom, display payload, restart and deadlines
+# ** Note: $finish    : sim/tb_string_expression_top.v(115)
+#    Time: 116074130 ns  Iteration: 1  Instance: /tb_string_expression_top
+# End time: 17:37:15 on Oct 23,2026, Elapsed time: 0:00:07
+# Errors: 0, Warnings: 0

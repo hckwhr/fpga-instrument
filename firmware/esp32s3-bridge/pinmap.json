@@ -1,0 +1,8 @@
+{
+  "platform": "esp32", "variant": "esp32s3", "module": "WROOM", "wifi_enabled": false,
+  "pins": [
+    {"gpio": 17, "function": "FPGA_LINK_TX", "protocol_bus": "uart", "direction": "output", "device": "FPGA_A20", "speed_hz": 115200},
+    {"gpio": 18, "function": "FPGA_LINK_RX", "protocol_bus": "uart", "direction": "input", "device": "FPGA_A21", "pull": "internal_up", "speed_hz": 115200},
+    {"gpio": 39, "function": "AMP_MUTE", "protocol_bus": "gpio", "direction": "output", "device": "MAX98357A_SD_MODE", "notes": "LOW=shutdown; module pad 32, ESP_PA_CTL via R51"}
+  ]
+}

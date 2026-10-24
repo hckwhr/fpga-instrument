@@ -1,0 +1,54 @@
+{
+  "build_id": "f5195da98b544ac1b6eede72f1af8bc4",
+  "project_file": "E:\\Gowin\\workspace\\v3_uart115200_stage64_20261023\\v3_hardware_top.gprj",
+  "stage": "pnr",
+  "budget_seconds": 7200,
+  "options": {
+    "place_option": 3,
+    "route_option": 2
+  },
+  "started_epoch": 1792749109.8122935,
+  "heartbeat_epoch": 1792750998.574914,
+  "state": "running",
+  "success": false,
+  "evidence_level": "build-running",
+  "fingerprint_scope": "enabled inputs plus in-project headers/memory/constraints/IP config; external implicit includes not covered",
+  "requires_report_review": true,
+  "worker_pid": 54912,
+  "tool_pid": 45228,
+  "elapsed_seconds": 1891.086,
+  "budget_exceeded": false,
+  "receipt_path": "E:\\Gowin\\workspace\\v3_uart115200_stage64_20261023\\.gowin-mcp\\f5195da98b544ac1b6eede72f1af8bc4\\receipt.json",
+  "heartbeat_age_seconds": 2.323,
+  "log": {
+    "path": "E:\\Gowin\\workspace\\v3_uart115200_stage64_20261023\\.gowin-mcp\\f5195da98b544ac1b6eede72f1af8bc4\\build.log",
+    "bytes": 762,
+    "log_age_seconds": 1422.35,
+    "error_count": 0,
+    "warning_count": 0,
+    "groups": {},
+    "messages": [],
+    "messages_truncated": false,
+    "first_error": null,
+    "last_progress": {
+      "line": 14,
+      "text": "[60%] Routing Phase 0 completed"
+    },
+    "tail": [
+      "Reading netlist file: \"E:\\Gowin\\workspace\\v3_uart115200_stage64_20261023\\impl\\gwsynthesis\\v3_hardware_top.vg\"",
+      "Parsing netlist file \"E:\\Gowin\\workspace\\v3_uart115200_stage64_20261023\\impl\\gwsynthesis\\v3_hardware_top.vg\" completed",
+      "Processing netlist completed",
+      "Reading constraint file: \"E:\\Gowin\\workspace\\v3_uart115200_stage64_20261023\\constraints\\v3_hardware.cst\"",
+      "Physical Constraint parsed completed",
+      "Running placement......",
+      "[10%] Placement Phase 0 completed",
+      "[20%] Placement Phase 1 completed",
+      "[30%] Placement Phase 2 completed",
+      "[50%] Placement Phase 3 completed",
+      "Running routing......",
+      "[60%] Routing Phase 0 completed"
+    ],
+    "process_state": "not-probed",
+    "evidence_level": "log-only"
+  }
+}

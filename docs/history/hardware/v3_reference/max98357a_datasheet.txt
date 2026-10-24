@@ -1,0 +1,2058 @@
+                                                                                                   EVALUATION KIT AVAILABLE
+
+
+                                                       Click here to ask an associate for production status of specific part numbers.
+
+Tiny, Low-Cost, PCM Class D Amplifier with                                                                 MAX98357A/
+Class AB Performance                                                                                       MAX98357B
+General Description                                                 Features
+The MAX98357A/MAX98357B is an easy-to-use, low-cost,                ●   Single-Supply Operation (2.5V to 5.5V)
+digital pulse-code modulation (PCM) input Class D ampli-            ●   3.2W Output Power into 4Ω at 5V
+fier that provides industry-leading Class AB audio perfor-          ●   2.4mA Quiescent Current
+mance with Class D efficiency. The digital audio interface          ●   92% Efficiency (RL = 8Ω, POUT = 1W)
+automatically recognizes up to 35 different PCM and TDM
+                                                                    ●   22.8μVRMS Output Noise (AV = 15dB)
+clocking schemes which eliminates the need for I2C pro-
+gramming. Operation is further simplified by eliminating            ●   Low 0.013% THD+N at 1kHz
+the need for an external MCLK signal that is typically used         ●   No MCLK Required
+for PCM communication. Simply supply power, LRCLK,                  ●   Sample Rates of 8kHz to 96kHz
+BCLK, and digital audio to generate audio! Furthermore,             ●   Supports Left, Right, or (Left/2 + Right/2) Output
+a novel pinout allows customers to use the cost-effective           ●   Sophisticated Edge Rate Control Enables
+WLP package with no need for expensive vias (refer                      Filterless Class D Outputs
+to Application Note 6643: Optimize Cost, Size, and                  ●   77dB PSRR at 1kHz
+Performance with MAX98357 WLP for more information).
+                                                                    ●   Low RF Susceptibility Rejects TDMA
+The digital audio interface is highly flexible with the                 Noise from GSM Radios
+MAX98357A supporting I2S data and the MAX98357B                     ●   Extensive Click-and-Pop Reduction Circuitry
+supporting left-justified data. Both ICs support 8 channel
+                                                                    ●   Robust Short-Circuit and Thermal Protection
+time division multiplexed (TDM) data. The digital audio
+interface accepts specified sample rates between 8kHz               ●   Available in Space-Saving Packages:
+                                                                        1.345mm x 1.435mm WLP (0.4mm Pitch)
+and 96kHz for all supported data formats. The ICs can
+                                                                        and 3mm x 3mm TQFN
+be configured to produce a left channel, right channel, or
+(left/2 + right/2) output from the stereo input data. The ICs       ●   Solution Size with Single Bypass Capacitor is
+operate using 16/24/32-bit data for I2S and left-justified              4.32mm2
+modes as well as 16-bit or 32-bit data using TDM mode.
+The ICs eliminate the need for the external MCLK signal
+                                                                    Applications
+that is typically used for PCM communication. This reduc-           ●   Single Li-ion Cell/5V Devices
+es EMI and possible board coupling issues in addition to            ●   Smart Speakers
+reducing the size and pin count of the ICs.                         ●   Notebook Computers
+                                                                    ●   IoT Devices
+The ICs also feature a very high wideband jitter toler-
+ance (12ns typ) on BCLK and LRCLK to provide robust                 ●   Gaming Devices (Audio and Haptics)
+operation.                                                          ●   Smartphones
+                                                                    ●   Tablets
+Active emissions-limiting, edge-rate limiting, and over-            ●   Cameras
+shoot control circuitry greatly reduce EMI. A filterless
+spread-spectrum modulation scheme eliminates the need               Simplified Block Diagram
+for output filtering found in traditional Class D devices and
+reduces the component count of the solution.
+The ICs are available in 9-pin WLP (1.345mm x 1.435mm
+x 0.64mm) and 16-pin TQFN (3mm x 3mm x 0.75mm)                                      SHUTDOWN
+                                                                                       AND
+packages and are specified over the -40°C to +85°C tem-                              CHANNEL
+                                                                                                 MAX98357A       GAIN
+                                                                                                 MAX98357B     CONTROL
+perature range.                                                                       SELECT
+
+
+                                                                                       DIGITAL                  CLASS D
+Ordering Information appears at end of data sheet.                        PCM          AUDIO        DAC         OUTPUT
+                                                                        INPUT        INTERFACE                   STAGE
+Functional Diagram appears at end of data sheet.
+
+                                                                                                                  19-6779; Rev 16; 2/26
+
+© 2026 Analog Devices, Inc. All rights reserved. Trademarks and registered trademarks are the property of their respective owners.
+One Analog Way, Wilmington, MA 01887 U.S.A.        |   Tel: 800.262.5643        |   © 2026 Analog Devices, Inc. All rights reserved.
+MAX98357A/                                                                          Tiny, Low-Cost, PCM Class D Amplifier with
+MAX98357B                                                                                              Class AB Performance
+
+
+                                                               TABLE OF CONTENTS
+General Description  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 1
+Features  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 1
+Applications . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 1
+Simplified Block Diagram  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 1
+Absolute Maximum Ratings  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4
+Package Thermal Characteristics . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4
+Electrical Characteristics . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4
+Typical Operating Characteristics . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 9
+Pin Configurations . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15
+Pin Description  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15
+Detailed Description  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 16
+    Digital Audio Interface Modes . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  16
+         MCLK Elimination . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  16
+         BCLK Jitter Tolerance . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  16
+         BCLK Polarity . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  16
+         LRCLK Polarity . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  16
+         Standby Mode . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  16
+    DAC Digital Filters . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  17
+    SD_MODE and Shutdown Operation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  17
+         Startup . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 18
+         I2S and Left Justified Mode  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  19
+         TDM Mode  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  19
+    Class D Speaker Amplifier . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  28
+         Ultra-Low EMI Filterless Output Stage . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  28
+         Speaker Current Limit . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  28
+         Gain Selection . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  28
+         Click-and-Pop Suppression  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  28
+Applications Information . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 29
+    Filterless Class D Operation  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  33
+    Power-Supply Input  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  33
+    Layout and Grounding . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  33
+Functional Diagram . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 33
+    WLP Applications Information . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  34
+Ordering Information . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 34
+Package Information . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 35
+Revision History  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 38
+
+
+
+
+www.analog.com                                                                                                                                             Analog Devices │ 2
+MAX98357A/                                                                      Tiny, Low-Cost, PCM Class D Amplifier with
+MAX98357B                                                                                          Class AB Performance
+
+
+                                                                 LIST OF FIGURES
+Figure 1. I2S Audio Interface Timing Diagram (MAX98357A)  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 8
+Figure 2. Left-Justified Audio Interface Timing Diagram (MAX98357B)  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 8
+Figure 3. TDM Audio Interface Timing Diagram . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 8
+Figure 4. SD_MODE Resistor Connected Using Open-Drain Driver . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 18
+Figure 5. SD_MODE Resistor Connected Using Push-Pull Driver  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 18
+Figure 6. Required startup sequence when using BCLK = 256kHz . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 19
+Figure 7. MAX98357A I2S Digital Audio Interface Timing, 16-Bit Resolution  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 20
+Figure 8. MAX98357A I2S Digital Audio Interface Timing, 32-Bit Resolution  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 21
+Figure 9. MAX98357B Left-Justified Digital Audio Interface Timing, 16-Bit Resolution  . . . . . . . . . . . . . . . . . . . . . . . 22
+Figure 10. MAX98357B Left-Justified Digital Audio Interface Timing, 32-Bit Resolution  . . . . . . . . . . . . . . . . . . . . . . 23
+Figure 11. MAX98357A TDM 16-Bit DAI Timing . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 24
+Figure 12. MAX98357A TDM 32-Bit DAI Timing  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 25
+Figure 13. MAX98357B TDM 16-Bit DAI Timing  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 26
+Figure 14. MAX98357B TDM 32-Bit DAI Timing  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 27
+Figure 15. EMI with 12in of Speaker Cable and No Output Filtering . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 28
+Figure 16. Left-Channel PCM Operation with 6dB Gain  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 29
+Figure 17. Left-Channel PCM Operation with 12dB Gain . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 29
+Figure 18. Right-Channel PCM Operation with 6dB Gain  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 30
+Figure 19. (Left/2 + Right/2) PCM Operation with 6dB Gain . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 30
+Figure 20. Stereo PCM Operation Using Two ICs  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 31
+Figure 21. Channel TDM Operation (Gain Fixed at 12dB) . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 32
+Figure 22. WLP Pin Connect for set 12dB Gain Without Via.  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 34
+Figure 23. Example Layout Configured for Left-Channel Audio and Gain of 12dB.  . . . . . . . . . . . . . . . . . . . . . . . . . . 34
+Figure 24. MAX98357A/MAX98357B WLP Ball Dimensions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 34
+
+
+                                                                   LIST OF TABLES
+Table 1. RMS Jitter Tolerance . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 16
+Table 2. BCLK Polarity  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 16
+Table 3. LRCLK Polarity . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 16
+Table 4. Digital Filter Settings . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 17
+Table 5. SD_MODE Control . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 17
+Table 6. Examples of SD_MODE Pullup Resistor Values . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 17
+Table 7. TDM Mode Channel Selection  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 20
+Table 8. Gain Selection . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 28
+
+
+
+
+www.analog.com                                                                                                                                      Analog Devices │ 3
+MAX98357A/                                                                              Tiny, Low-Cost, PCM Class D Amplifier with
+MAX98357B                                                                                                  Class AB Performance
+
+Absolute Maximum Ratings
+VDD, LRCLK, BCLK, and DIN to GND. ...................-0.3V to +6V                                  Continuous Power Dissipation (TA = +70°C)
+All Other Pins to GND............................... -0.3V to (VDD + 0.3V)                           WLP (derate 13.7mW/°C above +70°C). ...................1096mW
+Continuous Current In/Out of VDD/GND/OUT_..................±1.6A                                     TQFN (derate 20.8mW/°C above +70°C)..................1666mW
+Continuous Input Current (all other pins)..........................±20mA                           Junction Temperature. .....................................................+150°C
+Duration of OUT_ Short Circuit to GND or VDD….....Continuous                                       Operating Temperature Range. .......................... -40°C to +85°C
+Duration of OUTP Short to OUTN. ............................Continuous                             Storage Temperature Range............................. -65°C to +150°C
+                                                                                                   Soldering Temperature (reflow)........................................+260°C
+                                                                                                   Lead Temperature (soldering, 10s, TQFN)...................... +300°C
+Stresses beyond those listed under “Absolute Maximum Ratings” may cause permanent damage to the device. These are stress ratings only, and functional operation of the device at these
+or any other conditions beyond those indicated in the operational sections of the specifications is not implied. Exposure to absolute maximum rating conditions for extended periods may affect
+device reliability.
+
+
+Package Thermal Characteristics (Note 1)
+WLP                                                                                                TQFN
+ Junction-to-Ambient Thermal Resistance (θJA)...........73°C/W                                       Junction-to-Ambient Thermal Resistance (θJA)...........48°C/W
+ Junction-to-Case Thermal Resistance (θJC)................50°C/W                                     Junction-to-Case Thermal Resistance (θJC)..................7°C/W
+
+Note 1: Package thermal resistances were obtained using the method described in JEDEC specification JESD51-7, using a four-layer
+        board. For detailed information on package thermal considerations, refer to www.analog.com/thermal-tutorial.
+
+
+Electrical Characteristics
+(VDD = 5V, VGND = 0V, GAIN_SLOT = VDD. BCLK = 3.072MHz, LRCLK = 48kHz, speaker loads (ZSPK) connected between OUTP
+and OUTN, ZSPK = ∞, TA = TMIN to TMAX, unless otherwise noted. Typical values are at TA = +25°C.) (Note 2)
+
+             PARAMETER                            SYMBOL                              CONDITIONS                                     MIN             TYP            MAX           UNITS
+Supply Voltage Range                                 VDD           Guaranteed by PSSR test                                           2.5                              5.5             V
+Undervoltage Lockout                                UVLO                                                                             1.5              1.8             2.3             V
+                                                                   TA = +25°C                                                                        2.75            3.35
+Quiescent Current                                     IDD                                                                                                                            mA
+                                                                   TA = +25°C, VDD = 3.7V                                                             2.4            2.85
+Shutdown Current                                    ISHDN          SD_MODE = 0V, TA = +25°C                                                           0.6              2             µA
+Standby Current                                   ISTNDBY          SD_MODE = 1.8V, no BCLK, TA = +25°C                                                340            400             µA
+
+Turn-On Time                                          tON                                                                                              7              7.5            ms
+
+Output Offset Voltage                                VOS           TA = +25°C, gain = 15dB                                                           ±0.3            ±2.5            mV
+
+                                                                   Peak voltage, TA = Into shutdown                                                   -72
+                                                                   +25°C, A-weighted,
+Click-and-Pop Level                                  KCP                                                                                                                            dBV
+                                                                   32 samples per
+                                                                   second (Note 3)    Out of shutdown                                                 -66
+
+                                                                   VDD = 2.5V to 5.5V, TA = +25°C                                     60               75
+                                                                                                f = 217Hz,
+                                                                                                                                                       77
+Power-Supply Rejection Ratio                        PSRR           TA = +25°C                   200mVP-P ripple                                                                      dB
+                                                                   (Notes 3, 4)                 f = 10kHz,
+                                                                                                                                                       60
+                                                                                                200mVP-P ripple
+
+
+
+
+www.analog.com                                                                                                                                                     Analog Devices │ 4
+MAX98357A/                                              Tiny, Low-Cost, PCM Class D Amplifier with
+MAX98357B                                                                  Class AB Performance
+
+Electrical Characteristics (continued)
+(VDD = 5V, VGND = 0V, GAIN_SLOT = VDD. BCLK = 3.072MHz, LRCLK = 48kHz, speaker loads (ZSPK) connected between OUTP
+and OUTN, ZSPK = ∞, TA = TMIN to TMAX, unless otherwise noted. Typical values are at TA = +25°C.) (Note 2)
+
+         PARAMETER            SYMBOL                   CONDITIONS                 MIN     TYP      MAX      UNITS
+                                                              ZSPK = 4Ω + 33µH             3.2
+                                        THD+N 10%,            ZSPK = 8Ω + 68µH             1.8
+                                        gain = 12dB           ZSPK = 8Ω + 68µH,
+                                                                                          0.93
+                                                              VDD = 3.7V
+Output Power (Note 3)          POUT                                                                           W
+                                                              ZSPK = 4Ω + 33µH             2.5
+                                        THD+N = 1%,           ZSPK = 8Ω + 68µH             1.4
+                                        gain = 12dB           ZSPK = 8Ω + 68µH,
+                                                                                          0.77
+                                                              VDD = 3.7V
+                                        f = 1kHz, POUT = 1W, TA = +25°C,
+                                                                                          0.02     0.06
+                                        ZSPK = 4Ω + 33µH, WLP
+Total Harmonic Distortion +             f = 1kHz, POUT = 1W, TA = +25°C,
+                              THD+N                                                       0.02                %
+Noise                                   ZSPK = 4Ω + 33µH, TQFN
+                                        f = 1kHz, POUT = 0.5W, TA = +25°C,
+                                                                                          0.013
+                                        ZSPK = 8Ω + 68µH
+                                        A-weighted, ZSPK = 8Ω + 33µH,
+Dynamic Range                   DR                                                        103.5              dB
+                                        VRMS = 3.40V, 24- or 32-bit data
+Output Noise                    VN      A-weighted, 24- or 32-bit data (Note 4)           22.8             µVRMS
+                                        GAIN_SLOT = GND through 100kΩ             14.4     15      15.6
+                                        GAIN_SLOT = GND                           11.4     12      12.6
+Gain (Relative to a 2.1dBV
+                                AV      GAIN_SLOT = unconnected                    8.4     9       9.6       dB
+Reference Level)
+                                        GAIN_SLOT = VDD                            5.4     6       6.6
+                                        GAIN_SLOT = VDD through 100kΩ              2.4     3       3.6
+Current Limit                   ILIM                                                       2.8                A
+                                        ZSPK = 8Ω + 68µH, THD+N = 10%,
+Efficiency                       ε                                                         92                 %
+                                        f = 1kHz, gain = 12dB
+DAC Gain Error                                                                             1                  %
+Frequency Response                                                                -0.2             +0.2      dB
+Class D Switching Frequency    fOSC                                                       300                kHz
+Spread-Spectrum Bandwidth                                                                 ±20                kHz
+DAC DIGITAL FILTERS
+VOICE MODE IIR LOWPASS FILTER (LRCLK < 30kHz)
+                                                                                  0.443
+                                        Ripple limit cutoff
+                                                                                   x fS
+Passband Cutoff                 fPLP                                                                         Hz
+                                                                                  0.446
+                                        -3dB cutoff
+                                                                                   x fS
+                                                                                                  0.464
+Stopband Cutoff                 fSLP                                                                         Hz
+                                                                                                   x fS
+Stopband Attenuation                    f > fSLP                                   75                        dB
+
+
+
+
+www.analog.com                                                                                    Analog Devices │ 5
+MAX98357A/                                               Tiny, Low-Cost, PCM Class D Amplifier with
+MAX98357B                                                                   Class AB Performance
+
+Electrical Characteristics (continued)
+(VDD = 5V, VGND = 0V, GAIN_SLOT = VDD. BCLK = 3.072MHz, LRCLK = 48kHz, speaker loads (ZSPK) connected between OUTP
+and OUTN, ZSPK = ∞, TA = TMIN to TMAX, unless otherwise noted. Typical values are at TA = +25°C.) (Note 2)
+
+        PARAMETER            SYMBOL                    CONDITIONS               MIN       TYP       MAX      UNITS
+AUDIO MODE FIR LOWPASS FILTER (30kHz < LRCLK < 50kHz)
+                                                                                0.43
+                                        Ripple limit cutoff
+                                                                                x fS
+                                                                                0.47
+Passband Cutoff                 fPLP    -3dB cutoff                                                           Hz
+                                                                                x fS
+                                                                                0.5
+                                        -6.02dB cutoff
+                                                                                x fS
+                                                                                                    0.58
+Stopband Cutoff                 fSLP                                                                          Hz
+                                                                                                    x fS
+Stopband Attenuation                    f > fSLP                                60                            dB
+AUDIO MODE FIR LOWPASS FILTER (LRCLK > 50kHz)
+                                                                                0.24
+                                        Ripple limit cutoff
+                                                                                x fS
+Passband Cutoff                 fPLP                                                                          Hz
+                                                                                0.31
+                                        -3dB cutoff
+                                                                                x fS
+                                                                                                   0.477
+Stopband Cutoff                 fSLP                                                                          Hz
+                                                                                                    x fS
+Stopband Attenuation                    f < fSLP                                60                            dB
+DIGITAL AUDIO INTERFACE
+LRCLK Range 1                   fS1                                             7.6        8        8.4
+LRCLK Range 2                   fS2                                             15.2      16        16.8
+                                                                                                              kHz
+LRCLK Range 3                   fS3                                             30.4      48        50.4
+LRCLK Range 4                   fS4                                             83.8      96       100.8
+                                        I2S/left justified mode                         16/24/32
+Resolution                                                                                                    Bits
+                                        TDM mode                                         16/32
+BCLK Frequency Range          fBCLKH    BCLK must be 32, 48, or 64X of LRCLK   0.2432              25.804     MHz
+BCLK High Time                tBCLKH                                            15                             ns
+BCLK Low Time                  tBCLKL                                           15                             ns
+Maximum Low Frequency
+                                        RMS jitter below 40kHz                            0.5
+BCLK and LRCLK Jitter
+                                                                                                               ns
+Maximum High Frequency
+                                        RMS jitter above 40kHz                            12
+BCLK and LRCLK Jitter
+Input High Voltage              VIH     Digital audio inputs                    1.3                            V
+
+
+
+
+www.analog.com                                                                                     Analog Devices │ 6
+MAX98357A/                                                      Tiny, Low-Cost, PCM Class D Amplifier with
+MAX98357B                                                                          Class AB Performance
+
+Electrical Characteristics (continued)
+(VDD = 5V, VGND = 0V, GAIN_SLOT = VDD. BCLK = 3.072MHz, LRCLK = 48kHz, speaker loads (ZSPK) connected between OUTP
+and OUTN, ZSPK = ∞, TA = TMIN to TMAX, unless otherwise noted. Typical values are at TA = +25°C.) (Note 2)
+
+         PARAMETER                 SYMBOL                     CONDITIONS                      MIN        TYP        MAX       UNITS
+Input Low Voltage                     VIL       Digital audio inputs                                                 0.6         V
+Input Leakage Current                IIH, IIL   VIN = 0V, VDD = 5.5V, TA = +25°C               -1                    +1         µA
+Input Capacitance                     CIN                                                                  3                    pF
+DIN to BCLK Setup Time              tSETUP                                                    10                                ns
+LRCLK to BCLK Setup Time           tSYNCSET                                                   10                                ns
+DIN to BCLK Hold Time                tHOLD                                                    10                                ns
+LRCLK to BCLK Hold Time           tSYNCHOLD                                                   10                                ns
+SD_MODE COMPARATOR TRIP POINTS
+B0                                                                                            0.08       0.16       0.355
+                                                See SD_MODE and shutdown operation
+B1                                                                                            0.65       0.77       0.825        V
+                                                for details
+B2                                                                                           1.245        1.4        1.5
+SD_MODE Pulldown Resistor             RPD                                                     92          100        108        kΩ
+GAIN COMPARATOR TRIP POINTS
+                                                                                             0.65 x                0.85 x
+                                                AV = 3dB gain
+                                                                                              VDD                   VDD
+                                                                                             0.9 x
+                                                AV = 6dB gain                                                       VDD
+                                                                                             VDD
+                                   V_GAIN_                                                   0.4 x                  0.6 x
+                                                AV = 9dB gain                                                                    V
+                                    SLOT                                                     VDD                    VDD
+                                                                                                                    0.1 x
+                                                AV = 12dB gain                                 0
+                                                                                                                    VDD
+                                                                                             0.15 x                0.35 x
+                                                AV = 15dB gain
+                                                                                              VDD                   VDD
+
+Note 2: 100% production tested at TA = +25°C. Specifications over temperature limits are guaranteed by design.
+Note 3: Class D amplifier testing performed with a resistive load in series with an inductor to simulate an actual speaker load. For
+        RL = 8Ω, LL = 68µH. For RL = 4Ω, LL = 33µH.
+Note 4: Digital silence used for input signal.
+Note 5: Dynamic range measured using the EIAJ method. -60dBFS 1kHz output signal, A-weighted, and normalized to 0dBFS.
+        f = 20Hz to 20kHz.
+
+
+
+
+www.analog.com                                                                                                     Analog Devices │ 7
+MAX98357A/                                                                                                           Tiny, Low-Cost, PCM Class D Amplifier with
+MAX98357B                                                                                                                               Class AB Performance
+
+
+
+
+                                                                                     tBCLK
+                                                                                                      tBCLKH
+                       VIH                                                   VIH                         VIH       tBCLKL
+      BCLK (INPUT)     VIL                                           VIL                                     VIL
+
+
+                                               tSYNCSET                                                                                                        tSYNCHOLD
+                                                      VIH
+    LRCLK (INPUT)
+                                                        VIL
+
+
+                                                                                           tSETUP tHOLD
+                                                                                            VIH
+        DIN (INPUT)                                                                 VIL
+                                                                                                  LEFT MSB                                                                                   RIGHT MSB
+
+
+
+
+Figure 1. I2S Audio Interface Timing Diagram (MAX98357A)
+
+
+
+
+                                                                                     tBCLK
+                                                                                                      tBCLKH
+                       VIH                                                   VIH                         VIH       tBCLKL
+      BCLK (INPUT)     VIL                                           VIL                                     VIL
+
+
+                                               tSYNCSET                                                                                                        tSYNCHOLD
+                                                               VIH
+    LRCLK (INPUT)
+                                                             VIL
+
+
+                                                                                           tSETUP tHOLD
+                                                                                            VIH
+        DIN (INPUT)                                                LEFT MSB VIL                                                                                           RIGHT MSB
+
+
+
+
+Figure 2. Left-Justified Audio Interface Timing Diagram (MAX98357B)
+
+
+
+
+                                                     tBCLK                                                                                                             tBCLK
+                                                                           tBCLKH tBCLKL                                                                                          tBCLKL tBCLKH
+                                               VIH                         VIH                                                                                 VIH                            VIH
+     BCLK (INPUT)                        VIL                           VIL                                                   BCLK (input)                       VIL                          VIL
+
+                      tSYNCSET                                                                                                               tSYNCSET
+                                                               tSYNCHOLD                                                                                                   tSYNCHOLD
+    LRCLK (INPUT)                      VIH
+                                                                                                                            LRCLK (input)                VIH
+                                 VIL                                                                                                                    VIL
+
+                                                                                          tSETUP tHOLD                                                                                       tSETUP tHOLD
+                                                                                          VIH                                                                                                 VIH
+       DIN (INPUT)                                                 MSB             VIL
+                                                                                                                               DIN (input)                                     MSB     VIL
+
+
+
+                                               MAX98357A                                                                                                              MAX98357B
+
+
+
+
+Figure 3. TDM Audio Interface Timing Diagram
+
+
+
+
+www.analog.com                                                                                                                                                                               Analog Devices │ 8
+MAX98357A/                                                                                          Tiny, Low-Cost, PCM Class D Amplifier with
+MAX98357B                                                                                                              Class AB Performance
+
+Typical Operating Characteristics
+(VDD = 5V, VGND = 0V, GAIN_SLOT = GND (+12dB). BCLK = 3.072MHz, LRCLK = 48kHz, speaker loads (ZSPK) connected between
+OUTP and OUTN, TA = TMIN to TMAX, unless otherwise noted. Typical values are at TA = +25°C.)
+
+
+
+                                                            QUIESCENT CURRENT vs.
+                                                               SUPPLY VOLTAGE                                                           SHUTDOWN CURRENT vs. SUPPLY VOLTAGE
+                                                                                           toc01                                                                                       toc02
+                                     4.0                                                                                         1.0
+                                                 VDDIO = 1.8V                                                                                VDDIO = 1.8V
+                                     3.5                                                                                         0.9
+                                                                                                                                 0.8
+                                     3.0
+
+
+
+
+                                                                                                         SHUTDOWN CURRENT (µA)
+             QUIECENT CURRENT (mA)
+
+
+
+
+                                                                                                                                 0.7
+                                     2.5                                                                                         0.6
+                                     2.0                                                                                         0.5
+
+                                     1.5                                                                                         0.4
+                                                                                                                                 0.3
+                                     1.0
+                                                                                                                                 0.2
+                                     0.5                                                                                         0.1
+                                     0.0                                                                                         0.0
+                                           2.5        3.0        3.5    4.0   4.5    5.0      5.5                                      2.5       3.0         3.5    4.0   4.5    5.0      5.5
+                                                                SUPPLY VOLTAGE (V)                                                                          SUPPLY VOLTAGE (V)
+
+
+
+
+www.analog.com                                                                                                                                                                                  Analog Devices │ 9
+MAX98357A/                                                                                                     Tiny, Low-Cost, PCM Class D Amplifier with
+MAX98357B                                                                                                                         Class AB Performance
+
+Typical Operating Characteristics (continued)
+(VDD = 5V, VGND = 0V, GAIN_SLOT = GND (+12dB). BCLK = 3.072MHz, LRCLK = 48kHz, speaker loads (ZSPK) connected between
+OUTP and OUTN, TA = TMIN to TMAX, unless otherwise noted. Typical values are at TA = +25°C.)
+
+
+
+
+                              OUTPUT POWER vs. LOAD RESISTANCE                                    OUTPUT POWER vs. LOAD RESISTANCE                                     OUTPUT POWER vs. LOAD RESISTANCE
+                                                             toc15                                                                toc16
+                    2.5                                                                 3.5                                                                  4.5                                       toc17
+
+                              VDD = 3.7V                                                          VDD = 4.2V                                                           VDD = 5V
+                                                                                                                                                             4.0
+                                                                                        3.0
+                    2.0                                                                                                                                      3.5
+                                                10% THD+N                               2.5
+                                                                                                                                                                                      10% THD+N
+ OUTPUT POWER (W)
+
+
+
+
+                                                                     OUTPUT POWER (W)
+
+
+
+
+                                                                                                                     10% THD+N
+                                                                                                                                          OUTPUT POWER (W)
+
+
+
+
+                                                                                                                                                             3.0
+                    1.5
+                                                                                        2.0                                                                  2.5
+                                                  1% THD+N                                                             1% THD+N                                                             1% THD+N
+                                                                                        1.5                                                                  2.0
+                    1.0
+                                                                                                                                                             1.5
+                                                                                        1.0
+                    0.5                                                                                                                                      1.0
+                                                                                        0.5
+                                                                                                                                                             0.5
+                    0.0                                                                 0.0                                                                  0.0
+                          1                       10           100                            1                       10            100                            1                     10              100
+                                           LOAD RESISTANCE                                                     LOAD RESISTANCE                                                    LOAD RESISTANCE
+
+
+
+
+www.analog.com                                                                                                                                                                           Analog Devices │ 10
+MAX98357A/                                            Tiny, Low-Cost, PCM Class D Amplifier with
+MAX98357B                                                                Class AB Performance
+
+Typical Operating Characteristics (continued)
+(VDD = 5V, VGND = 0V, GAIN_SLOT = GND (+12dB). BCLK = 3.072MHz, LRCLK = 48kHz, speaker loads (ZSPK) connected between
+OUTP and OUTN, TA = TMIN to TMAX, unless otherwise noted. Typical values are at TA = +25°C.)
+
+
+
+
+                                                                                                                NORMALIZED GAIN vs. FREQUENCY
+                                                                                                                                                 toc20
+                                                                                                     1.0
+
+                                                                                                     0.5
+
+                                                                                                     0.0
+
+
+
+
+                                                                              NORMALIZED GAIN (dB)
+                                                                                                     -0.5
+
+                                                                                                     -1.0
+
+                                                                                                     -1.5
+
+                                                                                                     -2.0
+
+                                                                                                     -2.5
+
+                                                                                                     -3.0
+                                                                                                            1      10     100    1000    10000   100000
+                                                                                                                        FREQUENCY (Hz)
+
+
+
+
+www.analog.com                                                                                                                  Analog Devices │ 11
+MAX98357A/                                                                                                 Tiny, Low-Cost, PCM Class D Amplifier with
+MAX98357B                                                                                                                     Class AB Performance
+
+Typical Operating Characteristics (continued)
+(VDD = 5V, VGND = 0V, GAIN_SLOT = GND (+12dB). BCLK = 3.072MHz, LRCLK = 48kHz, speaker loads (ZSPK) connected between
+OUTP and OUTN, TA = TMIN to TMAX, unless otherwise noted. Typical values are at TA = +25°C.)
+
+
+
+                       POWER-SUPPLY REJECTION RATIO                                            POWER-SUPPLY REJECTION RATIO
+                              vs. FREQUENCY                                                        vs. SUPPLY VOLTAGE                                    TURN-ON RESPONSE   toc29
+                                                        toc27                                                                           toc28
+            100                                                                    100
+             90                                                                     90                                                                                               OUTPUT
+                                                                                                                                                                                     1V/div
+             80                                                                     80
+             70                                                                     70
+             60                                                                     60
+PSRR (dB)
+
+
+
+
+                                                                       PSRR (dB)
+
+
+
+
+             50                                                                     50
+             40                                                                     40
+             30                                                                     30
+                                                                                                                                                                                     SD_MODE
+             20                                                                     20                                                                                               1V/div
+             10                                                                     10         fS = 1kHz
+              0                                                                      0
+                  10       100       1000    10000   100000                              2.5       3.0       3.5    4.0   4.5    5.0       5.5                2ms/div
+                                 FREQUENCY (Hz)                                                             SUPPLY VOLTAGE (V)
+
+
+
+                                                                                                           TURN-OFF RESPONSE                             TURN-ON RESPONSE
+                            TURN-OFF RESPONSE                                                                (STANDBY MODE)                               (STANDBY MODE)
+                                                     toc30                                                                             toc30a                               toc30b
+
+
+
+
+                                                             OUTPUT
+                                                             1V/div
+                                                                                                                                                BCLK                                 BCLK
+                                                                                                                                                2V/div                               2V/div
+
+                                                                                                                                                LRCLK                                LRCLK
+                                                                                                                                                2V/div                               2V/div
+
+
+
+
+                                                             SD_MODE                                                                            OUTPUT                               OUTPUT
+                                                             1V/div                                                                             1V/div                               1V/div
+
+
+
+
+                                    1ms/div                                                                     500µs/div                                     2ms/div
+
+
+
+
+www.analog.com                                                                                                                                                 Analog Devices │ 12
+MAX98357A/                                            Tiny, Low-Cost, PCM Class D Amplifier with
+MAX98357B                                                                Class AB Performance
+
+Typical Operating Characteristics (continued)
+(VDD = 5V, VGND = 0V, GAIN_SLOT = GND (+12dB). BCLK = 3.072MHz, LRCLK = 48kHz, speaker loads (ZSPK) connected between
+OUTP and OUTN, TA = TMIN to TMAX, unless otherwise noted. Typical values are at TA = +25°C.)
+
+
+
+
+www.analog.com                                                                                    Analog Devices │ 13
+MAX98357A/                                            Tiny, Low-Cost, PCM Class D Amplifier with
+MAX98357B                                                                Class AB Performance
+
+Typical Operating Characteristics (continued)
+(VDD = 5V, VGND = 0V, GAIN_SLOT = GND (+12dB). BCLK = 3.072MHz, LRCLK = 48kHz, speaker loads (ZSPK) connected between
+OUTP and OUTN, TA = TMIN to TMAX, unless otherwise noted. Typical values are at TA = +25°C.)
+
+
+
+
+www.analog.com                                                                                    Analog Devices │ 14
+MAX98357A/                                                             Tiny, Low-Cost, PCM Class D Amplifier with
+MAX98357B                                                                                 Class AB Performance
+
+Pin Configurations
+
+                                  TOP VIEW
+                               BUMP SIDE DOWN                                                          TOP VIEW
+                                    MAX98357A
+
+
+
+
+                                                                                                                   OUTN
+
+                                                                                                                          OUTP
+                                                                                                       GND
+                                                                                              N.C.
+                                    MAX98357B
+                       +                                                                      12        11         10      9
+                           SD_MODE        VDD      OUTP
+                             A1           A2        A3
+                                                                                                                                        VDD
+                                                                                    N.C. 13                                         8
+
+                             DIN     GAIN_SLOT     OUTN
+                                                                                LRCLK 14              MAX98357A                     7   VDD
+                             B1           B2        B3                                                MAX98357B
+                                                                                    GND 15                                          6   N.C.
+                            BCLK          GND      LRCLK
+                             C1           C2        C3                              BCLK 16                                         5   N.C.
+                                                                                              +
+                                                                                                  1      2          3      4
+                                          WLP
+
+
+
+
+                                                                                              DIN
+
+                                                                                                       GAIN_SLOT
+
+                                                                                                                   GND
+
+                                                                                                                          SD_MODE
+                                                                                                        TQFN
+
+
+
+
+Pin Description
+        PIN
+                               NAME                                                       FUNCTION
+  WLP         TQFN
+                                                Shutdown and Channel Select. Pull SD_MODE low to place the device in shutdown. In I2S
+   A1            4           SD_MODE            or LJ mode, SD_MODE selects the data channel (Table 5). In TDM mode, SD_MODE and
+                                                GAIN_SLOT are both used for channel selection (Table 7).
+   A2          7, 8                VDD          Power-Supply Input
+   A3            9                OUTP          Positive Speaker Amplifier Output
+   B1            1                 DIN          Digital Input Signal
+                                                Gain and Channel Selection. In I2S and LJ mode determines amplifier output gain (Table 8)
+                               GAIN_
+   B2            2                              In TDM mode, used for channel selection with SD_MODE (Table 7). In TDM mode, gain is
+                               SLOT
+                                                fixed at 12dB.
+   B3            10            OUTN             Negative Speaker Amplifier Output
+   C1            16               BCLK          Bit Clock Input
+   C2      3, 11, 15               GND          Ground
+   C3            14            LRCLK            Frame Clock. Left/right clock for I2S and LJ mode. Sync clock for TDM mode.
+               5, 6,
+    —                              N.C.         No Connection
+              12, 13
+                                                Exposed Pad. The exposed pad is not internally connected. Connect the exposed page to a
+    —            —                 EP
+                                                solid ground plane for thermal dissipation.
+
+
+
+
+www.analog.com                                                                                                                                 Analog Devices │ 15
+MAX98357A/                                                   Tiny, Low-Cost, PCM Class D Amplifier with
+MAX98357B                                                                       Class AB Performance
+
+Detailed Description                                              BCLK Jitter Tolerance
+The MAX98357A/MAX98357B are digital PCM input                     The ICs feature a BCLK jitter tolerance of 0.5ns for RMS
+Class D power amplifiers. The MAX98357A accepts stan-             jitter below 40kHz and 12ns for wideband RMS jitter while
+dard I2S data through DIN, BCLK, and LRCLK while the              maintaining a dynamic range greater than 98dB (Table 1).
+MAX98357B accepts left-justified data through the same            BCLK Polarity
+inputs. Both versions also accept 16-bit or 32-bit TDM
+                                                                  When operating in I2S/left-justified mode, incoming serial
+data with up to eight slots. The digital audio interface
+                                                                  data is always clocked-in on the rising edge of BCLK.
+eliminates the need for an external MCLK signal that is
+                                                                  In TDM mode, the MAX98357A clocks-in serial data on
+typically required for I2S data transmission.
+                                                                  the rising edge of BCLK while the MAX98357B clocks in
+SD_MODE selects which data word is output by the                  serial data on the falling edge of BCLK (Table 2).
+amplifier and is used to put the ICs into shutdown. These
+devices offer five gain settings in I2S/left-justified mode       LRCLK Polarity
+and a fixed 12dB gain in TDM mode. Channel selection in           LRCLK specifies whether left-channel data or right-
+TDM mode is set with the combination of SD_MODE and               channel data is currently being read by the digital audio
+GAIN_SLOT (Table 7).                                              interface. The MAX98357A indicates the left channel
+The MAX98357A/MAX98357B DAI includes a DC blocker                 word when LRCLK is low, and the MAX98357B indicates
+with a -3dB cutoff at 3.7Hz.                                      the left channel word when LRCLK is high (Table 3).
+
+The MAX98357A/MAX98357B feature low-quiescent cur-                LRCLK ONLY supports 8kHz, 16kHz, 32kHz, 44.1kHz,
+rent, comprehensive click-and-pop suppression, and                48kHz, 88.2kHz and 96kHz frequencies. LRCLK clocks
+excellent RF immunity. The ICs offer Class AB audio               at 11.025kHz, 12kHz, 22.05kHz and 24kHz are NOT sup-
+performance with Class D efficiency in a minimal board-           ported. Do not remove LRCLK while BCLK is present.
+space solution. The Class D amplifier features spread-            Removing LRCLK while BCLK is present can cause unex-
+spectrum modulation with edge-rate and overshoot con-             pected output behavior including a large DC output voltage.
+trol circuitry that offers significant improvements in switch-    Standby Mode
+mode amplifier radiated emissions. The amplifier features         The ICs automatically enter standby mode when BCLK
+click-and-pop suppression that reduces audible transients         is removed. If BCLK stops toggling, the ICs automatically
+on startup and shutdown. The amplifier includes thermal-
+overload and short-circuit protection.                            Table 1. RMS Jitter Tolerance
+Digital Audio Interface Modes                                          FREQUENCY           RMS JITTER TOLERANCE (ns)
+The input stage of the digital audio interface is highly flexi-
+                                                                          < 40kHz                        0.5
+ble, supporting 8kHz–96kHz sampling rates with 16/24/32-
+bit resolution for I2S/left justified data as well as up to a          40kHz–BCLK                        12
+8-slot, 16-bit or 32-bit time division multiplexed (TDM)
+format. When LRCLK has a 50% duty cycle the data                  Table 2. BCLK Polarity
+format is determined by the part number selection
+(MAX98357A/MAX98357B). When a frame sync pulse                         MODE           PART NUMBER            BCLK POLARITY
+is used for the LRCLK the data format is automatically                   I2S            MAX98357A              Rising edge
+configured in TDM mode. The frame sync pulse indicates              Left-justified      MAX98357B              Rising edge
+the beginning of the first time slot.
+                                                                                        MAX98357A              Rising edge
+MCLK Elimination                                                        TDM
+                                                                                        MAX98357B              Falling edge
+The ICs eliminate the need for the external MCLK
+signal that is typically used for PCM communication.              Table 3. LRCLK Polarity
+This reduces EMI and possible board coupling issues in
+addition to reducing the size and pin-count of the ICs.            PART NUMBER         LRCLK POLARITY (LEFT CHANNEL)
+                                                                     MAX98357A                         Low
+                                                                     MAX98357B                        High
+
+
+
+
+www.analog.com                                                                                            Analog Devices │ 16
+MAX98357A/                                               Tiny, Low-Cost, PCM Class D Amplifier with
+MAX98357B                                                                   Class AB Performance
+
+enter standby mode. In standby mode, the Class D speak-              Drive SD_MODE high to select the left word of the stereo
+er is turned off and the outputs go into a high-impedance            input data. Drive SD_MODE high through a sufficiently
+state, ensuring that unwanted current is not transferred to          small resistor to select the right word of the stereo input
+the load during this condition. Standby mode has reduced             data. Drive SD_MODE high through a sufficiently large
+power consumption from normal operation (340µA), but                 resistor to select both the left and right words of the
+does not reach as low as full shutdown (0.6µA). Standby              stereo input data (left/2 + right/2). RLARGE and RSMALL
+mode can be used to reduce power consumption when no                 are determined by the VDDIO voltage (logic voltage from
+GPIO us available to pull SD_MODE low.                               control interface) that is driving SD_MODE according to
+                                                                     the following two equations:
+DAC Digital Filters
+                                                                                 RSMALL (kΩ) = 94.0 x VDDIO - 100
+The DAC features a digital lowpass filter that is auto-
+matically configured for voice playback or music playback                       RLARGE (kΩ) = 222.2 x VDDIO - 100
+based on the sample rate that is used. This filter elimi-            When the devices are configured in left-channel mode
+nates the effect of aliasing and any other high-frequency            (SD_MODE is directly driven to logic-high by the con-
+noise that might otherwise be present. Table 4 shows the             trol interface), take care to avoid violating the Absolute
+digital filter settings that are automatically selected.             Maximum Ratings limits for SD_MODE. Ensuring that
+                                                                     VDD is always greater than VDDIO is one way to prevent
+SD_MODE and Shutdown Operation
+                                                                     SD_MODE from violating the Absolute Maximum Ratings
+The ICs feature a low-power shutdown mode, drawing                   limits. If this is not possible in the application (e.g., if VDD
+less than 0.6µA (typ) of supply current. During shutdown,            < 3.0V and VDDIO = 3.3V), then it is necessary to add a
+all internal blocks are turned off, including setting the            small resistance (~2kΩ) in series with SD_MODE to limit
+output stage to a high-impedance state. Drive SD_MODE                the current into the SD_MODE pin. This is not a concern
+low to put the ICs into shutdown.                                    when using the right channel or (left/2 + right/2) modes.
+The state of SD_MODE determines the audio channel                    Figure 4 and Figure 5 show how to connect an external
+that is sent to the amplifier output (Table 5).                      resistor to SD_MODE when using an open-drain driver or
+                                                                     a push-pull driver.
+
+Table 4. Digital Filter Settings
+                              -3dB CUTOFF         RIPPLE LIMIT CUTOFF            STOPBAND CUTOFF                STOPBAND
+  LRCLK FREQUENCY
+                              FREQUENCY               FREQUENCY                     FREQUENCY                ATTENUATION (dB)
+     fLRCLK < 30kHz           0.446 x fLRCLK          0.443 x fLRCLK                 0.464 x fLRCLK                      75
+30kHz < fLRCLK < 50kHz        0.47 x fLRCLK            0.43 x fLRCLK                  0.58 x fLRCLK                      60
+     fLRCLK > 50kHz           0.31 x fLRCLK            0.24 x fLRCLK                 0.477 x fLRCLK                      60
+
+
+Table 5. SD_MODE Control
+                                     SD_MODE STATUS                                                     SELECTED CHANNEL
+                  High                                 VSD_MODE > B2 trip point                                   Left
+          Pullup through RSMALL                 B2 trip point > VSD_MODE > B1 trip point                          Right
+          Pullup through RLARGE                 B1 trip point > VSD_MODE > B0 trip point                    (Left/2 + right/2)
+                   Low                                 B0 trip point > VSD_MODE                                Shutdown
+
+
+Table 6. Examples of SD_MODE Pullup Resistor Values
+  LOGIC VOLTAGE LEVEL (VDDIO) (V)                      RSMALL (kΩ)                                     RLARGE (kΩ)
+                   1.8                                        69.8                                          300
+                   3.3                                        210.2                                         634
+
+
+
+
+www.analog.com                                                                                                  Analog Devices │ 17
+MAX98357A/                                                     Tiny, Low-Cost, PCM Class D Amplifier with
+MAX98357B                                                                         Class AB Performance
+
+
+
+                          PROCESSOR       VDDIO                                                  LEFT MODE
+                                                   MAX98357A
+                                                   MAX98357B
+                                               R
+                                                                                B2 (1.4V typ)
+                                                    VSD_MODE
+                                   GPIO
+
+                                                                                                 RIGHT MODE
+                                                         100kΩ
+                                                         ±8%
+                                                                                B1 (0.77V typ)
+
+
+                                                                                                 LEFT/2 + RIGHT/2
+                                                                                                 MODE
+
+                                                                                B0 (0.16V typ)
+
+
+Figure 4. SD_MODE Resistor Connected Using Open-Drain Driver
+
+
+
+                          PROCESSOR
+                           VDDIO                   MAX98357A
+                                                   MAX98357B                                     LEFT MODE
+
+
+                                                                                B2 (1.4V typ)
+                                           R        VSD_MODE
+                                   GPIO
+
+                                                                                                 RIGHT MODE
+                                                         100kΩ
+                                                         ±8%
+                                                                                B1 (0.77V typ)
+
+
+                                                                                                 LEFT/2 + RIGHT/2
+                                                                                                 MODE
+
+                                                                                B0 (0.16V typ)
+
+
+Figure 5. SD_MODE Resistor Connected Using Push-Pull Driver
+
+Startup                                                            5)   LRCLK must start no more than 1/2 LRCLK after
+With the exception of BCLK = 256KHz, the only required                  BCLK starts.
+sequence for startup is that LRCLK must start within 1/2           6)   LRCLK must complete a full cycle; no partial LRCLK
+LRCLK period of BCLK starting.                                          cycles.
+When using a mode with BCLK = 256kHz, there are addi-              7)   Once started, BCLK and LRCLK must remain switch-
+tional requirements for the part to power-up properly:                  ing at 256kHz and 8kHz, respectively, and cannot
+1)   BCLK and LRCLK cannot be applied before the part                   be interrupted during device operation. If BCLK and
+     is enabled.                                                        LRCLK need to be stopped, SD_MODE must first be
+                                                                        set to 0V. Subsequent startups with BCLK = 256kHz
+2)   BCLK and LRCLK must start from logic low and tran-
+                                                                        and LRCLK = 8kHz need to follow the sequence
+     sition to logic high.
+                                                                        described in steps 1-6.
+3)   After VDD is > 2.3V AND SD_MODE is high, there
+                                                                   Figure 6 shows an example where VDD reaches UVLO
+     must be a 10μs wait time before starting BCLK and
+                                                                   maximum before SD_MODE is applied. In this example,
+     LRCLK.
+                                                                   the 10μs wait time starts after SD_MODE is applied.
+4)   LRCLK must start at least 1/2 BCLK after BCLK starts.
+
+
+
+www.analog.com                                                                                                      Analog Devices │ 18
+MAX98357A/                                                       Tiny, Low-Cost, PCM Class D Amplifier with
+MAX98357B                                                                           Class AB Performance
+
+
+
+
+      VDD = UVLO
+   MAXIMUM (2.3V)
+
+
+                                     > 10µs
+
+
+
+        SD_MODE
+
+
+
+
+            BCLK                       > 10µs
+
+
+
+
+                                                                     ½ LRCLK
+           LRCLK
+                                                   t
+
+                                          ½ BCLK < t < ½ LRCLK
+
+
+
+Figure 6. Required startup sequence when using BCLK = 256kHz
+
+
+I2S and Left Justified Mode                                          RSMALL and RLARGE are dependent on the voltage level
+The MAX98357A follows standard I2S timing by allowing                of VDDIO. See Table 6 for pullup resistor values.
+a delay of one BCLK cycle after the LRCLK transition                 TDM Mode
+before the beginning of a new data word (Figure 7 and
+                                                                     TDM mode is automatically detected by monitoring the
+Figure 8). The MAX98357B follows the left justified timing
+                                                                     short channel sync pulse on LRCLK. The frequency
+specification by aligning the LRCLK transitions with the
+                                                                     detector circuit detects the bit depth. In TDM mode,
+beginning of a new data word (Figure 9 and Figure 10).
+                                                                     the MAX98357A/MAX98357B has a fixed gain of 12dB.
+LRCLK ONLY supports 8kHz, 16kHz, 32kHz, 44.1kHz,
+                                                                     GAIN_SLOT and SD_MODE are used to select to which
+48kHz, 88.2kHz, and 96kHz frequencies. LRCLK clocks
+                                                                     of 8 channels of TDM data the parts respond. Table 7
+at 11.025kHz, 12kHz, 22.05kHz and 24kHz are NOT
+                                                                     shows the connections for GAIN_SLOT and SD_MODE
+supported. Do not remove LRCLK while BLCK is pres-
+                                                                     for channel selection. The MAX98357A data is valid on
+ent. Removing LRCLK while BCLK is present can cause
+                                                                     the BCLK rising edge. The MAX98357B data is valid on
+unexpected output behavior, including a large DC output
+                                                                     the BCLK falling edge.
+voltage.
+                                                                     Figure 11, Figure 12, Figure 13, and Figure 14 show TDM
+The digital audio interface output mode is chosen by the
+                                                                     operation, in which a frame-sync pulse is used for LRCLK.
+voltage at SD_MODE. Table 5 shows how the available
+                                                                     In TDM mode, there must be 128 (16-bit mode) or 256
+modes are selected. Trip point B0–B2 are shown the
+                                                                     (32-bit mode) BCLK cycles per frame. In TDM mode, the
+Electrical Characteristics in the SD_MODE Comparator
+                                                                     ICs only accept 16-bit or 32-bit formatted data and any of
+Trip Points section. Values for SD_MODE pullup resistors
+                                                                     the 8 TDM slots can be selected.
+
+
+
+
+www.analog.com                                                                                              Analog Devices │ 19
+MAX98357A/                                                               Tiny, Low-Cost, PCM Class D Amplifier with
+MAX98357B                                                                                   Class AB Performance
+
+Table 7. TDM Mode Channel Selection
+              SD_MODE                                    GAIN_SLOT                    CHANNEL                                BITS
+                 Low                                              X                       Off                                 N/A
+                 VDD                                             GND                       0                                 16/32
+                 VDD                                       VDD with 0Ω                     1                                 16/32
+                 VDD                                             Float                     2                                 16/32
+                 VDD                                   VDD with 100kΩ                      3                                 16/32
+                 VDD                                   GND with 100kΩ                      4                                 16/32
+     VDD through RLARGE                                          GND                       5                                 16/32
+     VDD through RLARGE                                          Float                     6                                 16/32
+     VDD through RLARGE                                          VDD                       7                                 16/32
+
+
+
+
+     16 BITS/CHANNEL SD_MODE = VDD
+
+   LRCLK                                        LEFT                                              RIGHT                              LEFT
+
+
+    BCLK
+
+
+     DIN               D15 D14 D13 D12 D11 D10 D9 D8 D7 D6 D5 D4 D3 D2 D1 D0 D15 D14 D13 D12 D11 D10 D9 D8 D7 D6 D5 D4 D3 D2 D1 D0 D15 D14
+
+                                                                                                     IGNORED
+
+    16 BITS/CHANNEL SD_MODE PULL UP THROUGH RSMALL (70K)
+
+   LRCLK                                        LEFT                                              RIGHT                              LEFT
+
+
+    BCLK
+
+
+     DIN               D15 D14 D13 D12 D11 D10 D9 D8 D7 D6 D5 D4 D3 D2 D1 D0 D15 D14 D13 D12 D11 D10 D9 D8 D7 D6 D5 D4 D3 D2 D1 D0 D15 D14
+
+                                                       IGNORED
+
+     16 BITS/CHANNEL SD_MODE PULL UP THROUGH RLARGE (300k)
+
+   LRCLK                                        LEFT                                              RIGHT                              LEFT
+
+
+    BCLK
+
+
+     DIN               D15 D14 D13 D12 D11 D10 D9 D8 D7 D6 D5 D4 D3 D2 D1 D0 D15 D14 D13 D12 D11 D10 D9 D8 D7 D6 D5 D4 D3 D2 D1 D0 D15 D14
+
+
+
+
+Figure 7. MAX98357A I2S Digital Audio Interface Timing, 16-Bit Resolution
+
+
+
+
+www.analog.com                                                                                                              Analog Devices │ 20
+www.analog.com
+                                                                                                                                                                                                                                                                                                                                                                          MAX98357B
+                                                                                                                                                                                                                                                                                                                                                                          MAX98357A/
+
+
+
+
+                                                                                                     32 BITS/CHANNEL, SD_MODE = VDD
+
+
+                                                                                                  LRCLK                                                               LEFT                                                                                                                  RIGHT
+
+
+                                                                                                  BCLK
+
+
+                                                                                                    DIN             D31 D30 D29 D28 D27 D26 D25 D24 D23 D22 D21 D20 D19 D18 D17 D16 D15 D14 D13 D12 D11 D10 D9 D8 D7 D6 D5 D4 D3 D2 D1 D0 D31 D30 D29 D28 D27 D26 D25 D24 D23 D22 D21 D20 D19 D18 D17 D16 D15 D14 D13 D12 D11 D10 D9 D8 D7 D6 D5 D4 D3 D2 D1 D0 D31 D30
+
+                                                                                                                                                                                                                                                                                                IGNORED
+                                                                                                     32 BITS/CHANNEL, SD_MODE PULLUP THROUGH RSMALL (70k)
+
+
+                                                                                                  LRCLK                                                               LEFT                                                                                                                  RIGHT
+
+
+                                                                                                  BCLK
+
+
+                                                                                                    DIN             D31 D30 D29 D28 D27 D26 D25 D24 D23 D22 D21 D20 D19 D18 D17 D16 D15 D14 D13 D12 D11 D10 D9 D8 D7 D6 D5 D4 D3 D2 D1 D0 D31 D30 D29 D28 D27 D26 D25 D24 D23 D22 D21 D20 D19 D18 D17 D16 D15 D14 D13 D12 D11 D10 D9 D8 D7 D6 D5 D4 D3 D2 D1 D0 D31 D30
+
+
+
+
+                      Figure 8. MAX98357A I2S Digital Audio Interface Timing, 32-Bit Resolution
+                                                                                                                                                                          IGNORED
+                                                                                                     32 BITS/CHANNEL, SD_MODE PULLUP THROUGH RLARGE (300k)
+
+                                                                                                  LRCLK                                                               LEFT                                                                                                                  RIGHT
+
+
+                                                                                                  BCLK
+
+
+                                                                                                    DIN             D31 D30 D29 D28 D27 D26 D25 D24 D23 D22 D21 D20 D19 D18 D17 D16 D15 D14 D13 D12 D11 D10 D9 D8 D7 D6 D5 D4 D3 D2 D1 D0 D31 D30 D29 D28 D27 D26 D25 D24 D23 D22 D21 D20 D19 D18 D17 D16 D15 D14 D13 D12 D11 D10 D9 D8 D7 D6 D5 D4 D3 D2 D1 D0 D31 D30
+
+                                                                                                                                                                                                                               LEFT AND RIGHT SUMMED
+
+
+
+
+Analog Devices │ 21
+                                                                                                                                                                                                                                                                                                                                                                                             Class AB Performance
+                                                                                                                                                                                                                                                                                                                                                                          Tiny, Low-Cost, PCM Class D Amplifier with
+MAX98357A/                                                            Tiny, Low-Cost, PCM Class D Amplifier with
+MAX98357B                                                                                Class AB Performance
+
+
+
+
+      16 BITS/CHANNEL, SD_MODE = VDD
+
+      LRCLK                                      LEFT                                                RIGHT
+
+
+       BCLK
+
+
+        DIN           D15 D14 D13 D12 D11 D10 D9 D8 D7 D6 D5 D4 D3 D2 D1 D0 D15 D14 D13 D12 D11 D10 D9 D8 D7 D6 D5 D4 D3 D2 D1 D0 D15 D14
+
+                                                                                                    IGNORED
+
+      16 BITS/CHANNEL, SD_MODE PULLUP THROUGH RSMALL (70k)
+
+      LRCLK                                         LEFT
+                                                                                                     RIGHT
+
+
+       BCLK
+
+
+        DIN           D15 D14 D13 D12 D11 D10 D9 D8 D7 D6 D5 D4 D3 D2 D1 D0 D15 D14 D13 D12 D11 D10 D9 D8 D7 D6 D5 D4 D3 D2 D1 D0 D15 D14
+
+                                                  IGNORED
+
+      16 BITS/CHANNEL, SD_MODE PULLUP THROUGH RLARGE (300k)
+
+      LRCLK                                         LEFT                                             RIGHT
+
+
+       BCLK
+
+
+        DIN           D15 D14 D13 D12 D11 D10 D9 D8 D7 D6 D5 D4 D3 D2 D1 D0 D15 D14 D13 D12 D11 D10 D9 D8 D7 D6 D5 D4 D3 D2 D1 D0 D15 D14
+
+                                                                   LEFT AND RIGHT SUMMED
+
+
+
+
+Figure 9. MAX98357B Left-Justified Digital Audio Interface Timing, 16-Bit Resolution
+
+
+
+
+www.analog.com                                                                                                                  Analog Devices │ 22
+www.analog.com
+                                                                                                                                                                                                                                                                                                                                                                                           MAX98357B
+                                                                                                                                                                                                                                                                                                                                                                                           MAX98357A/
+
+
+
+
+                                                                                                                      32 BITS/CHANNEL, SD_MODE = VDD
+                                                                                                                                                                                      LEFT                                                                                                                                                                                      LEFT
+                                                                                                              LRCLK                                                                                                                                                                                            RIGHT
+
+
+                                                                                                              BCLK
+
+
+                                                                                                                DIN            D31 D30 D29 D28 D27 D26 D25 D24 D23 D22 D21 D20 D19 D18 D17 D16 D15 D14 D13 D12 D11 D10 D9 D8 D7 D6 D5 D4 D3 D2   D1 D0 D31 D30 D29 D28 D27 D26 D25 D24 D23 D22 D21 D20 D19 D18 D17 D16 D15 D14 D13 D12 D11 D10 D9 D8 D7 D6 D5 D4 D3 D2 D1 D0 D31 D30 D29
+
+                                                                                                                                                                                                                                                                                                              IGNORED
+
+                                                                                                                      32 BITS/CHANNEL, SD_MODE PULLUP THROUGH RSMALL (70k)
+                                                                                                                                                                                      LEFT                                                                                                                                                                                      LEFT
+                                                                                                              LRCLK                                                                                                                                                                                            RIGHT
+
+
+                                                                                                              BCLK
+
+                                                                                                                                                                                                                                                                      BCLK
+                                                                                                                DIN            D31 D30 D29 D28 D27 D26 D25 D24 D23 D22 D21 D20 D19 D18 D17 D16 D15 D14 D13 D12 D11 D10 D9 D8 D7 D6 D5 D4 D3 D2   D1 D0 D31 D30 D29 D28 D27 D26 D25 D24 D23 D22 D21 D20 D19 D18 D17 D16 D15 D14 D13 D12 D11 D10 D9 D8 D7 D6 D5 D4 D3 D2 D1 D0 D31 D30
+
+                                                                                                                                                                                      IGNORED                                                                                                                                                                                IGNORED
+
+                                                                                                                      32 BITS/CHANNEL, SD_MODE PULLUP THROUGH RLARGE (300k)
+                                                                                                                                                                                      LEFT                                                                                                                                                                                      LEFT
+                                                                                                              LRCLK                                                                                                                                                                                            RIGHT
+
+
+                                                                                                              BCLK
+
+
+
+
+                      Figure 10. MAX98357B Left-Justified Digital Audio Interface Timing, 32-Bit Resolution
+                                                                                                               SDIN            D31 D30 D29 D28 D27 D26 D25 D24 D23 D22 D21 D20 D19 D18 D17 D16 D15 D14 D13 D12 D11 D10 D9 D8 D7 D6 D5 D4 D3 D2   D1 D0 D31 D30 D29 D28 D27 D26 D25 D24 D23 D22 D21 D20 D19 D18 D17 D16 D15 D14 D13 D12 D11 D10 D9 D8 D7 D6 D5 D4 D3 D2 D1 D0 D31 D30
+
+
+                                                                                                                                                                                                                                            LEFT AND RIGHT SUMMED
+
+
+
+
+Analog Devices │ 23
+                                                                                                                                                                                                                                                                                                                                                                                                              Class AB Performance
+                                                                                                                                                                                                                                                                                                                                                                                           Tiny, Low-Cost, PCM Class D Amplifier with
+www.analog.com
+                                                                                                                                                                                                                    MAX98357B
+                                                                                                                                                                                                                    MAX98357A/
+
+
+                                                                   TDM
+                                                                   16-BIT DATA, 128-BIT FRAME SD_MODE TIED TO VDD, GAIN_SLOT TIED TO GND, DATA IN CHANNEL 0
+
+
+
+
+                                                                             D15 D14 D13 D12 D11 D10 D9 D8 D7 D6 D5 D4 D3 D2 D1 D0                                                                    D15 D14 LD3
+
+
+
+
+                      Figure 11. MAX98357A TDM 16-Bit DAI Timing
+                                                                                                                                                                       IGNORED
+                                                                   TDM
+                                                                   16-BIT DATA, 128-BIT FRAME SD_MODE TIED TO VDD THROUGH RLARGE, GAIN_SLOT TIED TO VDD, DATA IN CHANNEL 7
+
+
+
+
+                                                                     D1 D0                                                                    D15 D14 D13 D12 D11 D10 D9 D8 D7 D6 D5 D4 D3 D2 D1 D0
+
+                                                                                                          IGNORED
+
+
+                                                                   TDM
+                                                                   16-BIT DATA, 128-BIT FRAME, DATA IN CHANNELS 1-6
+
+
+
+
+                                                                                                                      D15 D14 D13 D12 D11 D10 D9 D8 D7 D6 D5 D4 D3 D2 D1 D0
+
+                                                                                            IGNORED                                                                                          IGNORED
+
+
+
+
+Analog Devices │ 24
+                                                                                                                                                                                                                                       Class AB Performance
+                                                                                                                                                                                                                    Tiny, Low-Cost, PCM Class D Amplifier with
+www.analog.com
+                                                                                                                                                                                                                                                                                                      MAX98357B
+                                                                                                                                                                                                                                                                                                      MAX98357A/
+
+
+
+
+                      Figure 12. MAX98357A TDM 32-Bit DAI Timing
+                                                                   TDM
+                                                                   32-BIT DATA, 256-BIT FRAME SD_MODE TIED TO VDD, GAIN_SLOT TIED TO GND, DATA IN CHANNEL 0
+
+
+
+
+                                                                   D31 D30 D29 D28 D27 D26 D25 D24 D23 D22 D21 D20 D19 D18 D17 D16 D15 D14 D13 D12 D11 D10 D9                D8   D7   D6   D5   D4   D3   D2   D1   D0                                                                 D31 D30 D29
+
+                                                                                                                                                                                                                                               IGNORED
+                                                                   TDM
+                                                                   32-BIT DATA, 256-BIT FRAME SD_MODE TIED TO VDD THROUGH RLARGE, GAIN_SLOT TIED TO VDD, DATA IN CHANNEL 7
+
+
+
+
+                                                                                                                                             D31 D30 D29 D28 D27 D26 D25 D24 D23 D22 D21 D20 D19 D18 D17 D16 D15 D14 D13 D12 D11 D10 D9   D8    D7   D6   D5   D4   D3   D2   D1   D0
+
+                                                                                                  IGNORED
+
+
+
+
+Analog Devices │ 25
+                                                                                                                                                                                                                                                                                                                         Class AB Performance
+                                                                                                                                                                                                                                                                                                      Tiny, Low-Cost, PCM Class D Amplifier with
+www.analog.com
+                                                                                                                                                                                                                                                         MAX98357B
+                                                                                                                                                                                                                                                         MAX98357A/
+
+
+
+                                                                   TDM
+                                                                   16-BIT DATA, 128-BIT FRAME SD_MODE TIED TO VDD, GAIN_SLOT TIED TO GND, DATA IN CHANNEL 0
+
+
+
+
+                                                                             D15 D14 D13 D12 D11 D10 D9        D8    D7   D6   D5   D4   D3   D2   D1 D0                                                                                   D15 D14 LD3
+
+
+
+
+                      Figure 13. MAX98357B TDM 16-Bit DAI Timing
+                                                                                                                                                                                              IGNORED
+                                                                   TDM
+                                                                   16-BIT DATA, 128-BIT FRAME SD_MODE TIED TO VDD THROUGH RLARGE, GAIN_SLOT TIED TO VDD, DATA IN CHANNEL 7
+
+
+
+
+                                                                        D1 D0                                                                                   D15 D14 D13 D12 D11 D10 D9         D8   D7   D6   D5   D4   D3   D2   D1   D0
+
+
+                                                                                                                IGNORED
+
+                                                                   TDM
+                                                                   16-BIT DATA, 128-BIT FRAME DATA IN CHANNELS 1-6
+
+
+
+
+                                                                                                                      D15 D14 D13 D12 D11 D10 D9           D8   D7   D6   D5   D4   D3   D2   D1   D0
+
+
+                                                                                        IGNORED                                                                                                                              IGNORED
+
+
+
+
+Analog Devices │ 26
+                                                                                                                                                                                                                                                                            Class AB Performance
+                                                                                                                                                                                                                                                         Tiny, Low-Cost, PCM Class D Amplifier with
+www.analog.com
+                                                                                                                                                                                                                                                                                          MAX98357B
+                                                                                                                                                                                                                                                                                          MAX98357A/
+
+
+
+
+                                                                   TDM
+
+
+
+
+                      Figure 14. MAX98357B TDM 32-Bit DAI Timing
+                                                                   32-BIT DATA, 256-BIT FRAME SD_MODE TIED TO VDD, GAIN_SLOT TIED TO GND, DATA IN CHANNEL 0
+
+
+
+
+                                                                           D31 D30 D29 D28 D27 D26 D25 D24 D23 D22 D21 D20 D19 D18 D17 D16 D15 D14 D13 D12 D11 D10 D09 D08 D07 D06 D05 D04 D03 D02 D01 D0                                                                   D31 D30 D29
+
+                                                                                                                                                                                                                                         IGNORED
+                                                                   TDM
+                                                                   32-BIT DATA, 256-BIT FRAME SD_MODE TIED TO VDD THROUGH RLARGE, GAIN_SLOT TIED TO VDD, DATA IN CHANNEL 7
+
+
+
+
+                                                                                                                                           D31 D30 D29 D28 D27 D26 D25 D24 D23 D22 D21 D20 D19 D18 D17 D16 D15 D14 D13 D12 D11 D10 D09 D08 D07 D06 D05 D04 D03 D02 D01 D0
+
+
+                                                                                                 IGNORED
+
+
+
+
+Analog Devices │ 27
+                                                                                                                                                                                                                                                                                                             Class AB Performance
+                                                                                                                                                                                                                                                                                          Tiny, Low-Cost, PCM Class D Amplifier with
+MAX98357A/                                                                               Tiny, Low-Cost, PCM Class D Amplifier with
+MAX98357B                                                                                                   Class AB Performance
+
+Class D Speaker Amplifier                                                                    Gain Selection
+The filterless Class D amplifier offers much higher effi-                                    The ICs offer five programmable gain selections through a
+ciency than Class AB amplifiers. The high efficiency of a                                    single gain input (GAIN_SLOT) in I2S/left justified mode.
+Class D amplifier is due to the switching operation of the                                   Gain is referenced to the full-scale output of the DAC,
+output stage transistors. Any power loss associated with                                     which is 2.1dBV (Table 8). In TDM mode, the gain is auto-
+the Class D output stage is mostly due to the I2R loss of the                                matically set at a fixed 12dB. Assuming that the desired
+MOSFET on-resistance and quiescent current overhead.                                         output swing is not limited by the supply voltage rail, the
+                                                                                             IC’s output level can be calculated based on the digital
+Ultra-Low EMI Filterless Output Stage                                                        input signal level and selected amplifier gain according to
+Traditional Class D amplifiers require the use of external                                   the following equation:
+LC filters, or shielding, to meet EN55022B electromagnet-
+                                                                                              Output signal level (dBV) = input signal level (dBFS) +
+ic-interference (EMI) regulation standards. Maxim’s active
+                                                                                                       2.1dB + selected amplifier gain (dB)
+emissions-limiting edge-rate control circuitry and spread-
+spectrum modulation reduces EMI emissions while main-                                        where 0dBFS is referenced to 0dBV.
+taining up to 92% efficiency.                                                                Click-and-Pop Suppression
+Maxim’s spread-spectrum modulation mode flattens wide-                                       The IC speaker amplifier features Maxim’s comprehen-
+band spectral components while proprietary techniques                                        sive click-and-pop suppression. During startup, the click-
+ensure that the cycle-to-cycle variation of the switching                                    and-pop suppression circuitry reduces audible transient
+period does not degrade audio reproduction or efficiency.                                    sources internal to the device by ramping the input signal
+The ICs’ spread-spectrum modulator randomly varies the                                       from mute to 0dB. When entering shutdown, the differen-
+switching frequency by ±20kHz around the center fre-                                         tial speaker outputs simultaneously drop to GND.
+quency (300kHz). Above 10MHz, the wideband spectrum
+                                                                                             The comprehensive click-and-pop suppression of the
+looks like noise for EMI purposes (Figure 15).
+                                                                                             MAX98357 is unaffected by power-up or power-down
+Speaker Current Limit                                                                        sequencing. Applying the DAI clocks before or after the
+If the output current of the speaker amplifier exceeds the                                   transition of SD_MODE yields the same click-and-pop
+current limit (2.8A typ), the IC disables the outputs for                                    performance. The MAX98357 does not have a volume
+approximately 100µs. At the end of the 100µs, the outputs                                    ramp-down response when entering shutdown. For opti-
+are re-enabled. If the fault condition still exists, the IC con-                             mal click-and-pop performance, ramp down the digital
+tinues to disable and reenable the outputs until the fault                                   data on SDIN before powering down the MAX98357.
+condition is removed.
+
+
+                                                                                             Table 8. Gain Selection
+                                      90
+                                                                                                        GAIN_SLOT                  I2S/LJ GAIN (dB)
+
+                                      70
+                                                                                               Connect to GND through 100kΩ
+                                                                                                                                          15
+           EMISSIONS LEVEL (dBµV/m)
+
+
+
+
+                                                                                                        ±5% resistor
+                                      50                                                              Connect to GND                      12
+                                                                                                        Unconnected                        9
+                                      30
+                                                                                                      Connect to VDD                       6
+                                                                                               Connect to VDD through 100kΩ
+                                      10                                                                                                   3
+                                                                                                        ±5% resistor
+
+                                      -10
+                                            0 100 200 300 400 500 600 700 800 900 1000
+                                                       FREQUENCY (MHz)
+
+
+Figure 15. EMI with 12in of Speaker Cable and No Output
+Filtering
+
+
+
+
+www.analog.com                                                                                                                       Analog Devices │ 28
+MAX98357A/                                                        Tiny, Low-Cost, PCM Class D Amplifier with
+MAX98357B                                                                            Class AB Performance
+
+Applications Information
+
+
+                                                                          2.5V TO 5.5V
+
+
+
+                                                    10µF         0.1µF
+
+
+                                       CODEC
+                                                                   GAIN_SLOT   VDD
+                                                 SD_MODE         B2          A2
+                                         GPIO*              A1
+                                                                                         OUTP
+                                                                                   A3
+                                                    BCLK
+                                     BIT CLOCK              C1
+                                                                  MAX98357A
+                                                   LRCLK          MAX98357B
+                                  FRAME CLOCK               C3                           OUTN
+                                                                                   B3
+                                                      DIN
+                                     DATA OUT               B1
+                                                                         C2
+                                                                          GND
+
+
+                                                  *RESPONDS TO LEFT CHANNEL WHEN GPIO IS HIGH.
+                                                  THE MAX98357A/B ARE SHUT DOWN WHEN GPIO IS LOW.
+
+
+
+
+Figure 16. Left-Channel PCM Operation with 6dB Gain
+
+
+
+
+                                                                          2.5V TO 5.5V
+
+
+
+                                                    10µF         0.1µF
+
+
+
+                                       CODEC
+                                                                   GAIN_SLOT   VDD
+                                                 SD_MODE         B2          A2
+                                         GPIO*              A1
+                                                                                         OUTP
+                                                                                   A3
+                                                    BCLK
+                                     BIT CLOCK              C1
+                                                                  MAX98357A
+                                                   LRCLK          MAX98357B
+                                  FRAME CLOCK               C3                           OUTN
+                                                                                   B3
+                                                      DIN
+                                     DATA OUT               B1
+                                                                         C2
+                                                                          GND
+
+
+                                                  *RESPONDS TO LEFT CHANNEL WHEN GPIO IS HIGH.
+                                                  THE MAX98357A/B ARE SHUT DOWN WHEN GPIO IS LOW.
+
+
+
+Figure 17. Left-Channel PCM Operation with 12dB Gain
+
+
+
+
+www.analog.com                                                                                      Analog Devices │ 29
+MAX98357A/                                                              Tiny, Low-Cost, PCM Class D Amplifier with
+MAX98357B                                                                                  Class AB Performance
+
+
+
+                                                                                           2.5V TO 5.5V
+
+
+
+                                                                10µF          0.1µF
+
+
+                                 CODEC
+                                               RSMALL                             GAIN_SLOT          VDD
+                                             (69.8kΩ)**
+                                                          SD_MODE             B2                 A2
+                                   GPIO*                                A1
+                                                                                                                OUTP
+                                                                                                           A3
+                                                                BCLK
+                               BIT CLOCK                                C1
+                                                                                  MAX98357A
+                                                               LRCLK              MAX98357B
+                            FRAME CLOCK                                 C3                                      OUTN
+                                                                                                           B3
+                                                                 DIN
+                               DATA OUT                                 B1
+                                                                                          C2
+                                                                                               GND
+
+
+                                                                       *RESPONDS TO RIGHT CHANNEL WHEN GPIO IS HIGH.
+                                                                       **69.8kΩ ASSUMES VGPIO = 1.8V.
+                                                                       THE MAX98357A/B ARE SHUT DOWN WHEN GPIO IS LOW.
+
+
+Figure 18. Right-Channel PCM Operation with 6dB Gain
+
+
+
+
+                                                                                           2.5V TO 5.5V
+
+
+
+                                                                 10µF             0.1µF
+
+
+                                           CODEC
+                                                    RLARGE                          GAIN_SLOT VDD
+                                                   (300kΩ)**
+                                                               SD_MODE            B2         A2
+                                           GPIO*                             A1
+                                                                                                           OUTP
+                                                                  BCLK                                A3
+                                     BIT CLOCK                               C1 MAX98357A
+                                                                 LRCLK            MAX98357B
+                                  FRAME CLOCK                                C3                            OUTN
+                                                                                                      B3
+                                                                   DIN
+                                      DATA OUT                               B1
+                                                                                          C2
+                                                                                           GND
+
+
+                                                          *LEFT AND RIGHT CHANNELS SUMMED WHEN GPIO IS HIGH.
+                                                          **300kΩ ASSUMES VGPIO = 1.8V.
+                                                          THE MAX98357A/B ARE SHUT DOWN WHEN GPIO IS LOW.
+
+
+
+
+Figure 19. (Left/2 + Right/2) PCM Operation with 6dB Gain
+
+
+
+
+www.analog.com                                                                                                           Analog Devices │ 30
+MAX98357A/                                               Tiny, Low-Cost, PCM Class D Amplifier with
+MAX98357B                                                                   Class AB Performance
+
+
+
+
+                                                                                          2.5V TO 5.5V
+
+
+
+                                                                10µF         0.1µF
+
+
+
+
+                                                                              GAIN_SLOT          VDD
+                                                             SD_MODE         B2                 A2
+                                                                        A1
+                                                                                                            OUTP
+                                                                BCLK                                 A3
+                                                                        C1    MAX98357A
+                                                               LRCLK          MAX98357B
+                                                                        C3                                  OUTN
+                                                                                                     B3
+                                                                 DIN
+                                                                        B1
+                                                                                     C2
+
+                      CODEC                                                           GND
+
+                                                                       *RESPONDS TO CHANNEL 0 WHEN GPIO IS HIGH.
+                        GPIO*                                          THE MAX98357A/B ARE SHUT DOWN WHEN GPIO IS LOW.
+
+
+                    BIT CLOCK
+                                                                                          2.5V TO 5.5V
+                 FRAME CLOCK
+
+                    DATA OUT                                    10µF         0.1µF
+
+
+
+                                                  RSMALL                      GAIN_SLOT          VDD
+                                                (69.8kΩ)**
+                                                             SD_MODE         B2                 A2
+                                                                       A1
+                                                                                                       A3 OUTP
+                                                                BCLK
+                                                                       C1
+                                                                              MAX98357A
+                                                               LRCLK          MAX98357B
+                                                                       C3                                   OUTN
+                                                                                                       B3
+                                                                 DIN
+                                                                       B1
+                                                                                     C2
+                                                                                          GND
+
+                                                                       *RESPONDS TO RIGHT CHANNEL WHEN GPIO IS HIGH.
+                                                                       **69.8kΩ ASSUMES VGPIO = 1.8V.
+                                                                       THE MAX98357A/B ARE SHUT DOWN WHEN GPIO IS LOW.
+
+
+
+
+Figure 20. Stereo PCM Operation Using Two ICs
+
+
+
+
+www.analog.com                                                                                                       Analog Devices │ 31
+MAX98357A/                                                    Tiny, Low-Cost, PCM Class D Amplifier with
+MAX98357B                                                                        Class AB Performance
+
+
+                                                                       2.5V TO 5.5V
+
+
+                                                                                           0.1µF     10µF
+
+                                                                GAIN_SLOT VDD
+                                              SD_MODE          B2            A2
+                                                         A1
+                                                                                           OUTP
+                                                  BCLK                                A3
+                                                         C1    MAX98357A
+                                                 LRCLK         MAX98357B
+                                                         C3                                OUTN
+                                                                                      B3
+                                                   DIN
+                                                         B1
+                                                                     C2
+                                                                       GND                   *RESPONDS TO CHANNEL 0 WHEN GPIO IS HIGH.
+                                                                                             THE MAX98357A/B ARE SHUT DOWN WHEN GPIO IS LOW.
+                                                                       2.5V TO 5.5V
+
+
+                                                                                           0.1µF     10µF
+
+              CODEC                                             GAIN_SLOT VDD
+                                              SD_MODE          B2            A2
+                                                         A1
+               GPIO*                                                                       OUTP
+                                                  BCLK                                A3
+                                                         C1    MAX98357A
+           BIT CLOCK                                           MAX98357B
+                                                 LRCLK
+                                                         C3                                OUTN
+         FRAME CLOCK                                                                  B3
+                                                   DIN
+                                                         B1
+                                                                     C2
+            DATA OUT
+                                                                       GND                 *RESPONDS TO CHANNEL 1 WHEN GPIO IS HIGH.
+                                                                                           THE MAX98357A/B ARE SHUT DOWN WHEN GPIO IS LOW.
+                                                                       2.5V TO 5.5V
+
+
+                                                                                           0.1µF     10µF
+
+                                                                GAIN_SLOT VDD
+                                              SD_MODE          B2            A2
+                                                         A1
+                                                                                           OUTP
+                                                  BCLK                                A3
+                                                         C1    MAX98357A
+                                                 LRCLK         MAX98357B
+                                                         C3                                OUTN
+                                                                                      B3
+                                                   DIN
+                                                         B1
+                                                                     C2
+                                                                       GND                 *RESPONDS TO CHANNEL 2 WHEN GPIO IS HIGH.
+                                                                                           THE MAX98357A/B ARE SHUT DOWN WHEN GPIO IS LOW.
+                                                                       2.5V TO 5.5V
+
+                                                                    100kΩ
+                                                                                           0.1µF     10µF
+
+                                                                GAIN_SLOT VDD
+                                              SD_MODE          B2            A2
+                                                         A1
+                                                                                           OUTP
+                                                  BCLK                                A3
+                                                         C1    MAX98357A
+                                                 LRCLK         MAX98357B
+                                                         C3                                OUTN
+                                                                                      B3
+                                                   DIN
+                                                         B1
+                                                                     C2
+                                                                       GND                 *RESPONDS TO CHANNEL 3 WHEN GPIO IS HIGH.
+                                                                                           THE MAX98357A/B ARE SHUT DOWN WHEN GPIO IS LOW.
+
+Figure 21. Channel TDM Operation (Gain Fixed at 12dB)
+
+
+
+
+www.analog.com                                                                                                                 Analog Devices │ 32
+MAX98357A/                                                      Tiny, Low-Cost, PCM Class D Amplifier with
+MAX98357B                                                                          Class AB Performance
+
+Functional Diagram
+
+                                                               2.5V TO 5.5V
+
+
+
+                                         10µF       0.1µF
+
+                                                                       VDD                             GAIN_SLOT
+                                                                   A2                             B2
+
+
+                 LRCLK C3
+                                                            MAX98357A
+                                                            MAX98357B
+                                                                                                              A3 OUTP
+                 BCLK C1      DIGITAL                                                            CLASS D
+                   DIN B1     AUDIO                                                              OUTPUT
+                            INTERFACE           INTERPOLATOR                    DAC               STAGE       B3 OUTN
+              SD_MODE A1
+
+                                                                  C2
+                                                                       GND
+
+
+
+
+Filterless Class D Operation                                                 Layout and Grounding
+Traditional Class D amplifiers require an output filter                      Proper layout and grounding are essential for optimum
+to recover the audio signal from the amplifier’s output.                     performance. Good grounding improves audio perfor-
+The filter adds cost, size, and decreases efficiency                         mance and prevents switching noise from coupling into
+and THD+N performance. The ICs’ filterless modulation                        the audio signal.
+scheme does not require an output filter. The device relies                  Use wide, low-resistance output traces. As load imped-
+on the inherent inductance of the speaker coil and the                       ance decreases, the current drawn from the device out-
+natural filtering of both the speaker and the human ear to                   puts increases. At higher current, the resistance of the
+recover the audio component of the square-wave output.                       output traces decreases the power delivered to the load.
+Because the switching frequency of the ICs is well beyond                    For example, if 2W is delivered from the speaker output to
+the bandwidth of most speakers, voice coil movement due                      a 4Ω load through 100mΩ of total speaker trace, 1.904W
+to the switching frequency is very small. Use a speaker                      is being delivered to the speaker. If power is delivered
+with a series inductance > 10µH. Typical 8Ω speakers                         through 10mΩ of total speaker trace, 1.951W is being
+exhibit series inductances in the 20µH to 100µH range.                       delivered to the speaker. Wide output, supply, and ground
+                                                                             traces also improve the power dissipation of the ICs.
+Power-Supply Input                                                           Parasitic capacitance on the output traces cause higher
+VDD, which ranges from 2.5V to 5.5V, powers the IC,                          quiescent current by VDD x 300kHz x CPARASITIC.
+including the speaker amplifier. Bypass VDD with a 0.1µF
+                                                                             For example, at VDD = 5V and a total parasitic capaci-
+and 10µF capacitor to GND. Some applications might
+                                                                             tance of 100pF (50pF on each output trace), the increase
+require only the 10µF bypass capacitor, making it pos-
+                                                                             in quiescent current is 5 x 300kHz x 100pF = 150µA.
+sible to operate with a single external component. Apply
+additional bulk capacitance at the ICs if long input traces                  The ICs are inherently designed for excellent RF immu-
+between VDD and the power source are used.                                   nity. For best performance, add ground fills around all
+                                                                             signal traces on top or bottom PCB planes.
+
+
+
+
+www.analog.com                                                                                                          Analog Devices │ 33
+MAX98357A/                                                  Tiny, Low-Cost, PCM Class D Amplifier with
+MAX98357B                                                                      Class AB Performance
+
+Gains of 6dB, 9dB, and 12dB are selectable without              In many applications, the only passive component required
+using a via or routing out the center bump of the WLP.          would be a single capacitor which results in a tiny solution
+This simplifies the layout and allows for inexpensive PCB       size of 4.32mm2.
+fabrication. Here is a layout example with the gain set to
+12dB. The center bump is tied to the adjacent GND pin.          WLP Applications Information
+Refer to Application Note 6643: Optimize Cost, Size, and        For the latest application details on WLP construction,
+Performance with MAX98357 WLP for more information.             dimensions, tape carrier information, PCB techniques,
+                                                                bump-pad layout, and recommended reflow temperature
+                                                                profile, as well as the latest information on reliability test-
+                                                                ing results, refer to the Application Note 1891: Wafer-
+                                                                Level Packaging (WLP) and Its Applications. Figure 24
+                                                                shows the dimensions of the WLP balls used on the ICs.
+
+
+                                                                                            0.24mm
+
+
+
+
+Figure 22. WLP Pin Connect for set 12dB Gain Without Via.
+
+
+                           1.78mm
+
+
+
+
+                                                                                            0.21mm
+                                          2.49mm
+                                                                Figure 24. MAX98357A/MAX98357B WLP Ball Dimensions
+
+
+
+
+Figure 23. Example Layout Configured for Left-Channel Audio
+and Gain of 12dB.
+
+
+Ordering Information
+          PART                      TEMP RANGE                    PIN-PACKAGE                          TOP MARK
+ MAX98357AETE+                      -40°C to +85°C                   16 TQFN                              +AKK
+ MAX98357AETE+T                     -40°C to +85°C                   16 TQFN                              +AKK
+ MAX98357AEWL+T                     -40°C to +85°C                    9 WLP                               +AKM
+ MAX98357AGTE/V+                    -40°C to +105°C                  16 TQFN                              +AKV
+ MAX98357BETE+                      -40°C to +85°C                   16 TQFN                              +AKL
+ MAX98357BETE+T                     -40°C to +85°C                   16 TQFN                                —
+ MAX98357BEWL+T                     -40°C to +85°C                    9 WLP                               +AKN
++Denotes a lead(Pb)-free/RoHS-compliant package.
+T = Tape and reel.
+/V denotes an automotive-qualified part.
+
+
+
+
+www.analog.com                                                                                            Analog Devices │ 34
+MAX98357A/                                                      Tiny, Low-Cost, PCM Class D Amplifier with
+MAX98357B                                                                          Class AB Performance
+
+Package Information
+For the latest package outline information and land patterns (footprints), go to www.analog.com/packages. Note that a “+”, “#”, or “-”
+in the package code indicates RoHS status only. Package drawings may show a different suffix character, but the drawing pertains to
+the package regardless of RoHS status.
+
+      PACKAGE TYPE                  PACKAGE CODE                     OUTLINE NO.                     LAND PATTERN NO.
+           9 WLP                        W91F1+1                          21-0896                Refer to Application Note 1891
+          16 TQFN                        T1633+4                         21-0136                            90-0031
+
+
+
+
+                                                                0.05 S
+
+
+
+
+                                                                                                            maxim
+                                                   0.05    AB
+                                                                                                            integrated         TM
+
+
+
+
+                                                                                                                                TIE WANG 06/27/14
+
+
+
+
+www.analog.com                                                                                                   Analog Devices │ 35
+MAX98357A/                                                    Tiny, Low-Cost, PCM Class D Amplifier with
+MAX98357B                                                                        Class AB Performance
+
+Package Information (continued)
+For the latest package outline information and land patterns (footprints), go to www.analog.com/packages. Note that a “+”, “#”, or “-”
+in the package code indicates RoHS status only. Package drawings may show a different suffix character, but the drawing pertains to
+the package regardless of RoHS status.
+
+
+
+
+www.analog.com                                                                                                   Analog Devices │ 36
+MAX98357A/                                                    Tiny, Low-Cost, PCM Class D Amplifier with
+MAX98357B                                                                        Class AB Performance
+
+Package Information (continued)
+For the latest package outline information and land patterns (footprints), go to www.analog.com/packages. Note that a “+”, “#”, or “-”
+in the package code indicates RoHS status only. Package drawings may show a different suffix character, but the drawing pertains to
+the package regardless of RoHS status.
+
+
+
+
+www.analog.com                                                                                                   Analog Devices │ 37
+MAX98357A/                                                          Tiny, Low-Cost, PCM Class D Amplifier with
+MAX98357B                                                                              Class AB Performance
+
+Revision History
+ REVISION   REVISION                                                                                                                                PAGES
+                                                                       DESCRIPTION
+ NUMBER       DATE                                                                                                                                 CHANGED
+    0         9/13     Initial release                                                                                                                   —
+                       Added two new TOCs, replaced TOC 29, updated Figures 1–3, and made various                                                    1, 4–20,
+    1        11/13
+                       corrections                                                                                                                  29–32, 34
+    2         8/14     Added THD+N for TQFN package with typical spec                                                                                     5
+    3         1/15     Updated spread-spectrum bandwidth spec                                                                                          5, 28
+    4         2/15     Added automotive-qualified part                                                                                                   34
+    5         6/15     Updated TOCs 30a and 30b                                                                                                          12
+    6         8/15     Corrected package outline for WLP package                                                                                         36
+    7         2/16     Removed future product designations                                                                                               34
+    8         6/16     Removed future product designation on MAX98357AGTE/V+                                                                             34
+                       Updated dynamic range and output noise specifications in Electrical Characteristics
+    9         7/17                                                                                                                                        5
+                       table
+    10        8/17     Updated soldering temperature in the Absolute Maximum Ratings section                                                              4
+                       Updated General Description, Features, and Applications sections, changed Class D
+                       Switching Frequency in Electrical Characteristics table and other sections, replaced                                        1, 5, 11, 16,
+    11        5/18
+                       TOC 20, added DC blocker information to Detailed Description section, updated and                                            28, 33, 34
+                       added figures to Layout and Grounding section
+
+                       Updated Features section to match Electrical Characteristics table typical values.
+    12        4/19     Added Startup section and new Figure 6 for startup requirements when using                                                    1, 17–34
+                       BCLK = 256kHz
+
+    13        7/19     Updated TOCs 05 and 12                                                                                                          11, 12
+    14       10/19     Updated Ordering Information table                                                                                                34
+    15        1/26     Updated Ordering Information table                                                                                                34
+    16        2/26     Updated Ordering Information table                                                                                                34
+
+
+
+
+                                         Information furnished by Analog Devices is believed to be accurate and reliable. However, no responsibility is assumed
+                                         by Analog Devices for its use, nor for any infringements of patents or other rights of third parties that may result from its
+                                         use. Specifications subject to change without notice. No license is granted by implication or otherwise under any patent
+                                         or patent rights of Analog Devices. Trademarks and registered trademarks are the property of their respective owners.
+                                         All Analog Devices products contained herein are subject to release and availability.
+
+
+w w w . a n a l o g . c o m                                                                                                               Analog Devices │ 38
+

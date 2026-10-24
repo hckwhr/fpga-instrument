@@ -1,0 +1,27 @@
+Reading E:/modelsim/tcl/vsim/pref.tcl
+
+# 10.6d
+
+# vsim -c work.tb_dds_control_pipeline_regression -l sim/tb_dds_control_pipeline.transcript -wlf sim/tb_dds_control_pipeline.wlf -do "run -all; quit -f" 
+# Start time: 17:38:35 on Oct 23,2026
+# //  ModelSim SE-64 10.6d Feb 24 2018
+# //
+# //  Copyright 1991-2018 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading work.tb_dds_control_pipeline(fast)
+# Loading work.audio_voice_mixer(fast)
+# run -all
+# PASS: 160000 clock-by-clock DDS pipeline equivalence checks across trigger, gate, mute, pitch, force and expression changes
+# ** Note: $finish    : sim/tb_dds_control_pipeline.v(63)
+#    Time: 1600326 ns  Iteration: 0  Instance: /tb_dds_control_pipeline
+# End time: 17:38:37 on Oct 23,2026, Elapsed time: 0:00:02
+# Errors: 0, Warnings: 0

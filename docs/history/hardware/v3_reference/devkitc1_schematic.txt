@@ -1,0 +1,370 @@
+    5                   4   3   2                                         1
+
+
+
+
+D                                                                                                          D
+
+
+
+
+        System Block:
+
+
+
+
+C                                                                                                          C
+
+
+
+
+B                                                                                                          B
+
+
+
+
+A                                                                                                          A
+
+
+
+
+                                    Title
+                                            ESP32-S3-DevKitC-1
+
+                                    Size    Document Number                                        Rev
+                                      C     <01_DesignBlock>                                        V1.1
+                                    Date:     Wednesday, April 13, 2022       Sheet   1   of   2
+    5                   4   3   2                                         1
+                        5                                                                                                                                                        4                                                                                            3                                                          2                                                                                                                                                    1
+
+
+
+
+           USB to UART:
+                                                                           VBUS                                                                    VCC_5V                                                                                                                                                                                                                                                                             ESP_3V3
+                                                                                                                                                                                                                                                                                                                                                                                                      J1
+                                                                                                                                                                                                                                                                                                                                                                                                                   1
+                        J2                                                                                                                                                                                                                                                                                                                                                                                         2
+D                                                                                                                                                                                    VCC_3V3                                                 ESP_3V3                                                                           GND                                                                                           CHIP_PU                                                                                                         D
+                    6                            1                                                 D1                               1N5819HW-7-F                                                                                                                                                                                                                                                                   3
+                    7       GND VBUS             2        D-                                                                                                            USB_DN                                                                                         GND                             ESP32-S3-WROOM-1                                                                                            4         GPIO4
+                                                                                                                                                                                                                                                                                       U4
+                    8       GND    D-            3        D+                                                                                                            USB_DP                                                                                                                                            41                                                                                       5         GPIO5
+                    9       GND   D+             4                                                                                                                                                                                                                                 1                              EPAD    40                                                                                       6         GPIO6
+                            GND   NC             5                                                                                                                                                                             R24         0(1%)                                   2   GND1                       GND2    39    GPIO1                                                                              7         GPIO7
+                                 GND                                                                                                                                                                                                                           CHIP_PU             3   3V3                          IO1   38    GPIO2                                                                              8         GPIO15
+                        MICRO USB                                                                                                                                                       C1                    C2                                               GPIO4               4   EN                           IO2   37    U0TXD                                                                              9         GPIO16
+                                                                                                                                                                                                                                                               GPIO5               5   IO4                        TXD0    36    U0RXD                                                                              10        GPIO17
+                                                                                                                                                                                                                                                                                       IO5                        RXD0
+
+
+
+
+                                                                                                                                                                                        10uF/25V(20%)
+
+
+
+                                                                                                                                                                                                              0.1uF/50V(10%)
+                                                                              D2                   D3               D4                              C3                                                                                                         GPIO6               6                                      35    GPIO42                                                                             11        GPIO18
+                                                                                                                                                                                                                                                               GPIO7               7   IO6                         IO42   34    GPIO41                                                                             12        GPIO8
+                                                                                                                                                                                                                                                                                       IO7                         IO41
+
+
+
+
+                                                                              LESD5D5.0CT1G
+
+
+                                                                                                   LESD5D5.0CT1G
+
+
+                                                                                                                    LESD5D5.0CT1G
+                                                                                                                                                    10uF/25V(20%)                                                                                              GPIO15              8                                      33    GPIO40                                                                             13        GPIO3
+                                                                                                                                                                                                                                                               GPIO16              9   IO15                        IO40   32    GPIO39                                                                             14        GPIO46
+                                                                                                                                                                                                                                                               GPIO17             10   IO16                        IO39   31    GPIO38                                                                             15        GPIO9
+                                                                                                                                                                                                                                                               GPIO18             11   IO17                        IO38   30    GPIO37                                                                             16        GPIO10
+                                                                                                                                                                                                                                                               GPIO8              12   IO18                        IO37   29    GPIO36                                                                             17        GPIO11
+                                                                                                                                                                                                                                                               GPIO19             13   IO8                         IO36   28    GPIO35                                                                             18        GPIO12
+                                                                                                                                                                                                                                                               GPIO20             14   IO19                        IO35   27    GPIO0                                                                              19        GPIO13
+                                                                                                                                                                                                                                                                                       IO20                         IO0                                                                                            20        GPIO14
+                                                                                                                                                                                                                                                                                                                                                                                                                   21
+
+
+
+
+                                                                                                                                                                                                                                                                                             IO46
+
+                                                                                                                                                                                                                                                                                             IO10
+                                                                                                                                                                                                                                                                                             IO11
+                                                                                                                                                                                                                                                                                             IO12
+                                                                                                                                                                                                                                                                                             IO13
+                                                                                                                                                                                                                                                                                             IO14
+                                                                                                                                                                                                                                                                                             IO21
+                                                                                                                                                                                                                                                                                             IO47
+                                                                                                                                                                                                                                                                                             IO48
+                                                                                                                                                                                                                                                                                             IO45
+                                                                                                                                                                                                                                                                                                                                                                                                                                             VCC_5V
+
+
+
+
+                                                                                                                                                                                                                                                                                             IO3
+
+                                                                                                                                                                                                                                                                                             IO9
+                                                                                                                                                                                                                                                                                                                                                                                                                   22
+                                                      GND                                                                                                                             GND
+                                                                                                                                                                                                                                                                                                                                                                                                      CON22X1
+
+
+
+
+                                                                                                                                                                                                                                                                                            15
+                                                                                                                                                                                                                                                                                            16
+                                                                                                                                                                                                                                                                                            17
+                                                                                                                                                                                                                                                                                            18
+                                                                                                                                                                                                                                                                                            19
+                                                                                                                                                                                                                                                                                            20
+                                                                                                                                                                                                                                                                                            21
+                                                                                                                                                                                                                                                                                            22
+                                                                                                                                                                                                                                                                                            23
+                                                                                                                                                                                                                                                                                            24
+                                                                                                                                                                                                                                                                                            25
+                                                                                                                                                                                                                                                                                            26
+                                                                                                                                                                                                                                                                                                                                                                                                                                     GND
+
+
+
+
+                                                                                                                                                                                                                                                                                            GPIO46
+
+                                                                                                                                                                                                                                                                                            GPIO10
+                                                                                                                                                                                                                                                                                            GPIO11
+                                                                                                                                                                                                                                                                                            GPIO12
+                                                                                                                                                                                                                                                                                            GPIO13
+                                                                                                                                                                                                                                                                                            GPIO14
+                                                                                                                                                                                                                                                                                            GPIO21
+                                                                                                                                                                                                                                                                                            GPIO47
+                                                                                                                                                                                                                                                                                            GPIO48
+                                                                                                                                                                                                                                                                                            GPIO45
+                                                                                                                                                                                                                                                                                            GPIO3
+
+                                                                                                                                                                                                                                                                                            GPIO9
+                                                                                                                                                                                                                                                                                                                                                                                                      J3
+                                                                                                                                                                                                                                                                                                                                                                                                                   1
+
+           ESP USB:                                                        VBUSB                                                                   VCC_5V
+                                                                                                                                                                                                                                                                                                                                                                                                                   2
+                                                                                                                                                                                                                                                                                                                                                                                                                   3
+                                                                                                                                                                                                                                                                                                                                                                                                                   4
+                                                                                                                                                                                                                                                                                                                                                                                                                                U0TXD
+                                                                                                                                                                                                                                                                                                                                                                                                                                U0RXD
+                                                                                                                                                                                                                                                                                                                                                                                                                                GPIO1
+                                                                                                                                                                                                                                                                                                                                                                                                                                               GND
+
+
+                                                                                                                                                                                                                                                                                                                                                                                                                   5            GPIO2
+                        J4                                                                                                                                                                                                                                                                                                                                                                                         6            GPIO42
+                    6                            1                                                 D7                               1N5819HW-7-F                                                                                                                                                                                                                                                                   7            GPIO41
+                    7       GND VBUS             2                                                                                                                      GPIO19                                                                                                                                                                                                                                     8            GPIO40
+                    8       GND    D-            3                                                                                                                      GPIO20                                                                                                                                                                                                                                     9            GPIO39
+C                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            C
+                    9       GND   D+             4                                                                                                                                                                                                       ESP_3V3                                                                                                                                                   10           GPIO38
+                            GND   NC             5                                                                                                                                                                                                                                                                                                                                                                 11           GPIO37
+                                 GND                                                                                                                                                                                                                                                                                                                                                                               12           GPIO36
+                        MICRO USB                                                                                                                                                                                                                                                                                                                                                                                  13           GPIO35
+                                                                                                                                                                                                                                                              R5                                                                                                                                                   14           GPIO0
+                                                                              D8                   D9               D10                             C15                                                                                                                                                                                                                                                            15           GPIO45
+                                                                                                                                                                                                                                                                                                                                                                                                                   16           GPIO48
+                                                                              LESD5D5.0CT1G
+
+
+                                                                                                   LESD5D5.0CT1G
+
+
+                                                                                                                    LESD5D5.0CT1G
+
+
+
+
+                                                                                                                                                    10uF/25V(20%)(NC)                                                                                         10K(1%)                                                                                                                                              17           GPIO47
+                                                                                                                                                                                                                                                                                                                                                                                                                   18           GPIO21
+                                                                                                                                                                                                                                                                       CHIP_PU                                                                                                                                     19           GPIO20
+                                                                                                                                                                                                                                                                                                                                                                                                                   20           GPIO19
+                                                                                                                                                                                                                                                              C6                                                                                                                                                   21
+                                                                                                                                                                                                                                                                                                                                                                                                                   22
+                                                                                                                                                                                                                                                              1uF/16V(10%)
+                                                                                                                                                                                                                                                                                                                                                                                                      CON22X1
+                                                                                                                                                                                                                                                                                                                                                                                                                                     GND
+
+                                                      GND
+                                                                                                                                                                                                                                                             GND
+
+
+
+
+                                                                                                                                                                          DTR
+                                                                                                                                            R7                 0(1%)    U0RXD                                                                                                            R8             0(1%)       CHIP_PU              VCC_5V                                                                                                                    VCC_3V3
+                                                                                                                                            R9                 0(1%)    U0TXD
+                                                                                                                                                                          RTS                                                                                            C                                                                                                               U2        SGM2212-3.3XKC3G/TR
+                                                                                                                                                                                                        DTR                          R10           10K(1%)         B          Q1
+
+
+
+
+                                                                                                                                                                                                                                                                                                                                                                                                        GND/ADJ
+                                  GND
+                                                                                                                                                                                                                                                                              L8050QLT1G                                                                                             3                                   2                                                            R11         5.1K(1%)
+                                                                                                                                                                                                                                                                         E                                                                                                                   VIN                  VOUT
+                                                                                                                                                                                                                                                                                                                                                                                                                         4
+                                                                                                                                                                                                                                                                                                                                               C7                  C8                                             VOUT                           C9                   C10
+                                                                                                                   29
+                                                                                                                   28
+                                                                                                                   27
+                                                                                                                   26
+                                                                                                                   25
+                                                                                                                   24
+                                                                                                                   23
+                                                                                                                   22
+
+
+
+
+                                                                                              U3                                                                                                                                                                                                                                                                                                                                                                                                             D5
+
+
+
+
+                                                                                                                                                                                                                                                                                                                                                                                                       1
+B                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            B
+
+
+
+
+                                                                                                                                                                                                                                                                                                                                               10uF/25V(20%)
+
+
+
+                                                                                                                                                                                                                                                                                                                                                                   0.1uF/50V(10%)
+
+
+
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                  0.1uF/50V(10%)
+
+
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                      10uF/25V(20%)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             RED LED
+                                                                                                                    NC11
+                                                                                                                     DSR
+                                                                                                                     TXD
+                                                                                                                     RXD
+                                                                                                                     DTR
+                                                                                                                   PGND
+
+
+
+
+                                                                                                                     RTS
+                                                                                                                     CTS
+
+
+
+
+                                                                                                                                                                                                                                                                         E
+                                                                              1                                                                           21                                            RTS                          R12           10K(1%)                    L8050QLT1G
+                                                                              2               DCD                                                NC10     20                                                                                                       B          Q2
+                   VCC_3V3                                                    3               RI                                                  NC9     19                                                                                                             C
+                                                 USB_DP                       4               GND                                                 NC8     18                                                                                                                             R13            0(1%)       GPIO0
+                                                 USB_DN                       5               D+                                                  NC7     17
+                                                                              6               D-                                                  NC6     16
+                                                                                              VDD                                                 NC5
+                                                                                                                   SUSPEND
+                                                                                                                   SUSPEND
+
+
+
+
+                                                                              7                                                                           15                                                                    Auto program                                                                                                 GND                                                      GND                                                           GND                                GND
+                                                                                              REGIN                                               NC4
+                                                                                                                   VBUS
+
+
+
+
+                        C11                                                                                                                                                                                   DTR RTS-->EN IO0
+                                                                                                                   RST
+                                                                                                                   NC1
+
+
+                                                                                                                   NC2
+                                                                                                                   NC3
+
+
+
+
+                                                                                                                                                                                                              1    1     1   1
+                        10uF/25V(20%)                                                                                                                                                                         0    0     1   1
+                                                                                                                                              CP2102N-A02-GQFN28                                              1    0     0   1
+                                                                                                                   10
+                                                                                                                   11
+                                                                                                                   12
+                                                                                                                   13
+                                                                                                                   14
+                                                                                                                    8
+                                                                                                                    9
+
+
+
+
+                                                                                                                                                                                                              0    1     1   0
+
+
+                    GND
+                                                                                                                                            R14           10K(1%)(NC)      GND
+                                                                                                                                                                                                                                                                                                                                                                   SW1                                                                                                                SW2
+    VBUS     R19        22.1K(1%)                                                                                                           R16           1K(1%)           VCC_3V3                                                                                                                                                                             1                         4                                                                           1                             4
+
+
+                                                                                                                                                                                                                                                                                                                                                               2                         3                         GPIO0                                             2                             3                   CHIP_PU
+                                                                                                                                                                                                                                                                                            RGB_CTRL
+                                     R18
+
+
+
+
+                                                                                                                                                                                                                                           GPIO38            R17              0(1%)
+                                                            C12                                                                                                                                                                                                                                                                                                    NTC013-AT1J-A160T                                                                                                  NTC013-AT1J-A160T
+                                                            1uF/16V(10%)
+
+
+
+
+                                                                                                                                                                                                                                                                                                                                                                   C13              0.1uF/50V(10%)(NC)                                                                                C14     0.1uF/50V(10%)(NC)
+                                                                                                                                                                                                                                                                       D6
+                                     47.5K(1%)
+
+
+
+
+                                                                                                                                                                                                                                                                   3                        2
+                                                                                                                                                                                                         VCC_3V3                                                        VDD        DIN
+
+                                                                                                                                                                                                                                                                                                                                         GND                                                                                                   GND
+                                                                                                                                                                                                                                                                   4                        1
+                                                                                                                                                                                                                                                                        DOUT      VSS
+A                                   GND                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      A
+                                                                                                                                                                                                                                                                       SK68XXMINI-HS
+                                                                                                                                                                                                                                                                                                       GND
+
+
+
+
+                                                                                                                                                                                                                                                                                                                                                                                                                             Title
+                                                                                                                                                                                                                                                                                                                                                                                                                                           ESP32-S3-DevKitC-1
+
+                                                                                                                                                                                                                                                                                                                                                                                                                             Size          Document Number                                                                           Rev
+                                                                                                                                                                                                                                                                                                                                                                                                                               C           02_ESP32-S3-DevKitC-1                                                                      V1.1
+                                                                                                                                                                                                                                                                                                                                                                                                                             Date:           Wednesday, November 30, 2022                               Sheet      2      of     2
+                        5                                                                                                                                                        4                                                                                            3                                                          2                                                                                                                                                    1
+

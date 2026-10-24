@@ -1,0 +1,12 @@
+# Preserve source/evidence hashes across Windows and Linux clones.
+* -text
+*.fs -text
+*.bin -text
+*.png -text
+*.jpg -text
+*.gif -text
+*.ico -text
+# Preserve exact accepted inputs, vectors and reports (including CRLF).
+/fpga/** -text
+/tests/** -text
+/artifacts/** -text

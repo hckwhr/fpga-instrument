@@ -1,0 +1,7 @@
+!define MINERADIO_INSTALL_DIR_NAME "FPGAvedio"
+!define MINERADIO_INSTALL_DIR_NAME_LOWER "fpgavedio"
+!define MINERADIO_INSTALL_MARKER ".fpgavedio-install-root"
+!define MINERADIO_MARKER_APP_ID "com.xingzhewujiang.fpgavedio"
+!define MINERADIO_INSTALL_BRAND "FPGAvedio"
+!define MINERADIO_INSTALL_TITLE "FPGAvedio 安装"
+!include "${BUILD_RESOURCES_DIR}\installer.nsh"

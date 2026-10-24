@@ -1,0 +1,38 @@
+Reading E:/modelsim/tcl/vsim/pref.tcl
+
+# 10.6d
+
+# vsim -c work.tb_visual_latency_regression -l sim/tb_visual_latency.transcript -wlf sim/tb_visual_latency.wlf -do "run -all; quit -f" 
+# Start time: 17:38:52 on Oct 23,2026
+# //  ModelSim SE-64 10.6d Feb 24 2018
+# //
+# //  Copyright 1991-2018 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading work.tb_visual_latency(fast)
+# run -all
+# LATENCY path=0 phase=0 trigger=147459 DAC=151088 clocks
+# LATENCY path=0 phase=1 trigger=147459 DAC=151801 clocks
+# LATENCY path=0 phase=2 trigger=147459 DAC=151490 clocks
+# LATENCY path=1 phase=0 trigger=147459 DAC=53808 clocks
+# LATENCY path=1 phase=1 trigger=147459 DAC=54521 clocks
+# LATENCY path=1 phase=2 trigger=147459 DAC=54210 clocks
+# LATENCY path=2 phase=0 trigger=147459 DAC=151088 clocks
+# LATENCY path=2 phase=1 trigger=147459 DAC=151801 clocks
+# LATENCY path=2 phase=2 trigger=147459 DAC=151490 clocks
+# LATENCY path=3 phase=0 trigger=147459 DAC=152112 clocks
+# LATENCY path=3 phase=1 trigger=147459 DAC=152825 clocks
+# LATENCY path=3 phase=2 trigger=147459 DAC=152514 clocks
+# PASS: actual debounce/controller/synth/effect/PT8211 path, 12 phase cases, no short-glitch/held-key retrigger, DFT no overrun; DAC=53808..152825 clocks
+# ** Note: $finish    : sim/tb_visual_latency.v(58)
+#    Time: 42037797 ns  Iteration: 0  Instance: /tb_visual_latency
+# End time: 17:38:57 on Oct 23,2026, Elapsed time: 0:00:05
+# Errors: 0, Warnings: 0
