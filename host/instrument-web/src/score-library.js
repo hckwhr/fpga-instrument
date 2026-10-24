@@ -56,6 +56,20 @@ export function validateScore(source) {
       arrangement[key] = number(p.arrangement[key], 0, 50000, true);
     requireValue(arrangement.melodyNotes === count && arrangement.melodyNotes <= 2048 &&
       arrangement.sourceNotes >= arrangement.selectedNotes && arrangement.selectedNotes >= count, '旋律整理统计无效');
+    if (p.arrangement.mode !== undefined) {
+      requireValue(p.arrangement.mode === 'polyphonic', '演奏整理模式无效');
+      arrangement.mode = 'polyphonic';
+      for (const key of ['guideNotes', 'accompanimentNotes', 'pitchOmitted', 'boundaryOmitted', 'capacityOmitted', 'densityOmitted'])
+        arrangement[key] = number(p.arrangement[key], 0, 50000, true);
+      requireValue(arrangement.guideNotes === tracks[0].notes.length &&
+        arrangement.accompanimentNotes === count - arrangement.guideNotes, '演奏轨统计无效');
+      arrangement.maxVoices = number(p.arrangement.maxVoices, 1, 16, true);
+      arrangement.maxVelocity = number(p.arrangement.maxVelocity, 1, 768, true);
+      for (const key of ['lowOctaveShift', 'highOctaveShift']) {
+        arrangement[key] = number(p.arrangement[key], -120, 120, true);
+        requireValue(arrangement[key] % 12 === 0, '音区移调无效');
+      }
+    }
     // Optional extensions preserve older v1 snapshots, while newly arranged
     // scores retain the exact choices used to generate their derivative.
     for (const key of ['filtered', 'suppressed', 'merged', 'gridCollisions', 'residualFolds', 'outsideRange', 'sustainedBass'])

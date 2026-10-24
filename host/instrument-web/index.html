@@ -65,7 +65,8 @@
         <div id="diagnostics" class="diagnostics"></div>
         <section id="arrangement-panel" hidden>
           <h3>纯音乐 · FPGA 演奏准备</h3>
-          <p class="hint">选好片段，一键生成，再试听上传。默认保留原节奏、力度层次与重复敲击，自动适配板端音域。当前整理为单声部主旋律，复杂伴奏不会原样保留；原识别结果保留，可反复调整。</p>
+          <p class="hint">选好片段，一键生成，再试听上传。默认保留识别到的和弦、延音、原节奏和力度层次，板端音域内保持原音高。受识别精度与 2048 音符容量限制，仍属于乐器重奏；原识别结果保留，可反复调整。</p>
+          <label class="field">演奏方式<select id="arrangement-mode"><option value="polyphonic">和弦与延音 · 推荐</option><option value="melody">单声部旋律 · 旧版兼容</option></select></label>
           <div class="arrangement-selection">
           <label>开始（秒）<input id="arrangement-start" type="number" min="0" max="599" value="0"></label>
           <label>结束（秒）<input id="arrangement-end" type="number" min="0.01" max="600" value="30"></label>
@@ -81,9 +82,10 @@
             <label class="field">原曲 BPM<input id="arrangement-bpm" type="number" min="40" max="240" value="120" disabled></label>
             <label class="field">拍点偏移（ms）<input id="arrangement-beat-offset" type="number" min="0" max="2000" value="0" disabled></label>
             <label class="field">重复音<select id="arrangement-repeat"><option value="preserve">保留每次敲击 · 推荐</option><option value="merge">合并重叠同音 · 修复碎音</option></select></label>
-            <label class="field">音域适配<select id="arrangement-pitch"><option value="phrase">整段移八度 · 保留旋律走向</option><option value="fold">逐音折八度 · 旧方式</option></select></label>
+            <label class="field">音域适配<select id="arrangement-pitch"><option value="phrase">音区整体移八度 · 保留走向</option><option value="fold">逐音折八度 · 旧方式</option></select></label>
           </div>
-          <label class="checkbox"><input id="arrangement-protect-sustain" type="checkbox" checked>保护主旋律长音，减少中途较弱低音伴奏的打断（连贯旋律模式）</label>
+          <label class="checkbox"><input id="arrangement-protect-sustain" type="checkbox" checked>单声部模式：保护主旋律长音，减少较弱低音伴奏打断（复音模式始终保留延音）</label>
+          <p class="hint">复音模式只对超出 C3..B5 的低音组、高音组分别移八度，显示引导与伴奏均参与演奏；显示轨保持单声部不代表音频单声部。单声部兼容模式仍按整段移调。容量或密度不足时列出省略数量；要求更完整时请选择较短片段。</p>
           <p class="hint">音域筛选作用于原始识别音高：C3=48、C4=60、C5=72、C6=84。默认不提前过滤音域；旋律被低音伴奏干扰时再缩小范围。筛选和长音保护会改变选音，可关闭。</p>
           <p class="hint">拍点偏移是选段起点到一个已知拍点的毫秒数；仅在手动 BPM 校正时生效。自由节奏请保留原始节奏。伴奏复杂时建议先选 15–30 秒主旋律清楚的片段。</p>
           <button id="arrangement-reset" class="button small plain" type="button">恢复纯音乐推荐设置</button>

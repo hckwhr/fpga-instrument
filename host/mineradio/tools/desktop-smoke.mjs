@@ -196,7 +196,9 @@ try {
   await evaluate(`${f}.contentDocument.querySelector('#stop-preview').click()`);
   await waitFor(`${f}.contentDocument.querySelector('#performance-visuals').dataset.signal==='false' && !${f}.contentDocument.querySelector('#performance-home .piano-key.active')`);
   assert.equal(await evaluate(`${f}.contentDocument.querySelector('#arrangement-advanced').open`), false);
+  assert.equal(await evaluate(`${f}.contentDocument.querySelector('#arrangement-mode').value`), 'polyphonic');
   await evaluate(`${f}.contentDocument.querySelector('#arrangement-apply').click()`);
+  assert.match(await evaluate(`${f}.contentDocument.querySelector('#arrangement-report').textContent`), /复音重奏/);
   assert.equal(await evaluate(`${f}.contentDocument.querySelector('#preview-upload').disabled`), false);
   await evaluate(`${f}.contentDocument.querySelector('#arrangement-panel').scrollIntoView({block:'center'})`);
   await writeFile(resolve(evidence, 'desktop-instrumental-settings.png'), Buffer.from((await page('Page.captureScreenshot', { format: 'png' })).data, 'base64'));

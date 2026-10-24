@@ -18,6 +18,36 @@
     "packaged_sha256": "11941f22a05d6ad1692e6ccb2d3372db940a6626cad154f503128a9e2ba1b30c"
   },
   {
+    "destination": "artifacts/host-polyphony-20261024/app-smoke.json",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "55b144e23d4ef9cb0cb4178d4ef96ac44806112d1375315388aa5b271a27b066"
+  },
+  {
+    "destination": "artifacts/host-polyphony-20261024/comparison.json",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "6488e9e8ed746fb19bf5281f45b9c681c24c2786796ac379c3d5ad66f870abdc"
+  },
+  {
+    "destination": "artifacts/host-polyphony-20261024/desktop-interface-delivery.json",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "60b815c64b92f0d7099bd5e5d3fa8b407df16d7257955e6a8203e98d6286dce2"
+  },
+  {
+    "destination": "artifacts/host-polyphony-20261024/desktop-smoke.json",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "2164389d35f09b6933702e03c31f1e70d4ec33b066dade4e558d96f0fafc1af0"
+  },
+  {
+    "destination": "artifacts/host-polyphony-20261024/README.md",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "a636d545f49803df068b8a67a52da6b334db9af3553e149b364a8aaf36fae853"
+  },
+  {
     "destination": "artifacts/packaging/validation.md",
     "source": null,
     "source_sha256": null,
@@ -1344,6 +1374,12 @@
     "packaged_sha256": "2a88c624d4aa892f9f372d5efa50a21ee03e64eb5d53ad4ab7e07322f268653d"
   },
   {
+    "destination": "docs/纯音乐复音转谱优化_20261024.md",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "09ded8b3325f70c0ce4aeef68be120f8d6c7744c976a70dad3b757f1965bdbde"
+  },
+  {
     "destination": "docs/纯音乐演奏优化_stage65_20261024.md",
     "source": null,
     "source_sha256": null,
@@ -1785,7 +1821,7 @@
     "destination": "docs/HOST.md",
     "source": null,
     "source_sha256": null,
-    "packaged_sha256": "3f65029e45a9310fdd2f51217ccd83e49abefa42b334df1fc747b3fbcc665b78"
+    "packaged_sha256": "26c1fe3d960c27971faa9c7f45958e9e9642a573b1c36803230bae02ac9e37e2"
   },
   {
     "destination": "docs/PACKAGING.md",
@@ -1797,7 +1833,7 @@
     "destination": "docs/RELEASE.md",
     "source": null,
     "source_sha256": null,
-    "packaged_sha256": "7f6b9b3dce18e7cdc5cd118880d86e1c761da172e5cc35efd92bae60f4e46b62"
+    "packaged_sha256": "fde52ec35062da3d20dfe99e4c800ee41973c72212a39631d5f66aea12801021"
   },
   {
     "destination": "firmware/esp32s3-bridge/.gitignore",
@@ -11697,7 +11733,7 @@
     "destination": "host/instrument-web/index.html",
     "source": "host/instrument-web/index.html",
     "source_sha256": "643d8221f7e68b5d6c396f81fad0d1eef7b2ae48462fc77d786b9ea54a3f3cc6",
-    "packaged_sha256": "a520a39a02f645f11910550912d25a8293c29a266e24541d9ad2f49d0e80a058"
+    "packaged_sha256": "b9b22bc0c74917a16ce44e16fb84c6d2cff46de25e0afc938db1e419733eabb5"
   },
   {
     "destination": "host/instrument-web/package-lock.json",
@@ -11715,19 +11751,19 @@
     "destination": "host/instrument-web/README.md",
     "source": "host/instrument-web/README.md",
     "source_sha256": "b5401ae9c91431bbd9857b4aa775292103ecc63ed130e149e0a16b21a0296415",
-    "packaged_sha256": "b5401ae9c91431bbd9857b4aa775292103ecc63ed130e149e0a16b21a0296415"
+    "packaged_sha256": "9ac15675df07229ab7353ef2b6c3ba5c91d2b898af3a7665a06653952eba11c6"
   },
   {
     "destination": "host/instrument-web/src/app.js",
     "source": "host/instrument-web/src/app.js",
     "source_sha256": "b748f8ce8b67cab670048e1c85cc8656f1814d0bd3f4aaa3dde5cdf1e1de6c90",
-    "packaged_sha256": "f90a56f37efa5207ee8f206d89e1ab02d7b435fa28a150fe8e9a17740555fe2d"
+    "packaged_sha256": "63cc921edddd8899d9913de87f041f58b909ff75dacfb2e07dfcf139f123eb16"
   },
   {
     "destination": "host/instrument-web/src/audio-arrangement.js",
     "source": "host/instrument-web/src/audio-arrangement.js",
     "source_sha256": "7d2c21701a5a065fce092afb9ebb99762804be14ff70cf0e10d5f319dfa6a540",
-    "packaged_sha256": "72b33d310515335be19ef995fb81b92e5d96cf34ac79bfc7ba87b11b486aa02f"
+    "packaged_sha256": "b88a0055c95226841327bddd0af8f25e19fbcaac1fbbc09e5f388adfef0b1b8a"
   },
   {
     "destination": "host/instrument-web/src/audio-worker.js",
@@ -11805,7 +11841,7 @@
     "destination": "host/instrument-web/src/score-library.js",
     "source": "host/instrument-web/src/score-library.js",
     "source_sha256": "e3c3de60b5461d3d7f8d4b8c526e5e61dd044216d241a6e611954693529f4995",
-    "packaged_sha256": "e3c3de60b5461d3d7f8d4b8c526e5e61dd044216d241a6e611954693529f4995"
+    "packaged_sha256": "094230f59e5eeb97842f80129d241498e4c6c90f004207ca06d6bb7bbaf3a938"
   },
   {
     "destination": "host/instrument-web/src/score-upload-protocol.js",
@@ -11892,6 +11928,12 @@
     "packaged_sha256": "958b8f929510833039ee37c60a1bd1ea40bad8c10ec8189d7b04201c0ca7694c"
   },
   {
+    "destination": "host/instrument-web/test/instrumental-polyphony.test.js",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "c0ca3cd5c3eb80e505014b5ae90a44fb9de325de66b04e9a39872d9228b76e53"
+  },
+  {
     "destination": "host/instrument-web/test/midi.test.js",
     "source": "host/instrument-web/test/midi.test.js",
     "source_sha256": "57fa00ee9279c51b3026982fba614e611663b0d1f9c4787a226a6ee8450c1a3a",
@@ -11949,13 +11991,19 @@
     "destination": "host/instrument-web/tools/browser-smoke.mjs",
     "source": "host/instrument-web/tools/browser-smoke.mjs",
     "source_sha256": "3ab8d78f3577037357c4a3f4839bfa6a32c42713d6cb82e119617f4d12c79b20",
-    "packaged_sha256": "ec7d8c309965c5465cbff6385b95573e438b2f92b82f1d2552a8c0f7be871aae"
+    "packaged_sha256": "82cb3cd87f9cd78d0b785233889869d39f76a58b1c5cec816ff84addb26a5f73"
   },
   {
     "destination": "host/instrument-web/tools/build.mjs",
     "source": "host/instrument-web/tools/build.mjs",
     "source_sha256": "bfebd3422cb06a5e6d1372f4922b3704fd019cc50bcc2a420c0242d06dbb384b",
     "packaged_sha256": "bfebd3422cb06a5e6d1372f4922b3704fd019cc50bcc2a420c0242d06dbb384b"
+  },
+  {
+    "destination": "host/instrument-web/tools/evaluate-arrangement.mjs",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "5f63b111cfeaf74f0b3c7b690a096257f0228a377d682c85d180330ebcb7b938"
   },
   {
     "destination": "host/instrument-web/tools/export-fpga-score.mjs",
@@ -13815,7 +13863,7 @@
     "destination": "host/mineradio/tools/app-smoke.mjs",
     "source": "host/mineradio/tools/app-smoke.mjs",
     "source_sha256": "34d3b4d0afaf2508ff39c031d14789f565ff1f26c26269340b95d27ec7c95b59",
-    "packaged_sha256": "d67445ae83366b31077be67bb388e18f705184e30067390bdb574aeb1ad95860"
+    "packaged_sha256": "823c6c67f3a63d81f40078bf9b2eacc29eb13511a30c02ed6723973170bae080"
   },
   {
     "destination": "host/mineradio/tools/deliver-desktop.ps1",
@@ -13827,7 +13875,7 @@
     "destination": "host/mineradio/tools/desktop-smoke.mjs",
     "source": "host/mineradio/tools/desktop-smoke.mjs",
     "source_sha256": "5708341b5416160aeee2736f9272bedc0dbd2f7bf9e0bb8e0ee9d0434d246de6",
-    "packaged_sha256": "9b051c4e6c99edd5875b1b320bbe58ef31b569b1788011cb1b194f454daec93b"
+    "packaged_sha256": "96bc39350ba6ff57398061695b7e6f909abf9af0ddcca075c9b8626ee89d0860"
   },
   {
     "destination": "host/mineradio/tools/package-delivery.ps1",
@@ -13845,7 +13893,7 @@
     "destination": "README.md",
     "source": null,
     "source_sha256": null,
-    "packaged_sha256": "e1b1a846edb25835ca282eb5e7b5ee5a909a418251cf8ac5b19ceb6bea17acdd"
+    "packaged_sha256": "0b5893e627c65a06864debdf4f21d2eb611e069a2c72c9ab3c42fc92217436ce"
   },
   {
     "destination": "tests/fixtures/rtl-stage47/control_vectors/cases.vh",

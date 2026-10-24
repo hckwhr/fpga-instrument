@@ -6,7 +6,7 @@ import { ScoreLibrary, LIBRARY_KEY, parseScore, serializeScore } from './score-l
 import { DeviceSession } from './device-session.js';
 import { ScoreUploadSession } from './score-upload.js';
 import { compileSelectedFpgaScore } from './fpga-score.js';
-import { arrangeAudioMelody, audioSelectionEnd, INSTRUMENTAL_ARRANGEMENT_DEFAULTS } from './audio-arrangement.js';
+import { arrangeInstrumentalScore, audioSelectionEnd, INSTRUMENTAL_ARRANGEMENT_DEFAULTS } from './audio-arrangement.js';
 import { NativeBleTransport } from './native-ble-transport.js';
 import { createPerformanceMonitor } from './performance-monitor.js';
 import { createBoardMonitor } from './board-monitor.js';
@@ -245,12 +245,13 @@ function loadProject(project, fileName, message, recognitionSource = null) {
     resetInstrumentalSettings();
     $('#arrangement-start').value = '0';
     $('#arrangement-end').value = String(audioSelectionEnd(state.recognitionSource));
-    $('#arrangement-report').textContent = '选段已覆盖本次识别全长；超过 2048 个旋律音符时请主动缩短选段，不会自动截断。';
+    $('#arrangement-report').textContent = '选段已覆盖本次识别全长；默认保留和弦与延音，容量不足时优先起音和强音，并列出省略数量，不截断结尾。';
   }
   state.selectedTracks = project.tracks.map((_, index) => index).filter((index) => project.tracks[index].notes.length);
   $("#song-title").textContent = project.arrangement ? project.title : project.format === 'audio-transcription' ? `${project.partial ? '前 30 秒' : '全段'}音频识别结果 · 请对比试听` : project.title;
   $("#file-name").textContent = fileName;
   renderTracks();
+  if (project.arrangement?.mode === 'polyphonic') $('#upload-melody').replaceChildren();
   compileAndRender();
   setStatus(message, "ok");
 }
@@ -518,7 +519,7 @@ $('#arrangement-rhythm').onchange = () => {
   for (const id of ['#arrangement-bpm', '#arrangement-beat-offset']) $(id).disabled = $('#arrangement-rhythm').value === 'original';
 };
 function resetInstrumentalSettings() {
-  const ids = { strategy: 'strategy', minPitch: 'min-pitch', maxPitch: 'max-pitch',
+  const ids = { mode: 'mode', strategy: 'strategy', minPitch: 'min-pitch', maxPitch: 'max-pitch',
     minDurationMs: 'min-duration', onsetWindowMs: 'onset-window', rhythm: 'rhythm', bpm: 'bpm',
     beatOffsetMs: 'beat-offset', repeatMode: 'repeat', pitchMode: 'pitch' };
   for (const [key, id] of Object.entries(ids)) $('#arrangement-' + id).value = String(INSTRUMENTAL_ARRANGEMENT_DEFAULTS[key]);
@@ -532,11 +533,12 @@ $('#arrangement-reset').onclick = () => {
 $('#arrangement-apply').onclick = () => {
   try {
     if (state.transcription) throw new Error('请等待当前转谱完成后再整理旋律');
-    const result = arrangeAudioMelody(state.recognitionSource, {
+    const result = arrangeInstrumentalScore(state.recognitionSource, {
       startSeconds: Number($('#arrangement-start').value), endSeconds: Number($('#arrangement-end').value),
       // Clicking Generate explicitly creates a derivative; never mutate or
       // silently admit raw recognition to the hardware compiler.
       confirmed: true,
+      mode: $('#arrangement-mode').value,
       strategy: $('#arrangement-strategy').value, minDurationMs: Number($('#arrangement-min-duration').value),
       onsetWindowMs: Number($('#arrangement-onset-window').value), rhythm: $('#arrangement-rhythm').value,
       bpm: Number($('#arrangement-bpm').value),
@@ -545,8 +547,12 @@ $('#arrangement-apply').onclick = () => {
       minPitch: Number($('#arrangement-min-pitch').value), maxPitch: Number($('#arrangement-max-pitch').value),
       protectSustain: $('#arrangement-protect-sustain').checked,
     });
-    loadProject(result.project, sourceFileName, '已生成可上传旋律；请再次试听后上传。原识别结果仍可重新整理。', state.recognitionSource);
+    loadProject(result.project, sourceFileName, '已生成可上传曲谱；请试听 FPGA 演奏参考后重新上传。原识别结果仍可重新整理。', state.recognitionSource);
     const r = result.report;
+    if (r.mode === 'polyphonic') {
+      $('#arrangement-report').textContent = `${r.startSeconds}–${r.endSeconds} 秒：${r.selectedNotes} → ${r.melodyNotes}/2048 音符，含尾音最多 ${r.maxVoices} 声部；显示引导 ${r.guideNotes} 音、和弦延音 ${r.accompanimentNotes} 音，均参与演奏且不重复。音域排除 ${r.outsideRange}，碎音过滤 ${r.filtered}，同音去重 ${r.removedSimultaneous}，合并同音 ${r.merged}；容量省略 ${r.capacityOmitted}，过密省略 ${r.densityOmitted}，适配超界省略 ${r.pitchOmitted}，边界省略 ${r.boundaryOmitted}。板端音域内原音高不变；低音组移调 ${r.lowOctaveShift / 12}、高音组移调 ${r.highOctaveShift / 12} 个八度（${r.folded} 音变调${r.pitchMode === 'fold' ? '，已选逐音折回' : ''}）。${r.rhythm === 'original' ? '保留原始节奏' : `按 ${r.bpm} BPM 对齐十六分音符`}，不因其它音符起奏截短延音。力度保留层次并按复音峰值留余量。这是复音重奏，不是 MP3 原声播放。`;
+      return;
+    }
     const pitchReport = `整段移调 ${r.octaveShift / 12} 个八度，仍需逐音折回 ${r.residualFolds} 音`;
     $('#arrangement-report').textContent = `${r.startSeconds}–${r.endSeconds} 秒：${r.selectedNotes} → ${r.melodyNotes}/2048 音符；近同时起音择一 ${r.removedSimultaneous}，音域排除 ${r.outsideRange}，过滤碎音 ${r.filtered}，抑制弱插音 ${r.suppressed}，长音保护排除低音 ${r.sustainedBass}，合并重叠同音 ${r.merged}，网格合并/边界去除 ${r.gridCollisions}，${pitchReport}，缩短重叠 ${r.shortened}。${r.rhythm === 'original' ? '保留原始节奏' : `按 ${r.bpm} BPM、拍点偏移 ${r.beatOffsetMs} ms 对齐十六分音符`}。这是旋律重奏，不是 MP3 原声播放。`;
   } catch (error) { setStatus(error.message, 'error'); }
