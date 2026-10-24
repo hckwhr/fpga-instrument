@@ -59,6 +59,11 @@ MP3 转谱是提取音符后由 FPGA 音色重奏，不是 MP3 原声传输；�
 
 ## 来源、隐私与后续维护
 
+开发辅助工具见 [Gowin MCP 0.5](tools/gowin-mcp/README.md) 和
+[Gowin 技能快照](tools/skills/gowin-fpga/SKILL.md)。本轮选择性吸收外部
+skills/rules 的验证方法，补齐构建证据与残缺时序报告判定；35 项工具回归通过，
+生产 RTL 与既有位流未变。采用和排除内容见 [改进记录](docs/技能与MCP优化_20261024.md)。
+
 这是多个组件的统一仓库，并非把所有上游作品改为团队原创。保留 Mineradio 的 GPL-3.0-only、小智的 MIT 及第三方声明，见 [THIRD_PARTY.md](THIRD_PARTY.md)。不收录账号 cookie/token、Wi-Fi 密码、设备 NVS、激活身份、签名私钥、依赖缓存或工具安装包。
 
 仓库保持私有。私有不等于评委自动有权限：提交前须按主办方要求给评审账号访问权限，或在你明确同意后调整可见性，不能仅凭一个私有链接保证评审可读取。后续优化继续在同一仓库提交和推送，不推送 ESP32/Mineradio 上游、不改写历史；维护约定见 [CONTRIBUTING.md](CONTRIBUTING.md)。

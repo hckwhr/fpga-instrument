@@ -1530,6 +1530,12 @@
     "packaged_sha256": "81e3a3d243c46d529cb59d019cbb652d8af2a651287df6df24901c8a115d4546"
   },
   {
+    "destination": "docs/技能与MCP优化_20261024.md",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "09b6909eb852e2703bd5cd0b00ae413c78baa6b2aefde68775c26d8b705ba2e0"
+  },
+  {
     "destination": "docs/BLE主用_USB备用与热点恢复_20261024.md",
     "source": null,
     "source_sha256": null,
@@ -14103,7 +14109,7 @@
     "destination": "README.md",
     "source": null,
     "source_sha256": null,
-    "packaged_sha256": "bd2bb124d134eba7ee0697e1988f8a5ef17f7590b936a11696cb2744c0246cc8"
+    "packaged_sha256": "550e781af2a4975d1215cbe0ea1aa5b1552a37fbd89d7725b2ad2ebf841e0c11"
   },
   {
     "destination": "tests/fixtures/rtl-stage47/control_vectors/cases.vh",
@@ -14674,6 +14680,132 @@
     "source": null,
     "source_sha256": null,
     "packaged_sha256": "f2e862501d6d95e79eaad48535852a02f8df719edffc8f64f1e8011d13df8910"
+  },
+  {
+    "destination": "tools/gowin-mcp/board-profile.schema.json",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "940ed945dd4fc77825df1fe56e13bbb9213394a53c3173794c882bcd1c4d9b0e"
+  },
+  {
+    "destination": "tools/gowin-mcp/profiles/tang-mega-138k-som30354-dock31005-gw5ast-138c.json",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "18094b69f1a83689fef9f49d6c627d182fed17533592f314250ac98916ae2317"
+  },
+  {
+    "destination": "tools/gowin-mcp/README.md",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "5dc9f483f745d40564082458dc69012cca96385fcea6ffc5e8bf2f9cee1c1173"
+  },
+  {
+    "destination": "tools/gowin-mcp/server.py",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "f8c7c08b130a6dada7157d26183f64f17a29d4eb87baae6da2506b2ac285eb88"
+  },
+  {
+    "destination": "tools/gowin-mcp/tests/fixtures/live_smoke/smoke.cst",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "75853a91509bdb650cc57a8fddbf049bd898033bd8542b359e64689764388b25"
+  },
+  {
+    "destination": "tools/gowin-mcp/tests/fixtures/live_smoke/smoke.gprj",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "023ffdee52f9dd6beb09bf077d019422192f87c7bbf6ac2a633c32166ddb71d8"
+  },
+  {
+    "destination": "tools/gowin-mcp/tests/fixtures/live_smoke/smoke.sdc",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "b20026640a94dd340785bbe650d66cbd63d48e78fe5826dd3d1874fd5b649bfb"
+  },
+  {
+    "destination": "tools/gowin-mcp/tests/fixtures/live_smoke/smoke.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "0a67c7a125334cc203ed269f7d588ad9fa93e2ebe9697605745ac085945cc20e"
+  },
+  {
+    "destination": "tools/gowin-mcp/tests/test_build_jobs.py",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "fba8aab122c89a35bf83ab25d38589a5a86bebe8794a78a8f415f9d343d28648"
+  },
+  {
+    "destination": "tools/gowin-mcp/tests/test_server.py",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "787bfe327426a9dc37e7f8d4800ea665e54bc36259df55757582cada3267ccb6"
+  },
+  {
+    "destination": "tools/skills/gowin-fpga/agents/openai.yaml",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "24eb3ce191ff898eb688fe7a896e4a7c931bda33dd6ac255d5287799392bf067"
+  },
+  {
+    "destination": "tools/skills/gowin-fpga/references/anlogic-system-design-patterns.md",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "c76b8d4606398a5a4bab2cd04e1198c7c083d0f4f08225ecb4a3f028f691fb8a"
+  },
+  {
+    "destination": "tools/skills/gowin-fpga/references/contract-verification.md",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "5168359dfb81be932ae721ead730dd73525dfe0703dd675c420fa90a7dc17eae"
+  },
+  {
+    "destination": "tools/skills/gowin-fpga/references/cross-vendor-porting.md",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "1449fa87058a34f3da614a729564742c548cb09b47051f92423f2382300495f9"
+  },
+  {
+    "destination": "tools/skills/gowin-fpga/references/debug-and-delivery-discipline.md",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "9ba0619b766bc2fae84bbfa6b11aaeb28abd45ffe56ba205f48b7acd7b71b135"
+  },
+  {
+    "destination": "tools/skills/gowin-fpga/references/development-workflow.md",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "8e5cc79840f0f712b6198706dd5dab587026d42fbb23c079383d6a96d8476ec1"
+  },
+  {
+    "destination": "tools/skills/gowin-fpga/references/local-materials.md",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "5a5786784e16dfd58e7a639a4a0c87e30749c780932bb14278860e3c62a74332"
+  },
+  {
+    "destination": "tools/skills/gowin-fpga/references/report-driven-rtl.md",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "c2ac9e36308a908cfe2f6d4796ce9ec3e1dd04d34817de85fa63389ae541ba29"
+  },
+  {
+    "destination": "tools/skills/gowin-fpga/references/tcl-and-mcp.md",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "3c4fc38ca985c60b16ec7e53c0e4ec3f271c686d88cea3d527616e1369f24b06"
+  },
+  {
+    "destination": "tools/skills/gowin-fpga/references/verilog-coding-style.md",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "484195979afbd835d8e06065515c4db1f2e1189df9b07420d936c28af7fe9f41"
+  },
+  {
+    "destination": "tools/skills/gowin-fpga/SKILL.md",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "5917536a1ae92d78433259a5e82822bd2dd1c7564b8abee5c4e060e4e33ec157"
   },
   {
     "destination": "tools/test-fpga.ps1",
