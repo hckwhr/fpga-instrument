@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { notesToProject } from '../src/audio.js';
-import { arrangeAudioMelody, audioSelectionEnd } from '../src/audio-arrangement.js';
+import { notesToProject, fpgaEnvelope } from '../src/audio.js';
+import { arrangeAudioMelody, audioSelectionEnd, INSTRUMENTAL_ARRANGEMENT_DEFAULTS } from '../src/audio-arrangement.js';
 import { compileFpgaScore } from '../src/fpga-score.js';
 import { serializeScore, parseScore } from '../src/score-library.js';
 const project = count => notesToProject(Array.from({ length: count }, (_, i) => ({ startTimeSeconds: i * .3, durationSeconds: .2, pitchMidi: i % 2 ? 40 : 90, amplitude: .7 })));
@@ -40,6 +40,34 @@ const recognize = rows => notesToProject(rows.map(([start, end, pitch, amplitude
   ({ startTimeSeconds: start / 1000, durationSeconds: (end - start) / 1000, pitchMidi: pitch, amplitude })));
 const arrange = (rows, options = {}) => arrangeAudioMelody(recognize(rows), { confirmed: true, ...options });
 const pitches = result => result.project.tracks[0].notes.map(n => n.note);
+
+test('instrumental preset retains quick arpeggios, repeated attacks and source timing', () => {
+  const source = recognize([[0, 90, 60], [30, 120, 64], [200, 290, 64], [320, 410, 67]]);
+  const original = structuredClone(source);
+  const result = arrangeAudioMelody(source, { ...INSTRUMENTAL_ARRANGEMENT_DEFAULTS, confirmed: true });
+  assert.deepEqual(pitches(result), [60, 64, 64, 67]);
+  assert.deepEqual(result.project.tracks[0].notes.map(n => n.startMs), [0, 31.25, 200, 318.75]);
+  assert.equal(result.report.merged, 0);
+  assert.deepEqual(source, original);
+  assert.equal(result.report.rhythm, 'original');
+  assert.equal(compileFpgaScore(result.project).length, 8);
+});
+
+test('FPGA reference envelope matches score peak, decay, sustain and bounded integer OFF', () => {
+  for (const velocity of [1, 40, 80, 127]) {
+    const e = fpgaEnvelope(velocity, 1000);
+    assert.equal(e.peak, (velocity === 127 ? 255 : velocity * 2) * 16);
+    assert.equal(e.offGain, e.peak / 2);
+    assert.equal(e.release.at(-1), 0);
+    assert.ok(e.release.length / 48000 < .0375, 'Fits unchanged six-tick score tail');
+    for (let i = 1; i < e.release.length; i++)
+      assert.equal(e.release[i], Math.max(0, e.release[i - 1] - (e.release[i - 1] >> 8) - 1));
+  }
+  assert.equal(fpgaEnvelope(80, 1).offGain, 48 * 16, 'OFF during attack uses current gain');
+  const short = fpgaEnvelope(80, 80);
+  assert.ok(short.offGain > short.sustain && short.offGain < short.peak);
+  assert.throws(() => fpgaEnvelope(0, 100));
+});
 
 test('phrase gain preserves strong-note accents instead of flattening them at 80', () => {
   const source = recognize([[0, 200, 60], [300, 500, 62], [600, 800, 64]]);

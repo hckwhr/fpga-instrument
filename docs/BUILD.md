@@ -39,13 +39,23 @@ Android 构建工具及路径见 [README-FPGA.md](../host/mineradio/README-FPGA.
 pwsh -NoProfile -File tools/test-fpga.ps1 -BuildRoot E:/Gowin/workspace/fpga-instrument-test -ModelSimBin E:/modelsim/win64
 ```
 
-该入口复制当前 FPGA 源码到独立 ASCII 目录，再执行 `sim/run_dynamic_regression.ps1 -Jobs 12`；不修改验收目录。完整套件 136 项，不能为通过而删减。
+该入口复制当前 FPGA 源码到独立 ASCII 目录，再执行 `sim/run_dynamic_regression.ps1 -Jobs 12`；不修改验收目录。完整套件 138 项，不能为通过而删减。
 
-在 Gowin IDE 打开 `fpga/stage64/v3_hardware_top.gprj`，保留当前器件、PLL、CST、SDC，place_option=3 / route_option=2；同目录只运行一个构建。可使用 `tools/build-fpga.tcl` 的 CLI 模板，先核对本机工具路径与当前工程选项。
+在 Gowin IDE 打开 `fpga/stage65/v3_hardware_top.gprj`，保留当前器件、PLL、CST、SDC，place_option=3 / route_option=2；同目录只运行一个构建。`tools/build-fpga.tcl` 默认只综合，先核对本机工具路径与当前工程选项。
 
-SDC 已是经过等价证明的压缩版本，不能改为无保护的全层级通配。若 RTL 改动使网表寄存器命名/覆盖变化，须重新运行半速审计和集合等价检查，保留 setup/hold 配对，并从最终报告核对实际生效内容；不能直接复用旧结果声称新网表通过。归档时序/引脚/资源报告、位流 SHA256 后才考虑烧录。
+SDC 已是经过等价证明的压缩版本，不能改为无保护的全层级通配。构建顺序是：完整仿真 → 综合 → 用新鲜网表重新审计并压缩 SDC → 集合等价及负向控制 → P&R → 时序/引脚审计。不能用旧审计结果声称新网表通过。
 
-`fpga/stage64/scripts/` 保留历史审计/诊断脚本，其中部分仍指向旧实验目录。当前测试入口以上述 tools/test-fpga.ps1 为准；旧 archive/prepare/restart 等脚本不作为一键构建入口。
+审计入口如下，`<new-netlist.vg>` 替换为本次综合生成的网表绝对路径；输出目录须事先存在：
+
+```powershell
+python fpga/stage65/scripts/audit_half_rate.py --netlist <new-netlist.vg> --output <audit.json> --sdc fpga/stage65/constraints/half_rate_enumerated.sdc --contest-strings
+python fpga/stage65/scripts/compact_queries.py
+python fpga/stage65/scripts/compact_queries.py --verify-netlist <new-netlist.vg>
+```
+
+这是保留的本机审计脚本，不是跨机器一键构建器：`compact_queries.py` 的默认网表路径和 Gowin `prim_sim.v` 路径须先按本机安装调整；其首个生成命令使用默认网表，不能误用旧网表。`audit_half_rate.py` 已使用同目录的 `constraints/base_hardware.sdc`，不依赖缺失的历史工程。确认 setup/hold 成对、引脚集合等价后，单独执行 `run pnr`（可将 Tcl 模板最后一行由 `run syn` 改为 `run pnr`）。从最终报告核对实际生效约束，归档时序/引脚/资源报告、位流 SHA256 后才考虑烧录。
+
+`fpga/stage65/scripts/` 保留历史审计/诊断脚本，其中部分仍指向旧实验目录。当前测试入口以上述 tools/test-fpga.ps1 为准；旧 archive/prepare/restart 等脚本不作为一键构建入口。`fpga/stage64/` 保留上版原始源码，不覆盖。
 
 ## ESP32
 

@@ -6,7 +6,7 @@ import { ScoreLibrary, LIBRARY_KEY, parseScore, serializeScore } from './score-l
 import { DeviceSession } from './device-session.js';
 import { ScoreUploadSession } from './score-upload.js';
 import { compileSelectedFpgaScore } from './fpga-score.js';
-import { arrangeAudioMelody, audioSelectionEnd } from './audio-arrangement.js';
+import { arrangeAudioMelody, audioSelectionEnd, INSTRUMENTAL_ARRANGEMENT_DEFAULTS } from './audio-arrangement.js';
 import { NativeBleTransport } from './native-ble-transport.js';
 import { createPerformanceMonitor } from './performance-monitor.js';
 import { createBoardMonitor } from './board-monitor.js';
@@ -241,8 +241,8 @@ function loadProject(project, fileName, message, recognitionSource = null) {
   state.project = project;
   state.recognitionSource = recognitionSource || (!project.arrangement && project.format === 'audio-transcription' ? project : null);
   $('#arrangement-panel').hidden = !state.recognitionSource;
-  $('#arrangement-confirm').checked = false;
   if (state.recognitionSource && !recognitionSource) {
+    resetInstrumentalSettings();
     $('#arrangement-start').value = '0';
     $('#arrangement-end').value = String(audioSelectionEnd(state.recognitionSource));
     $('#arrangement-report').textContent = '选段已覆盖本次识别全长；超过 2048 个旋律音符时请主动缩短选段，不会自动截断。';
@@ -517,12 +517,26 @@ window.addEventListener('message', async event => {
 $('#arrangement-rhythm').onchange = () => {
   for (const id of ['#arrangement-bpm', '#arrangement-beat-offset']) $(id).disabled = $('#arrangement-rhythm').value === 'original';
 };
+function resetInstrumentalSettings() {
+  const ids = { strategy: 'strategy', minPitch: 'min-pitch', maxPitch: 'max-pitch',
+    minDurationMs: 'min-duration', onsetWindowMs: 'onset-window', rhythm: 'rhythm', bpm: 'bpm',
+    beatOffsetMs: 'beat-offset', repeatMode: 'repeat', pitchMode: 'pitch' };
+  for (const [key, id] of Object.entries(ids)) $('#arrangement-' + id).value = String(INSTRUMENTAL_ARRANGEMENT_DEFAULTS[key]);
+  $('#arrangement-protect-sustain').checked = INSTRUMENTAL_ARRANGEMENT_DEFAULTS.protectSustain;
+  $('#arrangement-rhythm').onchange();
+}
+$('#arrangement-reset').onclick = () => {
+  resetInstrumentalSettings();
+  $('#arrangement-report').textContent = '已恢复纯音乐推荐设置；点击一键生成后生效，当前曲谱与选段未改变。';
+};
 $('#arrangement-apply').onclick = () => {
   try {
     if (state.transcription) throw new Error('请等待当前转谱完成后再整理旋律');
     const result = arrangeAudioMelody(state.recognitionSource, {
       startSeconds: Number($('#arrangement-start').value), endSeconds: Number($('#arrangement-end').value),
-      confirmed: $('#arrangement-confirm').checked,
+      // Clicking Generate explicitly creates a derivative; never mutate or
+      // silently admit raw recognition to the hardware compiler.
+      confirmed: true,
       strategy: $('#arrangement-strategy').value, minDurationMs: Number($('#arrangement-min-duration').value),
       onsetWindowMs: Number($('#arrangement-onset-window').value), rhythm: $('#arrangement-rhythm').value,
       bpm: Number($('#arrangement-bpm').value),
@@ -545,7 +559,6 @@ $("#transcribe-audio").addEventListener("click", async () => {
   preview.stop(); $("#source-audio").pause();
   state.project = null; state.recognitionSource = null; state.selectedTracks = [];
   $('#arrangement-panel').hidden = true;
-  $('#arrangement-confirm').checked = false;
   trackList.replaceChildren(); compileAndRender();
   $("#file-name").textContent = '正在转谱'; $("#song-title").textContent = file.name;
   for (const id of ['#audio-file', '#midi-file', '#choose-audio', '#choose-midi', '#tab-audio', '#tab-midi', '#audio-scope', '#audio-threshold', '#audio-min-note']) $(id).disabled = true;
@@ -587,8 +600,8 @@ async function playPreview(upload = false) {
   if (analyzeEvents(events).over32) { setStatus('超过 32 声部，请简化曲谱后试听。', 'error'); return; }
   $('#preview-notes').disabled = true; $('#preview-upload').disabled = true; $('#stop-preview').disabled = false;
   const done = () => { $('#preview-notes').disabled = !state.events.length; $('#preview-upload').disabled = !compiledUpload || Boolean(state.transcription); $('#stop-preview').disabled = true; };
-  $('#preview-description').textContent = upload ? '正在试听待上传曲谱：使用实际上传的音高、力度与量化节奏。板卡音色可能不同；板端速度请设为 100%。' : '正在试听当前音符，用于对比识别结果；不代表设备已接受曲谱。';
-  try { await preview.play(events, done); }
+  $('#preview-description').textContent = upload ? '正在试听 FPGA 演奏参考：使用实际上传的音高、力度与量化节奏，模拟优化版曲谱音色和衰减包络。需配套 stage65 固件；实物输出以板端为准，板端速度请设为 100%。' : '正在试听当前音符，用于对比识别结果；不代表设备已接受曲谱。';
+  try { await preview.play(events, done, { profile: upload ? 'fpga' : 'notes' }); }
   catch (error) { done(); setStatus(error.message, 'error'); }
 }
 $('#preview-notes').addEventListener('click', () => playPreview());

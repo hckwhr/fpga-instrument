@@ -1,0 +1,32 @@
+*** GOWIN Tcl Command Line Console  *** 
+Open project E:/Gowin/workspace/v3_instrumental_stage65_20261024/v3_hardware_top.gprj finished
+Reading netlist file: "E:\Gowin\workspace\v3_instrumental_stage65_20261024\impl\gwsynthesis\v3_hardware_top.vg"
+Parsing netlist file "E:\Gowin\workspace\v3_instrumental_stage65_20261024\impl\gwsynthesis\v3_hardware_top.vg" completed
+Processing netlist completed
+Reading constraint file: "E:\Gowin\workspace\v3_instrumental_stage65_20261024\constraints\v3_hardware.cst"
+Physical Constraint parsed completed
+Running placement......
+[10%] Placement Phase 0 completed
+[20%] Placement Phase 1 completed
+[30%] Placement Phase 2 completed
+[50%] Placement Phase 3 completed
+Running routing......
+[60%] Routing Phase 0 completed
+[70%] Routing Phase 1 completed
+[80%] Routing Phase 2 completed
+WARN  (PR1014) : Generic routing resource will be used to clock signal 'sys_clk_d' by the specified constraint. And then it may lead to the excessive delay or skew
+[90%] Routing Phase 3 completed
+Running timing analysis......
+[95%] Timing analysis completed
+Placement and routing completed
+Bitstream generation in progress......
+Bitstream generation completed
+Running power analysis......
+[100%] Power analysis completed
+Generate file "E:\Gowin\workspace\v3_instrumental_stage65_20261024\impl\pnr\v3_hardware_top.power.html" completed
+Generate file "E:\Gowin\workspace\v3_instrumental_stage65_20261024\impl\pnr\v3_hardware_top.pin.html" completed
+Generate file "E:\Gowin\workspace\v3_instrumental_stage65_20261024\impl\pnr\v3_hardware_top.rpt.html" completed
+Generate file "E:\Gowin\workspace\v3_instrumental_stage65_20261024\impl\pnr\v3_hardware_top.rpt.txt" completed
+Generate file "E:\Gowin\workspace\v3_instrumental_stage65_20261024\impl\pnr\v3_hardware_top.tr.html" completed
+Sat Oct 24 12:33:39 2026
+

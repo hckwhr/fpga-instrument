@@ -12,14 +12,14 @@ export function notesToProject(notes, title = '音频转谱', durationSeconds = 
         velocity: Math.max(1, Math.min(127, Math.round(n.amplitude * 127))), channel: 0, track: 0, order };
     }).filter(n => n.durationMs > 0).sort((a, b) => a.startMs - b.startMs || a.note - b.note || a.order - b.order);
   return { format: 'audio-transcription', title, tracks: [{ title: '自动转谱（待试听）', notes: clean,
-    warnings: ['自动识别可能漏音或多音；未分离乐器、人声和鼓点，未保留弯音。'] }] };
+    warnings: ['自动识别可能漏音或多音；复杂伴奏、鼓点与混响可能干扰识别，未保留弯音。'] }] };
 }
 
-export async function transcribeAudioFile(file, { onProgress = () => {}, signal, durationLimit = 0, threshold = 0.35, minNoteMs = 120 } = {}) {
+export async function transcribeAudioFile(file, { onProgress = () => {}, signal, durationLimit = 0, threshold = 0.35, minNoteMs = 100 } = {}) {
   if (/\.(ncm|qmc\w*|lrc)$/i.test(file?.name || '')) throw new Error('NCM 等专属格式或 LRC 歌词不能转谱，请选择普通 MP3/WAV/FLAC 音频。');
   if (!globalThis.AudioContext || !globalThis.Worker) throw new Error('请使用支持 Web Audio 和 Worker 的新版浏览器');
   if (!file?.size || file.size > 80 * 1024 * 1024) throw new Error('请选择非空且不超过 80 MB 的音频文件');
-  if (![30, 0].includes(durationLimit) || ![80, 120, 180].includes(minNoteMs) || !Number.isFinite(threshold) || threshold < 0.1 || threshold > 0.8) throw new Error('转谱参数无效');
+  if (![30, 0].includes(durationLimit) || ![80, 100, 120, 180].includes(minNoteMs) || !Number.isFinite(threshold) || threshold < 0.1 || threshold > 0.8) throw new Error('转谱参数无效');
   signal?.throwIfAborted();
   onProgress({ stage: 'decode', percent: 0 });
   const context = new AudioContext({ sampleRate: AUDIO_TARGET_SAMPLE_RATE });
@@ -76,6 +76,27 @@ export function scorePreviewEvents(score) {
   }));
 }
 
+// Stage65 score envelope at 48 kHz: attack +16/sample, decay -1/8 samples,
+// sustain 50%, OFF uses the existing bounded exponential integer release.
+// Reference synthesis approximates ROM interpolation/rounding, not a DAC capture.
+export function fpgaEnvelope(velocity, durationMs) {
+  if (!Number.isInteger(velocity) || velocity < 1 || velocity > 127 || !Number.isFinite(durationMs) || durationMs <= 0)
+    throw new Error('FPGA 试听音符参数无效');
+  const peak = (velocity === 127 ? 255 : velocity * 2) * 16;
+  const sustain = peak >> 1;
+  const attackSamples = Math.ceil(peak / 16);
+  const heldSamples = Math.max(1, Math.round(durationMs * 48));
+  const offGain = heldSamples < attackSamples ? Math.min(peak, heldSamples * 16) :
+    Math.max(sustain, peak - Math.floor((heldSamples - attackSamples) / 8));
+  const release = [offGain];
+  while (release.at(-1) > 0) {
+    const g = release.at(-1);
+    release.push(Math.max(0, g - (g >> 8) - 1));
+  }
+  return { peak, sustain, attackSeconds: attackSamples / 48000,
+    decaySeconds: (peak - sustain) * 8 / 48000, offGain, release: Float32Array.from(release) };
+}
+
 // Rolling scheduling keeps stop responsive without allocating a whole song's oscillators.
 export function createNotePreview(onPlayback = () => {}) {
   let context, timer, stopCallback;
@@ -86,21 +107,24 @@ export function createNotePreview(onPlayback = () => {}) {
     onPlayback(null);
     const done = stopCallback; stopCallback = null; done?.();
   };
-  return { stop, async play(events, onEnd = () => {}) {
+  return { stop, async play(events, onEnd = () => {}, { profile = 'notes' } = {}) {
     stop();
     if (!events.length) throw new Error('没有可试听的音符');
     if (events.length > 50000) throw new Error('音符过多，请简化或选择更短片段');
-    context = new AudioContext();
+    const fpga = profile === 'fpga';
+    context = new AudioContext(fpga ? { sampleRate: 48000 } : {});
     const active = context;
     try { await active.resume(); } catch (error) { if (context === active) stop(); throw error; }
     if (context !== active) return;
     stopCallback = onEnd;
-    const compressor = active.createDynamicsCompressor();
-    const master = active.createGain(); master.gain.value = 0.24;
+    const master = active.createGain(); master.gain.value = fpga ? 1 : 0.24;
+    const input = fpga ? active.createIIRFilter([1.25, -0.25], [1]) : active.createDynamicsCompressor();
+    const wave = fpga ? active.createPeriodicWave(new Float32Array(5),
+      new Float32Array([0, 1, 0.28, 0.12, 0.04]), { disableNormalization: true }) : null;
     const analyser = active.createAnalyser();
     analyser.fftSize = 4096;
     analyser.smoothingTimeConstant = 0.7;
-    compressor.connect(master).connect(analyser).connect(active.destination);
+    input.connect(master).connect(analyser).connect(active.destination);
     const start = active.currentTime + 0.05;
     const end = events.reduce((max, e) => Math.max(max, e.startMs + e.durationMs), 0) / 1000;
     onPlayback({ context: active, analyser, events, start });
@@ -112,14 +136,32 @@ export function createNotePreview(onPlayback = () => {}) {
         const until = start + (note.startMs + note.durationMs) / 1000;
         if (until <= active.currentTime) continue;
         const at = Math.max(active.currentTime, start + note.startMs / 1000);
-        const attackEnd = Math.min(at + 0.008, until);
         const osc = active.createOscillator(), gain = active.createGain();
-        osc.type = 'triangle'; osc.frequency.value = 440 * 2 ** ((note.note - 69) / 12);
-        gain.gain.setValueAtTime(0, at);
-        gain.gain.linearRampToValueAtTime(note.velocity / 127 * 0.18, attackEnd);
-        gain.gain.linearRampToValueAtTime(note.velocity / 127 * 0.09, until);
-        gain.gain.linearRampToValueAtTime(0, until + 0.06);
-        osc.connect(gain).connect(compressor);
+        osc.frequency.value = 440 * 2 ** ((note.note - 69) / 12);
+        if (fpga) {
+          osc.setPeriodicWave(wave);
+          const envelope = fpgaEnvelope(note.velocity, (until - at) * 1000);
+          // piano_wave ROM amplitude * lane product[28:16] * score boost / int16.
+          const scale = 6500 * 8 / (65536 * 32768);
+          const attackEnd = Math.min(at + envelope.attackSeconds, until);
+          gain.gain.setValueAtTime(0, at);
+          gain.gain.linearRampToValueAtTime(Math.min(envelope.peak, Math.round((attackEnd - at) * 48000) * 16) * scale, attackEnd);
+          if (until > attackEnd) {
+            const decayEnd = Math.min(attackEnd + envelope.decaySeconds, until);
+            gain.gain.linearRampToValueAtTime((decayEnd < until ? envelope.sustain : envelope.offGain) * scale, decayEnd);
+            if (decayEnd < until) gain.gain.setValueAtTime(envelope.offGain * scale, until);
+          }
+          const release = Float32Array.from(envelope.release, g => g * scale);
+          gain.gain.setValueCurveAtTime(release, until, (release.length - 1) / 48000);
+        } else {
+          osc.type = 'triangle';
+          const attackEnd = Math.min(at + 0.008, until);
+          gain.gain.setValueAtTime(0, at);
+          gain.gain.linearRampToValueAtTime(note.velocity / 127 * 0.18, attackEnd);
+          gain.gain.linearRampToValueAtTime(note.velocity / 127 * 0.09, until);
+          gain.gain.linearRampToValueAtTime(0, until + 0.06);
+        }
+        osc.connect(gain).connect(input);
         osc.onended = () => { osc.disconnect(); gain.disconnect(); };
         osc.start(at); osc.stop(until + 0.07);
       }

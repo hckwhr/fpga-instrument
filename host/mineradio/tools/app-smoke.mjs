@@ -6,7 +6,6 @@ import { spawn } from 'node:child_process';
 import { resolve, dirname, extname, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import assert from 'node:assert/strict';
-import { tmpdir } from 'node:os';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const assets = resolve(root, 'android/app/src/main/assets');
@@ -27,7 +26,7 @@ const server = createServer(async (req, res) => {
   } catch { res.writeHead(404).end(); }
 });
 await new Promise(done => server.listen(0, '127.0.0.1', done));
-const profile = await mkdtemp(resolve(tmpdir(), 'mineradio-browser-'));
+const profile = await mkdtemp(resolve(root, '../../work/mineradio-browser-'));
 const browser = spawn(process.env.CHROME_PATH || 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe', ['--headless=new', '--disable-gpu', '--no-first-run', '--no-default-browser-check', '--remote-debugging-port=0', `--user-data-dir=${profile}`, 'about:blank'], { windowsHide: true });
 // Drain both pipes so verbose Chromium startup diagnostics cannot block it.
 let browserOutput = '';
@@ -129,7 +128,7 @@ try {
   await waitFor(`document.querySelector('#instrument').contentDocument.querySelector('#audio-progress').textContent.includes('识别完成')`, 120);
   assert.equal(await inside(`document.querySelector('#note-count').textContent`), '6');
   assert.match(await inside(`document.querySelector('#upload-score').textContent`), /自动识别/);
-  await inside(`document.querySelector('#arrangement-confirm').checked=true`);
+  assert.equal(await inside(`document.querySelector('#arrangement-advanced').open`), false);
   await inside(`document.querySelector('#arrangement-apply').click()`);
   assert.match(await inside(`document.querySelector('#upload-score').textContent`), /8\/4096/);
   assert.match(await inside(`document.querySelector('#arrangement-report').textContent`), /6 → 4/);
@@ -143,6 +142,7 @@ try {
   assert.equal(await evaluate(`window.nativeCalls.some(c=>c.op==='ble-write'&&atob(c.value.data).includes(',PLAY,'))`), false);
   await inside(`document.querySelector('#upload-play').click()`);
   await waitFor(`document.querySelector('#instrument').contentDocument.querySelector('#upload-playback-state').textContent.includes('准备播放')`);
+  assert.equal(await inside(`document.querySelector('#upload-stop').textContent.trim()`), '停止播放');
   await inside(`document.querySelector('#upload-stop').click()`);
   await waitFor(`document.querySelector('#instrument').contentDocument.querySelector('#upload-playback-state').textContent.includes('空闲')`);
   await inside(`document.querySelector('#export-score').click()`);

@@ -40,7 +40,7 @@
           <p class="hint">30 秒不是上传时长上限。扩容固件支持 4096 个事件、最多 2048 个旋律音符；旧固件仍限 512 事件、255 个旋律音符。连接后检查设备能力，超限会阻止上传，不会截断。</p>
           <details class="tuning"><summary>识别细节 <span>杂音符多时再调整</span></summary>
             <label class="field">识别门槛<select id="audio-threshold"><option value="0.35">标准</option><option value="0.5">较高 · 减少杂音符</option><option value="0.2">较低 · 捕捉轻音</option></select></label>
-            <label class="field">最短音符<select id="audio-min-note"><option value="120">120 ms · 标准</option><option value="80">80 ms · 快速旋律</option><option value="180">180 ms · 减少碎音</option></select></label>
+            <label class="field">最短音符<select id="audio-min-note"><option value="100">100 ms · 纯音乐推荐</option><option value="80">80 ms · 快速旋律</option><option value="120">120 ms · 减少碎音</option><option value="180">180 ms · 强过滤</option></select></label>
           </details>
           <div class="convert-actions"><button id="transcribe-audio" class="button primary" disabled>开始转谱 <span aria-hidden="true">→</span></button><button id="cancel-transcription" class="button plain" disabled>取消</button></div>
           <progress id="transcription-progress" max="100" value="0" aria-label="转谱进度" hidden></progress>
@@ -58,22 +58,25 @@
         <div class="song-heading"><h3 id="file-name">曲谱将在这里显示</h3><p id="song-title" class="hint">导入音频或 MIDI，开始准备你的曲谱。</p></div>
         <div class="stats"><div><strong id="note-count">0</strong><span>音符</span></div><div><strong id="duration">0:00</strong><span>演奏时长</span></div><div><strong id="polyphony">0 / 32</strong><span>峰值复音</span></div></div>
         <div class="roll-frame"><canvas id="piano-roll" aria-label="音符预览：横轴时间、纵轴音高"></canvas><div id="roll-empty" class="roll-empty"><strong>让旋律看得见</strong><span>转谱后，音符与节奏会呈现在这里。</span></div></div>
-        <div class="preview-controls"><button id="preview-notes" class="button primary" disabled><span aria-hidden="true">▶</span> 试听音符</button><button id="preview-upload" class="button" disabled>试听待上传曲谱</button><button id="stop-preview" class="button plain" disabled>停止</button></div>
-        <p class="hint" id="preview-description">待上传试听使用实际上传的音高、力度与量化节奏；电脑音色不代表板卡音色，无需连接 BLE。</p>
+        <div class="preview-controls"><button id="preview-notes" class="button" disabled><span aria-hidden="true">▶</span> 试听识别音符</button><button id="preview-upload" class="button primary" disabled>试听 FPGA 演奏参考</button><button id="stop-preview" class="button plain" disabled>停止</button></div>
+        <p class="hint" id="preview-description">FPGA 演奏参考采用实际上传的音符与节奏，模拟优化版曲谱音色及包络。无需 BLE；实物输出仍受固件、音响影响。</p>
         <div class="performance-settings"><label class="range-row"><span>演奏速度 <output id="speed-value">100%</output></span><input id="speed" type="range" min="50" max="150" value="100"></label><label class="range-row"><span>整体力度 <output id="velocity-value">100%</output></span><input id="velocity" type="range" min="25" max="125" value="100"></label></div>
         <details class="track-section" id="track-section"><summary>演奏音轨</summary><div class="track-actions"><span class="hint">勾选要保留的音轨</span><div><button id="select-all" class="button small plain">全选</button><button id="clear-all" class="button small plain">清空</button></div></div><div id="track-list" class="track-list"><p class="hint">尚未导入曲谱。</p></div></details>
         <div id="diagnostics" class="diagnostics"></div>
         <section id="arrangement-panel" hidden>
-          <h3>整理为 FPGA 旋律</h3>
-          <p class="hint">默认结合音高连贯性选择旋律，保留重复敲击与所选音符的实际起音，优先整段移八度到 C3–B5，最多 2048 音符（需扩容固件）。生成后请对比试听；这是旋律提取，不是人声分离或原声还原。</p>
+          <h3>纯音乐 · FPGA 演奏准备</h3>
+          <p class="hint">选好片段，一键生成，再试听上传。默认保留原节奏、力度层次与重复敲击，自动适配板端音域。当前整理为单声部主旋律，复杂伴奏不会原样保留；原识别结果保留，可反复调整。</p>
+          <div class="arrangement-selection">
           <label>开始（秒）<input id="arrangement-start" type="number" min="0" max="599" value="0"></label>
           <label>结束（秒）<input id="arrangement-end" type="number" min="0.01" max="600" value="30"></label>
+          </div>
+          <details class="tuning" id="arrangement-advanced"><summary>高级设置 <span>纯音乐预设已就绪，通常无需修改</span></summary>
           <div class="arrangement-options">
             <label class="field">旋律选择<select id="arrangement-strategy"><option value="balanced">连贯旋律 · 推荐</option><option value="highest">高音优先 · 旋律在上方</option><option value="strongest">强音优先</option></select></label>
             <label class="field">旋律最低音（MIDI）<input id="arrangement-min-pitch" type="number" min="0" max="127" value="0"></label>
             <label class="field">旋律最高音（MIDI）<input id="arrangement-max-pitch" type="number" min="0" max="127" value="127"></label>
-            <label class="field">碎音过滤<select id="arrangement-min-duration"><option value="80">80 ms · 标准</option><option value="0">关闭 · 保留快速音符</option><option value="150">150 ms · 减少杂音</option></select></label>
-            <label class="field">起音合并<select id="arrangement-onset-window"><option value="40">40 ms · 合并识别抖动</option><option value="0">关闭</option><option value="70">70 ms · 较宽松</option></select></label>
+            <label class="field">碎音过滤<select id="arrangement-min-duration"><option value="60">60 ms · 保留装饰音</option><option value="80">80 ms · 标准过滤</option><option value="0">关闭</option><option value="150">150 ms · 强过滤</option></select></label>
+            <label class="field">起音合并<select id="arrangement-onset-window"><option value="20">20 ms · 保留琶音</option><option value="40">40 ms · 合并识别抖动</option><option value="0">关闭</option><option value="70">70 ms · 较宽松</option></select></label>
             <label class="field">节奏校正<select id="arrangement-rhythm"><option value="original">保留原始节奏 · 推荐</option><option value="sixteenth">对齐十六分音符 · 手动 BPM</option></select></label>
             <label class="field">原曲 BPM<input id="arrangement-bpm" type="number" min="40" max="240" value="120" disabled></label>
             <label class="field">拍点偏移（ms）<input id="arrangement-beat-offset" type="number" min="0" max="2000" value="0" disabled></label>
@@ -81,10 +84,11 @@
             <label class="field">音域适配<select id="arrangement-pitch"><option value="phrase">整段移八度 · 保留旋律走向</option><option value="fold">逐音折八度 · 旧方式</option></select></label>
           </div>
           <label class="checkbox"><input id="arrangement-protect-sustain" type="checkbox" checked>保护主旋律长音，减少中途较弱低音伴奏的打断（连贯旋律模式）</label>
-          <p class="hint">音域筛选作用于原始识别音高：C3=48、C4=60、C5=72、C6=84。旋律位于中高音时可先试 60–84；低音人声应降低下限。筛选和长音保护会改变选音，请对比试听，也可关闭。</p>
+          <p class="hint">音域筛选作用于原始识别音高：C3=48、C4=60、C5=72、C6=84。默认不提前过滤音域；旋律被低音伴奏干扰时再缩小范围。筛选和长音保护会改变选音，可关闭。</p>
           <p class="hint">拍点偏移是选段起点到一个已知拍点的毫秒数；仅在手动 BPM 校正时生效。自由节奏请保留原始节奏。伴奏复杂时建议先选 15–30 秒主旋律清楚的片段。</p>
-          <label class="checkbox"><input id="arrangement-confirm" type="checkbox">已对比试听，接受旋律整理与选段</label>
-          <button id="arrangement-apply" class="button">生成可上传旋律</button>
+          <button id="arrangement-reset" class="button small plain" type="button">恢复纯音乐推荐设置</button>
+          </details>
+          <button id="arrangement-apply" class="button primary">一键生成演奏曲谱</button>
           <p id="arrangement-report" class="hint" role="status"></p>
         </section>
         <div class="export-row"><div><h3>保存曲谱</h3><p class="hint">导出文件，不会自动发送到设备。</p></div><div class="exports"><button id="export-csv" class="button" disabled>导出 CSV</button><button id="export-jsonl" class="button" disabled>JSONL</button></div></div>
@@ -140,10 +144,10 @@
           <p id="upload-message" class="hint" role="status">尚未检查整曲上传能力</p>
           <div class="connection-controls">
             <button class="button" id="upload-play" data-score-command="PLAY" disabled>播放已上传曲谱</button>
-            <button class="button" id="upload-stop" data-score-command="STOP" disabled>停止上传曲谱</button>
+            <button class="button stop-control" id="upload-stop" data-score-command="STOP" aria-label="停止 FPGA 曲谱播放" title="停止 FPGA 正在播放的曲谱；上传过程中请使用“取消上传”" disabled>停止播放</button>
             <button class="button" id="upload-status" data-score-command="STATUS" disabled>查询上传曲谱状态</button>
           </div>
-          <p class="hint">播放前会核对设备曲谱与当前页面的编译结果；编辑曲谱后请重新上传。停止应答确认释放声部，尾音可能尚未结束。</p>
+          <p class="hint">播放前会核对设备曲谱与当前页面的编译结果；编辑曲谱后请重新上传。“停止播放”会向 FPGA 发送停止命令；上传过程中的“取消上传”只取消传输。停止应答确认释放声部，尾音可能尚未结束。</p>
           <p id="upload-playback-state" class="hint" role="status">设备尚未确认支持上传曲谱播放。</p>
         </section>
         <details class="serial-test" id="serial-test"><summary>通信测试与协议预览</summary><p class="hint">仅测试文本收发，没有回执不能确认执行。手动发送后进入调试模式，需断开重连才能再次使用上方板端控制。</p><form id="send-form" class="connection-controls"><label class="test-input">测试文本<input id="send-text" value="PING" maxlength="256" autocomplete="off"></label><label class="checkbox"><input type="checkbox" id="send-newline" checked> 追加换行</label><button id="send" class="button" disabled>发送测试</button><button id="clear-log" type="button" class="button plain">清空记录</button></form><pre id="serial-log" aria-label="BLE 收发记录" tabindex="0">尚无收发记录。</pre><button id="export-protocol" class="button small" disabled>导出协议预览</button></details>

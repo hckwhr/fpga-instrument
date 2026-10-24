@@ -1,0 +1,550 @@
+{
+  "project_file": "E:\\Gowin\\workspace\\v3_instrumental_stage65_20261024\\v3_hardware_top.gprj",
+  "report_path": "E:\\Gowin\\workspace\\v3_instrumental_stage65_20261024\\impl\\pnr\\v3_hardware_top_tr_content.html",
+  "report_modified_epoch": 1792816419.0663908,
+  "source_newer_than_report": false,
+  "status": "met",
+  "timing_constraints_met": true,
+  "timing_clean": true,
+  "sta": {
+    "setup_delay_model": "Slow 0.873V 0C C1/I0",
+    "hold_delay_model": "Fast 0.927V 85C C1/I0",
+    "paths_analyzed": 193362,
+    "endpoints_analyzed": 95711,
+    "setup_violated_endpoints": 0,
+    "hold_violated_endpoints": 0
+  },
+  "worst_setup_slack_ns": 0.043,
+  "worst_hold_slack_ns": 0.185,
+  "clocks": [
+    {
+      "name": "sys_clk",
+      "type": "Base",
+      "period_ns": 20,
+      "frequency_mhz": 50,
+      "rise_ns": 0,
+      "fall_ns": 10,
+      "source": "",
+      "master": "",
+      "objects": "sys_clk"
+    },
+    {
+      "name": "audio_clk",
+      "type": "Generated",
+      "period_ns": 20.345,
+      "frequency_mhz": 49.153,
+      "rise_ns": 0,
+      "fall_ns": 10.172,
+      "source": "sys_clk",
+      "master": "sys_clk",
+      "objects": "u_instrument/u_audio_pll/u_pll/PLL_inst/CLKOUT0"
+    },
+    {
+      "name": "pixel_clk",
+      "type": "Generated",
+      "period_ns": 30,
+      "frequency_mhz": 33.333,
+      "rise_ns": 0,
+      "fall_ns": 15,
+      "source": "sys_clk",
+      "master": "sys_clk",
+      "objects": "u_instrument/u_lcd_pll/u_pll/PLL_inst/CLKOUT0"
+    }
+  ],
+  "max_frequency": [
+    {
+      "clock": "sys_clk",
+      "constraint_mhz": 50,
+      "actual_fmax_mhz": 50.107,
+      "margin_mhz": 0.107,
+      "logic_levels": 13,
+      "entity": "TOP"
+    },
+    {
+      "clock": "audio_clk",
+      "constraint_mhz": 49.153,
+      "actual_fmax_mhz": 49.998,
+      "margin_mhz": 0.845,
+      "logic_levels": 22,
+      "entity": "TOP"
+    },
+    {
+      "clock": "pixel_clk",
+      "constraint_mhz": 33.333,
+      "actual_fmax_mhz": 37.052,
+      "margin_mhz": 3.719,
+      "logic_levels": 24,
+      "entity": "TOP"
+    }
+  ],
+  "total_negative_slack": [
+    {
+      "clock": "sys_clk",
+      "analysis": "Setup",
+      "tns_ns": 0,
+      "violated_endpoints": 0
+    },
+    {
+      "clock": "sys_clk",
+      "analysis": "Hold",
+      "tns_ns": 0,
+      "violated_endpoints": 0
+    },
+    {
+      "clock": "audio_clk",
+      "analysis": "Setup",
+      "tns_ns": 0,
+      "violated_endpoints": 0
+    },
+    {
+      "clock": "audio_clk",
+      "analysis": "Hold",
+      "tns_ns": 0,
+      "violated_endpoints": 0
+    },
+    {
+      "clock": "pixel_clk",
+      "analysis": "Setup",
+      "tns_ns": 0,
+      "violated_endpoints": 0
+    },
+    {
+      "clock": "pixel_clk",
+      "analysis": "Hold",
+      "tns_ns": 0,
+      "violated_endpoints": 0
+    }
+  ],
+  "worst_paths": {
+    "setup": [
+      {
+        "number": 1,
+        "slack_ns": 0.043,
+        "from_node": "u_instrument/shared_link.endpoint/upload/state_3_s1/Q",
+        "to_node": "u_instrument/shared_link.endpoint/upload/parser/hex_value_180_s1/CE",
+        "from_clock": "sys_clk:[R]",
+        "to_clock": "sys_clk:[R]",
+        "relationship_ns": 20,
+        "clock_skew_ns": 0.008,
+        "data_delay_ns": 19.669
+      },
+      {
+        "number": 2,
+        "slack_ns": 0.043,
+        "from_node": "u_instrument/shared_link.endpoint/upload/state_3_s1/Q",
+        "to_node": "u_instrument/shared_link.endpoint/upload/parser/hex_value_184_s1/CE",
+        "from_clock": "sys_clk:[R]",
+        "to_clock": "sys_clk:[R]",
+        "relationship_ns": 20,
+        "clock_skew_ns": 0.008,
+        "data_delay_ns": 19.669
+      },
+      {
+        "number": 3,
+        "slack_ns": 0.044,
+        "from_node": "u_instrument/shared_link.endpoint/upload/state_3_s1/Q",
+        "to_node": "u_instrument/shared_link.endpoint/upload/parser/hex_value_436_s1/CE",
+        "from_clock": "sys_clk:[R]",
+        "to_clock": "sys_clk:[R]",
+        "relationship_ns": 20,
+        "clock_skew_ns": 0.007,
+        "data_delay_ns": 19.669
+      }
+    ],
+    "hold": [
+      {
+        "number": 1,
+        "slack_ns": 0.185,
+        "from_node": "u_instrument/u_spectrum/n686_s/DOUT[2]",
+        "to_node": "u_instrument/u_spectrum/accum_re_accum_re_0_0_s/DI[2]",
+        "from_clock": "audio_clk:[R]",
+        "to_clock": "audio_clk:[R]",
+        "relationship_ns": 0,
+        "clock_skew_ns": -0.004,
+        "data_delay_ns": 0.223
+      },
+      {
+        "number": 2,
+        "slack_ns": 0.188,
+        "from_node": "u_instrument/u_spectrum/n686_s/DOUT[12]",
+        "to_node": "u_instrument/u_spectrum/accum_re_accum_re_0_0_s/DI[12]",
+        "from_clock": "audio_clk:[R]",
+        "to_clock": "audio_clk:[R]",
+        "relationship_ns": 0,
+        "clock_skew_ns": -0.004,
+        "data_delay_ns": 0.226
+      },
+      {
+        "number": 3,
+        "slack_ns": 0.189,
+        "from_node": "u_instrument/u_spectrum/n686_s/DOUT[0]",
+        "to_node": "u_instrument/u_spectrum/accum_re_accum_re_0_0_s/DI[0]",
+        "from_clock": "audio_clk:[R]",
+        "to_clock": "audio_clk:[R]",
+        "relationship_ns": 0,
+        "clock_skew_ns": -0.004,
+        "data_delay_ns": 0.227
+      }
+    ]
+  },
+  "setup_clusters": [
+    {
+      "from": "u_instrument/shared_link.endpoint/upload/state",
+      "to": "u_instrument/shared_link.endpoint/upload/parser/hex_value",
+      "paths": 305,
+      "violating_paths": 0,
+      "worst_slack_ns": 0.043,
+      "max_logic_levels": 13,
+      "mean_route_delay_percent": 70.2
+    },
+    {
+      "from": "u_instrument/uploaded_selected",
+      "to": "u_instrument/bright_output.bright_sample",
+      "paths": 16,
+      "violating_paths": 0,
+      "worst_slack_ns": 0.344,
+      "max_logic_levels": 22,
+      "mean_route_delay_percent": 57.8
+    },
+    {
+      "from": "u_instrument/uploaded_selected",
+      "to": "u_instrument/strings_enabled.u_physical_string_bank/strings[*].voice/output_product",
+      "paths": 25,
+      "violating_paths": 0,
+      "worst_slack_ns": 0.873,
+      "max_logic_levels": 5,
+      "mean_route_delay_percent": 87.4
+    },
+    {
+      "from": "u_instrument/shared_link.endpoint/upload/state",
+      "to": "u_instrument/shared_link.endpoint/upload/parser/payload",
+      "paths": 94,
+      "violating_paths": 0,
+      "worst_slack_ns": 0.917,
+      "max_logic_levels": 14,
+      "mean_route_delay_percent": 68
+    },
+    {
+      "from": "u_instrument/strings_enabled.u_physical_string_bank/strings[*].voice/loop_value",
+      "to": "u_instrument/strings_enabled.u_physical_string_bank/strings[*].voice/level",
+      "paths": 12,
+      "violating_paths": 0,
+      "worst_slack_ns": 1.133,
+      "max_logic_levels": 21,
+      "mean_route_delay_percent": 34.7
+    },
+    {
+      "from": "u_instrument/poly_event_mode",
+      "to": "u_instrument/u_polyphony_bank_32/u_voice_bank[*].glide_left",
+      "paths": 1,
+      "violating_paths": 0,
+      "worst_slack_ns": 1.538,
+      "max_logic_levels": 7,
+      "mean_route_delay_percent": 82.3
+    },
+    {
+      "from": "u_instrument/poly_event_mode",
+      "to": "u_instrument/u_polyphony_bank_32/envelope_target[*]",
+      "paths": 3,
+      "violating_paths": 0,
+      "worst_slack_ns": 1.675,
+      "max_logic_levels": 6,
+      "mean_route_delay_percent": 84.5
+    },
+    {
+      "from": "u_instrument/poly_event_mode",
+      "to": "u_instrument/u_polyphony_bank_32/phase_accumulator[*]",
+      "paths": 34,
+      "violating_paths": 0,
+      "worst_slack_ns": 1.699,
+      "max_logic_levels": 7,
+      "mean_route_delay_percent": 83.4
+    },
+    {
+      "from": "u_instrument/uploaded_selected",
+      "to": "u_instrument/strings_enabled.u_physical_string_bank/strings[*].voice/fill_phase",
+      "paths": 7,
+      "violating_paths": 0,
+      "worst_slack_ns": 1.808,
+      "max_logic_levels": 7,
+      "mean_route_delay_percent": 83.2
+    },
+    {
+      "from": "u_instrument/shared_link.endpoint/upload/state",
+      "to": "u_instrument/shared_link.endpoint/upload/parser/arg0",
+      "paths": 2,
+      "violating_paths": 0,
+      "worst_slack_ns": 2.026,
+      "max_logic_levels": 14,
+      "mean_route_delay_percent": 67.1
+    },
+    {
+      "from": "u_instrument/shared_link.endpoint/upload/state",
+      "to": "u_instrument/shared_link.endpoint/upload/parser/n2456",
+      "paths": 1,
+      "violating_paths": 0,
+      "worst_slack_ns": 2.056,
+      "max_logic_levels": 14,
+      "mean_route_delay_percent": 65.9
+    }
+  ],
+  "high_fanout_nets": [
+    {
+      "fanout": 23477,
+      "net": "u_instrument/audio_clk",
+      "worst_slack_ns": 0.344,
+      "max_delay_ns": 3.603
+    },
+    {
+      "fanout": 17221,
+      "net": "u_instrument/audio_reset_sync_n[1]",
+      "worst_slack_ns": 4.911,
+      "max_delay_ns": 4.964
+    },
+    {
+      "fanout": 5935,
+      "net": "sys_clk_d",
+      "worst_slack_ns": 0.043,
+      "max_delay_ns": 4.904
+    },
+    {
+      "fanout": 4624,
+      "net": "u_instrument/half_tick_10",
+      "worst_slack_ns": 15.977,
+      "max_delay_ns": 3.633
+    },
+    {
+      "fanout": 3346,
+      "net": "u_instrument/pixel_clk",
+      "worst_slack_ns": 3.011,
+      "max_delay_ns": 3.547
+    },
+    {
+      "fanout": 3342,
+      "net": "lcd_bl_d",
+      "worst_slack_ns": 21.106,
+      "max_delay_ns": 4.117
+    },
+    {
+      "fanout": 3139,
+      "net": "u_instrument/shared_link.endpoint/sys_release[1]",
+      "worst_slack_ns": 4.676,
+      "max_delay_ns": 3.45
+    },
+    {
+      "fanout": 1792,
+      "net": "u_instrument/spectrum_update_pixel",
+      "worst_slack_ns": 25.193,
+      "max_delay_ns": 3.918
+    },
+    {
+      "fanout": 1001,
+      "net": "u_instrument/lcd_frame_start",
+      "worst_slack_ns": 18.795,
+      "max_delay_ns": 3.146
+    },
+    {
+      "fanout": 960,
+      "net": "u_instrument/poly_tone[0]",
+      "worst_slack_ns": 30.478,
+      "max_delay_ns": 8.104
+    }
+  ],
+  "route_congestion": [
+    {
+      "grid": "R49C141",
+      "congestion_percent": 93.06
+    },
+    {
+      "grid": "R41C147",
+      "congestion_percent": 90.28
+    },
+    {
+      "grid": "R29C149",
+      "congestion_percent": 87.5
+    },
+    {
+      "grid": "R41C145",
+      "congestion_percent": 87.5
+    },
+    {
+      "grid": "R52C137",
+      "congestion_percent": 87.5
+    },
+    {
+      "grid": "R54C141",
+      "congestion_percent": 87.5
+    },
+    {
+      "grid": "R45C135",
+      "congestion_percent": 86.11
+    },
+    {
+      "grid": "R25C147",
+      "congestion_percent": 86.11
+    },
+    {
+      "grid": "R43C147",
+      "congestion_percent": 86.11
+    },
+    {
+      "grid": "R41C143",
+      "congestion_percent": 86.11
+    }
+  ],
+  "setup_paths_reported": 500,
+  "constraints": [
+    {
+      "type": "TC_CLOCK",
+      "state": "Actived",
+      "command": "create_clock -name sys_clk -period 20.000 -waveform {0.000 10.000} [get_ports {sys_clk}]"
+    },
+    {
+      "type": "TC_GENERATED_CLOCK",
+      "state": "Actived",
+      "command": "create_generated_clock -name audio_clk -source [get_ports {sys_clk}] -master_clock sys_clk -divide_by 59 -multiply_by 58 [get_pins {u_instrument/u_audio_pll/u_pll/PLL_inst/CLKOUT0}]"
+    },
+    {
+      "type": "TC_GENERATED_CLOCK",
+      "state": "Actived",
+      "command": "create_generated_clock -name pixel_clk -source [get_ports {sys_clk}] -master_clock sys_clk -divide_by 3 -multiply_by 2 [get_pins {u_instrument/u_lcd_pll/u_pll/PLL_inst/CLKOUT0}]"
+    },
+    {
+      "type": "TC_FALSE_PATH",
+      "state": "Actived",
+      "command": "set_false_path -from [get_ports {key0_n key1_n key2_n setting_key}]"
+    },
+    {
+      "type": "TC_FALSE_PATH",
+      "state": "Actived",
+      "command": "set_false_path -from [get_ports {adc_miso}]"
+    },
+    {
+      "type": "TC_FALSE_PATH",
+      "state": "Actived",
+      "command": "set_false_path -to [get_ports {adc_sclk adc_mosi adc_cs0_n adc_cs1_n adc_led[*]}]"
+    },
+    {
+      "type": "TC_FALSE_PATH",
+      "state": "Actived",
+      "command": "set_false_path -from [get_ports {hc05_rx}]"
+    },
+    {
+      "type": "TC_FALSE_PATH",
+      "state": "Actived",
+      "command": "set_false_path -to [get_ports {hc05_tx ws2812_data pluck_debug}]"
+    },
+    {
+      "type": "TC_FALSE_PATH",
+      "state": "Actived",
+      "command": "set_false_path -through [get_pins {u_instrument/sys_reset_sync_n_0_s0/CLEAR u_instrument/sys_reset_sync_n_1_s0/CLEAR}]"
+    },
+    {
+      "type": "TC_FALSE_PATH",
+      "state": "Actived",
+      "command": "set_false_path -through [get_pins {u_instrument/audio_reset_sync_n_0_s0/CLEAR u_instrument/audio_reset_sync_n_1_s0/CLEAR}]"
+    },
+    {
+      "type": "TC_FALSE_PATH",
+      "state": "Actived",
+      "command": "set_false_path -through [get_pins {u_instrument/pixel_reset_sync_n_0_s0/CLEAR u_instrument/pixel_reset_sync_n_1_s0/CLEAR}]"
+    },
+    {
+      "type": "TC_FALSE_PATH",
+      "state": "Actived",
+      "command": "set_false_path -through [get_pins {u_instrument/v3_analog.u_inputs/src_reset_0_s0/CLEAR u_instrument/v3_analog.u_inputs/src_reset_1_s0/CLEAR}]"
+    },
+    {
+      "type": "TC_FALSE_PATH",
+      "state": "Actived",
+      "command": "set_false_path -through [get_pins {u_instrument/v3_analog.u_inputs/dst_reset_0_s0/CLEAR u_instrument/v3_analog.u_inputs/dst_reset_1_s0/CLEAR}]"
+    },
+    {
+      "type": "TC_MULTICYCLE",
+      "state": "Actived",
+      "command": "set_multicycle_path -from [get_regs {"
+    },
+    {
+      "type": "TC_MULTICYCLE",
+      "state": "Actived",
+      "command": "set_multicycle_path -from [get_regs {"
+    },
+    {
+      "type": "TC_MULTICYCLE",
+      "state": "Actived",
+      "command": "set_multicycle_path -from [get_regs {"
+    },
+    {
+      "type": "TC_MULTICYCLE",
+      "state": "Actived",
+      "command": "set_multicycle_path -from [get_regs {"
+    },
+    {
+      "type": "TC_MULTICYCLE",
+      "state": "Actived",
+      "command": "set_multicycle_path -from [get_pins {"
+    },
+    {
+      "type": "TC_MULTICYCLE",
+      "state": "Actived",
+      "command": "set_multicycle_path -from [get_pins {"
+    },
+    {
+      "type": "TC_MULTICYCLE",
+      "state": "Actived",
+      "command": "set_multicycle_path -from [get_pins {"
+    },
+    {
+      "type": "TC_MULTICYCLE",
+      "state": "Actived",
+      "command": "set_multicycle_path -from [get_pins {"
+    },
+    {
+      "type": "TC_CLOCK_GROUP",
+      "state": "Actived",
+      "command": "set_clock_groups -asynchronous -group [get_clocks {audio_clk}] -group [get_clocks {pixel_clk}]"
+    },
+    {
+      "type": "TC_CLOCK_GROUP",
+      "state": "Actived",
+      "command": "set_clock_groups -asynchronous -group [get_clocks {sys_clk}] -group [get_clocks {audio_clk}]"
+    },
+    {
+      "type": "TC_REPORT_TIMING",
+      "state": "Actived",
+      "command": "report_timing -setup -max_paths 500"
+    },
+    {
+      "type": "TC_REPORT_TIMING",
+      "state": "Actived",
+      "command": "report_timing -hold -max_paths 100"
+    },
+    {
+      "type": "TC_REPORT_EXCEPTION",
+      "state": "Actived",
+      "command": "report_exceptions -setup -from_clock [get_clocks {audio_clk}] -to_clock [get_clocks {audio_clk}] -max_paths 10"
+    },
+    {
+      "type": "TC_REPORT_EXCEPTION",
+      "state": "Actived",
+      "command": "report_exceptions -hold -from_clock [get_clocks {audio_clk}] -to_clock [get_clocks {audio_clk}] -max_paths 10"
+    }
+  ],
+  "explicitly_constrained_clocks": [
+    "adc_miso",
+    "adc_sclk adc_mosi adc_cs0_n adc_cs1_n adc_led[*",
+    "audio_clk",
+    "hc05_rx",
+    "hc05_tx ws2812_data pluck_debug",
+    "key0_n key1_n key2_n setting_key",
+    "pixel_clk",
+    "sys_clk",
+    "u_instrument/audio_reset_sync_n_0_s0/CLEAR u_instrument/audio_reset_sync_n_1_s0/CLEAR",
+    "u_instrument/pixel_reset_sync_n_0_s0/CLEAR u_instrument/pixel_reset_sync_n_1_s0/CLEAR",
+    "u_instrument/sys_reset_sync_n_0_s0/CLEAR u_instrument/sys_reset_sync_n_1_s0/CLEAR",
+    "u_instrument/v3_analog.u_inputs/dst_reset_0_s0/CLEAR u_instrument/v3_analog.u_inputs/dst_reset_1_s0/CLEAR",
+    "u_instrument/v3_analog.u_inputs/src_reset_0_s0/CLEAR u_instrument/v3_analog.u_inputs/src_reset_1_s0/CLEAR"
+  ],
+  "clocks_without_explicit_sdc": [],
+  "notes": []
+}

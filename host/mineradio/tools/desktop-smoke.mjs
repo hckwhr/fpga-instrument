@@ -4,12 +4,11 @@ import { readFile, mkdir, writeFile, mkdtemp } from 'node:fs/promises';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import assert from 'node:assert/strict';
-import { tmpdir } from 'node:os';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const evidence = resolve(root, '../../artifacts/fpgavedio_desktop_20261021');
 await mkdir(evidence, { recursive: true });
-const profile = await mkdtemp(resolve(tmpdir(), 'fpgavedio-desktop-smoke-'));
+const profile = await mkdtemp(resolve(root, '../../work/fpgavedio-desktop-smoke-'));
 const env = { ...process.env, MINERADIO_STARTUP_QA_HIDDEN: '1', MINERADIO_STARTUP_QA_USER_DATA: profile };
 delete env.ELECTRON_RUN_AS_NODE;
 const child = spawn(resolve(root, 'dist-fpga/win-unpacked/FPGAvedio.exe'), ['--remote-debugging-port=0', '--remote-debugging-address=127.0.0.1'], { env, windowsHide: true });
@@ -196,8 +195,11 @@ try {
   await writeFile(resolve(evidence, 'desktop-visuals-large.png'), Buffer.from(visualScreenshot.data, 'base64'));
   await evaluate(`${f}.contentDocument.querySelector('#stop-preview').click()`);
   await waitFor(`${f}.contentDocument.querySelector('#performance-visuals').dataset.signal==='false' && !${f}.contentDocument.querySelector('#performance-home .piano-key.active')`);
-  await evaluate(`${f}.contentDocument.querySelector('#arrangement-confirm').checked=true;${f}.contentDocument.querySelector('#arrangement-apply').click()`);
+  assert.equal(await evaluate(`${f}.contentDocument.querySelector('#arrangement-advanced').open`), false);
+  await evaluate(`${f}.contentDocument.querySelector('#arrangement-apply').click()`);
   assert.equal(await evaluate(`${f}.contentDocument.querySelector('#preview-upload').disabled`), false);
+  await evaluate(`${f}.contentDocument.querySelector('#arrangement-panel').scrollIntoView({block:'center'})`);
+  await writeFile(resolve(evidence, 'desktop-instrumental-settings.png'), Buffer.from((await page('Page.captureScreenshot', { format: 'png' })).data, 'base64'));
   await evaluate(`${f}.contentDocument.querySelector('#preview-upload').click()`);
   await waitFor(`${f}.contentDocument.querySelector('#performance-visuals').dataset.signal==='true'`);
   assert.match(await evaluate(`${f}.contentDocument.querySelector('#preview-description').textContent`), /实际上传/);

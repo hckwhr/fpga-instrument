@@ -1,5 +1,13 @@
 import { compileFpgaScore } from './fpga-score.js';
 
+// One reproducible instrumental preset. Keep original timing instead of guessing
+// a BPM; a short onset window preserves arpeggios and repeated attacks.
+export const INSTRUMENTAL_ARRANGEMENT_DEFAULTS = Object.freeze({
+  strategy: 'balanced', onsetWindowMs: 20, minDurationMs: 60,
+  rhythm: 'original', bpm: 120, repeatMode: 'preserve', pitchMode: 'phrase',
+  beatOffsetMs: 0, minPitch: 0, maxPitch: 127, protectSustain: true,
+});
+
 // Confirmed derivative only: these heuristics do not separate vocals and backing.
 // Recognition and its warnings remain untouched for comparison and re-arranging.
 export function audioSelectionEnd(source) {

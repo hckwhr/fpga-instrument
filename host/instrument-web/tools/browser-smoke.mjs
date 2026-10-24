@@ -226,10 +226,15 @@ try {
     const screenshot = await page('Page.captureScreenshot', { format: 'png', captureBeyondViewport: true });
     await writeFile(resolve(root, 'evidence/audio-desktop.png'), Buffer.from(screenshot.data, 'base64'));
     assert.match(await evaluate(`document.querySelector('#upload-score').textContent`), /自动识别/);
+    assert.equal(await evaluate(`document.querySelector('#arrangement-advanced').open`), false);
+    assert.equal(await evaluate(`document.querySelector('#arrangement-onset-window').value`), '20');
     await evaluate(`document.querySelector('#arrangement-apply').click()`);
-    assert.match(await evaluate(`document.querySelector('#status').textContent`), /确认/);
+    assert.match(await evaluate(`document.querySelector('#upload-score').textContent`), /\/4096 个事件字/);
+    await evaluate(`document.querySelector('#arrangement-rhythm').value='sixteenth'; document.querySelector('#arrangement-reset').click()`);
+    assert.equal(await evaluate(`document.querySelector('#arrangement-rhythm').value`), 'original');
+    assert.equal(await evaluate(`document.querySelector('#arrangement-bpm').disabled`), true);
     await evaluate(`document.querySelector('#arrangement-min-pitch').value='60'; document.querySelector('#arrangement-max-pitch').value='84'`);
-    await evaluate(`document.querySelector('#arrangement-confirm').checked=true; document.querySelector('#arrangement-apply').click()`);
+    await evaluate(`document.querySelector('#arrangement-apply').click()`);
     assert.match(await evaluate(`document.querySelector('#arrangement-report').textContent`), /旋律重奏/);
     assert.match(await evaluate(`document.querySelector('#arrangement-report').textContent`), /音域排除/);
     assert.match(await evaluate(`document.querySelector('#upload-score').textContent`), /\/4096 个事件字/);
@@ -371,6 +376,8 @@ try {
   assert.equal(await evaluate(`document.querySelector('#upload-play').disabled && document.querySelector('#upload-stop').disabled && document.querySelector('#upload-status').disabled`), true, 'Upload-only CAPS must not enable playback');
   await evaluate(`window.controlCaps=true; document.querySelector('#upload-probe').click()`);
   await evaluate(`new Promise((resolve,reject)=>{let n=0;const poll=()=>{if(!document.querySelector('#upload-play').disabled)resolve();else if(n++>100)reject(Error('No playback capability'));else setTimeout(poll,20)};poll()})`);
+  assert.equal(await evaluate(`document.querySelector('#upload-stop').textContent.trim()`), '停止播放', 'Board playback has a clearly named stop control');
+  assert.equal(await evaluate(`document.querySelector('#upload-stop').getAttribute('aria-label')`), '停止 FPGA 曲谱播放');
   await evaluate(`document.querySelector('#upload-start').click()`);
   await evaluate(`new Promise((resolve,reject)=>{let n=0;const poll=()=>{if(window.uploadHeld)resolve();else if(n++>100)reject(Error('No COMMIT'));else setTimeout(poll,20)};poll()})`);
   assert.equal(await evaluate(`document.querySelector('#upload-progress').value`), 132);

@@ -39,4 +39,5 @@
 # Archived reviewed test logs are intentional; new logs stay local.
 **/*.log
 !/artifacts/stage64/**/*.log
+!/artifacts/stage65/**/*.log
 **/transcript

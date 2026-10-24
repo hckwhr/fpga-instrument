@@ -1,0 +1,74 @@
+[
+  {
+    "type": "note",
+    "id": 0,
+    "startMs": 197,
+    "durationMs": 883,
+    "note": 60,
+    "noteName": "C4",
+    "velocity": 103,
+    "channel": 0,
+    "track": 0,
+    "deltaMs": 197
+  },
+  {
+    "type": "note",
+    "id": 1,
+    "startMs": 1300,
+    "durationMs": 872,
+    "note": 64,
+    "noteName": "E4",
+    "velocity": 103,
+    "channel": 0,
+    "track": 0,
+    "deltaMs": 1103
+  },
+  {
+    "type": "note",
+    "id": 2,
+    "startMs": 2381,
+    "durationMs": 894,
+    "note": 67,
+    "noteName": "G4",
+    "velocity": 103,
+    "channel": 0,
+    "track": 0,
+    "deltaMs": 1081
+  },
+  {
+    "type": "note",
+    "id": 3,
+    "startMs": 3507,
+    "durationMs": 838,
+    "note": 60,
+    "noteName": "C4",
+    "velocity": 85,
+    "channel": 0,
+    "track": 0,
+    "deltaMs": 1126
+  },
+  {
+    "type": "note",
+    "id": 4,
+    "startMs": 3507,
+    "durationMs": 838,
+    "note": 64,
+    "noteName": "E4",
+    "velocity": 99,
+    "channel": 0,
+    "track": 0,
+    "deltaMs": 0
+  },
+  {
+    "type": "note",
+    "id": 5,
+    "startMs": 3507,
+    "durationMs": 849,
+    "note": 67,
+    "noteName": "G4",
+    "velocity": 98,
+    "channel": 0,
+    "track": 0,
+    "deltaMs": 0
+  }
+]
