@@ -104,6 +104,16 @@ void WifiBoard::StartNetwork() {
     });
     wifi_station.Start();
 
+#if CONFIG_BOARD_TYPE_FPGA_BREAD_S3
+    // The station already rescans saved APs every 10 seconds after retries.
+    // A late competition hotspot must not stop it permanently after 60 s.
+    // BLE/USB live in the bridge task, independently of this startup wait.
+    // BOOT still explicitly requests provisioning; credentials are retained.
+    while (!wifi_station.WaitForConnected(30 * 1000)) {
+        ESP_LOGW(TAG, "WiFi unavailable; retrying saved networks, instrument bridge remains available");
+        GetDisplay()->ShowNotification("WiFi reconnecting; BLE / USB ready", 30000);
+    }
+#else
     // Try to connect to WiFi, if failed, launch the WiFi configuration AP
     if (!wifi_station.WaitForConnected(60 * 1000)) {
         wifi_station.Stop();
@@ -111,6 +121,7 @@ void WifiBoard::StartNetwork() {
         EnterWifiConfigMode();
         return;
     }
+#endif
 }
 
 NetworkInterface* WifiBoard::GetNetwork() {
@@ -235,6 +246,7 @@ std::string WifiBoard::GetDeviceStatusJson() {
     auto network = cJSON_CreateObject();
     auto& wifi_station = WifiStation::GetInstance();
     cJSON_AddStringToObject(network, "type", "wifi");
+    cJSON_AddBoolToObject(network, "connected", wifi_station.IsConnected());
     cJSON_AddStringToObject(network, "ssid", wifi_station.GetSsid().c_str());
     int rssi = wifi_station.GetRssi();
     if (rssi >= -60) {

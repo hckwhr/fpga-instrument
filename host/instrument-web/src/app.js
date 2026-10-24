@@ -1,6 +1,7 @@
 import { analyzeEvents, compileTracks, midiNoteName, parseMidi } from "./midi.js";
 import { encodePreviewFrames, serializeCsv, serializeJsonl } from "./protocol.js";
 import { BleTransport } from "./ble-transport.js";
+import { LinkTransport, UsbTransport } from './usb-transport.js';
 import { createNotePreview, transcribeAudioFile, scorePreviewEvents } from "./audio.js";
 import { ScoreLibrary, LIBRARY_KEY, parseScore, serializeScore } from './score-library.js';
 import { DeviceSession } from './device-session.js';
@@ -43,7 +44,10 @@ themeToggle.onclick = () => {
   renderThemeToggle();
   drawRoll(state.events);
 };
-const activeTransport = window.top.mineradioNative ? new NativeBleTransport(window.top.mineradioNative) : new BleTransport();
+const activeTransport = new LinkTransport({
+  ble: window.top.mineradioNative ? new NativeBleTransport(window.top.mineradioNative) : new BleTransport(),
+  usb: new UsbTransport(),
+}, 'ble');
 const deviceSession = new DeviceSession(activeTransport);
 const uploadSession = new ScoreUploadSession(deviceSession);
 let compiledUpload = null;
@@ -71,6 +75,10 @@ function renderDeviceState() {
     ? `当前设备不支持本曲的容量：${compiledUpload.length} 事件、${compiledUpload.melodyCount} 个旋律音符；请升级扩容固件或缩短选段。` : upload.message;
   $('#upload-progress').max = upload.totalWords || 1;
   $('#upload-progress').value = upload.confirmedWords;
+  if (upload.totalWords && upload.transfer.elapsedMs > 0) {
+    const t = upload.transfer;
+    $('#upload-message').textContent += ` · ${(t.elapsedMs / 1000).toFixed(1)} 秒 · 已确认有效数据 ${(t.bytesPerSecond / 1024).toFixed(2)} KiB/s · 重试 ${t.retries} 次`;
+  }
   for (const button of document.querySelectorAll('[data-score-command]')) {
     button.disabled = !available || !upload.capability?.playback ||
       (button.dataset.scoreCommand === 'PLAY' && (!compiledUpload || Boolean(state.transcription) || (compiledUpload.length > upload.capability.words || compiledUpload.abi > upload.capability.abi)));
@@ -157,6 +165,8 @@ $('#connection-state').addEventListener('click', () => {
 });
 $('#device-panel').addEventListener('toggle', () => $('#connection-state').setAttribute('aria-expanded', String($('#device-panel').open)));
 const bleSupported = !!window.top.mineradioNative || (!!navigator.bluetooth && window.isSecureContext);
+const usbSupported = !!navigator.serial && window.isSecureContext;
+$('#connection-mode option[value="usb"]').disabled = !usbSupported;
 const logEntries = [];
 function logLink(direction, text) {
   const value = text instanceof Uint8Array ? new TextDecoder().decode(text) : String(text);
@@ -165,10 +175,18 @@ function logLink(direction, text) {
   $("#serial-log").textContent = logEntries.join('\n');
 }
 function updateConnectionUi({ state = activeTransport.state, connected = activeTransport.connected, message } = {}) {
+  const usb = activeTransport.kind === 'usb';
+  const label = usb ? 'USB' : 'BLE';
+  $('#connection-mode').disabled = state !== 'disconnected';
+  $('#ble-config').hidden = usb;
+  $('#connect').textContent = usb ? '连接 USB 备用' : '扫描并连接 BLE';
+  $('#serial-help').textContent = usb ? '有线备用：用数据线连接 ESP32-S3 原生 USB 口，关闭串口监视器，断开 BLE 后等待三秒，再选择 ESP32-S3 串口。需要更新配套 ESP 固件。' :
+    bleSupported ? '默认使用 BLE：开启蓝牙，扫描并选择“行者无疆”。USB 线可继续供电；无线连接不佳时可手动切换 USB 备用。' :
+    '当前环境不支持 BLE，请使用电脑版或支持 Web Bluetooth 的 Chrome/Edge。';
   $("#connection-state").dataset.connected = String(connected);
-  $("#connection-label").textContent = connected ? 'BLE 已连接' : state === 'connecting' ? '正在连接' : '未连接硬件';
+  $("#connection-label").textContent = connected ? `${label} 已连接` : state === 'connecting' ? '正在连接' : '未连接硬件';
   if (message) $("#link-status").textContent = message;
-  $("#connect").disabled = !bleSupported || state !== 'disconnected';
+  $("#connect").disabled = !(usb ? usbSupported : bleSupported) || state !== 'disconnected';
   $("#disconnect").disabled = !connected;
   $("#send").disabled = !connected;
   $("#ble-service-uuid").disabled = state !== 'disconnected';
@@ -192,7 +210,10 @@ function bindTransport(transport) {
   });
 }
 bindTransport(activeTransport);
-if (!bleSupported) $("#serial-help").textContent = '当前浏览器不支持 BLE 连接。请用支持 Web Bluetooth 的 Chrome/Edge 打开 HTTPS 或 localhost 页面；曲谱转换仍可使用。';
+$('#connection-mode').addEventListener('change', event => {
+  try { activeTransport.select(event.target.value); }
+  catch (error) { event.target.value = activeTransport.kind; $('#link-status').textContent = error.message; }
+});
 updateConnectionUi();
 $("#connect").addEventListener('click', async () => {
   try {
@@ -217,7 +238,7 @@ $("#send-form").addEventListener('submit', async (event) => {
     const size = await activeSession().sendRaw(text, { newline: $("#send-newline").checked });
     if (sender !== activeTransport || !sender.connected) return;
     logLink('发送', text);
-    $("#link-status").textContent = `已写入 BLE ${size} 字节；尚未确认板端执行。`;
+    $("#link-status").textContent = `已写入 ${activeTransport.kind.toUpperCase()} ${size} 字节；尚未确认板端执行。`;
   } catch (error) { $("#link-status").textContent = error.message; }
 });
 $("#clear-log").addEventListener('click', () => { logEntries.length = 0; $("#serial-log").textContent = '记录已清空。'; });

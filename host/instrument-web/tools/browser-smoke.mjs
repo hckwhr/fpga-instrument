@@ -92,7 +92,8 @@ try {
   assert.equal(await evaluate(`document.querySelector('main').getBoundingClientRect().width`), 1180, 'Desktop stylesheet and container width');
   assert.equal(await evaluate(`document.querySelector('#send').disabled`), true);
   assert.equal(await evaluate(`document.querySelector('#device-panel').open`), false, 'Device tools start collapsed');
-  assert.equal(await evaluate(`document.querySelector('#connection-mode, #baud-rate, #serial-options')`), null, 'Only BLE connection is offered');
+  assert.equal(await evaluate(`document.querySelector('#connection-mode').value`), 'ble', 'BLE remains the default');
+  assert.equal(await evaluate(`document.querySelector('#connection-mode option[value="usb"]').disabled`), true, 'USB fallback requires Serial API');
   assert.equal(await evaluate(`document.body.textContent.includes('HC-05')`), false);
   assert.equal(await evaluate(`document.querySelector('#connect').disabled`), false, 'BLE needs no Serial API');
   await evaluate(`document.querySelector('#tab-midi').click()`);
@@ -499,8 +500,43 @@ try {
   await evaluate(`import('./src/app.js?unsupported-test')`);
   assert.equal(await evaluate(`document.querySelector('#connect').disabled`), true);
   assert.match(await evaluate(`document.querySelector('#serial-help').textContent`), /不支持 BLE.*Web Bluetooth/);
+  // A fresh page with an explicit Serial fixture exercises real stream locks,
+  // envelope handshake and the manual selector without opening physical USB.
+  await page('Page.addScriptToEvaluateOnNewDocument', { source: `
+    const serial = new EventTarget();
+    serial.requestPort = async options => {
+      window.usbRequested = options;
+      let rx;
+      return {
+        async open(options) {
+          window.usbOpen = options;
+          this.readable = new ReadableStream({start(c){rx=c;}});
+          this.writable = new WritableStream({write(bytes){
+            const [,token,op,seq] = new TextDecoder().decode(bytes).trim().split(',');
+            const response = op==='OPEN'?'READY':op==='PING'?'PONG':op==='CLOSE'?'BYE':'OK,'+seq;
+            rx.enqueue(new TextEncoder().encode('boot log\\n!USB1,'+token+','+response+'\\n'));
+          }});
+        },
+        async close(){window.usbClosed=true;}
+      };
+    };
+    Object.defineProperty(navigator,'serial',{value:serial,configurable:true});
+  ` });
+  await page('Page.reload');
+  await evaluate(`new Promise((resolve,reject)=>{const t=setTimeout(()=>reject(Error('USB fixture load')),5000);const p=()=>{if(document.querySelector('#status')?.textContent.includes('不会自动发送')){clearTimeout(t);resolve()}else setTimeout(p,20)};p()})`);
+  assert.equal(await evaluate(`document.querySelector('#connection-mode').value`), 'ble');
+  assert.equal(await evaluate(`!!window.usbRequested`), false, 'startup cannot open USB');
+  await evaluate(`const m=document.querySelector('#connection-mode');m.value='usb';m.dispatchEvent(new Event('change'));document.querySelector('#connect').click()`);
+  await evaluate(`new Promise((resolve,reject)=>{const t=setTimeout(()=>reject(Error('USB handshake')),5000);const p=()=>{if(document.querySelector('#disconnect')?.disabled===false){clearTimeout(t);resolve()}else setTimeout(p,20)};p()})`);
+  assert.equal(await evaluate(`window.usbRequested.filters[0].usbVendorId`), 0x303a);
+  assert.equal(await evaluate(`document.querySelector('#connection-mode').disabled`), true);
+  assert.equal(await evaluate(`document.querySelector('#upload-start').disabled`), true, 'USB handshake is not FPGA capability');
+  await evaluate(`document.querySelector('#disconnect').click()`);
+  await evaluate(`new Promise((resolve,reject)=>{const t=setTimeout(()=>reject(Error('USB close')),5000);const p=()=>{if(window.usbClosed&&!document.querySelector('#connection-mode').disabled){clearTimeout(t);resolve()}else setTimeout(p,20)};p()})`);
+  await evaluate(`{const m=document.querySelector('#connection-mode');m.value='ble';m.dispatchEvent(new Event('change'))}`);
+  assert.match(await evaluate(`document.querySelector('#connect').textContent`), /BLE/);
   assert.deepEqual(errors, []);
-  console.log('PASS: Chromium UI, BLE-only without Serial, team device/service selection, library roundtrip, board HELLO/PLAY/STATUS/STOP, wrong ACK, ERR LOCAL, timeout/late response, SONG2 capability/CRC/commit/cancel/numbered playback/status/stop, legacy capability gate, split UTF-8, unsupported BLE fallback, mobile layout, zero runtime exceptions. Physical BLE/FPGA not tested.');
+  console.log('PASS: Chromium UI, BLE primary without Serial, explicit USB backup handshake/stream cleanup/switch back, team device/service selection, library roundtrip, board HELLO/PLAY/STATUS/STOP, wrong ACK, ERR LOCAL, timeout/late response, SONG2 capability/CRC/commit/cancel/numbered playback/status/stop, legacy capability gate, split UTF-8, unsupported BLE fallback, mobile layout, zero runtime exceptions. Physical BLE/USB/FPGA not tested.');
   await command('Browser.close');
 } finally {
   socket?.close(); browser.kill(); server.closeAllConnections();

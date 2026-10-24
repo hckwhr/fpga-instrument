@@ -28,6 +28,11 @@ test('expanded session uploads all 4096 words with a lost late DATA ACK and full
   assert.equal(f.model.writes, 512); assert.equal(f.model.commits, 1);
   assert.equal(f.model.committed.bytes.length, 32768);
   assert.equal(f.uploader.confirmedWords, 4096);
+  const transfer = f.uploader.snapshot().transfer;
+  assert.equal(transfer.confirmedBytes, 32768);
+  assert.equal(transfer.retries, 1);
+  assert.ok(transfer.elapsedMs > 0 && transfer.bytesPerSecond > 0);
+  assert.ok(transfer.averageAckMs >= 0);
   await f.uploader.control('PLAY', longScore);
   f.model.playState = 3; f.model.noteIndex = 2047;
   assert.equal((await f.uploader.control('STATUS')).noteIndex, 2047);

@@ -122,7 +122,12 @@ export class BleTransport {
       for (let offset = 0; offset < data.length; offset += this.chunkSize) {
         check();
         const chunk = data.slice(offset, Math.min(data.length, offset + this.chunkSize));
-        if (characteristicSupports(characteristic, 'write')) {
+        // The paired bridge advertises Write Without Response only when it
+        // supports bounded queues. SONG2 still waits for its numbered FPGA ACK
+        // after the whole line; OS write completion never means execution.
+        if (characteristicSupports(characteristic, 'writeWithoutResponse') && typeof characteristic.writeValueWithoutResponse === 'function') {
+          await characteristic.writeValueWithoutResponse(chunk);
+        } else if (characteristicSupports(characteristic, 'write')) {
           if (typeof characteristic.writeValueWithResponse === 'function') await characteristic.writeValueWithResponse(chunk);
           else await characteristic.writeValue(chunk);
         } else if (characteristicSupports(characteristic, 'writeWithoutResponse')) {

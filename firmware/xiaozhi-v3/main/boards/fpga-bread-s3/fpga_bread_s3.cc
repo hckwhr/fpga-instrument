@@ -77,14 +77,14 @@ class FpgaBreadS3 : public WifiBoard {
         };
         add("self.fpga.ping", "Check the wired FPGA connection. Query self.fpga.result after enqueue.", VOICE_PING);
         add("self.fpga.play_demo", "Play the FPGA built-in demonstration (Twinkle/Ode), NOT an uploaded song or arbitrary title. "
-            "Requires companion BLE app disconnected. Query result before announcing success.", VOICE_PLAY_DEMO);
-        add("self.fpga.stop", "Stop FPGA song playback, including uploaded playback. BLE app must disconnect first. "
+            "Requires companion BLE/USB app disconnected. Query result before announcing success.", VOICE_PLAY_DEMO);
+        add("self.fpga.stop", "Stop FPGA song playback, including uploaded playback. BLE/USB app must disconnect first. "
             "Does not mute manually held keys. Query result before announcing success.", VOICE_STOP);
         add("self.fpga.status", "Query built-in FPGA player status. Does not report uploaded SONG2 playback state. "
             "Query result after enqueue.", VOICE_STATUS);
         mcp.AddTool("self.fpga.result", "Read the asynchronous result of the last FPGA command. "
             "queued/waiting is NOT success; failed means failure or execution unknown. Never automatically replay on timeout. "
-            "If BLE busy, ask user to disconnect the companion app. confirmed requires an actual matching FPGA UART reply.",
+            "If BLE/USB busy, ask user to disconnect the companion app. confirmed requires an actual matching FPGA UART reply.",
             PropertyList({Property("ticket", kPropertyTypeInteger, 1, 2147483647)}),
             [](const PropertyList& properties) -> ReturnValue {
                 auto result = bridge_voice_get_result();

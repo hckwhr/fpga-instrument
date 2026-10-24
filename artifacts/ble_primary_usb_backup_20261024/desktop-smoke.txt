@@ -1,0 +1,15 @@
+
+
+DevTools listening on ws://127.0.0.1:60377/devtools/browser/0e7eec1d-a385-4ad8-8bc0-623a3d6e0671
+[LoginEasterEgg] first-run login credentials reset { gateVersion: 'world-peace-v1', ok: true, error: '' }
+======================================================
+ 粒子音乐可视化 v2  →  http://localhost:3000
+ 登录态: 未登录
+======================================================
+[StartupWindow] visible: watchdog
+[StartupWindow] visible: dom-ready
+[StartupWindow] visible: ready-to-show
+[StartupWindow] visible: did-finish-load
+[StartupWindow] visible: navigation-complete
+[StartupWindow] visible: dom-ready
+[StartupWindow] visible: did-finish-load

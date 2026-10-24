@@ -111,6 +111,11 @@ try {
   await waitFor(`${f}?.contentDocument?.querySelector('#choose-audio')`);
   await waitFor(`${f}.dataset.themed === 'true'`);
   await waitFor(`${f}.contentDocument.querySelector('.ble-sidebar')`);
+  const usbApiAvailable = await evaluate(`typeof ${f}.contentWindow.navigator.serial?.requestPort === 'function'`);
+  const blePrimary = await evaluate(`${f}.contentDocument.querySelector('#connection-mode').value === 'ble'`);
+  assert.equal(usbApiAvailable, true, 'Desktop USB fallback API must be available');
+  assert.equal(blePrimary, true, 'BLE remains primary');
+  assert.equal(await evaluate(`${f}.contentDocument.querySelector('#connection-mode option[value="usb"]').disabled`), false);
   await waitFor(`!document.body.classList.contains('desktop-wallpaper-mode')`);
   assert.equal(await evaluate(`window.desktopWindow.getState().then(s=>s.isDesktopEmbedded)`), false);
   assert.equal(await evaluate(`${f}.contentDocument.querySelector('#performance-visuals').dataset.signal`), 'false');
@@ -244,7 +249,7 @@ try {
   await pause(400);
   const playerScreenshot = await page('Page.captureScreenshot', { format: 'png' });
   await writeFile(resolve(evidence, 'desktop-player.png'), Buffer.from(playerScreenshot.data, 'base64'));
-  await writeFile(resolve(evidence, 'desktop-smoke.json'), JSON.stringify({ packagedApp: true, dualMode: true, mouseSwitch: true, nativeWindowControls: true, navigation: true, workflow, monitor, modeStatePreserved: true, transparentBackground: true, keyboardSwitch: true, narrowLayout: true, layout, version, bluetooth, transcription, errors, hardwareBleTested: false }, null, 2));
+  await writeFile(resolve(evidence, 'desktop-smoke.json'), JSON.stringify({ packagedApp: true, dualMode: true, mouseSwitch: true, nativeWindowControls: true, navigation: true, workflow, monitor, modeStatePreserved: true, transparentBackground: true, keyboardSwitch: true, narrowLayout: true, layout, version, bluetooth, transcription, errors, blePrimary, usbApiAvailable, hardwareBleTested: false, hardwareUsbTested: false }, null, 2));
   console.log(JSON.stringify({ passed: true, version, bluetooth, transcription }));
   await evaluate(`document.querySelector('[data-window-action="close"]').click()`);
   for (let i=0; i<100 && child.exitCode === null; i++) await pause(200);

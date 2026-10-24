@@ -234,7 +234,8 @@ if(CONFIG_BOARD_TYPE_FPGA_BREAD_S3)
     # Reuse the tested BLE line transport; exactly one UART and NimBLE owner.
     set(FPGA_BRIDGE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../esp32s3-bridge/main")
     list(APPEND SOURCES "${FPGA_BRIDGE_DIR}/main.c"
-        "${FPGA_BRIDGE_DIR}/bridge_core.c" "${FPGA_BRIDGE_DIR}/voice_core.c")
+        "${FPGA_BRIDGE_DIR}/bridge_core.c" "${FPGA_BRIDGE_DIR}/voice_core.c"
+        "${FPGA_BRIDGE_DIR}/usb_link.c")
     list(APPEND INCLUDE_DIRS "${FPGA_BRIDGE_DIR}")
 endif()
 

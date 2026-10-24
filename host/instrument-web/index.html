@@ -115,8 +115,8 @@
       <button id="library-undo" class="button small plain" hidden>撤销上次移除</button>
     </section>
 
-    <details class="device-panel" id="device-panel"><summary><span>设备连接与通信</span><span class="hint">BLE · 行者无疆</span></summary>
-      <div class="device-content"><div><p id="serial-help" class="hint">开启蓝牙，点击“连接 BLE 设备”，在浏览器设备列表选择“行者无疆”。请使用支持 Web Bluetooth 的 Chrome/Edge，无需在系统设置配对。</p><div class="connection-controls"><button id="connect" class="button">连接 BLE 设备</button><button id="disconnect" class="button plain" disabled>断开</button></div>
+    <details class="device-panel" id="device-panel"><summary><span>设备连接与通信</span><span class="hint">BLE 主用 · USB 备用</span></summary>
+      <div class="device-content"><div><label>连接方式<select id="connection-mode"><option value="ble" selected>BLE 主模式 · 行者无疆</option><option value="usb">USB 有线备用</option></select></label><p id="serial-help" class="hint">默认使用 BLE 扫描连接“行者无疆”；无线连接不佳时可手动切换 USB 备用。</p><div class="connection-controls"><button id="connect" class="button">扫描并连接 BLE</button><button id="disconnect" class="button plain" disabled>断开</button></div>
         <details id="ble-config" class="ble-config"><summary>BLE 高级配置 <span class="hint">已匹配 ESP32-S3 固件，通常无需修改</span></summary><div class="ble-fields"><label>服务 UUID<input id="ble-service-uuid" value="6e400001-b5a3-f393-e0a9-e50e24dcca9e" autocomplete="off"></label><label>写入特征 UUID<input id="ble-write-uuid" value="6e400002-b5a3-f393-e0a9-e50e24dcca9e" autocomplete="off"></label><label>通知特征 UUID<input id="ble-notify-uuid" value="6e400003-b5a3-f393-e0a9-e50e24dcca9e" autocomplete="off"></label><label>设备名称前缀（可选）<input id="ble-name-prefix" placeholder="行者无疆" autocomplete="off"></label></div></details>
         <p id="link-status" role="status">未连接。BLE 连接后可检测设备响应；FPGA 执行状态以板端应答为准。</p></div>
         <section class="board-controls" aria-labelledby="board-heading">

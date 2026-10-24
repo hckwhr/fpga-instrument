@@ -1,5 +1,4 @@
-// HC-05 is Classic Bluetooth SPP, not BLE/GATT. The OS exposes it as
-// a serial port; desktop Chromium Web Serial owns the permission picker.
+// Raw Web Serial byte stream. USB bridge framing lives in usb-transport.js.
 export class Transport {
   constructor(serial = globalThis.navigator?.serial) {
     this.serial = serial;
@@ -26,15 +25,15 @@ export class Transport {
     this.connected = state === 'connected';
     for (const listener of this.listeners) listener({ state, connected: this.connected, message });
   }
-  async connect({ baudRate = 9600 } = {}) {
-    if (!this.serial) throw new Error('此浏览器不支持 Web Serial；HC-05 请使用电脑 Chrome/Edge，安卓需后续 App。');
+  async connect({ baudRate = 115200 } = {}) {
+    if (!this.serial) throw new Error('此环境不支持 Web Serial；USB 请使用电脑版或 Chrome/Edge。');
     if (globalThis.isSecureContext === false) throw new Error('连接需要 HTTPS 或 localhost 页面。');
     if (this.state !== 'disconnected') throw new Error('当前连接操作尚未结束');
     if (![9600, 19200, 38400, 57600, 115200].includes(baudRate)) throw new Error('请选择支持的波特率');
-    this.emit('connecting', '请选择已配对 HC-05 的串口或 USB 串口');
+    this.emit('connecting', '请选择 ESP32-S3 的 USB 串口');
     let port;
     try {
-      port = await this.serial.requestPort();
+      port = await this.serial.requestPort({ filters: [{ usbVendorId: 0x303a }] });
       await port.open({ baudRate, dataBits: 8, stopBits: 1, parity: 'none', flowControl: 'none' });
       if (!port.readable || !port.writable) throw new Error('串口没有可用的收发通道');
       this.port = port;
@@ -77,8 +76,8 @@ export class Transport {
   }
   async sendBytes(bytes) {
     if (!this.connected) throw new Error('请先连接串口');
-    const data = bytes instanceof Uint8Array ? bytes : new Uint8Array(bytes);
-    if (!data.length || data.length > 256) throw new Error('串口单次发送最多 256 字节');
+    const data = new Uint8Array(bytes);
+    if (!data.length || data.length > 1024) throw new Error('串口单次发送最多 1024 字节');
     if (this.pendingWrites >= 8) throw new Error('发送队列已满，请稍后重试');
     const writer = this.writer;
     this.pendingWrites += 1;

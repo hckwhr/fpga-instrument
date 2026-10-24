@@ -76,6 +76,21 @@ test('BLE falls back to Write Without Response and cleans up on device disconnec
   assert.equal(transport.connected, false);
 });
 
+test('BLE prefers advertised no-response writes without replaying a failed partial command', async () => {
+  const fake = fakeBle({ write: true, writeWithoutResponse: true });
+  let writes = 0;
+  fake.tx.writeValueWithoutResponse = async bytes => {
+    fake.calls.push(['writeValueWithoutResponse', [...bytes]]);
+    if (++writes === 2) throw new Error('radio busy');
+  };
+  const transport = new BleTransport(fake.bluetooth, { chunkSize: 2 });
+  await transport.connect();
+  await assert.rejects(transport.sendText('PLAY'), /radio busy/);
+  assert.equal(writes, 2);
+  assert.equal(fake.calls.some(x => x[0] === 'writeValueWithResponse'), false);
+  assert.equal(transport.connected, false);
+});
+
 test('BLE connection failure leaves no stale device state', async () => {
   const fake = fakeBle();
   fake.device.gatt.connect = async () => { throw new Error('radio unavailable'); };

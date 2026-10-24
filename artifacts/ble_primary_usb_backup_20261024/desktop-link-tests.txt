@@ -1,0 +1,17 @@
+✔ remote pages cannot select Bluetooth devices (1.0506ms)
+✔ live discovery requires explicit selection and completes callback once (0.2722ms)
+✔ cancel before discovery rejects late callbacks and permits fresh scan (0.1358ms)
+✔ navigation cancels and ignores stale selection (0.1299ms)
+✔ unknown IDs, stale requests and subframe IPC cannot select devices (0.1243ms)
+✔ timeout and destroyed windows release pending requests (0.9288ms)
+✔ USB needs explicit trusted selection, cancel default, and exact port grant (2.7766ms)
+✔ navigation cancels USB chooser and late dialog response cannot grant a port (0.4545ms)
+✔ cancel does not select a port or create a permission grant (0.3619ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 64.1769

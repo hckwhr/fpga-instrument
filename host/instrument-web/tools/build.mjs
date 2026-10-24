@@ -10,8 +10,7 @@ await mkdir(dist, { recursive: true });
 for (const entry of ["index.html", "styles.css", "src"]) {
   await cp(resolve(root, entry), resolve(dist, entry), { recursive: true });
 }
-// Keep the historical Serial module/tests locally; publish only BLE transport.
-await rm(resolve(dist, 'src/transport.js'));
+// BLE is primary; USB is an explicitly selected fallback using the same sessions.
 await mkdir(resolve(dist, "model"), { recursive: true });
 await cp(resolve(root, "node_modules/@spotify/basic-pitch/model/model.json"), resolve(dist, "model/model.json"));
 await cp(resolve(root, "node_modules/@spotify/basic-pitch/model/group1-shard1of1.bin"), resolve(dist, "model/group1-shard1of1.bin"));

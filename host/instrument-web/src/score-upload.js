@@ -14,6 +14,7 @@ export class ScoreUploadSession {
     this.listeners = new Set(); this.pending = null; this.busy = false; this.capability = null;
     this.phase = 'idle'; this.message = '尚未检查整曲上传能力'; this.confirmedWords = 0;
     this.totalWords = 0; this.buffer = ''; this.discard = false; this.epoch = 0;
+    this.startedAt = 0; this.finishedAt = 0; this.retryCount = 0; this.ackCount = 0; this.ackMs = 0;
     this.sessionValid = false; this.playback = null; this.playbackUpdatedAt = 0; this.closed = false;
     this.unsubscribers = [this.transport.onData(data => this.receive(data)), device.onChange(s => {
       if (!s.connected || s.blocked) {
@@ -27,8 +28,12 @@ export class ScoreUploadSession {
     })];
   }
   snapshot() {
+    const elapsedMs = this.startedAt ? Math.max(0, (this.finishedAt || performance.now()) - this.startedAt) : 0;
     return { busy: this.busy, phase: this.phase, capability: this.capability, playback: this.playback, playbackUpdatedAt: this.playback ? this.playbackUpdatedAt : 0,
       confirmedWords: this.confirmedWords, totalWords: this.totalWords, message: this.message,
+      transfer: { elapsedMs, confirmedBytes: this.confirmedWords * 8, retries: this.retryCount,
+        bytesPerSecond: elapsedMs > 0 ? this.confirmedWords * 8000 / elapsedMs : 0,
+        averageAckMs: this.ackCount ? this.ackMs / this.ackCount : 0 },
       canCancel: this.busy && !this.cancelRequested && ['checking', 'begin', 'data'].includes(this.phase) };
   }
   onChange(fn) { this.listeners.add(fn); return () => this.listeners.delete(fn); }
@@ -57,6 +62,7 @@ export class ScoreUploadSession {
   complete() {
     const p = this.pending;
     if (!p?.written || !p.reply) return;
+    if (this.startedAt && !this.finishedAt) { this.ackCount++; this.ackMs += performance.now() - p.sentAt; }
     this.settle(p.reply.error ? Object.assign(new Error(`设备拒绝 ${p.operation}：${p.reply.error}`), { deviceCode: p.reply.error }) : null, p.reply);
   }
   settle(error, reply) {
@@ -78,6 +84,7 @@ export class ScoreUploadSession {
   }
   write(p) {
     p.written = false;
+    p.sentAt = performance.now();
     p.timer = setTimeout(() => {
       if (this.pending !== p) return;
       // A hung write cannot be cancelled by a JS timer. Do not enqueue a retry
@@ -99,6 +106,7 @@ export class ScoreUploadSession {
         p.timer = setTimeout(() => {
           if (this.pending !== p) return;
           if (p.attempt++ < this.retries && (!this.cancelRequested || p.operation === 'ABORT')) {
+            if (this.startedAt && !this.finishedAt) this.retryCount++;
             this.message = `${p.operation} 等待应答，重试 ${p.attempt}/${this.retries}`;
             this.emit(); this.write(p);
           } else this.settle(Object.assign(new Error(`${p.operation} 应答超时，结果未知`), { uncertain: true }));
@@ -175,6 +183,8 @@ export class ScoreUploadSession {
     const epoch = this.epoch;
     this.busy = true; this.cancelRequested = false; this.poisoned = false;
     this.confirmedWords = 0; this.totalWords = prepared?.length || 0;
+    this.startedAt = prepared ? performance.now() : 0; this.finishedAt = 0;
+    this.retryCount = 0; this.ackCount = 0; this.ackMs = 0;
     this.session = session; this.sequence = 0;
     this.sessionValid = false; this.playback = null;
     let began = false, committing = false, uncertain = false;
@@ -233,6 +243,7 @@ export class ScoreUploadSession {
       this.message = `${error.message}${uncertain ? '；设备结果未知，请重连核对' : began ? '；暂存已清理' : '；未确认上传能力'}`;
       throw new Error(this.message);
     } finally {
+      if (this.startedAt) this.finishedAt = performance.now();
       this.busy = false;
       release({ uncertain }); this.emit();
     }

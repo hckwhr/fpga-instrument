@@ -7,6 +7,7 @@ const crypto = require('crypto');
 const { execFile, spawn } = require('child_process');
 const systemMemory = require('./system-memory');
 const { attachInstrumentBluetooth } = require('./instrument-bluetooth');
+const { attachInstrumentSerial } = require('./instrument-serial');
 const {
   WallpaperEngineLibrary,
   registerWallpaperEngineScheme,
@@ -734,7 +735,7 @@ function flushMainWindowFxAutosave(reason) {
   ]).catch((e) => ({ ok: false, error: e.message || String(e) }));
 }
 
-const LOCAL_APP_PERMISSION_ALLOWLIST = new Set(['speaker-selection', 'pointerLock', 'pointer-lock']);
+const LOCAL_APP_PERMISSION_ALLOWLIST = new Set(['speaker-selection', 'pointerLock', 'pointer-lock', 'serial']);
 
 function isLocalAppUrl(value) {
   try {
@@ -1656,6 +1657,7 @@ function configureLocalAppPermissions() {
   const ses = session.defaultSession;
   if (!ses || ses._mineradioPermissionsConfigured) return;
   ses._mineradioPermissionsConfigured = true;
+  attachInstrumentSerial(ses, dialog, isLocalAppUrl);
   ses.setPermissionCheckHandler((webContents, permission, requestingOrigin, details) => {
     const origin = requestingOrigin || (details && details.requestingUrl) || (webContents && webContents.getURL && webContents.getURL()) || '';
     if (permission === 'display-capture') return isTrustedWallpaperEngineDisplayCapturePermission(webContents, origin, details);

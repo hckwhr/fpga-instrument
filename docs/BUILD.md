@@ -69,6 +69,8 @@ python firmware/xiaozhi-v3/tests/run.py
 
 脚本从板型 config.json 生成 fpga.defaults，使用当前板型、N16R8 配置与锁定依赖，不需要原开发机的 E 盘基线。主机 C/C++ 测试在 Windows 需要 Visual Studio 2022 C++ 与 CMake。
 
+当前源代码含 BLE 主用 / USB 备用候选，必须保留板型配置 `CONFIG_ESP_CONSOLE_SECONDARY_NONE=y`，避免 USB Serial/JTAG 驱动与调试控制台竞争；UART0 调试保留。验证机启用 `CONFIG_BT_NIMBLE_USE_ESP_TIMER=y`，2 ms 桥接泵间隔经 NPL/esp_timer 调度，不能据此宣称硬件实际吞吐。固件候选与地址表见 `artifacts/ble_primary_usb_backup_20261024/firmware/`；尚未烧录。stage64 已验证镜像仍保留。
+
 独立 V3 桥接工程可在 IDF 环境中进入 `firmware/esp32s3-bridge` 执行 `idf.py set-target esp32s3` 和 `idf.py build`，但 stage64 尚未对其独立镜像完成硬件验收。不得将 fpga-bread-s3 镜像刷到不匹配的 V3 PCB。
 
 ESP 构建不包含设备 NVS/激活信息。首台设备需自行配网和绑定，不能在源码写入密钥。历史 build_uart_stage64.ps1 依赖原开发机已解析目录，只保留供追溯，不作为新机器入口。

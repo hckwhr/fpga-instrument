@@ -23,7 +23,7 @@ const panel = document.createElement('section');
 panel.id = 'fpga-playback';
 panel.hidden = true;
 panel.setAttribute('aria-label', 'FPGA 播放模式');
-panel.innerHTML = '<header class="fpga-playback-header"><div><p class="fpga-eyebrow">MUSIC TO INSTRUMENT</p><h1>FPGA 播放</h1><p class="fpga-description">把喜欢的音乐，交给你的乐器演奏。</p></div><div class="fpga-import"><button type="button" id="fpga-current">导入播放器当前歌曲 <span aria-hidden="true">↗</span></button><p role="status" id="fpga-source-status">也可以在下方选择本地音频或 MIDI</p></div></header><iframe title="曲谱转化与 BLE 乐器控制" allow="bluetooth"></iframe>';
+panel.innerHTML = '<header class="fpga-playback-header"><div><p class="fpga-eyebrow">MUSIC TO INSTRUMENT</p><h1>FPGA 播放</h1><p class="fpga-description">把喜欢的音乐，交给你的乐器演奏。</p></div><div class="fpga-import"><button type="button" id="fpga-current">导入播放器当前歌曲 <span aria-hidden="true">↗</span></button><p role="status" id="fpga-source-status">也可以在下方选择本地音频或 MIDI</p></div></header><iframe title="曲谱转化与 BLE 乐器控制" allow="bluetooth; serial"></iframe>';
 // Fixed controls must live outside the transformed/scrollable player shell.
 // scrollIntoView in a child frame can otherwise scroll its clipped ancestors.
 document.body.append(panel, switcher);

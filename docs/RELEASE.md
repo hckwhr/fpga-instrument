@@ -33,7 +33,13 @@
 
 ## 配套 ESP32 与历史基线
 
-stage65 维持 SONG2、4096 事件与 UART 115200；本轮没有修改 ESP 固件，沿用 [stage64 镜像](../artifacts/stage64/)。小智 `xiaozhi.bin` SHA256 为 `d1ba5ab56ca9f7824955bf95ee23a50ca8a0e476ca43bc4a1b2e7042e7e157f9`，ESP-IDF 5.4.4 / fpga-bread-s3 / N16R8。地址以镜像配套 flash_args 为准，不含设备 NVS 身份。
+### 2026-10-24 BLE 主用 / USB 备用候选
+
+桌面 FPGAvedio 已更新，新增手动 USB 备用、上传有效速度统计、BLE 无响应写入能力选择；默认仍为 BLE“行者无疆”。新固件加入 USB 会话、互斥与排空、热点持续重连。共用前端 130/130（原 124 项保留）、桌面连接模块 9/9、C 核心 3/3 和协议黄金交换均通过；浏览器、App 与实际打包桌面检查通过。ESP-IDF 5.4.4 编译成功，**尚未烧录或实测无线速度、USB 和热点恢复**，未生成新 APK。FPGA stage65 位流、资源、时序均不变。
+
+候选完整地址表与不含 NVS 的镜像见 [归档](../artifacts/ble_primary_usb_backup_20261024/README.md)，实现和复测步骤见 [说明](BLE主用_USB备用与热点恢复_20261024.md)。下面 stage64 为已验证的历史配套基线，不以新候选覆盖其硬件验收记录。
+
+stage65 维持 SONG2、4096 事件与 UART 115200；stage65 验收时未修改 ESP 固件，沿用 [stage64 镜像](../artifacts/stage64/)。该历史小智 `xiaozhi.bin` SHA256 为 `d1ba5ab56ca9f7824955bf95ee23a50ca8a0e476ca43bc4a1b2e7042e7e157f9`，ESP-IDF 5.4.4 / fpga-bread-s3 / N16R8。地址以镜像配套 flash_args 为准，不含设备 NVS 身份。
 
 stage64 原始验收是 2026-10-23 的构建记录，保留在 [verification.json](../artifacts/stage64/verification.json)，不回写历史结果。2026-10-24 已完成 stage64 FPGA Flash 写入校验及重新加载，见后补 [烧录记录](../artifacts/stage64/programming/README.md)。操作 69 控制台结果有会话记录，原始逐进度日志未落盘；Reload 原始日志已保留。此记录不声称歌曲端到端实测通过。
 

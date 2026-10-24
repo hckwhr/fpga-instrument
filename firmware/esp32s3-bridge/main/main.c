@@ -5,6 +5,12 @@
 #include "driver/uart.h"
 #include "esp_log.h"
 #include "esp_timer.h"
+#ifdef BRIDGE_WITH_VOICE
+#include "driver/usb_serial_jtag.h"
+#include "usb_link.h"
+static usb_link usb;
+static uint32_t usb_stall_ms;
+#endif
 #include "nvs_flash.h"
 #include "nimble/nimble_port.h"
 #include "nimble/nimble_port_freertos.h"
@@ -79,6 +85,7 @@ static int gap_event(struct ble_gap_event *event, void *arg);
 static void fault(const char *reason)
 {
 #ifdef BRIDGE_WITH_VOICE
+    usb_link_fault(&usb, &bridge, "LINK");
     if (voice_running) voice_fail(&voice, "uart_fault_execution_unknown");
 #endif
     ESP_LOGW(TAG, "Link invalidated: %s; FPGA execution state unknown", reason);
@@ -115,7 +122,7 @@ static int gatt_access(uint16_t conn, uint16_t attr, struct ble_gatt_access_ctxt
 static const struct ble_gatt_svc_def services[] = {
     {.type = BLE_GATT_SVC_TYPE_PRIMARY, .uuid = &service_uuid.u,
      .characteristics = (struct ble_gatt_chr_def[]) {
-         {.uuid = &write_uuid.u, .access_cb = gatt_access, .flags = BLE_GATT_CHR_F_WRITE},
+         {.uuid = &write_uuid.u, .access_cb = gatt_access, .flags = BLE_GATT_CHR_F_WRITE | BLE_GATT_CHR_F_WRITE_NO_RSP},
          {.uuid = &notify_uuid.u, .access_cb = gatt_access, .flags = BLE_GATT_CHR_F_NOTIFY,
           .val_handle = &notify_handle},
          {0}
@@ -155,7 +162,7 @@ static int gap_event(struct ble_gap_event *event, void *arg)
 #ifdef BRIDGE_WITH_VOICE
             // A connect event already in flight may arrive after advertising stops.
             // Do not give it ownership of the voice transaction or its reply.
-            if (voice_running) {
+            if (voice_running || usb.active) {
                 int rc = ble_gap_terminate(event->connect.conn_handle, BLE_ERR_REM_USER_CONN_TERM);
                 if (rc != 0) ESP_LOGE(TAG, "reject voice-time connection rc=%d", rc);
                 break;
@@ -165,6 +172,7 @@ static int gap_event(struct ble_gap_event *event, void *arg)
             bridge_open(&bridge);
             ESP_LOGI(TAG, "BLE connected; subscribe then identify FPGA");
         }
+        else if (!bridge.connected) last_uart_ms = now_ms();
         break;
     case BLE_GAP_EVENT_DISCONNECT:
 #ifdef BRIDGE_WITH_VOICE
@@ -203,6 +211,20 @@ static void pump(struct ble_npl_event *event)
 {
     (void)event;
     uint32_t now = now_ms();
+#ifdef BRIDGE_WITH_VOICE
+    bool was_usb = usb.active;
+    usb_link_tick(&usb, &bridge, now);
+    // Consume only until one envelope is queued; this is USB backpressure,
+    // not a second concurrent UART owner. A disconnected cable expires in 5 s.
+    for (unsigned i=0; i<USB_LINK_FRAME && !usb.output_length; ++i) {
+        uint8_t byte;
+        if (usb_serial_jtag_read_bytes(&byte, 1, 0) != 1) break;
+        bool available = connection == BLE_HS_CONN_HANDLE_NONE && !voice_running &&
+            !bridge.connected && (uint32_t)(now-last_uart_ms)>=QUIET_MS && uart_wait_tx_done(LINK_UART,0)==ESP_OK;
+        usb_link_byte(&usb,&bridge,byte,now,available);
+    }
+    if (was_usb && !usb.active) last_uart_ms = now;
+#endif
     uart_event_t uart_event;
     // Limit work per host iteration; never block BLE on a UART line time.
     for (unsigned i = 0; i < 32 && xQueueReceive(uart_events, &uart_event, 0) == pdTRUE; ++i) {
@@ -248,8 +270,8 @@ static void pump(struct ble_npl_event *event)
     bridge_voice_result request = bridge_voice_get_result();
     if (!voice_running && request.state == BRIDGE_VOICE_QUEUED) {
         voice_begin(&voice, request.action, now);
-        if (connection != BLE_HS_CONN_HANDLE_NONE || bridge.connected) {
-            voice_fail(&voice, "busy_ble_connected_disconnect_app_first");
+        if (connection != BLE_HS_CONN_HANDLE_NONE || bridge.connected || usb.active) {
+            voice_fail(&voice, "busy_app_connected_disconnect_usb_or_ble_first");
             voice_publish();
         } else if ((uint32_t)(now - last_uart_ms) < QUIET_MS || uart_wait_tx_done(LINK_UART, 0) != ESP_OK) {
             voice_fail(&voice, "busy_uart_draining_wait_three_seconds");
@@ -281,6 +303,9 @@ static void pump(struct ble_npl_event *event)
     // One packet per 10 ms limited MTU23 to 2 kB/s. Send a bounded burst;
     // transient stack pressure retains the exact offset for the next callout.
     for (unsigned packet = 0; packet < BRIDGE_PUMP_NOTIFY_BUDGET; ++packet) {
+#ifdef BRIDGE_WITH_VOICE
+        if (usb.active) break;
+#endif
         const uint8_t *data;
         size_t n = bridge_notify_peek(&bridge,
         connection == BLE_HS_CONN_HANDLE_NONE ? 23 : ble_att_mtu(connection), &data);
@@ -297,15 +322,28 @@ static void pump(struct ble_npl_event *event)
             break;
         } else { fault("BLE notify rejected"); break; }
     }
+#ifdef BRIDGE_WITH_VOICE
+    usb_link_reply(&usb,&bridge);
+    if (usb.output_length) {
+        int n=usb_serial_jtag_write_bytes(usb.output+usb.output_offset,usb.output_length-usb.output_offset,0);
+        if (n>0) { usb_link_written(&usb,(size_t)n); usb_stall_ms=now; }
+        else if ((uint32_t)(now-usb_stall_ms)>=NOTIFY_STALL_MS) {
+            usb_link_fault(&usb,&bridge,"USB_STALLED"); last_uart_ms=now;
+            // Cable may be absent. Discard only after invalidating the owner;
+            // the host watchdog closes the session, never reports execution.
+            usb.output_length=usb.output_offset=0; usb_stall_ms=now;
+        }
+    } else usb_stall_ms=now;
+#endif
     if (synced && connection == BLE_HS_CONN_HANDLE_NONE && !ble_gap_adv_active() &&
 #ifdef BRIDGE_WITH_VOICE
-        !voice_running &&
+        !voice_running && !usb.active &&
 #endif
         (uint32_t)(now - last_uart_ms) >= QUIET_MS && uart_wait_tx_done(LINK_UART, 0) == ESP_OK) {
         advertise();
         last_uart_ms = now; // Bound advertising retries if the controller rejects one.
     }
-    ble_npl_callout_reset(&pump_timer, ble_npl_time_ms_to_ticks32(10));
+    ble_npl_callout_reset(&pump_timer, ble_npl_time_ms_to_ticks32(2));
 }
 
 static void on_reset(int reason)
@@ -318,6 +356,9 @@ static void on_reset(int reason)
 #endif
     synced = false;
     connection = BLE_HS_CONN_HANDLE_NONE;
+#ifdef BRIDGE_WITH_VOICE
+    if (!usb.active)
+#endif
     bridge_close(&bridge);
     stalled = false;
     notify_failed = false;
@@ -348,6 +389,12 @@ void instrument_bridge_start(void)
 void app_main(void)
 #endif
 {
+#ifdef BRIDGE_WITH_VOICE
+    // USB Serial/JTAG has a dedicated driver. sdkconfig disables secondary
+    // console output on USB; debug logging remains on UART0 GPIO43/44.
+    usb_serial_jtag_driver_config_t usb_config={.tx_buffer_size=8192,.rx_buffer_size=8192};
+    ESP_ERROR_CHECK(usb_serial_jtag_driver_install(&usb_config));
+#endif
 #ifndef BRIDGE_WITH_VOICE
     // Actual V3 uses SD_MODE directly through R51, not the old MOS inverter.
     ESP_ERROR_CHECK(gpio_set_level(BRIDGE_AMP_MUTE_GPIO, BRIDGE_AMP_MUTE_LEVEL));
