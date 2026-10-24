@@ -35,6 +35,8 @@ if ($UpdateInterfaceOnly) {
         'resources/app/public/instrument/src/device-session.js',
         'resources/app/public/instrument/src/score-library.js',
         'resources/app/public/instrument/src/audio.js',
+        'resources/app/public/instrument/src/audio-worker.js',
+        'resources/app/public/instrument/src/audio-dynamics.js',
         'resources/app/public/instrument/src/performance-monitor.js',
         'resources/app/public/instrument/styles.css',
         'resources/app/public/index.html',

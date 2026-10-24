@@ -83,9 +83,10 @@
             <label class="field">拍点偏移（ms）<input id="arrangement-beat-offset" type="number" min="0" max="2000" value="0" disabled></label>
             <label class="field">重复音<select id="arrangement-repeat"><option value="preserve">保留每次敲击 · 推荐</option><option value="merge">合并重叠同音 · 修复碎音</option></select></label>
             <label class="field">音域适配<select id="arrangement-pitch"><option value="phrase">音区整体移八度 · 保留走向</option><option value="fold">逐音折八度 · 旧方式</option></select></label>
+            <label class="field">移调低音力度<select id="arrangement-bass-balance"><option value="0.6">60% · 为旋律留空间</option><option value="0.4">40% · 低音较重的伴奏</option><option value="0.8">80% · 较饱满</option><option value="1">100% · 不衰减</option></select></label>
           </div>
           <label class="checkbox"><input id="arrangement-protect-sustain" type="checkbox" checked>单声部模式：保护主旋律长音，减少较弱低音伴奏打断（复音模式始终保留延音）</label>
-          <p class="hint">复音模式只对超出 C3..B5 的低音组、高音组分别移八度，显示引导与伴奏均参与演奏；显示轨保持单声部不代表音频单声部。单声部兼容模式仍按整段移调。容量或密度不足时列出省略数量；要求更完整时请选择较短片段。</p>
+          <p class="hint">复音模式只对超出 C3..B5 的低音组、高音组分别移八度，移调低音默认以 60% 力度演奏，减少伴奏盖住旋律；可在上方恢复 100%。新转谱按音频的相对音高能量估算力度，不能分离独立乐器。显示引导与伴奏均参与演奏；显示轨单声部不代表音频单声部。容量或密度不足时列出省略数量；要求更完整时请选择较短片段。</p>
           <p class="hint">音域筛选作用于原始识别音高：C3=48、C4=60、C5=72、C6=84。默认不提前过滤音域；旋律被低音伴奏干扰时再缩小范围。筛选和长音保护会改变选音，可关闭。</p>
           <p class="hint">拍点偏移是选段起点到一个已知拍点的毫秒数；仅在手动 BPM 校正时生效。自由节奏请保留原始节奏。伴奏复杂时建议先选 15–30 秒主旋律清楚的片段。</p>
           <button id="arrangement-reset" class="button small plain" type="button">恢复纯音乐推荐设置</button>

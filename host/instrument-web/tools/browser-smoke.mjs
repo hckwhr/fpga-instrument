@@ -229,6 +229,7 @@ try {
     assert.equal(await evaluate(`document.querySelector('#arrangement-advanced').open`), false);
     assert.equal(await evaluate(`document.querySelector('#arrangement-onset-window').value`), '20');
     assert.equal(await evaluate(`document.querySelector('#arrangement-mode').value`), 'polyphonic');
+    assert.equal(await evaluate(`document.querySelector('#arrangement-bass-balance').value`), '0.6');
     await evaluate(`document.querySelector('#arrangement-apply').click()`);
     assert.match(await evaluate(`document.querySelector('#upload-score').textContent`), /\/4096 个事件字/);
     assert.equal(await evaluate(`document.querySelector('#note-count').textContent`), '6', 'All reference chord notes survive arrangement');

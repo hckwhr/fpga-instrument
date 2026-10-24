@@ -59,6 +59,8 @@ export function validateScore(source) {
     if (p.arrangement.mode !== undefined) {
       requireValue(p.arrangement.mode === 'polyphonic', '演奏整理模式无效');
       arrangement.mode = 'polyphonic';
+      if (p.arrangement.bassBalance !== undefined) arrangement.bassBalance = number(p.arrangement.bassBalance, .25, 1);
+      if (p.arrangement.bassAdjusted !== undefined) arrangement.bassAdjusted = number(p.arrangement.bassAdjusted, 0, count, true);
       for (const key of ['guideNotes', 'accompanimentNotes', 'pitchOmitted', 'boundaryOmitted', 'capacityOmitted', 'densityOmitted'])
         arrangement[key] = number(p.arrangement[key], 0, 50000, true);
       requireValue(arrangement.guideNotes === tracks[0].notes.length &&

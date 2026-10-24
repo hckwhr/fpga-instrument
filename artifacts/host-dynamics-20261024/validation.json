@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-24",
+  "scope": "Host transcription dynamics and transposed bass balance",
+  "unitTests": { "passed": 124, "failed": 0, "previousRetained": 119, "added": 5 },
+  "frontendBuild": "PASS",
+  "realAudioBrowserSmoke": "PASS: MP3 decoding, local model/Worker/WASM, chords, first30 and whole modes, simulated upload/play/stop",
+  "appSmoke": "PASS; see app-smoke.json",
+  "packagedDesktopSmoke": "PASS; see desktop-smoke.json",
+  "desktopDelivery": { "interfaceFilesHashVerified": 29, "workerBundleUpdated": true, "restartRequired": true, "sourceAudioRetranscriptionRequired": true, "previousFilesBackedUp": true },
+  "firmwareChanged": false,
+  "physicalBleOrFpgaRetested": false,
+  "newPlaybackListeningValidated": false,
+  "androidApkBuilt": false,
+  "privateMediaExcluded": true
+}

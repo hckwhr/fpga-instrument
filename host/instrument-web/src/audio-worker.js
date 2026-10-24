@@ -1,6 +1,7 @@
 import * as tf from '@tensorflow/tfjs';
 import { setWasmPaths } from '@tensorflow/tfjs-backend-wasm';
 import { noteFramesToTime, outputToNotesPoly } from '@spotify/basic-pitch';
+import { restoreNoteDynamics } from './audio-dynamics.js';
 
 // Basic Pitch 1.0.1 framing/output names from Spotify inference.ts.
 // Dispose intermediates per window; upstream evaluateModel retains them across the song.
@@ -33,7 +34,7 @@ self.onmessage = async ({ data: { samples, threshold, minNoteMs } }) => {
       self.postMessage({ type: 'progress', stage: 'model', percent: (i + 1) / count });
     }
     const notes = noteFramesToTime(outputToNotesPoly(frames, onsets, threshold, threshold, Math.ceil(minNoteMs * 86 / 1000)));
-    self.postMessage({ type: 'result', notes });
+    self.postMessage({ type: 'result', notes: restoreNoteDynamics(notes, samples, RATE) });
   } catch (error) {
     self.postMessage({ type: 'error', message: `转谱引擎：${error.message}` });
   } finally { model?.dispose(); }

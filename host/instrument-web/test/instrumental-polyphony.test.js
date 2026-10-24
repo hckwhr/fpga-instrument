@@ -120,3 +120,18 @@ test('polyphonic admission requires confirmation and validated settings', () => 
     assert.throws(() => arrangeInstrumentalScore(input, { confirmed: true, ...options }), /参数/);
   assert.throws(() => arrange([[0, 500, 60]], { minPitch: 80 }), /没有可用/);
 });
+
+test('shifted bass balance preserves pitches, chords and OFF times without reducing native notes', () => {
+  const rows = [[0, 1000, 33, .8], [0, 2000, 45, .8], [0, 1500, 76, .7], [500, 1800, 79, .8]];
+  const before = arrange(rows, { bassBalance: 1 }), after = arrange(rows);
+  assert.deepEqual(allNotes(after).map(({ note, startMs, endMs }) => [note, startMs, endMs]),
+    allNotes(before).map(({ note, startMs, endMs }) => [note, startMs, endMs]));
+  assert.equal(after.report.bassAdjusted, 2);
+  const bass = allNotes(after).filter(n => n.note < 70);
+  const upper = allNotes(after).filter(n => n.note >= 70);
+  assert.ok(bass.every(n => n.velocity < upper[0].velocity));
+  assert.equal(after.report.bassBalance, .6);
+  const input = source(rows);
+  for (const bassBalance of [NaN, 0, 1.1]) assert.throws(() => arrangeInstrumentalScore(input, { confirmed: true, bassBalance }), /低音/);
+  compileFpgaScore(after.project);
+});

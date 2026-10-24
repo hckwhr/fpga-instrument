@@ -6,7 +6,7 @@ export const INSTRUMENTAL_ARRANGEMENT_DEFAULTS = Object.freeze({
   mode: 'polyphonic',
   strategy: 'balanced', onsetWindowMs: 20, minDurationMs: 60,
   rhythm: 'original', bpm: 120, repeatMode: 'preserve', pitchMode: 'phrase',
-  beatOffsetMs: 0, minPitch: 0, maxPitch: 127, protectSustain: true,
+  beatOffsetMs: 0, minPitch: 0, maxPitch: 127, protectSustain: true, bassBalance: .6,
 });
 
 // Confirmed derivative only: these heuristics do not separate vocals and backing.
@@ -170,7 +170,7 @@ export function arrangeInstrumentalScore(source, options = {}) {
     endSeconds: audioSelectionEnd(source), confirmed: false, ...options };
   if (settings.mode === 'melody') return arrangeAudioMelody(source, settings);
   const { confirmed, startSeconds, endSeconds, minDurationMs, minPitch, maxPitch,
-    onsetWindowMs, rhythm, bpm, beatOffsetMs, repeatMode, pitchMode, strategy } = settings;
+    onsetWindowMs, rhythm, bpm, beatOffsetMs, repeatMode, pitchMode, strategy, bassBalance } = settings;
   if (!confirmed) throw new Error('请先确认生成演奏曲谱');
   if (source?.format !== 'audio-transcription') throw new Error('请选择音频识别结果');
   if (settings.mode !== 'polyphonic' || ![startSeconds, endSeconds].every(Number.isFinite) ||
@@ -183,6 +183,8 @@ export function arrangeInstrumentalScore(source, options = {}) {
       !['preserve', 'merge'].includes(repeatMode) || !['phrase', 'fold'].includes(pitchMode) ||
       !['balanced', 'highest', 'strongest'].includes(strategy) || typeof settings.protectSustain !== 'boolean')
     throw new Error('演奏整理参数无效；选段须在 0..600 秒内');
+  if (!Number.isFinite(bassBalance) || bassBalance < .25 || bassBalance > 1)
+    throw new Error('低音伴奏力度须为 25%–100%');
   const all = source.tracks.flatMap(t => t.notes);
   const begin = startSeconds * 1000, finish = endSeconds * 1000;
   const selected = all.filter(n => n.startMs < finish && n.endMs > begin);
@@ -220,7 +222,11 @@ export function arrangeInstrumentalScore(source, options = {}) {
     const start = Math.max(0, toTick(Math.max(begin, n.startMs)));
     if (start >= limitTick) { boundaryOmitted++; continue; }
     const end = Math.min(limitTick, Math.max(start + 1, toTick(Math.min(finish, n.endMs))));
-    mapped.push({ note: pitch, sourcePitch: n.note, velocity: n.velocity, start, end });
+    // Moving bass up makes it much more exposed on the fixed board timbre.
+    // Give only the transposed bass a separate balance; native pitches and
+    // genuine repeated attacks retain their timing and relative dynamics.
+    mapped.push({ note: pitch, sourcePitch: n.note,
+      velocity: n.velocity * (n.note < 48 ? bassBalance : 1), start, end });
   }
   mapped.sort((a, b) => a.start - b.start || b.velocity - a.velocity || b.note - a.note);
   const unique = [], lastPitch = new Map();
@@ -298,6 +304,7 @@ export function arrangeInstrumentalScore(source, options = {}) {
   const report = { mode: 'polyphonic', startSeconds, endSeconds, sourceNotes: all.length, selectedNotes: selected.length,
     // melodyNotes is the v1 archive's total-note field; guideNotes is LCD-only.
     melodyNotes: accepted.length, guideNotes: tracks[0].notes.length, accompanimentNotes: tracks[1].notes.length,
+    bassBalance, bassAdjusted: accepted.filter(n => n.sourcePitch < 48 && bassBalance < 1).length,
     removedSimultaneous: duplicates, filtered: inRange.length - candidates.length,
     outsideRange: selected.length - inRange.length, pitchOmitted, boundaryOmitted, capacityOmitted, densityOmitted,
     folded: accepted.filter(n => n.note !== n.sourcePitch).length, shortened: 0, merged,

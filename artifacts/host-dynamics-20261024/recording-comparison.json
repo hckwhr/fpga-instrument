@@ -1,0 +1,28 @@
+{
+  "method": "Polyphonic harmonic pitch-template correlation of acoustic recording; does not measure fidelity",
+  "recordingSeconds": 42.58133333333333,
+  "comparisons": {
+    "first30-score": {
+      "cosine": 0.8523044974670525,
+      "recordingOffsetSeconds": 1.3249999999999997,
+      "recordingSecondsPerScoreSecond": 0.999
+    }
+  },
+  "recognized": {
+    "notes": 4742,
+    "pitchPercentiles": [
+      22.0,
+      29.0,
+      38.0,
+      45.0,
+      56.0,
+      71.0,
+      91.0
+    ]
+  },
+  "first30PitchBands": {
+    "bass": 279,
+    "native": 80,
+    "high": 4
+  }
+}

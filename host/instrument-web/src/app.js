@@ -521,7 +521,7 @@ $('#arrangement-rhythm').onchange = () => {
 function resetInstrumentalSettings() {
   const ids = { mode: 'mode', strategy: 'strategy', minPitch: 'min-pitch', maxPitch: 'max-pitch',
     minDurationMs: 'min-duration', onsetWindowMs: 'onset-window', rhythm: 'rhythm', bpm: 'bpm',
-    beatOffsetMs: 'beat-offset', repeatMode: 'repeat', pitchMode: 'pitch' };
+    beatOffsetMs: 'beat-offset', repeatMode: 'repeat', pitchMode: 'pitch', bassBalance: 'bass-balance' };
   for (const [key, id] of Object.entries(ids)) $('#arrangement-' + id).value = String(INSTRUMENTAL_ARRANGEMENT_DEFAULTS[key]);
   $('#arrangement-protect-sustain').checked = INSTRUMENTAL_ARRANGEMENT_DEFAULTS.protectSustain;
   $('#arrangement-rhythm').onchange();
@@ -539,6 +539,7 @@ $('#arrangement-apply').onclick = () => {
       // silently admit raw recognition to the hardware compiler.
       confirmed: true,
       mode: $('#arrangement-mode').value,
+      bassBalance: Number($('#arrangement-bass-balance').value),
       strategy: $('#arrangement-strategy').value, minDurationMs: Number($('#arrangement-min-duration').value),
       onsetWindowMs: Number($('#arrangement-onset-window').value), rhythm: $('#arrangement-rhythm').value,
       bpm: Number($('#arrangement-bpm').value),
@@ -551,6 +552,7 @@ $('#arrangement-apply').onclick = () => {
     const r = result.report;
     if (r.mode === 'polyphonic') {
       $('#arrangement-report').textContent = `${r.startSeconds}–${r.endSeconds} 秒：${r.selectedNotes} → ${r.melodyNotes}/2048 音符，含尾音最多 ${r.maxVoices} 声部；显示引导 ${r.guideNotes} 音、和弦延音 ${r.accompanimentNotes} 音，均参与演奏且不重复。音域排除 ${r.outsideRange}，碎音过滤 ${r.filtered}，同音去重 ${r.removedSimultaneous}，合并同音 ${r.merged}；容量省略 ${r.capacityOmitted}，过密省略 ${r.densityOmitted}，适配超界省略 ${r.pitchOmitted}，边界省略 ${r.boundaryOmitted}。板端音域内原音高不变；低音组移调 ${r.lowOctaveShift / 12}、高音组移调 ${r.highOctaveShift / 12} 个八度（${r.folded} 音变调${r.pitchMode === 'fold' ? '，已选逐音折回' : ''}）。${r.rhythm === 'original' ? '保留原始节奏' : `按 ${r.bpm} BPM 对齐十六分音符`}，不因其它音符起奏截短延音。力度保留层次并按复音峰值留余量。这是复音重奏，不是 MP3 原声播放。`;
+      $('#arrangement-report').textContent += ` 移调低音力度 ${Math.round(r.bassBalance * 100)}%，作用于 ${r.bassAdjusted} 个音符；该设置保留起音与延音。`;
       return;
     }
     const pitchReport = `整段移调 ${r.octaveShift / 12} 个八度，仍需逐音折回 ${r.residualFolds} 音`;
