@@ -23,6 +23,6 @@ BLE 上位机连接时语音串口命令拒绝接管；断开后至少等 3 秒�
 
 ## 烧录边界
 
-stage64 当前仅构建验收，未烧录。FPGA 永久下载遵循 [固定配置](history/固定烧录配置.md)：Programmer V1.9.12.03，GW5AST-138C，chain_index 0、cable-index 4、0.5MHz；操作 69、Flash 0x000000、写入校验后 Reprogram。实际烧录前须扫描唯一目标并检查器件 ID，不能只看退出码。
+stage65 已于 2026-10-24 完成 Flash 写入校验及重新加载，见 [烧录记录](../artifacts/stage65/programming/README.md)；实际音质待试听。FPGA 永久下载遵循 [固定配置](history/固定烧录配置.md)：Programmer V1.9.12.03，GW5AST-138C，chain_index 0、cable-index 4、0.5MHz；操作 69、Flash 0x000000、写入校验后 Reprogram。实际烧录前须扫描唯一目标并检查器件 ID，不能只看退出码。
 
 ESP 镜像见 `artifacts/stage64/esp32/flash_args`，其中 `xiaozhi.bin` 是偏移 0x100000 的应用，不是地址 0 的合并镜像；未包含 NVS 或设备身份备份。更换硬件/分区前须保留用户设备配置并核对实际 Flash/PSRAM。

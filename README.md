@@ -2,7 +2,7 @@
 
 本仓库是比赛项目的统一源码入口，包含高云 FPGA 工程、FPGAvedio 电脑上位机、Android App 源码、ESP32-S3 BLE/小智固件和验收资料。提交比赛系统时使用**本仓库这一个链接**即可。
 
-当前发布候选为 **stage65 / 纯音乐演奏优化 / UART 115200**。沿用 stage64 配套的 ESP32 115200 固件，不能混用 9600 旧固件。本版已完成软件测试、FPGA 综合、布局布线、时序及引脚审计；**stage65 尚未烧录和实物试听**，不要将构建通过当作实物验收。
+当前发布候选为 **stage65 / 纯音乐演奏优化 / UART 115200**。沿用 stage64 配套的 ESP32 115200 固件，不能混用 9600 旧固件。本版已完成软件测试、FPGA 综合、布局布线、时序及引脚审计；**stage65 已于 2026-10-24 永久写入 Flash、校验并重新加载，实际音质待试听**。
 
 ## 目录导航
 
@@ -43,11 +43,11 @@
 | 布线与时序 | 未布通 0；setup **+0.043 ns**；hold **+0.185 ns**；建立/保持违例 **0/0** |
 | 约束 | 3 时钟、8 条 multicycle 生效；45 引脚审计 clean |
 | 回归 | RTL 138/138（原 136 项保留）；共用上位机 108/108；浏览器、App、打包桌面冒烟通过 |
-| 实物边界 | stage65 未烧录；参考试听是近似模拟，实际音质仍需上板 A/B 测试 |
+| 实物边界 | stage65 Flash 写入校验及重新加载成功；参考试听是近似模拟，实际音质仍需上板 A/B 测试 |
 
 位流 SHA256：`bf6a795a1bc01d2494a76fa5c882b6a4a9d7af6bba27ea28616621df2b48a8d2`。证据见 [verification.json](artifacts/stage65/verification.json)、[最终 P&R](artifacts/stage65/pnr/pnr_final.json) 和 [时序报告](artifacts/stage65/pnr/v3_hardware_top_tr_content.html)。setup 达到 +0.03 ns 门槛但余量较小。存在一条 `PR1014` 通用时钟布线警告，已记录，不声称零警告。
 
-stage64 已于 2026-10-24 写入 Flash 并重新加载，后补记录见 [programming/README.md](artifacts/stage64/programming/README.md)；原 10 月 23 日验收 JSON 保持原貌。烧录成功不等于歌曲端到端或主观音质验收。
+stage65 后补烧录记录及原始日志见 [programming/README.md](artifacts/stage65/programming/README.md)；构建时验收 JSON 保持原貌。stage64 同日较早的烧录记录仍保留在对应归档中。烧录成功不等于歌曲端到端或主观音质验收。
 
 ## 已知限制
 

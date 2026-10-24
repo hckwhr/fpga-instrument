@@ -1230,6 +1230,30 @@
     "packaged_sha256": "8eb5b0e7299696153608deb95d08985303b639d3d971c6d7d225697e3ff15092"
   },
   {
+    "destination": "artifacts/stage65/programming/README.md",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "6003bd1e77f60a4e55291291387b9bb836cb960d670b8ac8d1c2c5da76af411e"
+  },
+  {
+    "destination": "artifacts/stage65/programming/stage65_flash_op69.log",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "e41b046686bed903c716c2e1d24c6fb55c95e9d528f1217893efad7797588aa4"
+  },
+  {
+    "destination": "artifacts/stage65/programming/stage65_reload.log",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "38e15d1e895c876d93d6e743dc3bf7617fcc6450220294aed5e66c4a559b4fc1"
+  },
+  {
+    "destination": "artifacts/stage65/programming/stage65_scan.log",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "054003a464ae50393843a343f60ef8bcfb88e802198757583eac815af9fc263f"
+  },
+  {
     "destination": "artifacts/stage65/regression/full_regression_stage65.log",
     "source": null,
     "source_sha256": null,
@@ -1335,7 +1359,7 @@
     "destination": "docs/HARDWARE.md",
     "source": null,
     "source_sha256": null,
-    "packaged_sha256": "0066fe5b15ec4f7f9779fac6724df2b20baa0a376fc2f8abee5cef2cb1973ad8"
+    "packaged_sha256": "22fec09a1416acfa3986fbc4fd9380c73971e8965f1d7bc9ea52d36c8624f514"
   },
   {
     "destination": "docs/history/八路动态物理琴弦_20261001.md",
@@ -1773,7 +1797,7 @@
     "destination": "docs/RELEASE.md",
     "source": null,
     "source_sha256": null,
-    "packaged_sha256": "43555d2d3161966efa8ec14708dc80ce9d7616883d90f698ac9765bae7e2a548"
+    "packaged_sha256": "7f6b9b3dce18e7cdc5cd118880d86e1c761da172e5cc35efd92bae60f4e46b62"
   },
   {
     "destination": "firmware/esp32s3-bridge/.gitignore",
@@ -13821,7 +13845,7 @@
     "destination": "README.md",
     "source": null,
     "source_sha256": null,
-    "packaged_sha256": "c6a60eee3b9dd95e15fcd81e46ac41e60ea54bc1724ee2642a76feaf2941d0a4"
+    "packaged_sha256": "e1b1a846edb25835ca282eb5e7b5ee5a909a418251cf8ac5b19ceb6bea17acdd"
   },
   {
     "destination": "tests/fixtures/rtl-stage47/control_vectors/cases.vh",

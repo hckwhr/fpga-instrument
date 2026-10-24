@@ -9,7 +9,7 @@
 - 位流 [v3_hardware_top.fs](../artifacts/stage65/pnr/v3_hardware_top.fs)，SHA256 `bf6a795a1bc01d2494a76fa5c882b6a4a9d7af6bba27ea28616621df2b48a8d2`。
 - 桌面共用界面已更新，重启 FPGAvedio 生效；未修改个人数据。本轮没有生成新 APK。
 
-**stage65 尚未烧录或实物试听**。参考试听近似模拟钢琴波形、包络和高频补偿，不是 DAC 采集。转谱仍是单主旋律整理，不承诺完整伴奏还原。实际效果需用同一首曲目上板 A/B 比较。
+**2026-10-24 后补：stage65 已永久写入 Flash、校验并重新加载**，见 [原始烧录日志及记录](../artifacts/stage65/programming/README.md)。构建时的 verification.json 保持历史原貌；尚未实物试听。参考试听近似模拟钢琴波形、包络和高频补偿，不是 DAC 采集。转谱仍是单主旋律整理，不承诺完整伴奏还原。实际效果需用同一首曲目上板 A/B 比较。
 
 ## 配套 ESP32 与历史基线
 
