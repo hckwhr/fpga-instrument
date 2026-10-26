@@ -1,0 +1,13 @@
+{
+  "reason": "Retain the accepted stage65 eight conservative exclusions as single-cycle; HDMI migration does not broaden audio-domain exception coverage.",
+  "patterns": [
+    "u_instrument/strings_enabled.u_physical_string_bank/scanned*",
+    "u_instrument/strings_enabled.u_physical_string_bank/voice_id_valid*",
+    "u_instrument/u_polyphony_bank_32/batch_glide_origin*",
+    "u_instrument/u_polyphony_bank_32/pitch_lane_d1*",
+    "u_instrument/u_polyphony_bank_32/rom_lane_d1*",
+    "u_instrument/u_polyphony_bank_32/rom_lane_d2*",
+    "u_instrument/u_polyphony_bank_32/voice_id_valid*",
+    "u_instrument/v3_analog.u_inputs/u_cdc/dst_sample_valid_s0"
+  ]
+}

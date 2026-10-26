@@ -1,6 +1,8 @@
 # 硬件、接线与版本配对
 
-FPGA：Tang Mega 138K，SOM30354 + Dock31005，器件 GW5AST-138C / GW5AST-LV138PG484AC1/I0。45 引脚的唯一当前来源是 [v3_hardware.cst](../fpga/stage64/constraints/v3_hardware.cst)，不是历史文字表。接线前核对板卡及原理图；本次整理没有修改引脚、时钟或 CDC。
+FPGA：Tang Mega 138K，SOM30354 + Dock31005，器件 GW5AST-138C / GW5AST-LV138PG484AC1/I0。当前 HDMI stage68 的 31 引脚来源是 [v3_hdmi.cst](../fpga/stage68/constraints/v3_hdmi.cst)；历史 LCD 版本为 45 引脚。接线前核对板卡及原理图，本次整理没有修改生产引脚、时钟或 CDC。
+
+HDMI 接 Dock 板载接口：D0 J14/H14、D1 J15/H15、D2 K17/J17、CLK G15/G16，发送使能 K14。当前输出 800×600 @56.25 Hz，屏幕需独立供电；音频仍走 PT8211，HDMI 不携带音频。stage67 已有实机出画面记录，stage68 新效果待复测。
 
 ## ESP32 到 FPGA
 
@@ -22,6 +24,8 @@ BLE 名称为“行者无疆”，NUS 服务 `6e400001-b5a3-f393-e0a9-e50e24dcca
 BLE 上位机连接时语音串口命令拒绝接管；断开后至少等 3 秒再语音控制。语音事务期间暂停广播，避免向上传或采样流插入命令。
 
 ## 烧录边界
+
+当前 stage68 已在 2026-10-26 完成 Flash 写入校验及重载，详见 [当前记录](../artifacts/stage68/validation.md)。本次上传不会重烧硬件。
 
 stage65 已于 2026-10-24 完成 Flash 写入校验及重新加载，见 [烧录记录](../artifacts/stage65/programming/README.md)；实际音质待试听。FPGA 永久下载遵循 [固定配置](history/固定烧录配置.md)：Programmer V1.9.12.03，GW5AST-138C，chain_index 0、cable-index 4、0.5MHz；操作 69、Flash 0x000000、写入校验后 Reprogram。实际烧录前须扫描唯一目标并检查器件 ID，不能只看退出码。
 

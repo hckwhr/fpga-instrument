@@ -1,4 +1,17 @@
-# stage65 验收与产物
+# 版本记录
+
+## 2026-10-26 stage68 HDMI 当前快照
+
+当前源码 [fpga/stage68](../fpga/stage68/README.md)，位流及报告见
+[stage68 构建/烧录记录](../artifacts/stage68/validation.md)。已完成构建、143 项回归、
+3 项官方模型测试及 Flash 校验重载；setup +0.756 ns、hold +0.186 ns，建立/保持违例 0/0。
+本次仅同步已有结果，不将此前 stage67 上板反馈或旧签核结果套用到 stage68。
+交接时发现的约束脚本末尾同路径复制错误及缺少新版独立审计记录已在版本页列出。
+
+stage67 是首次实机正常显示 HDMI 的版本；stage68 后补压力曲线、XY 余辉和歌曲灯带修正。
+上位机同步 BLE/USB 选择框样式，ESP32 生产代码无新增差异。
+
+## stage65 历史验收与产物（LCD）
 
 验收日期 2026-10-24。实际依据为 [verification.json](../artifacts/stage65/verification.json) 和原始报告，详细改动见 [纯音乐演奏优化](纯音乐演奏优化_stage65_20261024.md)。
 

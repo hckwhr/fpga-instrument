@@ -33,13 +33,25 @@ Android 构建工具及路径见 [README-FPGA.md](../host/mineradio/README-FPGA.
 
 ## FPGA
 
+当前工程为 `fpga/stage68/v3_hdmi_top.gprj`，顶层 `v3_hdmi_top`，31 引脚、4 时钟。
+当前测试入口 `tools/test-fpga.ps1` 默认复制 stage68 到独立目录，完整回归 143 项。
+官方模型另外运行复制目录里的 `sim/run_hdmi_phy.ps1`，传入本机 ModelSim 与 Gowin `prim_sim.v` 路径。
+`tools/build-fpga.tcl` 仅执行当前 HDMI 工程综合；后续必须针对新网表重做 CE/SDC 审计，再运行 P&R。
+
+stage68 的 RTL、PLL、约束及仿真输入保持原样；其历史准备/压缩脚本包含旧绝对路径，
+不能不检查便运行。尤其 `compact_queries.py` 默认网表仍指旧版，`prepare_hdmi_constraints.ps1`
+在原机同路径复制时报错。已有位流和原始报告可直接核验，尚未将构建流程改造成跨机器一键发布。
+源码/证据说明见 [stage68 README](../fpga/stage68/README.md)。
+
+### stage65 历史构建说明（以下路径仅用于 LCD 基线）
+
 工具：PowerShell 7、ModelSim（验收机 `E:/modelsim/win64`）、Gowin V1.9.12.03。先仿真再构建：
 
 ```powershell
 pwsh -NoProfile -File tools/test-fpga.ps1 -BuildRoot E:/Gowin/workspace/fpga-instrument-test -ModelSimBin E:/modelsim/win64
 ```
 
-该入口复制当前 FPGA 源码到独立 ASCII 目录，再执行 `sim/run_dynamic_regression.ps1 -Jobs 12`；不修改验收目录。完整套件 138 项，不能为通过而删减。
+该通用入口当前默认 stage68；如复测本节 stage65，请传 `-Stage stage65`。完整 stage65 套件 138 项，不能为通过而删减。
 
 在 Gowin IDE 打开 `fpga/stage65/v3_hardware_top.gprj`，保留当前器件、PLL、CST、SDC，place_option=3 / route_option=2；同目录只运行一个构建。`tools/build-fpga.tcl` 默认只综合，先核对本机工具路径与当前工程选项。
 

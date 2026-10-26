@@ -1,0 +1,43 @@
+SDC: 201 FF patterns, 99 primitive launch pins, 1772 capture pins
+Audited 29 modules; 15520 half-rate FFs
+{
+  "netlist_sha256": "ebb61dcb5758fda673ddb9df1f1b8a12be5300d09e6854b9f79af144ad450f17",
+  "original_lines": 9185,
+  "new_lines": 4597,
+  "setup_hold_pairs_unchanged": true,
+  "ff_collections_unchanged": true,
+  "non_query_text_unchanged": true,
+  "negative_control_passed": true
+}
+[(1772, 625, 8270)]
+{
+  "netlist_sha256": "5064b6acec00a8fb83c0c68d4241828b55b64e50ebbe754f6844b9706e2fe069",
+  "all_pin_collections_equal": true,
+  "collection_count": 20,
+  "candidate_sha256": "11d07d39593b3e829eef378cbec01f679261f94a308ac67f8b86bd55b20db93d"
+}
+test_bus_named_instances_keep_coverage (__main__.CoverageTests.test_bus_named_instances_keep_coverage) ... ok
+test_cross_hierarchy_descendant_blocks_merge (__main__.CoverageTests.test_cross_hierarchy_descendant_blocks_merge) ... ok
+test_empty_query_is_rejected (__main__.CoverageTests.test_empty_query_is_rejected) ... ok
+test_full_speed_sibling_blocks_merge (__main__.CoverageTests.test_full_speed_sibling_blocks_merge) ... ok
+test_port_universe_includes_control_and_bus_bits (__main__.CoverageTests.test_port_universe_includes_control_and_bus_bits) ... ok
+test_safe_subtree_merges (__main__.CoverageTests.test_safe_subtree_merges) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.003s
+
+OK
+test_actual_hierarchy_and_sample_ce (__main__.HierarchyTests.test_actual_hierarchy_and_sample_ce) ... ok
+test_feedback_stuck_high_is_rejected (__main__.HierarchyTests.test_feedback_stuck_high_is_rejected) ... ok
+test_feedback_stuck_low_is_rejected (__main__.HierarchyTests.test_feedback_stuck_low_is_rejected) ... ok
+test_unqualified_sample_is_excluded (__main__.HierarchyTests.test_unqualified_sample_is_excluded) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 8.155s
+
+OK
+[31;1mCopy-Item: [0mE:\Gowin\workspace\v3_hdmi_stage67_20261025\scripts\prepare_hdmi_constraints.ps1:18[0m
+[31;1m[0m[36;1mLine |[0m
+[31;1m[0m[36;1m[36;1m  18 | [0m [36;1mCopy-Item -LiteralPath "$candidate/constraints/v3_hdmi.sdc" -Destinat[0m °≠[0m
+[31;1m[0m[36;1m[36;1m[0m[36;1m[0m[36;1m     | [31;1m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[31;1m[0m[36;1m[36;1m[0m[36;1m[0m[36;1m[31;1m[31;1m[36;1m     | [31;1mŒﬁ∑®”√◊‘…Ì∏≤∏«œÓ E:\Gowin\workspace\v3_hdmi_stage67_20261025\constraints\v3_hdmi.sdc°£[0m
