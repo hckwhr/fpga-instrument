@@ -41,4 +41,5 @@
 !/artifacts/stage64/**/*.log
 !/artifacts/stage65/**/*.log
 !/artifacts/stage68/**/*.log
+!/artifacts/current/**/*.log
 **/transcript

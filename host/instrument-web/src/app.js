@@ -629,7 +629,7 @@ async function playPreview(upload = false) {
   if (analyzeEvents(events).over32) { setStatus('超过 32 声部，请简化曲谱后试听。', 'error'); return; }
   $('#preview-notes').disabled = true; $('#preview-upload').disabled = true; $('#stop-preview').disabled = false;
   const done = () => { $('#preview-notes').disabled = !state.events.length; $('#preview-upload').disabled = !compiledUpload || Boolean(state.transcription); $('#stop-preview').disabled = true; };
-  $('#preview-description').textContent = upload ? '正在试听 FPGA 演奏参考：使用实际上传的音高、力度与量化节奏，模拟优化版曲谱音色和衰减包络。需配套 stage65 固件；实物输出以板端为准，板端速度请设为 100%。' : '正在试听当前音符，用于对比识别结果；不代表设备已接受曲谱。';
+  $('#preview-description').textContent = upload ? '正在试听 FPGA 演奏参考：使用实际上传的音高、力度与量化节奏，模拟优化版曲谱音色和衰减包络。需配套支持该曲谱包络的 FPGA 固件；实物输出以板端为准，板端速度请设为 100%。' : '正在试听当前音符，用于对比识别结果；不代表设备已接受曲谱。';
   try { await preview.play(events, done, { profile: upload ? 'fpga' : 'notes' }); }
   catch (error) { done(); setStatus(error.message, 'error'); }
 }

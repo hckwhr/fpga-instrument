@@ -9,7 +9,7 @@
     "destination": ".gitignore",
     "source": null,
     "source_sha256": null,
-    "packaged_sha256": "d41ef66425d0e043249b5e91da7aeff52f97677e5a22065ee07a38beb153ff87"
+    "packaged_sha256": "779e3f9de84d723057779630c20daba064783c5af0c1a4cc9d1096ef9d2d6353"
   },
   {
     "destination": "AGENTS.md",
@@ -118,6 +118,138 @@
     "source": null,
     "source_sha256": null,
     "packaged_sha256": "0bce8c730a3a5525be681d43876aab6928f130a46c7a692519b0b617f2603b59"
+  },
+  {
+    "destination": "artifacts/current/applied.cst",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\constraints\\v3_hdmi.cst",
+    "source_sha256": "40d0e3c759cc31d60439c30a204d7dc0184d79b01c7d4fcd3e03a6ccf9c41c88",
+    "packaged_sha256": "40d0e3c759cc31d60439c30a204d7dc0184d79b01c7d4fcd3e03a6ccf9c41c88"
+  },
+  {
+    "destination": "artifacts/current/applied.sdc",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\constraints\\v3_hdmi.sdc",
+    "source_sha256": "ca1718cfadc67968aa2c02c9e27f7f495d96495e9f7845ea84199a0fdb5be440",
+    "packaged_sha256": "ca1718cfadc67968aa2c02c9e27f7f495d96495e9f7845ea84199a0fdb5be440"
+  },
+  {
+    "destination": "artifacts/current/logs/constraints.log",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\constraints_stage70.log",
+    "source_sha256": "99629981133bacca4bb2d4a8ec2837dcbfee281651fb6d45bb7eb731cb48a11a",
+    "packaged_sha256": "99629981133bacca4bb2d4a8ec2837dcbfee281651fb6d45bb7eb731cb48a11a"
+  },
+  {
+    "destination": "artifacts/current/logs/implementation.log",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\pnr_stage70.log",
+    "source_sha256": "ef5cd4ed21bd3128b623824ca4f9e7f79fe06893cefa4f081f3e02ab3af31e8f",
+    "packaged_sha256": "ef5cd4ed21bd3128b623824ca4f9e7f79fe06893cefa4f081f3e02ab3af31e8f"
+  },
+  {
+    "destination": "artifacts/current/logs/phy.log",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\phy_stage70.log",
+    "source_sha256": "5a079aa38cbf8588b474fa8ef4e099b9122998d9ca9988e2ba735dd55bf6dd8a",
+    "packaged_sha256": "5a079aa38cbf8588b474fa8ef4e099b9122998d9ca9988e2ba735dd55bf6dd8a"
+  },
+  {
+    "destination": "artifacts/current/logs/regression.log",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\full_regression_stage70.log",
+    "source_sha256": "92c2d2276547c3431ef74fb9531e21e4ab0be4803b40811c1b9b805760e7a553",
+    "packaged_sha256": "92c2d2276547c3431ef74fb9531e21e4ab0be4803b40811c1b9b805760e7a553"
+  },
+  {
+    "destination": "artifacts/current/logs/synthesis.log",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\synthesis_stage70.log",
+    "source_sha256": "8a7e89ee41debaaa0c36cab733ff477b4105fecfb2e5737745ad22878116c64f",
+    "packaged_sha256": "8a7e89ee41debaaa0c36cab733ff477b4105fecfb2e5737745ad22878116c64f"
+  },
+  {
+    "destination": "artifacts/current/pnr/cmd.do",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\impl\\pnr\\cmd.do",
+    "source_sha256": "2343ad9fdef0fb4f1f2e545e099eae6624244d297bf7bb358596a68a7e7d8a18",
+    "packaged_sha256": "2343ad9fdef0fb4f1f2e545e099eae6624244d297bf7bb358596a68a7e7d8a18"
+  },
+  {
+    "destination": "artifacts/current/pnr/project_tr_cata.html",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\impl\\pnr\\project_tr_cata.html",
+    "source_sha256": "814a2a205c76d19e54de3b179268a4f9cc2e8e6fcbda4368630f5b10938f186a",
+    "packaged_sha256": "814a2a205c76d19e54de3b179268a4f9cc2e8e6fcbda4368630f5b10938f186a"
+  },
+  {
+    "destination": "artifacts/current/pnr/project_tr_content.html",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\impl\\pnr\\project_tr_content.html",
+    "source_sha256": "ca7cd99979c21a67dd1243a920ef8de3266ef2af0bef0c229e82b2f61ce39041",
+    "packaged_sha256": "ca7cd99979c21a67dd1243a920ef8de3266ef2af0bef0c229e82b2f61ce39041"
+  },
+  {
+    "destination": "artifacts/current/pnr/project.fs",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\impl\\pnr\\project.fs",
+    "source_sha256": "24631a3a373a1e4461c94279a7aa30eb0821b1bcde191fde770256643fc13923",
+    "packaged_sha256": "24631a3a373a1e4461c94279a7aa30eb0821b1bcde191fde770256643fc13923"
+  },
+  {
+    "destination": "artifacts/current/pnr/project.pin.html",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\impl\\pnr\\project.pin.html",
+    "source_sha256": "f6bcfe9f94edc3e5379714361d44288017b5a5b2ffcc17fe4b24119e19641a2f",
+    "packaged_sha256": "f6bcfe9f94edc3e5379714361d44288017b5a5b2ffcc17fe4b24119e19641a2f"
+  },
+  {
+    "destination": "artifacts/current/pnr/project.power.html",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\impl\\pnr\\project.power.html",
+    "source_sha256": "801f688305738b237d1ca3a8ac76ad5bf5c8b7349f196f55cf349f1ef574ecdc",
+    "packaged_sha256": "801f688305738b237d1ca3a8ac76ad5bf5c8b7349f196f55cf349f1ef574ecdc"
+  },
+  {
+    "destination": "artifacts/current/pnr/project.rpt.html",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\impl\\pnr\\project.rpt.html",
+    "source_sha256": "972b861f3182cb221204a207d938ad792f43479bee62024ac8b91d379f34ab01",
+    "packaged_sha256": "972b861f3182cb221204a207d938ad792f43479bee62024ac8b91d379f34ab01"
+  },
+  {
+    "destination": "artifacts/current/pnr/project.rpt.txt",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\impl\\pnr\\project.rpt.txt",
+    "source_sha256": "2f8a2a53d850e13277ff18013bc079ebb99504a99d480c403c14b3bd2aa7088d",
+    "packaged_sha256": "2f8a2a53d850e13277ff18013bc079ebb99504a99d480c403c14b3bd2aa7088d"
+  },
+  {
+    "destination": "artifacts/current/pnr/project.tr.html",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\impl\\pnr\\project.tr.html",
+    "source_sha256": "8d381d14ca42f8a4e26edaeb8ca109e30e870350ab4cc6ce1a09772c43063e2b",
+    "packaged_sha256": "8d381d14ca42f8a4e26edaeb8ca109e30e870350ab4cc6ce1a09772c43063e2b"
+  },
+  {
+    "destination": "artifacts/current/programming/flash_op69.log",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\programming70\\flash_op69.log",
+    "source_sha256": "497d74a3f863bad005fbc5dac9cd27b35a277ab27728e89f71a1e8e37da18228",
+    "packaged_sha256": "497d74a3f863bad005fbc5dac9cd27b35a277ab27728e89f71a1e8e37da18228"
+  },
+  {
+    "destination": "artifacts/current/programming/reload.log",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\programming70\\reload.log",
+    "source_sha256": "3c68748ca5c04e9422dc9a0ac9166790344baff5acd0ce047e814fc7825dcb7f",
+    "packaged_sha256": "3c68748ca5c04e9422dc9a0ac9166790344baff5acd0ce047e814fc7825dcb7f"
+  },
+  {
+    "destination": "artifacts/current/programming/scan.log",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\programming70\\scan.log",
+    "source_sha256": "c70ffe1f2e43df35ff16b0868aa73b645c2eac22640fcf843f049e4f125afc99",
+    "packaged_sha256": "c70ffe1f2e43df35ff16b0868aa73b645c2eac22640fcf843f049e4f125afc99"
+  },
+  {
+    "destination": "artifacts/current/synthesis/project_syn.rpt.html",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\impl\\gwsynthesis\\project_syn.rpt.html",
+    "source_sha256": "dc1ccf7bcd8266d4e26a343ca48574026f6bb8f55b4beeb5979af2a0f2ef9c23",
+    "packaged_sha256": "dc1ccf7bcd8266d4e26a343ca48574026f6bb8f55b4beeb5979af2a0f2ef9c23"
+  },
+  {
+    "destination": "artifacts/current/synthesis/project.vg",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\impl\\gwsynthesis\\project.vg",
+    "source_sha256": "7d5341d774ad72b014c0b8334a2e2e1b12c1ab5b18dc23e25b1520d2ad63873e",
+    "packaged_sha256": "7d5341d774ad72b014c0b8334a2e2e1b12c1ab5b18dc23e25b1520d2ad63873e"
+  },
+  {
+    "destination": "artifacts/current/validation.md",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "c1e5e149b46371474078c1d4aca00cc464129e50414f845b249e1a84aa79cd69"
   },
   {
     "destination": "artifacts/desktop-20261025/desktop-interface-delivery.json",
@@ -1665,7 +1797,7 @@
     "destination": "CONTRIBUTING.md",
     "source": null,
     "source_sha256": null,
-    "packaged_sha256": "0276495036a71f563aca98f4c1029c3ac93db1ecf5e887b9dde45983bb802957"
+    "packaged_sha256": "51093e0b7a74e1b91130dc916a716a544f1b0ddb4c9dc6b63101e4cda8cd0bee"
   },
   {
     "destination": "docs/伴奏力度与低音平衡优化_20261024.md",
@@ -1701,13 +1833,13 @@
     "destination": "docs/BUILD.md",
     "source": null,
     "source_sha256": null,
-    "packaged_sha256": "5d78ac01aa805a21e193b9d7a0ef395bab52b676bd64f6b3907440ce99d164f0"
+    "packaged_sha256": "a57c9c85d01887ca417b9bd26ea8d997b941966b00f662cb29f9224c0a018b26"
   },
   {
     "destination": "docs/HARDWARE.md",
     "source": null,
     "source_sha256": null,
-    "packaged_sha256": "b96121e19be15697bfd859698e473a30f11449858727194e2bbd48ae623fba86"
+    "packaged_sha256": "89e90dbecb3db0d6432b6d17c85640190a7e84d53e39f662cd0140ac6b9570be"
   },
   {
     "destination": "docs/history/八路动态物理琴弦_20261001.md",
@@ -2133,19 +2265,19 @@
     "destination": "docs/HOST.md",
     "source": null,
     "source_sha256": null,
-    "packaged_sha256": "9e5718c0b1e6285f192eb340ddc95f998acef4752a33f5d0f05aa02a03b72bce"
+    "packaged_sha256": "7955e1ae8fd28d58ba76b67323e80c36c86371f03e81d0fca9bc90689ee18de6"
   },
   {
     "destination": "docs/PACKAGING.md",
     "source": null,
     "source_sha256": null,
-    "packaged_sha256": "791cd6bc72d82f8c5480299e50c14b3dd97446e71b8833baceaaaf9543053d24"
+    "packaged_sha256": "00164d451d7eb85b88bf0479bc44f7929660b4055db6bf74f33726bf1a2c8679"
   },
   {
     "destination": "docs/RELEASE.md",
     "source": null,
     "source_sha256": null,
-    "packaged_sha256": "e737356ebcadb13e8b160841600227aa06c57fddb467032b88adcf143be14acb"
+    "packaged_sha256": "8da80729da800bc8568ab58edd9360cf4bab5368df99b3008af271dee4384df7"
   },
   {
     "destination": "firmware/esp32s3-bridge/.gitignore",
@@ -8250,6 +8382,2142 @@
     "packaged_sha256": "f0208c4e20b91eb22c7a40e56599fe86f1cae990f1b3faef70f18604336e4fb2"
   },
   {
+    "destination": "fpga/current/constraints/base_hardware.sdc",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\constraints\\base_hardware.sdc",
+    "source_sha256": "b55da7c1dee630e1464a5b33a0031fb3e0ff10fc632ca731292ed60fe21029ca",
+    "packaged_sha256": "b55da7c1dee630e1464a5b33a0031fb3e0ff10fc632ca731292ed60fe21029ca"
+  },
+  {
+    "destination": "fpga/current/constraints/half_rate_enumerated.sdc",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\constraints\\half_rate_enumerated.sdc",
+    "source_sha256": "c17c48aea06bc001dd71e92f6c47448501cd620664f73745cbf39bad11f674f1",
+    "packaged_sha256": "c17c48aea06bc001dd71e92f6c47448501cd620664f73745cbf39bad11f674f1"
+  },
+  {
+    "destination": "fpga/current/constraints/v3_hardware.cst",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\constraints\\v3_hardware.cst",
+    "source_sha256": "5367030c1f687132debf47b50af959884282a8d2e4cc80d19a8769bbf1ba6775",
+    "packaged_sha256": "5367030c1f687132debf47b50af959884282a8d2e4cc80d19a8769bbf1ba6775"
+  },
+  {
+    "destination": "fpga/current/constraints/v3_hardware.sdc",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\constraints\\v3_hardware.sdc",
+    "source_sha256": "276180bd310818bde42655a914a4e68820ead9309c719eed73a62db72d187089",
+    "packaged_sha256": "276180bd310818bde42655a914a4e68820ead9309c719eed73a62db72d187089"
+  },
+  {
+    "destination": "fpga/current/constraints/v3_hdmi.cst",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\constraints\\v3_hdmi.cst",
+    "source_sha256": "40d0e3c759cc31d60439c30a204d7dc0184d79b01c7d4fcd3e03a6ccf9c41c88",
+    "packaged_sha256": "40d0e3c759cc31d60439c30a204d7dc0184d79b01c7d4fcd3e03a6ccf9c41c88"
+  },
+  {
+    "destination": "fpga/current/constraints/v3_hdmi.sdc",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\constraints\\v3_hdmi.sdc",
+    "source_sha256": "ca1718cfadc67968aa2c02c9e27f7f495d96495e9f7845ea84199a0fdb5be440",
+    "packaged_sha256": "ca1718cfadc67968aa2c02c9e27f7f495d96495e9f7845ea84199a0fdb5be440"
+  },
+  {
+    "destination": "fpga/current/fpga_instrument_av.gprj",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\fpga_instrument_av.gprj",
+    "source_sha256": "9fe5265103894ea36584b958758fbcda25c3581f1218f5c63aa11250bedf13bd",
+    "packaged_sha256": "9fe5265103894ea36584b958758fbcda25c3581f1218f5c63aa11250bedf13bd"
+  },
+  {
+    "destination": "fpga/current/README.md",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "cf0758df5650bdc6c3577b5935e6b5475d407ec9266bb6e8baef0f919013b0ac"
+  },
+  {
+    "destination": "fpga/current/rtl/additive_bank_32.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\additive_bank_32.v",
+    "source_sha256": "bae39af5cd44a23df303687c8e92195a3a0559d6449d378c80ee540434bd52e1",
+    "packaged_sha256": "bae39af5cd44a23df303687c8e92195a3a0559d6449d378c80ee540434bd52e1"
+  },
+  {
+    "destination": "fpga/current/rtl/audio_effects.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\audio_effects.v",
+    "source_sha256": "d4b0c952878c5fd6366f862cad94728a7f0a7600cc1be6a8a5f3ace51d40bed0",
+    "packaged_sha256": "d4b0c952878c5fd6366f862cad94728a7f0a7600cc1be6a8a5f3ace51d40bed0"
+  },
+  {
+    "destination": "fpga/current/rtl/audio_pll/audio_pll_mod_tmp.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\audio_pll\\audio_pll_mod_tmp.v",
+    "source_sha256": "7a41990e47a35d2c9526a3f2a9a8677bc99aa36ae634921291c5984c9cb903db",
+    "packaged_sha256": "7a41990e47a35d2c9526a3f2a9a8677bc99aa36ae634921291c5984c9cb903db"
+  },
+  {
+    "destination": "fpga/current/rtl/audio_pll/audio_pll_mod.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\audio_pll\\audio_pll_mod.v",
+    "source_sha256": "94ab7975088698a4fa52c986ee4af400ffdd7bc9f23fa1b9c5e0ef41dc7b96eb",
+    "packaged_sha256": "94ab7975088698a4fa52c986ee4af400ffdd7bc9f23fa1b9c5e0ef41dc7b96eb"
+  },
+  {
+    "destination": "fpga/current/rtl/audio_pll/audio_pll_tmp.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\audio_pll\\audio_pll_tmp.v",
+    "source_sha256": "caaa2cd4dcafbf192ffd0ff6d7510bd9495c96f48a6ce50a3653059b54a2aeb3",
+    "packaged_sha256": "caaa2cd4dcafbf192ffd0ff6d7510bd9495c96f48a6ce50a3653059b54a2aeb3"
+  },
+  {
+    "destination": "fpga/current/rtl/audio_pll/audio_pll.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\audio_pll\\audio_pll.v",
+    "source_sha256": "4b5b0953bc2d5f4c64734ce0c81904219c598915ff2adb189ea44030107f003f",
+    "packaged_sha256": "4b5b0953bc2d5f4c64734ce0c81904219c598915ff2adb189ea44030107f003f"
+  },
+  {
+    "destination": "fpga/current/rtl/audio_sample_cdc.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\audio_sample_cdc.v",
+    "source_sha256": "f99ad7742561c52808251a72d8229e4753aeaa916a1d37ee48c85f1839dcdf45",
+    "packaged_sha256": "f99ad7742561c52808251a72d8229e4753aeaa916a1d37ee48c85f1839dcdf45"
+  },
+  {
+    "destination": "fpga/current/rtl/audio_scope_uart.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\audio_scope_uart.v",
+    "source_sha256": "531d56ff2c1566cf8ee70fb7948ed57388184442aaec480a4b3fab2b2f6c8640",
+    "packaged_sha256": "531d56ff2c1566cf8ee70fb7948ed57388184442aaec480a4b3fab2b2f6c8640"
+  },
+  {
+    "destination": "fpga/current/rtl/audio_voice_mixer.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\audio_voice_mixer.v",
+    "source_sha256": "429f9bad6bf24b45c6cbea7c54f21b8731d46e1bdb20fa81abe09f00bc443df7",
+    "packaged_sha256": "429f9bad6bf24b45c6cbea7c54f21b8731d46e1bdb20fa81abe09f00bc443df7"
+  },
+  {
+    "destination": "fpga/current/rtl/av_hdmi_top.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\av_hdmi_top.v",
+    "source_sha256": "ed59922959ddf1dc696e2d6f8328806b3e8d95c3ce75b6bb44cecf2ebb8230fc",
+    "packaged_sha256": "ed59922959ddf1dc696e2d6f8328806b3e8d95c3ce75b6bb44cecf2ebb8230fc"
+  },
+  {
+    "destination": "fpga/current/rtl/av_top.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\av_top.v",
+    "source_sha256": "e5a317de771e9890956e0a64db18d2bea228f860e4d9fe83009e74781caa8503",
+    "packaged_sha256": "e5a317de771e9890956e0a64db18d2bea228f860e4d9fe83009e74781caa8503"
+  },
+  {
+    "destination": "fpga/current/rtl/bend_curve.vh",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\bend_curve.vh",
+    "source_sha256": "4b46f9eddda4ae208be86c372a659a359a960a5ac9e0799ba406fca5f837a022",
+    "packaged_sha256": "4b46f9eddda4ae208be86c372a659a359a960a5ac9e0799ba406fca5f837a022"
+  },
+  {
+    "destination": "fpga/current/rtl/chinese_font_24x24.vh",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\chinese_font_24x24.vh",
+    "source_sha256": "5b7be49177a2b0170e153853ce70aed02eaac570345a123b7f59d4e54e422aa6",
+    "packaged_sha256": "5b7be49177a2b0170e153853ce70aed02eaac570345a123b7f59d4e54e422aa6"
+  },
+  {
+    "destination": "fpga/current/rtl/chinese_font_rom_init.vh",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\chinese_font_rom_init.vh",
+    "source_sha256": "03eb487ac6eae841458b2883828ad2cb2543780e7c96d27074b42da16f5b3987",
+    "packaged_sha256": "03eb487ac6eae841458b2883828ad2cb2543780e7c96d27074b42da16f5b3987"
+  },
+  {
+    "destination": "fpga/current/rtl/concurrent_test_source.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\concurrent_test_source.v",
+    "source_sha256": "6489234f6d4178340078b2254db348d268084375c1127f9fc8b299af7caca1b6",
+    "packaged_sha256": "6489234f6d4178340078b2254db348d268084375c1127f9fc8b299af7caca1b6"
+  },
+  {
+    "destination": "fpga/current/rtl/dds_tone_generator.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\dds_tone_generator.v",
+    "source_sha256": "b66b0c0e446453c1a441b5fa87261e6aef77048513194f7a6799eb0feed3e898",
+    "packaged_sha256": "b66b0c0e446453c1a441b5fa87261e6aef77048513194f7a6799eb0feed3e898"
+  },
+  {
+    "destination": "fpga/current/rtl/expression_audition.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\expression_audition.v",
+    "source_sha256": "95ab63b978aee0beb8906b91db98c7c2de74e0b8f7faedb5c3b5fa2faef81ded",
+    "packaged_sha256": "95ab63b978aee0beb8906b91db98c7c2de74e0b8f7faedb5c3b5fa2faef81ded"
+  },
+  {
+    "destination": "fpga/current/rtl/fsr_instrument_top.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\fsr_instrument_top.v",
+    "source_sha256": "8f26376c7eda2755f4fbf66ad8f4d3dd2ea3d8942118bc0fd3e214b1713f3285",
+    "packaged_sha256": "8f26376c7eda2755f4fbf66ad8f4d3dd2ea3d8942118bc0fd3e214b1713f3285"
+  },
+  {
+    "destination": "fpga/current/rtl/fsr_performance_input.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\fsr_performance_input.v",
+    "source_sha256": "bcdd23de20f2957a5b569c50318f6ef49c01a20164b3e3b89d2c9b239da4a83c",
+    "packaged_sha256": "bcdd23de20f2957a5b569c50318f6ef49c01a20164b3e3b89d2c9b239da4a83c"
+  },
+  {
+    "destination": "fpga/current/rtl/gt911_touch.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\gt911_touch.v",
+    "source_sha256": "54cb237d8d0bb1efcaaefe40795764a8434dce17f4738dd282c5f88782967564",
+    "packaged_sha256": "54cb237d8d0bb1efcaaefe40795764a8434dce17f4738dd282c5f88782967564"
+  },
+  {
+    "destination": "fpga/current/rtl/hc05_commands.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\hc05_commands.v",
+    "source_sha256": "2a7fd908adfa86404bbd9af78f3ae1e4d081c97dfa072ce10730a385b41e8dcf",
+    "packaged_sha256": "2a7fd908adfa86404bbd9af78f3ae1e4d081c97dfa072ce10730a385b41e8dcf"
+  },
+  {
+    "destination": "fpga/current/rtl/hc05_link.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\hc05_link.v",
+    "source_sha256": "a363ab34cf9ecfb28a15d7e9c3b691037dac5e83767e327e4cb4086026973e1d",
+    "packaged_sha256": "a363ab34cf9ecfb28a15d7e9c3b691037dac5e83767e327e4cb4086026973e1d"
+  },
+  {
+    "destination": "fpga/current/rtl/hdmi_clocks.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\hdmi_clocks.v",
+    "source_sha256": "d0a2e47aa2a3d7c3147b24bbd02f1efbc74bdb2fd363c39ec73cbaad39908202",
+    "packaged_sha256": "d0a2e47aa2a3d7c3147b24bbd02f1efbc74bdb2fd363c39ec73cbaad39908202"
+  },
+  {
+    "destination": "fpga/current/rtl/hdmi_pll/hdmi_pll_mod_tmp.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\hdmi_pll\\hdmi_pll_mod_tmp.v",
+    "source_sha256": "a1a182dd23011ac87357a9c644030cfc529c7c96d0a3e77c069bd07b93b093ec",
+    "packaged_sha256": "a1a182dd23011ac87357a9c644030cfc529c7c96d0a3e77c069bd07b93b093ec"
+  },
+  {
+    "destination": "fpga/current/rtl/hdmi_pll/hdmi_pll_mod.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\hdmi_pll\\hdmi_pll_mod.v",
+    "source_sha256": "9624c9b1e65f2a0d236e1b2fd6b84cd51445c448247eb102edcb6e5b2cd83ea9",
+    "packaged_sha256": "9624c9b1e65f2a0d236e1b2fd6b84cd51445c448247eb102edcb6e5b2cd83ea9"
+  },
+  {
+    "destination": "fpga/current/rtl/hdmi_pll/hdmi_pll_tmp.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\hdmi_pll\\hdmi_pll_tmp.v",
+    "source_sha256": "59e55f76f0895557a5dbaab15143ecf37ebf73b9ceda7ab3e33f16fd91ce0668",
+    "packaged_sha256": "59e55f76f0895557a5dbaab15143ecf37ebf73b9ceda7ab3e33f16fd91ce0668"
+  },
+  {
+    "destination": "fpga/current/rtl/hdmi_pll/hdmi_pll.ipc",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\hdmi_pll\\hdmi_pll.ipc",
+    "source_sha256": "187e23513d9ab7529557f0b73ffd4e525a443af2ac722b2e33c2ff820f99da8f",
+    "packaged_sha256": "187e23513d9ab7529557f0b73ffd4e525a443af2ac722b2e33c2ff820f99da8f"
+  },
+  {
+    "destination": "fpga/current/rtl/hdmi_pll/hdmi_pll.mod",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\hdmi_pll\\hdmi_pll.mod",
+    "source_sha256": "e0d570f61c408856a5198b59add8e008d9217414f7fe5e9e05eb4df1ba1faad9",
+    "packaged_sha256": "e0d570f61c408856a5198b59add8e008d9217414f7fe5e9e05eb4df1ba1faad9"
+  },
+  {
+    "destination": "fpga/current/rtl/hdmi_pll/hdmi_pll.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\hdmi_pll\\hdmi_pll.v",
+    "source_sha256": "e6f0b8e05dc461a73aee2af5dc7b2e8190760f899818336da156fbb90adb39eb",
+    "packaged_sha256": "e6f0b8e05dc461a73aee2af5dc7b2e8190760f899818336da156fbb90adb39eb"
+  },
+  {
+    "destination": "fpga/current/rtl/hdmi_timing_800x600.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\hdmi_timing_800x600.v",
+    "source_sha256": "492408b6b9bbaebb9d5a4d65d3fe7b49a78f6405b49388e18eddc1ef6d5a4e2f",
+    "packaged_sha256": "492408b6b9bbaebb9d5a4d65d3fe7b49a78f6405b49388e18eddc1ef6d5a4e2f"
+  },
+  {
+    "destination": "fpga/current/rtl/hdmi_tmds_tx.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\hdmi_tmds_tx.v",
+    "source_sha256": "ccfa33d69a2501ad543f77c54759c12129e38f04ff89ab80666f48f6c68065aa",
+    "packaged_sha256": "ccfa33d69a2501ad543f77c54759c12129e38f04ff89ab80666f48f6c68065aa"
+  },
+  {
+    "destination": "fpga/current/rtl/i2c_byte_master.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\i2c_byte_master.v",
+    "source_sha256": "08f3ee7caea31a19755a56fc477a6485706365afa93eb05f5bdf35738e50ce30",
+    "packaged_sha256": "08f3ee7caea31a19755a56fc477a6485706365afa93eb05f5bdf35738e50ce30"
+  },
+  {
+    "destination": "fpga/current/rtl/i2c_register_master.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\i2c_register_master.v",
+    "source_sha256": "65c1887084ea9996f819a31bf38580572935f34564790f1327665918ab625ccc",
+    "packaged_sha256": "65c1887084ea9996f819a31bf38580572935f34564790f1327665918ab625ccc"
+  },
+  {
+    "destination": "fpga/current/rtl/instrument_contract.vh",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\instrument_contract.vh",
+    "source_sha256": "2db2ea8b7d71b17c25341963b06d8827e322df40aa88c905c153e6a5ff8a47a4",
+    "packaged_sha256": "2db2ea8b7d71b17c25341963b06d8827e322df40aa88c905c153e6a5ff8a47a4"
+  },
+  {
+    "destination": "fpga/current/rtl/instrument_control.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\instrument_control.v",
+    "source_sha256": "234643787dfca149e8b1ac01617b31e1250eb02e4b12e32740533b78c9ed8bc8",
+    "packaged_sha256": "234643787dfca149e8b1ac01617b31e1250eb02e4b12e32740533b78c9ed8bc8"
+  },
+  {
+    "destination": "fpga/current/rtl/instrument_panel_renderer.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\instrument_panel_renderer.v",
+    "source_sha256": "2367c201ec4eacc0b03e5b828b0453479ada995760e32eca9ca3f9eced0a4c2f",
+    "packaged_sha256": "2367c201ec4eacc0b03e5b828b0453479ada995760e32eca9ca3f9eced0a4c2f"
+  },
+  {
+    "destination": "fpga/current/rtl/instrument_production_link.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\instrument_production_link.v",
+    "source_sha256": "ea8a87fd2d22efb95655ecb656974343d7a9d410cec9a9dd76b9e29f9499ac00",
+    "packaged_sha256": "ea8a87fd2d22efb95655ecb656974343d7a9d410cec9a9dd76b9e29f9499ac00"
+  },
+  {
+    "destination": "fpga/current/rtl/instrument_shared_uart.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\instrument_shared_uart.v",
+    "source_sha256": "028346531e9085a0eeed66d24722430a544ed88b3f5742e89034e714716d2e35",
+    "packaged_sha256": "028346531e9085a0eeed66d24722430a544ed88b3f5742e89034e714716d2e35"
+  },
+  {
+    "destination": "fpga/current/rtl/key_debounce.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\key_debounce.v",
+    "source_sha256": "39a39169d24364d2e6214edb31eb4671110e75c71c7a79f15990d76e8aaac5ee",
+    "packaged_sha256": "39a39169d24364d2e6214edb31eb4671110e75c71c7a79f15990d76e8aaac5ee"
+  },
+  {
+    "destination": "fpga/current/rtl/keyboard_light_status.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\keyboard_light_status.v",
+    "source_sha256": "b53412a29aa98c9e0207512385e663a3002e70c35dc4c82b4f883c1a2e90364e",
+    "packaged_sha256": "b53412a29aa98c9e0207512385e663a3002e70c35dc4c82b4f883c1a2e90364e"
+  },
+  {
+    "destination": "fpga/current/rtl/keyboard_note_events.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\keyboard_note_events.v",
+    "source_sha256": "f3c83b9133cb29912a84cb7837155c154278d78ca56cfddfda76300afbfba2dc",
+    "packaged_sha256": "f3c83b9133cb29912a84cb7837155c154278d78ca56cfddfda76300afbfba2dc"
+  },
+  {
+    "destination": "fpga/current/rtl/keypad_165.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\keypad_165.v",
+    "source_sha256": "c998aee6456e0905d9a973edd94271c44c26e7a6071967e15ab4241941957290",
+    "packaged_sha256": "c998aee6456e0905d9a973edd94271c44c26e7a6071967e15ab4241941957290"
+  },
+  {
+    "destination": "fpga/current/rtl/lcd_pll/lcd_pll_mod_tmp.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\lcd_pll\\lcd_pll_mod_tmp.v",
+    "source_sha256": "87f4186837946bef0436f973fabc1fc298bcfa98c17b6315c8a4a540cd4e3ecb",
+    "packaged_sha256": "87f4186837946bef0436f973fabc1fc298bcfa98c17b6315c8a4a540cd4e3ecb"
+  },
+  {
+    "destination": "fpga/current/rtl/lcd_pll/lcd_pll_mod.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\lcd_pll\\lcd_pll_mod.v",
+    "source_sha256": "139d6a32f419ff00ed801cf53113624e9ff68919a51a49d3ad89e73946d2ff85",
+    "packaged_sha256": "139d6a32f419ff00ed801cf53113624e9ff68919a51a49d3ad89e73946d2ff85"
+  },
+  {
+    "destination": "fpga/current/rtl/lcd_pll/lcd_pll_tmp.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\lcd_pll\\lcd_pll_tmp.v",
+    "source_sha256": "2cdc11625eef5baf0372d226db3f5cb020a4114bdd17532c7906abe6dafa2ec5",
+    "packaged_sha256": "2cdc11625eef5baf0372d226db3f5cb020a4114bdd17532c7906abe6dafa2ec5"
+  },
+  {
+    "destination": "fpga/current/rtl/lcd_pll/lcd_pll.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\lcd_pll\\lcd_pll.v",
+    "source_sha256": "e4360377bc362f5cd8fd187d8543761d542929737044fba33959df190f11d57f",
+    "packaged_sha256": "e4360377bc362f5cd8fd187d8543761d542929737044fba33959df190f11d57f"
+  },
+  {
+    "destination": "fpga/current/rtl/lcd_test_pattern.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\lcd_test_pattern.v",
+    "source_sha256": "9a297e6fd77f9c53339fc77898dfc22a678be74fa7030b8a3091417dbcf2750d",
+    "packaged_sha256": "9a297e6fd77f9c53339fc77898dfc22a678be74fa7030b8a3091417dbcf2750d"
+  },
+  {
+    "destination": "fpga/current/rtl/lcd_timing_800x480.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\lcd_timing_800x480.v",
+    "source_sha256": "9a3c652944b5ba5c3e4faf94597b123324c42965ab7922d17f6577d40c958bca",
+    "packaged_sha256": "9a3c652944b5ba5c3e4faf94597b123324c42965ab7922d17f6577d40c958bca"
+  },
+  {
+    "destination": "fpga/current/rtl/mcp3008_dual_scanner.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\mcp3008_dual_scanner.v",
+    "source_sha256": "9549223d41573f5bbec4ca146a317304e7f356bad4c591d101d248a0178153d4",
+    "packaged_sha256": "9549223d41573f5bbec4ca146a317304e7f356bad4c591d101d248a0178153d4"
+  },
+  {
+    "destination": "fpga/current/rtl/mcp3008_reader.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\mcp3008_reader.v",
+    "source_sha256": "345a8a10178a3abaa6eb29ce7617d15eb79c2a93dad29f2e05da0f0c1cbeedac",
+    "packaged_sha256": "345a8a10178a3abaa6eb29ce7617d15eb79c2a93dad29f2e05da0f0c1cbeedac"
+  },
+  {
+    "destination": "fpga/current/rtl/mcp3008_scanner.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\mcp3008_scanner.v",
+    "source_sha256": "5b7a0109f55cc624d7f4edc0a2ebed23b585feb25314b5ee653d38d30a3f82b1",
+    "packaged_sha256": "5b7a0109f55cc624d7f4edc0a2ebed23b585feb25314b5ee653d38d30a3f82b1"
+  },
+  {
+    "destination": "fpga/current/rtl/note_event_contract.vh",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\note_event_contract.vh",
+    "source_sha256": "53b6ea46733d0ed217fc199bd63fff02d90e12c0cab6c72a2a8fb4e5ec66cb7e",
+    "packaged_sha256": "53b6ea46733d0ed217fc199bd63fff02d90e12c0cab6c72a2a8fb4e5ec66cb7e"
+  },
+  {
+    "destination": "fpga/current/rtl/note_event_voice.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\note_event_voice.v",
+    "source_sha256": "729b121a3b481248d7303135f2ae6ab2f0f3cbb944b88e85c1fe0459d2d33582",
+    "packaged_sha256": "729b121a3b481248d7303135f2ae6ab2f0f3cbb944b88e85c1fe0459d2d33582"
+  },
+  {
+    "destination": "fpga/current/rtl/performance_controls.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\performance_controls.v",
+    "source_sha256": "00122aa1ed094286c1c203be52dddf1e8568d4f935a69be385e3df2a9ead129c",
+    "packaged_sha256": "00122aa1ed094286c1c203be52dddf1e8568d4f935a69be385e3df2a9ead129c"
+  },
+  {
+    "destination": "fpga/current/rtl/physical_string_bank.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\physical_string_bank.v",
+    "source_sha256": "4f8a9e31862d4cbcd1599838c79a30c3164e4d3d7c0e7ddb57669c2eca8d4b2b",
+    "packaged_sha256": "4f8a9e31862d4cbcd1599838c79a30c3164e4d3d7c0e7ddb57669c2eca8d4b2b"
+  },
+  {
+    "destination": "fpga/current/rtl/physical_string_voice.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\physical_string_voice.v",
+    "source_sha256": "88ef5a163d7fb5da43ceb33e41d919b28595db68306bc5909ba90f34bf10c9e5",
+    "packaged_sha256": "88ef5a163d7fb5da43ceb33e41d919b28595db68306bc5909ba90f34bf10c9e5"
+  },
+  {
+    "destination": "fpga/current/rtl/piano_wave.vh",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\piano_wave.vh",
+    "source_sha256": "e3979ee3bfe06012cfddf7a230789515ba7ebcc016dcb576a6cb5019fda9425c",
+    "packaged_sha256": "e3979ee3bfe06012cfddf7a230789515ba7ebcc016dcb576a6cb5019fda9425c"
+  },
+  {
+    "destination": "fpga/current/rtl/pitch_expression.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\pitch_expression.v",
+    "source_sha256": "d948d63aca3cdedcfb4db01729d6eec6f8b768c5e0751a544b799d74d55cc82a",
+    "packaged_sha256": "d948d63aca3cdedcfb4db01729d6eec6f8b768c5e0751a544b799d74d55cc82a"
+  },
+  {
+    "destination": "fpga/current/rtl/polyphony_bank_32.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\polyphony_bank_32.v",
+    "source_sha256": "0dbc5d0991edbcf2b9db12d921bb362aaab3ca125d7923d581cae407eb8e1e54",
+    "packaged_sha256": "0dbc5d0991edbcf2b9db12d921bb362aaab3ca125d7923d581cae407eb8e1e54"
+  },
+  {
+    "destination": "fpga/current/rtl/pt8211_tx.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\pt8211_tx.v",
+    "source_sha256": "fed408e801e7eff9facbba1a48500d30b447989e7b39fc86d5adcae3778e883a",
+    "packaged_sha256": "fed408e801e7eff9facbba1a48500d30b447989e7b39fc86d5adcae3778e883a"
+  },
+  {
+    "destination": "fpga/current/rtl/reverb_comb.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\reverb_comb.v",
+    "source_sha256": "ce826ca7696adef836f74bc34a2b9d11de4baea9b7f3fab58aa1adc385e811e5",
+    "packaged_sha256": "ce826ca7696adef836f74bc34a2b9d11de4baea9b7f3fab58aa1adc385e811e5"
+  },
+  {
+    "destination": "fpga/current/rtl/song_control_uart.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\song_control_uart.v",
+    "source_sha256": "777c24a8cc360655cb20dfc889810719ce97c1fc297a89e5a68a456ad8d7eb91",
+    "packaged_sha256": "777c24a8cc360655cb20dfc889810719ce97c1fc297a89e5a68a456ad8d7eb91"
+  },
+  {
+    "destination": "fpga/current/rtl/song_instrument_top.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\song_instrument_top.v",
+    "source_sha256": "b9f077cbb391dfc474dbae0a3c4b69720fb54619e18112f79c4eac3552e1c793",
+    "packaged_sha256": "b9f077cbb391dfc474dbae0a3c4b69720fb54619e18112f79c4eac3552e1c793"
+  },
+  {
+    "destination": "fpga/current/rtl/song_player.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\song_player.v",
+    "source_sha256": "b6473576e980823c4ae8d1e9767cceaa6039d2f9fbd4c20f1f11547e46b26b87",
+    "packaged_sha256": "b6473576e980823c4ae8d1e9767cceaa6039d2f9fbd4c20f1f11547e46b26b87"
+  },
+  {
+    "destination": "fpga/current/rtl/song_score_ode.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\song_score_ode.v",
+    "source_sha256": "1d9e9a603c3b81d3ef05d426c68db4086fb2046ae3b613a22ed74338883b770c",
+    "packaged_sha256": "1d9e9a603c3b81d3ef05d426c68db4086fb2046ae3b613a22ed74338883b770c"
+  },
+  {
+    "destination": "fpga/current/rtl/song_score_twinkle.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\song_score_twinkle.v",
+    "source_sha256": "b9848a5826e1c119dbc246337289fd55ac9b7fc5ae26f30ba2cac3f9d58f1e12",
+    "packaged_sha256": "b9848a5826e1c119dbc246337289fd55ac9b7fc5ae26f30ba2cac3f9d58f1e12"
+  },
+  {
+    "destination": "fpga/current/rtl/song_score_validator.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\song_score_validator.v",
+    "source_sha256": "75d41e96011f69bcb4b863716c974667a5d76e6f63bfc85932af7ddb8fca613f",
+    "packaged_sha256": "75d41e96011f69bcb4b863716c974667a5d76e6f63bfc85932af7ddb8fca613f"
+  },
+  {
+    "destination": "fpga/current/rtl/song_timeline_rom.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\song_timeline_rom.v",
+    "source_sha256": "0bb42a7f51b53668a07b8f11d3edd39f9002eab0282c50c2b1a8d5326f6e438e",
+    "packaged_sha256": "0bb42a7f51b53668a07b8f11d3edd39f9002eab0282c50c2b1a8d5326f6e438e"
+  },
+  {
+    "destination": "fpga/current/rtl/song_timeline.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\song_timeline.v",
+    "source_sha256": "2f4b16fb97660c871ebcdb5e1e1bdcd44942ad44b1555c74c5019d3020ec7b55",
+    "packaged_sha256": "2f4b16fb97660c871ebcdb5e1e1bdcd44942ad44b1555c74c5019d3020ec7b55"
+  },
+  {
+    "destination": "fpga/current/rtl/song_timing.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\song_timing.v",
+    "source_sha256": "c19451bc6be6870a1846208fc2d58124879d10600d7758483ded609bdc33662c",
+    "packaged_sha256": "c19451bc6be6870a1846208fc2d58124879d10600d7758483ded609bdc33662c"
+  },
+  {
+    "destination": "fpga/current/rtl/song_upload_frame_rx.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\song_upload_frame_rx.v",
+    "source_sha256": "95c7c930b2c0040b02f32a11e05f461e163b01b1f3a32eb57e54c6c38fb407ad",
+    "packaged_sha256": "95c7c930b2c0040b02f32a11e05f461e163b01b1f3a32eb57e54c6c38fb407ad"
+  },
+  {
+    "destination": "fpga/current/rtl/song_upload_link.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\song_upload_link.v",
+    "source_sha256": "460771fc76a03738ecd648992f95d88b8aae8ffcfafed10063b9fdb914a06a5f",
+    "packaged_sha256": "460771fc76a03738ecd648992f95d88b8aae8ffcfafed10063b9fdb914a06a5f"
+  },
+  {
+    "destination": "fpga/current/rtl/song_upload_parse.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\song_upload_parse.v",
+    "source_sha256": "2364ca5feee1f24f797a9f175ab9d58ff6428f825317af854540cdb249af7cc6",
+    "packaged_sha256": "2364ca5feee1f24f797a9f175ab9d58ff6428f825317af854540cdb249af7cc6"
+  },
+  {
+    "destination": "fpga/current/rtl/song_upload_playback.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\song_upload_playback.v",
+    "source_sha256": "0f5494b86b6de2bcdbcab581d78430d27f98832d416470ac17b2e2966aaed206",
+    "packaged_sha256": "0f5494b86b6de2bcdbcab581d78430d27f98832d416470ac17b2e2966aaed206"
+  },
+  {
+    "destination": "fpga/current/rtl/song_upload_reply.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\song_upload_reply.v",
+    "source_sha256": "0ba58fd14644735f782b1fb51d31954e57420bb70c920f562901eaf3f58367dd",
+    "packaged_sha256": "0ba58fd14644735f782b1fb51d31954e57420bb70c920f562901eaf3f58367dd"
+  },
+  {
+    "destination": "fpga/current/rtl/song_upload_store.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\song_upload_store.v",
+    "source_sha256": "5b9363e9fbd54883ee5d91ded29e5206e1ed5099d6f3513e8b2870ca7ea0cc8c",
+    "packaged_sha256": "5b9363e9fbd54883ee5d91ded29e5206e1ed5099d6f3513e8b2870ca7ea0cc8c"
+  },
+  {
+    "destination": "fpga/current/rtl/song_upload_uart.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\song_upload_uart.v",
+    "source_sha256": "0c9ac01d56a1dddd61950684912308dbab45aef128189b97b0bb54a08a302185",
+    "packaged_sha256": "0c9ac01d56a1dddd61950684912308dbab45aef128189b97b0bb54a08a302185"
+  },
+  {
+    "destination": "fpga/current/rtl/song_uploaded_player.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\song_uploaded_player.v",
+    "source_sha256": "f90628a090e38ef88250ed7cba0f5fa82692a13b76f6c1e8f9c32a00c2b85cfa",
+    "packaged_sha256": "f90628a090e38ef88250ed7cba0f5fa82692a13b76f6c1e8f9c32a00c2b85cfa"
+  },
+  {
+    "destination": "fpga/current/rtl/spectrum_analyzer.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\spectrum_analyzer.v",
+    "source_sha256": "8fb35f86ff7f9e36323972cddf406bba6ad49c1990acfd817dbc1cf96371c356",
+    "packaged_sha256": "8fb35f86ff7f9e36323972cddf406bba6ad49c1990acfd817dbc1cf96371c356"
+  },
+  {
+    "destination": "fpga/current/rtl/status_bundle_cdc.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\status_bundle_cdc.v",
+    "source_sha256": "e8ba5a975b1bc14966afd037f24778b4857503d7586a9f258f9a64cc96a42878",
+    "packaged_sha256": "e8ba5a975b1bc14966afd037f24778b4857503d7586a9f258f9a64cc96a42878"
+  },
+  {
+    "destination": "fpga/current/rtl/string_interp_serial.vh",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\string_interp_serial.vh",
+    "source_sha256": "91b6e0fe65357508085a708230e000781c4f1ad0c80c15d2f8231b4319720bf2",
+    "packaged_sha256": "91b6e0fe65357508085a708230e000781c4f1ad0c80c15d2f8231b4319720bf2"
+  },
+  {
+    "destination": "fpga/current/rtl/string_interp.vh",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\string_interp.vh",
+    "source_sha256": "369b54af6539060c539b28fed44cf4d49f04f87e2cb802610593f81b41341c74",
+    "packaged_sha256": "369b54af6539060c539b28fed44cf4d49f04f87e2cb802610593f81b41341c74"
+  },
+  {
+    "destination": "fpga/current/rtl/string_pitch_control.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\string_pitch_control.v",
+    "source_sha256": "0a54eb263a5e60a9064b23817e6303b7a59a36feed7bb951922c46df604a6c2c",
+    "packaged_sha256": "0a54eb263a5e60a9064b23817e6303b7a59a36feed7bb951922c46df604a6c2c"
+  },
+  {
+    "destination": "fpga/current/rtl/string_tuning.vh",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\string_tuning.vh",
+    "source_sha256": "1721a07715fff57ae09fe41898d80a8ddda3b493b3148ffeb6b0c600ca589dc6",
+    "packaged_sha256": "1721a07715fff57ae09fe41898d80a8ddda3b493b3148ffeb6b0c600ca589dc6"
+  },
+  {
+    "destination": "fpga/current/rtl/tmds_encoder.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\tmds_encoder.v",
+    "source_sha256": "d326d57e175d67d529d57c4676d29769390dd9a9f120fb23f772485529a722ed",
+    "packaged_sha256": "d326d57e175d67d529d57c4676d29769390dd9a9f120fb23f772485529a722ed"
+  },
+  {
+    "destination": "fpga/current/rtl/touch_preview.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\touch_preview.v",
+    "source_sha256": "c0fd68d3dfc6d78ba88570422107ce8239212997d180977ae197d0a5322437ff",
+    "packaged_sha256": "c0fd68d3dfc6d78ba88570422107ce8239212997d180977ae197d0a5322437ff"
+  },
+  {
+    "destination": "fpga/current/rtl/uart_8n1.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\uart_8n1.v",
+    "source_sha256": "fe9d0b75c46716bbafb9b6476adfa1182098ba99620bc2a1de7dba0a7f04ca4b",
+    "packaged_sha256": "fe9d0b75c46716bbafb9b6476adfa1182098ba99620bc2a1de7dba0a7f04ca4b"
+  },
+  {
+    "destination": "fpga/current/rtl/uart_byte_cdc.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\uart_byte_cdc.v",
+    "source_sha256": "e6ef6fae17e8b7f7ce6c1e96ba2bc166542d8bb5df966c91b8f3110cde460af1",
+    "packaged_sha256": "e6ef6fae17e8b7f7ce6c1e96ba2bc166542d8bb5df966c91b8f3110cde460af1"
+  },
+  {
+    "destination": "fpga/current/rtl/uart_line_router.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\uart_line_router.v",
+    "source_sha256": "ddde40134d29ad640509926401898acd8194d49720beb27402c2eb5e88f5c30a",
+    "packaged_sha256": "ddde40134d29ad640509926401898acd8194d49720beb27402c2eb5e88f5c30a"
+  },
+  {
+    "destination": "fpga/current/rtl/uart_line_tx_mux.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\uart_line_tx_mux.v",
+    "source_sha256": "30dcb49bdad49dbd062e80eca871e7edc5625bd3316e82d9b18217aeb5841133",
+    "packaged_sha256": "30dcb49bdad49dbd062e80eca871e7edc5625bd3316e82d9b18217aeb5841133"
+  },
+  {
+    "destination": "fpga/current/rtl/v3_analog_input.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\v3_analog_input.v",
+    "source_sha256": "373fe17498ce47d79c82d0d0c1899ff2da610d22a514e11939da158e9f2013bf",
+    "packaged_sha256": "373fe17498ce47d79c82d0d0c1899ff2da610d22a514e11939da158e9f2013bf"
+  },
+  {
+    "destination": "fpga/current/rtl/v3_hardware_top.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\v3_hardware_top.v",
+    "source_sha256": "a110476676b8668fcb43ec7c31a9ffd1566d5b81b31c049438ab91f0f9214fa7",
+    "packaged_sha256": "a110476676b8668fcb43ec7c31a9ffd1566d5b81b31c049438ab91f0f9214fa7"
+  },
+  {
+    "destination": "fpga/current/rtl/v3_hdmi_top.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\v3_hdmi_top.v",
+    "source_sha256": "fe342dc74a3feebe3d7b42e96d1f2ec30e5b27d64a9ac7d3964ef2398213ea86",
+    "packaged_sha256": "fe342dc74a3feebe3d7b42e96d1f2ec30e5b27d64a9ac7d3964ef2398213ea86"
+  },
+  {
+    "destination": "fpga/current/rtl/v3_instrument_top.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\v3_instrument_top.v",
+    "source_sha256": "4979bf5304f655ab885da1ac38e202fee795eb8453a3514f28d3d15398548aab",
+    "packaged_sha256": "4979bf5304f655ab885da1ac38e202fee795eb8453a3514f28d3d15398548aab"
+  },
+  {
+    "destination": "fpga/current/rtl/v3_performance_input.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\v3_performance_input.v",
+    "source_sha256": "0e3acaea69843977289c0ebec6b5026852a524726539ebc4721a6b3eb3c35f21",
+    "packaged_sha256": "0e3acaea69843977289c0ebec6b5026852a524726539ebc4721a6b3eb3c35f21"
+  },
+  {
+    "destination": "fpga/current/rtl/visual_coefficients.vh",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\visual_coefficients.vh",
+    "source_sha256": "1082ecf7bfc2e4f3c8daf5aad0ca05330fac54af761b0667c39e87044e1b26b8",
+    "packaged_sha256": "1082ecf7bfc2e4f3c8daf5aad0ca05330fac54af761b0667c39e87044e1b26b8"
+  },
+  {
+    "destination": "fpga/current/rtl/visual_feedback.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\visual_feedback.v",
+    "source_sha256": "64e4b3fa24550c96c7f44514b94fc26e5e5821d50f98b19e06be208b18d78131",
+    "packaged_sha256": "64e4b3fa24550c96c7f44514b94fc26e5e5821d50f98b19e06be208b18d78131"
+  },
+  {
+    "destination": "fpga/current/rtl/visual_labels.vh",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\visual_labels.vh",
+    "source_sha256": "c76fad42f4d2732e068ce61c5c454753d85d734da84330f37e55e435af713c22",
+    "packaged_sha256": "c76fad42f4d2732e068ce61c5c454753d85d734da84330f37e55e435af713c22"
+  },
+  {
+    "destination": "fpga/current/rtl/ws2812_tx.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\rtl\\ws2812_tx.v",
+    "source_sha256": "e1d94d6222af0a156a32037d2a9d303ef1567f799fa5e007e441ec39554b2ef2",
+    "packaged_sha256": "e1d94d6222af0a156a32037d2a9d303ef1567f799fa5e007e441ec39554b2ef2"
+  },
+  {
+    "destination": "fpga/current/scripts/add_menu_bound.py",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\scripts\\add_menu_bound.py",
+    "source_sha256": "066c596f6a9a7268462daae2002e29dd58dfba075a30c046156dc792a7849572",
+    "packaged_sha256": "066c596f6a9a7268462daae2002e29dd58dfba075a30c046156dc792a7849572"
+  },
+  {
+    "destination": "fpga/current/scripts/archive_contest.ps1",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\scripts\\archive_contest.ps1",
+    "source_sha256": "c353b984bfc8969fc5724b2bf3546eafca49905b16ae5b636def5fe62e8b73d7",
+    "packaged_sha256": "c353b984bfc8969fc5724b2bf3546eafca49905b16ae5b636def5fe62e8b73d7"
+  },
+  {
+    "destination": "fpga/current/scripts/archive_hdmi_results.ps1",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\scripts\\archive_hdmi_results.ps1",
+    "source_sha256": "e0bb7a0c5b9e4b55ac9f2dc4fc53b7c96b9307696f60372eb692cb24cdaca48a",
+    "packaged_sha256": "e0bb7a0c5b9e4b55ac9f2dc4fc53b7c96b9307696f60372eb692cb24cdaca48a"
+  },
+  {
+    "destination": "fpga/current/scripts/archive_menu_results.ps1",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\scripts\\archive_menu_results.ps1",
+    "source_sha256": "2b18c21eb26c7cca4e11d68bcad033004bb2cdc6b2cec273cb05a4db8e03f771",
+    "packaged_sha256": "2b18c21eb26c7cca4e11d68bcad033004bb2cdc6b2cec273cb05a4db8e03f771"
+  },
+  {
+    "destination": "fpga/current/scripts/archive_results.ps1",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\scripts\\archive_results.ps1",
+    "source_sha256": "6a8f6a0046a10237a91bbc62720b03708d68c4e8b2ce411989e41d2fb30531cd",
+    "packaged_sha256": "6a8f6a0046a10237a91bbc62720b03708d68c4e8b2ce411989e41d2fb30531cd"
+  },
+  {
+    "destination": "fpga/current/scripts/audit_final_constraints.py",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\scripts\\audit_final_constraints.py",
+    "source_sha256": "da82a6e1cb059a54492d3df68df0b07c0fb143619259abbe0be48d0f61dec589",
+    "packaged_sha256": "da82a6e1cb059a54492d3df68df0b07c0fb143619259abbe0be48d0f61dec589"
+  },
+  {
+    "destination": "fpga/current/scripts/audit_final_pins.py",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\scripts\\audit_final_pins.py",
+    "source_sha256": "ae504f30838d1968f3a8535f452a2fa73b06890fb6d34b2445a718aac3d64112",
+    "packaged_sha256": "ae504f30838d1968f3a8535f452a2fa73b06890fb6d34b2445a718aac3d64112"
+  },
+  {
+    "destination": "fpga/current/scripts/audit_half_rate.py",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\scripts\\audit_half_rate.py",
+    "source_sha256": "df3675d99720777bd658ba9704a729aba170646437f4c55f4e07b7ccd9070a82",
+    "packaged_sha256": "df3675d99720777bd658ba9704a729aba170646437f4c55f4e07b7ccd9070a82"
+  },
+  {
+    "destination": "fpga/current/scripts/audit_implementation.py",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\scripts\\audit_implementation.py",
+    "source_sha256": "a6e16c47f7e414cc2904e22001feb963df0df4375066baeed9d40debbc36ece2",
+    "packaged_sha256": "a6e16c47f7e414cc2904e22001feb963df0df4375066baeed9d40debbc36ece2"
+  },
+  {
+    "destination": "fpga/current/scripts/audit_pitch_bisection.ps1",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\scripts\\audit_pitch_bisection.ps1",
+    "source_sha256": "8a3cb6eb7a55658928e9cd1ea56e278418bac4145d617019e4122cc8d8327a1f",
+    "packaged_sha256": "8a3cb6eb7a55658928e9cd1ea56e278418bac4145d617019e4122cc8d8327a1f"
+  },
+  {
+    "destination": "fpga/current/scripts/ce_pnr_unresolved_patterns.json",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\scripts\\ce_pnr_unresolved_patterns.json",
+    "source_sha256": "50fc8a952819d98a527b2b642a2a0d2007c9c087b84edd1ed145daea811cb987",
+    "packaged_sha256": "50fc8a952819d98a527b2b642a2a0d2007c9c087b84edd1ed145daea811cb987"
+  },
+  {
+    "destination": "fpga/current/scripts/check_menu_negative.ps1",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\scripts\\check_menu_negative.ps1",
+    "source_sha256": "84a91297c71cbaf58e49053b52056dcf1c0c2eaa66445f03e29b47abdc281ba9",
+    "packaged_sha256": "84a91297c71cbaf58e49053b52056dcf1c0c2eaa66445f03e29b47abdc281ba9"
+  },
+  {
+    "destination": "fpga/current/scripts/check_negative_control.ps1",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\scripts\\check_negative_control.ps1",
+    "source_sha256": "e74623a84045298335f0dbdb3e4573106701c8d3bca07aadbb10430808bb3477",
+    "packaged_sha256": "e74623a84045298335f0dbdb3e4573106701c8d3bca07aadbb10430808bb3477"
+  },
+  {
+    "destination": "fpga/current/scripts/check_pin_negative.ps1",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\scripts\\check_pin_negative.ps1",
+    "source_sha256": "47d7b9fbaea0e84df8199dd6c52a16561d7f380892c67ac17c3fb378f9dbe13a",
+    "packaged_sha256": "47d7b9fbaea0e84df8199dd6c52a16561d7f380892c67ac17c3fb378f9dbe13a"
+  },
+  {
+    "destination": "fpga/current/scripts/classify_timing.py",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\scripts\\classify_timing.py",
+    "source_sha256": "43afdcec39244e2e6b4f34ba1f3c534e4a7a4a9d4e389ec9185dc51a9610e961",
+    "packaged_sha256": "43afdcec39244e2e6b4f34ba1f3c534e4a7a4a9d4e389ec9185dc51a9610e961"
+  },
+  {
+    "destination": "fpga/current/scripts/collect_acceptance.py",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\scripts\\collect_acceptance.py",
+    "source_sha256": "9fabe511b759bb583294411c66e2e720133a52286190c8ad4e486e9eeccef016",
+    "packaged_sha256": "9fabe511b759bb583294411c66e2e720133a52286190c8ad4e486e9eeccef016"
+  },
+  {
+    "destination": "fpga/current/scripts/compact_queries.py",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\scripts\\compact_queries.py",
+    "source_sha256": "c2deafd3a3528bff74b634a5090c54ddaa4750d96ccc9762d24b8bfd1f0a867d",
+    "packaged_sha256": "c2deafd3a3528bff74b634a5090c54ddaa4750d96ccc9762d24b8bfd1f0a867d"
+  },
+  {
+    "destination": "fpga/current/scripts/generate_hdmi_plls.tcl",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\scripts\\generate_hdmi_plls.tcl",
+    "source_sha256": "9b6af0c4ef22ff3a942e44061e3405df4eb80d790563f6624c778151406aa212",
+    "packaged_sha256": "9b6af0c4ef22ff3a942e44061e3405df4eb80d790563f6624c778151406aa212"
+  },
+  {
+    "destination": "fpga/current/scripts/generate_keyboard_glyphs.py",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\scripts\\generate_keyboard_glyphs.py",
+    "source_sha256": "b5f0335450b2627d75e0c669a2b1f2ee79ff33fccd1970b516a8d2ee6b2296d7",
+    "packaged_sha256": "b5f0335450b2627d75e0c669a2b1f2ee79ff33fccd1970b516a8d2ee6b2296d7"
+  },
+  {
+    "destination": "fpga/current/scripts/half_rate_transform.py",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\scripts\\half_rate_transform.py",
+    "source_sha256": "6664d05a7a0e33065c22e98555734c8a65445d3e6dfbf3d7d5c3398ae918acf1",
+    "packaged_sha256": "6664d05a7a0e33065c22e98555734c8a65445d3e6dfbf3d7d5c3398ae918acf1"
+  },
+  {
+    "destination": "fpga/current/scripts/pnr_only.tcl",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\scripts\\pnr_only.tcl",
+    "source_sha256": "60c30a3e45a458d5b324dd11fa7ed25385d8cd70f6d577af85a7eb8717445389",
+    "packaged_sha256": "60c30a3e45a458d5b324dd11fa7ed25385d8cd70f6d577af85a7eb8717445389"
+  },
+  {
+    "destination": "fpga/current/scripts/prepare_constraint_build.ps1",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\scripts\\prepare_constraint_build.ps1",
+    "source_sha256": "5b984909e9b337d35cc576f027940e2ec3e8d2ec015d1a9ae66cc1c18969784d",
+    "packaged_sha256": "5b984909e9b337d35cc576f027940e2ec3e8d2ec015d1a9ae66cc1c18969784d"
+  },
+  {
+    "destination": "fpga/current/scripts/prepare_hdmi_constraints.ps1",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\scripts\\prepare_hdmi_constraints.ps1",
+    "source_sha256": "f1825e6e3c8a5cf3f0e89301973cd1ae680fe955c971c665ee33d197be9e9bbc",
+    "packaged_sha256": "f1825e6e3c8a5cf3f0e89301973cd1ae680fe955c971c665ee33d197be9e9bbc"
+  },
+  {
+    "destination": "fpga/current/scripts/prepare_menu_build.ps1",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\scripts\\prepare_menu_build.ps1",
+    "source_sha256": "6fe6d912f6f1dc9e6b0a53c954cf0ff9754c7f77ff80d34900860297c841ae73",
+    "packaged_sha256": "6fe6d912f6f1dc9e6b0a53c954cf0ff9754c7f77ff80d34900860297c841ae73"
+  },
+  {
+    "destination": "fpga/current/scripts/prepare_restart.ps1",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\scripts\\prepare_restart.ps1",
+    "source_sha256": "e12c539cb7a64b4cea421920077761bd28e4d679af50531c330d5d046a0fced4",
+    "packaged_sha256": "e12c539cb7a64b4cea421920077761bd28e4d679af50531c330d5d046a0fced4"
+  },
+  {
+    "destination": "fpga/current/scripts/probe_pll.tcl",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\scripts\\probe_pll.tcl",
+    "source_sha256": "2ad88992c06cf69ac136ca76a1f4883b7307fb6adde1c5fb7587059f03dae76f",
+    "packaged_sha256": "2ad88992c06cf69ac136ca76a1f4883b7307fb6adde1c5fb7587059f03dae76f"
+  },
+  {
+    "destination": "fpga/current/scripts/prove_menu_mask.py",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\scripts\\prove_menu_mask.py",
+    "source_sha256": "01598301182d1222628fdeda88b22f9d96ea8309386463945dab9e1dffb11e13",
+    "packaged_sha256": "01598301182d1222628fdeda88b22f9d96ea8309386463945dab9e1dffb11e13"
+  },
+  {
+    "destination": "fpga/current/scripts/retained_constraint_omissions.json",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\scripts\\retained_constraint_omissions.json",
+    "source_sha256": "e35b051deee4d043e3d8e2ce551890cf65883dcf6daf37ca29000e8a4fee2b69",
+    "packaged_sha256": "e35b051deee4d043e3d8e2ce551890cf65883dcf6daf37ca29000e8a4fee2b69"
+  },
+  {
+    "destination": "fpga/current/scripts/syn_only.tcl",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\scripts\\syn_only.tcl",
+    "source_sha256": "d410035f7a500f52668d6b844f47fc0ae45149f32039385b56eba80fe93af86c",
+    "packaged_sha256": "d410035f7a500f52668d6b844f47fc0ae45149f32039385b56eba80fe93af86c"
+  },
+  {
+    "destination": "fpga/current/scripts/sync_and_test.ps1",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\scripts\\sync_and_test.ps1",
+    "source_sha256": "d1fd0f2d756cf272211cd2749e6f511c499755cb7706e5c29b96e0b986ccef40",
+    "packaged_sha256": "d1fd0f2d756cf272211cd2749e6f511c499755cb7706e5c29b96e0b986ccef40"
+  },
+  {
+    "destination": "fpga/current/scripts/test_compact_queries.py",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\scripts\\test_compact_queries.py",
+    "source_sha256": "ede730fa522efce028b1475aa1840528014082c329b459b9e39072d2fc9aad42",
+    "packaged_sha256": "ede730fa522efce028b1475aa1840528014082c329b459b9e39072d2fc9aad42"
+  },
+  {
+    "destination": "fpga/current/scripts/test_half_rate_audit.py",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\scripts\\test_half_rate_audit.py",
+    "source_sha256": "c9fc79fe6f18a8e71069ffc7738f8b6e989fc5c00be0b8547008e8e3e881e13e",
+    "packaged_sha256": "c9fc79fe6f18a8e71069ffc7738f8b6e989fc5c00be0b8547008e8e3e881e13e"
+  },
+  {
+    "destination": "fpga/current/scripts/test_half_tick_hierarchy.py",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\scripts\\test_half_tick_hierarchy.py",
+    "source_sha256": "f162aa293dca90ea1c7d4b2b9468ba4b95db7de2b4bf8241d03fcd66c95ba674",
+    "packaged_sha256": "f162aa293dca90ea1c7d4b2b9468ba4b95db7de2b4bf8241d03fcd66c95ba674"
+  },
+  {
+    "destination": "fpga/current/scripts/verify_restart_netlist.py",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\scripts\\verify_restart_netlist.py",
+    "source_sha256": "9639091d6f0e9ab84c06d6973a0cc79af88ccca901bd3bc0b8907aa4284f2d9a",
+    "packaged_sha256": "9639091d6f0e9ab84c06d6973a0cc79af88ccca901bd3bc0b8907aa4284f2d9a"
+  },
+  {
+    "destination": "fpga/current/scripts/watch_build.ps1",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\scripts\\watch_build.ps1",
+    "source_sha256": "439ea0f106ec4406d6ca0da45dac623cd03ee546a58f251adc5f79a4b045593f",
+    "packaged_sha256": "439ea0f106ec4406d6ca0da45dac623cd03ee546a58f251adc5f79a4b045593f"
+  },
+  {
+    "destination": "fpga/current/sim/baseline_audio_effects.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\baseline_audio_effects.v",
+    "source_sha256": "645bc2d0691b2424a21abb64c99c6e17e67f72d6c48ca959dc21c277795c619b",
+    "packaged_sha256": "645bc2d0691b2424a21abb64c99c6e17e67f72d6c48ca959dc21c277795c619b"
+  },
+  {
+    "destination": "fpga/current/sim/baseline_audio_voice_mixer.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\baseline_audio_voice_mixer.v",
+    "source_sha256": "001f5841e75155613d8d077536746e6f303675d7b55dafd13b01a898eee283d2",
+    "packaged_sha256": "001f5841e75155613d8d077536746e6f303675d7b55dafd13b01a898eee283d2"
+  },
+  {
+    "destination": "fpga/current/sim/baseline_expression_mixer.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\baseline_expression_mixer.v",
+    "source_sha256": "ef1bea8aeeb03a4dd1c27af468043e0cd75fa09d0b8290d75118c8085fc17ae8",
+    "packaged_sha256": "ef1bea8aeeb03a4dd1c27af468043e0cd75fa09d0b8290d75118c8085fc17ae8"
+  },
+  {
+    "destination": "fpga/current/sim/baseline_integration_control.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\baseline_integration_control.v",
+    "source_sha256": "684b206e4e32c294da7d2688183b3e2c4dbd6a02daea661252f96c4a32d28679",
+    "packaged_sha256": "684b206e4e32c294da7d2688183b3e2c4dbd6a02daea661252f96c4a32d28679"
+  },
+  {
+    "destination": "fpga/current/sim/baseline_integration_top.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\baseline_integration_top.v",
+    "source_sha256": "801d4eeaeb34a7b03dbc54409ef874899ae57b0d794c0bb209f2d49581a5aec4",
+    "packaged_sha256": "801d4eeaeb34a7b03dbc54409ef874899ae57b0d794c0bb209f2d49581a5aec4"
+  },
+  {
+    "destination": "fpga/current/sim/baseline_piano_wave.vh",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\baseline_piano_wave.vh",
+    "source_sha256": "a3a24f84714bf7251534e3a9a1912a8100304770dedec77bb0880d28091e9afc",
+    "packaged_sha256": "a3a24f84714bf7251534e3a9a1912a8100304770dedec77bb0880d28091e9afc"
+  },
+  {
+    "destination": "fpga/current/sim/control_vectors/cases.vh",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\control_vectors\\cases.vh",
+    "source_sha256": "6c53c0eea894cf197d8f8e50d978f149cb5fb55eea7fac1edab557396ed7de32",
+    "packaged_sha256": "6c53c0eea894cf197d8f8e50d978f149cb5fb55eea7fac1edab557396ed7de32"
+  },
+  {
+    "destination": "fpga/current/sim/control_vectors/pcm_control.vh",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\control_vectors\\pcm_control.vh",
+    "source_sha256": "779f51fd1438d7f6f9a6456da5ab354681e5d30a8628d35090e4f13493b2b840",
+    "packaged_sha256": "779f51fd1438d7f6f9a6456da5ab354681e5d30a8628d35090e4f13493b2b840"
+  },
+  {
+    "destination": "fpga/current/sim/control_vectors/pcm_upload.vh",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\control_vectors\\pcm_upload.vh",
+    "source_sha256": "a6a0040d9bef14b8dc8e37863aacb1983b38e0e2f6877efc677e793f5d1cf067",
+    "packaged_sha256": "a6a0040d9bef14b8dc8e37863aacb1983b38e0e2f6877efc677e793f5d1cf067"
+  },
+  {
+    "destination": "fpga/current/sim/gt911_bus_tasks.vh",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\gt911_bus_tasks.vh",
+    "source_sha256": "8aef8b9eda5083d40d5a0b04cb201fbe3eaad1fb2f16f3ddab510c7ef7ae2c14",
+    "packaged_sha256": "8aef8b9eda5083d40d5a0b04cb201fbe3eaad1fb2f16f3ddab510c7ef7ae2c14"
+  },
+  {
+    "destination": "fpga/current/sim/hdmi_functional_stubs.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\hdmi_functional_stubs.v",
+    "source_sha256": "0ed81726d32f1957a89598654b0e334a605a0085fe2232706122b6dab1dd36d5",
+    "packaged_sha256": "0ed81726d32f1957a89598654b0e334a605a0085fe2232706122b6dab1dd36d5"
+  },
+  {
+    "destination": "fpga/current/sim/link_vectors/cases.vh",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\link_vectors\\cases.vh",
+    "source_sha256": "952a1949d9bddc72a0b7cfff9712c68fea019f81bcaabc3258af87e3c1f3ff1a",
+    "packaged_sha256": "952a1949d9bddc72a0b7cfff9712c68fea019f81bcaabc3258af87e3c1f3ff1a"
+  },
+  {
+    "destination": "fpga/current/sim/link_vectors/ode.hex",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\link_vectors\\ode.hex",
+    "source_sha256": "e645fde8f0ae91703161b48e830042b0dff3af6f3c237250e3075aa0468ab1ba",
+    "packaged_sha256": "e645fde8f0ae91703161b48e830042b0dff3af6f3c237250e3075aa0468ab1ba"
+  },
+  {
+    "destination": "fpga/current/sim/performance_expression_probe.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\performance_expression_probe.v",
+    "source_sha256": "805efc41ca300c02ab9d4d6b1dc79f18e12bac3128b0b278071855aaffe6e398",
+    "packaged_sha256": "805efc41ca300c02ab9d4d6b1dc79f18e12bac3128b0b278071855aaffe6e398"
+  },
+  {
+    "destination": "fpga/current/sim/playback_vectors/alternate.hex",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\playback_vectors\\alternate.hex",
+    "source_sha256": "90ca633228c71367211214cb8b079a2d632183da11155765ec998b3253f82e3a",
+    "packaged_sha256": "90ca633228c71367211214cb8b079a2d632183da11155765ec998b3253f82e3a"
+  },
+  {
+    "destination": "fpga/current/sim/playback_vectors/constants.vh",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\playback_vectors\\constants.vh",
+    "source_sha256": "c1fdba41c66314e813728a6c17eb08580db50c26bf1f54da115855eb5d25e05f",
+    "packaged_sha256": "c1fdba41c66314e813728a6c17eb08580db50c26bf1f54da115855eb5d25e05f"
+  },
+  {
+    "destination": "fpga/current/sim/playback_vectors/uart_upload.vh",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\playback_vectors\\uart_upload.vh",
+    "source_sha256": "0a463efc191290c6facd419ac5a2c2972a959f822c6f3754d838ecfaeb955823",
+    "packaged_sha256": "0a463efc191290c6facd419ac5a2c2972a959f822c6f3754d838ecfaeb955823"
+  },
+  {
+    "destination": "fpga/current/sim/production_vectors/commands.vh",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\production_vectors\\commands.vh",
+    "source_sha256": "cb335c0ecc43cf0359a689f7df4a274be5cfadaa367e87f4719d8604e3c56f17",
+    "packaged_sha256": "cb335c0ecc43cf0359a689f7df4a274be5cfadaa367e87f4719d8604e3c56f17"
+  },
+  {
+    "destination": "fpga/current/sim/run_dynamic_regression.ps1",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\run_dynamic_regression.ps1",
+    "source_sha256": "52d4b115ad1914a6f3cb0a92bf8c8c2bd57439949cf0308488ec1c7ff48b2ab6",
+    "packaged_sha256": "52d4b115ad1914a6f3cb0a92bf8c8c2bd57439949cf0308488ec1c7ff48b2ab6"
+  },
+  {
+    "destination": "fpga/current/sim/run_hdmi_phy.ps1",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\run_hdmi_phy.ps1",
+    "source_sha256": "7535a3000a132d2d6d1e82f63599412ce1585cf80a3c1242471ad806ce2fa8e5",
+    "packaged_sha256": "7535a3000a132d2d6d1e82f63599412ce1585cf80a3c1242471ad806ce2fa8e5"
+  },
+  {
+    "destination": "fpga/current/sim/run_latency_regression.ps1",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\run_latency_regression.ps1",
+    "source_sha256": "635bc0e846ed92414282a97a2f370305e2d043b719951d97326a26f24b374510",
+    "packaged_sha256": "635bc0e846ed92414282a97a2f370305e2d043b719951d97326a26f24b374510"
+  },
+  {
+    "destination": "fpga/current/sim/shared_vectors/mixed.vh",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\shared_vectors\\mixed.vh",
+    "source_sha256": "5c426f79674ca9efe63f6c4ec9e77ca203b80cd2e61f3a7db554ac4df8d3d57a",
+    "packaged_sha256": "5c426f79674ca9efe63f6c4ec9e77ca203b80cd2e61f3a7db554ac4df8d3d57a"
+  },
+  {
+    "destination": "fpga/current/sim/stage12_polyphony_bank_32.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\stage12_polyphony_bank_32.v",
+    "source_sha256": "5d3b68a8f8c18730eca42097e0fc919c3ed1e706a333311a16d07d6262055290",
+    "packaged_sha256": "5d3b68a8f8c18730eca42097e0fc919c3ed1e706a333311a16d07d6262055290"
+  },
+  {
+    "destination": "fpga/current/sim/stage15_polyphony_bank_32.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\stage15_polyphony_bank_32.v",
+    "source_sha256": "adbc3d93cc08d277339eb23d8182c3ad8b70c3d678fddcec1401e5315aff85a8",
+    "packaged_sha256": "adbc3d93cc08d277339eb23d8182c3ad8b70c3d678fddcec1401e5315aff85a8"
+  },
+  {
+    "destination": "fpga/current/sim/stage16_polyphony_bank_32.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\stage16_polyphony_bank_32.v",
+    "source_sha256": "c9371e8eed7894e465137b6308d2c995cf436e3a201070b43847f5e9c9ab11aa",
+    "packaged_sha256": "c9371e8eed7894e465137b6308d2c995cf436e3a201070b43847f5e9c9ab11aa"
+  },
+  {
+    "destination": "fpga/current/sim/stage18_polyphony_bank_32.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\stage18_polyphony_bank_32.v",
+    "source_sha256": "c4f3417668de2d807fddd35bb9a18cd3590c481845032c62f2c6da99eba4f07a",
+    "packaged_sha256": "c4f3417668de2d807fddd35bb9a18cd3590c481845032c62f2c6da99eba4f07a"
+  },
+  {
+    "destination": "fpga/current/sim/stage19_polyphony_bank_32.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\stage19_polyphony_bank_32.v",
+    "source_sha256": "3a6d51003c690085090c54285d4c9c2f1fd544b01cef5e1e9898cceefe916cd0",
+    "packaged_sha256": "3a6d51003c690085090c54285d4c9c2f1fd544b01cef5e1e9898cceefe916cd0"
+  },
+  {
+    "destination": "fpga/current/sim/stage20_physical_string_voice.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\stage20_physical_string_voice.v",
+    "source_sha256": "ba64b42c12abf970bba07538e8f06b5d2736a7dfa237a8b7f9a18f2fff91b3fb",
+    "packaged_sha256": "ba64b42c12abf970bba07538e8f06b5d2736a7dfa237a8b7f9a18f2fff91b3fb"
+  },
+  {
+    "destination": "fpga/current/sim/stage22_audio_effects.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\stage22_audio_effects.v",
+    "source_sha256": "6d60a0d6ee0e446d97718666542ceedeb42eae85584ee4a3f269b21cd545f30c",
+    "packaged_sha256": "6d60a0d6ee0e446d97718666542ceedeb42eae85584ee4a3f269b21cd545f30c"
+  },
+  {
+    "destination": "fpga/current/sim/stage22_physical_string_voice.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\stage22_physical_string_voice.v",
+    "source_sha256": "ebbe7f8b533f347faa486c5914ba3940290c63b3d8e1cf5f426e57c6e903f3a2",
+    "packaged_sha256": "ebbe7f8b533f347faa486c5914ba3940290c63b3d8e1cf5f426e57c6e903f3a2"
+  },
+  {
+    "destination": "fpga/current/sim/stage25_physical_string_voice.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\stage25_physical_string_voice.v",
+    "source_sha256": "0b7b850fe1ec60166e712ab737972cc6ee829b22d7259c97fb1c3bb9ff596ffe",
+    "packaged_sha256": "0b7b850fe1ec60166e712ab737972cc6ee829b22d7259c97fb1c3bb9ff596ffe"
+  },
+  {
+    "destination": "fpga/current/sim/stage25_string_tuning.vh",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\stage25_string_tuning.vh",
+    "source_sha256": "5d9e4d9cde08e98a2352706b59d85adfc9b29ac5ac59c1f8c95f3e03639da85f",
+    "packaged_sha256": "5d9e4d9cde08e98a2352706b59d85adfc9b29ac5ac59c1f8c95f3e03639da85f"
+  },
+  {
+    "destination": "fpga/current/sim/stage29_instrument_control.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\stage29_instrument_control.v",
+    "source_sha256": "1ade3b36224f1e50cfcb1dbe9b2fc8ddf922fcdd1b686cedd8fcc46dd8e6e4f8",
+    "packaged_sha256": "1ade3b36224f1e50cfcb1dbe9b2fc8ddf922fcdd1b686cedd8fcc46dd8e6e4f8"
+  },
+  {
+    "destination": "fpga/current/sim/stage5_audio_voice_mixer.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\stage5_audio_voice_mixer.v",
+    "source_sha256": "755a85942696e1c245eb1dad311dee6c6a2f15e0c3ba40474d79ade12a9fe0e5",
+    "packaged_sha256": "755a85942696e1c245eb1dad311dee6c6a2f15e0c3ba40474d79ade12a9fe0e5"
+  },
+  {
+    "destination": "fpga/current/sim/stage51_song_upload_frame_rx.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\stage51_song_upload_frame_rx.v",
+    "source_sha256": "588c2f4162916dedbc8c03371af56039f3a5f0c547e6571bd066fe09495ac461",
+    "packaged_sha256": "588c2f4162916dedbc8c03371af56039f3a5f0c547e6571bd066fe09495ac461"
+  },
+  {
+    "destination": "fpga/current/sim/stage51_song_upload_parse.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\stage51_song_upload_parse.v",
+    "source_sha256": "7f9f2effe7d0ceef503f94a35c32a46861e9a541271281e8b06b385a413e0a60",
+    "packaged_sha256": "7f9f2effe7d0ceef503f94a35c32a46861e9a541271281e8b06b385a413e0a60"
+  },
+  {
+    "destination": "fpga/current/sim/stage54_polyphony_bank_32.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\stage54_polyphony_bank_32.v",
+    "source_sha256": "b140bdf56ffdb67e47bcbe816e21af9af98e7804641dbf18a1542b14add88358",
+    "packaged_sha256": "b140bdf56ffdb67e47bcbe816e21af9af98e7804641dbf18a1542b14add88358"
+  },
+  {
+    "destination": "fpga/current/sim/stage54c_song_upload_reply.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\stage54c_song_upload_reply.v",
+    "source_sha256": "c402d4ae03be5ba8ebc8e4fbc011a0d86fe77393f002a3484a3a574b220e2fef",
+    "packaged_sha256": "c402d4ae03be5ba8ebc8e4fbc011a0d86fe77393f002a3484a3a574b220e2fef"
+  },
+  {
+    "destination": "fpga/current/sim/stage54e_polyphony_bank_32.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\stage54e_polyphony_bank_32.v",
+    "source_sha256": "4040dbc991c29da3c7a616b51e6c7d51b47b48e194de9b3cf7a704b645bae2aa",
+    "packaged_sha256": "4040dbc991c29da3c7a616b51e6c7d51b47b48e194de9b3cf7a704b645bae2aa"
+  },
+  {
+    "destination": "fpga/current/sim/stage67_panel_reference.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\stage67_panel_reference.v",
+    "source_sha256": "e7c5c6cc9f4b7ba6023ef46de970d8467d8788c8bbce25ca5b3c6fa77d5f62bc",
+    "packaged_sha256": "e7c5c6cc9f4b7ba6023ef46de970d8467d8788c8bbce25ca5b3c6fa77d5f62bc"
+  },
+  {
+    "destination": "fpga/current/sim/stage9_piano_wave.vh",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\stage9_piano_wave.vh",
+    "source_sha256": "7b08138dfb7d561d5ba6c8cc1e803516b464344b1bd6de29cc3588ae57618449",
+    "packaged_sha256": "7b08138dfb7d561d5ba6c8cc1e803516b464344b1bd6de29cc3588ae57618449"
+  },
+  {
+    "destination": "fpga/current/sim/stage9_pitch_expression.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\stage9_pitch_expression.v",
+    "source_sha256": "94881fc35277f581791b4a3628b485a46d89f26fe4be18f0def9c3502dfc8b52",
+    "packaged_sha256": "94881fc35277f581791b4a3628b485a46d89f26fe4be18f0def9c3502dfc8b52"
+  },
+  {
+    "destination": "fpga/current/sim/stage9_polyphony_bank_32.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\stage9_polyphony_bank_32.v",
+    "source_sha256": "a01c9d06754f158eb8f8df6995d98f8e62602d8dc6016a59d5107606ca4f8210",
+    "packaged_sha256": "a01c9d06754f158eb8f8df6995d98f8e62602d8dc6016a59d5107606ca4f8210"
+  },
+  {
+    "destination": "fpga/current/sim/tb_additive_bank_32.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_additive_bank_32.v",
+    "source_sha256": "eefb3f4d2ec129db499bceb42d4807a6a1feba5f287887ea3cde1270795abfca",
+    "packaged_sha256": "eefb3f4d2ec129db499bceb42d4807a6a1feba5f287887ea3cde1270795abfca"
+  },
+  {
+    "destination": "fpga/current/sim/tb_allocator_exact.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_allocator_exact.v",
+    "source_sha256": "9c50b4dbf3c4676c9db83cafc8bef338764348032d78a96dba736b0719fc097a",
+    "packaged_sha256": "9c50b4dbf3c4676c9db83cafc8bef338764348032d78a96dba736b0719fc097a"
+  },
+  {
+    "destination": "fpga/current/sim/tb_audio_effects.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_audio_effects.v",
+    "source_sha256": "e2dced1cf465ade9b80ac9420810060ddc23f2196f86ba9eb9ac6ff323301f2a",
+    "packaged_sha256": "e2dced1cf465ade9b80ac9420810060ddc23f2196f86ba9eb9ac6ff323301f2a"
+  },
+  {
+    "destination": "fpga/current/sim/tb_audio_pair_cdc.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_audio_pair_cdc.v",
+    "source_sha256": "a9652ac45ddf0f2a594fad9e1bfed7ceccb3536886ef36ea8bb01e9440ba679a",
+    "packaged_sha256": "a9652ac45ddf0f2a594fad9e1bfed7ceccb3536886ef36ea8bb01e9440ba679a"
+  },
+  {
+    "destination": "fpga/current/sim/tb_audio_sample_cdc.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_audio_sample_cdc.v",
+    "source_sha256": "7e9b8145324d40449210d6e5084682e370c17a39244499cbcab72291e94bf59c",
+    "packaged_sha256": "7e9b8145324d40449210d6e5084682e370c17a39244499cbcab72291e94bf59c"
+  },
+  {
+    "destination": "fpga/current/sim/tb_audio_scope_uart.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_audio_scope_uart.sv",
+    "source_sha256": "6c7ebbb35b3bbe8c1fe5cbe4cdf113af00ae5e38ed8b93971ff79f9700937f04",
+    "packaged_sha256": "6c7ebbb35b3bbe8c1fe5cbe4cdf113af00ae5e38ed8b93971ff79f9700937f04"
+  },
+  {
+    "destination": "fpga/current/sim/tb_audio_voice_mixer.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_audio_voice_mixer.v",
+    "source_sha256": "ae4836f6f88b4a6cfb60fe58c7d2af050d15e94a8260cd27ab12e1015a6bdbdb",
+    "packaged_sha256": "ae4836f6f88b4a6cfb60fe58c7d2af050d15e94a8260cd27ab12e1015a6bdbdb"
+  },
+  {
+    "destination": "fpga/current/sim/tb_concurrent_engines.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_concurrent_engines.v",
+    "source_sha256": "0b471264e62f1ea71c7c8a80154e65670887cb515d4acee7992bbfefc51d5b2f",
+    "packaged_sha256": "0b471264e62f1ea71c7c8a80154e65670887cb515d4acee7992bbfefc51d5b2f"
+  },
+  {
+    "destination": "fpga/current/sim/tb_concurrent_entry.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_concurrent_entry.v",
+    "source_sha256": "f70064c0c3197b48cc779ac4495868372a0babd3e9ec63f2cb9dbfe261e9d663",
+    "packaged_sha256": "f70064c0c3197b48cc779ac4495868372a0babd3e9ec63f2cb9dbfe261e9d663"
+  },
+  {
+    "destination": "fpga/current/sim/tb_concurrent_top.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_concurrent_top.v",
+    "source_sha256": "40476b006468b2d1d3ccbb44666be5a94bdaec97764f07450b63489f7fd2d6b3",
+    "packaged_sha256": "40476b006468b2d1d3ccbb44666be5a94bdaec97764f07450b63489f7fd2d6b3"
+  },
+  {
+    "destination": "fpga/current/sim/tb_continuous_expression.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_continuous_expression.v",
+    "source_sha256": "1048664fd1336e8631b35ca5d4e3e7e9850221f910c7f2bf662fb810ac7162b0",
+    "packaged_sha256": "1048664fd1336e8631b35ca5d4e3e7e9850221f910c7f2bf662fb810ac7162b0"
+  },
+  {
+    "destination": "fpga/current/sim/tb_dds_control_pipeline.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_dds_control_pipeline.v",
+    "source_sha256": "5aeb485eb10b61a1567ee9f0cfd08d5d15f4b803efc9fac176fae1282e4a40df",
+    "packaged_sha256": "5aeb485eb10b61a1567ee9f0cfd08d5d15f4b803efc9fac176fae1282e4a40df"
+  },
+  {
+    "destination": "fpga/current/sim/tb_dynamic_strings8.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_dynamic_strings8.v",
+    "source_sha256": "8300ec9e951dc404d196fa3afd7a339f71bdd84faf73b532975fce419ecfb722",
+    "packaged_sha256": "8300ec9e951dc404d196fa3afd7a339f71bdd84faf73b532975fce419ecfb722"
+  },
+  {
+    "destination": "fpga/current/sim/tb_effect_strength.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_effect_strength.v",
+    "source_sha256": "122ce55416d46e5eb8c76fb3171c01108c587e7e5cedefd68f5af2366ec1613a",
+    "packaged_sha256": "122ce55416d46e5eb8c76fb3171c01108c587e7e5cedefd68f5af2366ec1613a"
+  },
+  {
+    "destination": "fpga/current/sim/tb_effect_transition_top.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_effect_transition_top.v",
+    "source_sha256": "18ae12e412a91d1bab1cf406e9c4b34a015bc30b4517bb3e734967ca4ca2538d",
+    "packaged_sha256": "18ae12e412a91d1bab1cf406e9c4b34a015bc30b4517bb3e734967ca4ca2538d"
+  },
+  {
+    "destination": "fpga/current/sim/tb_effect_transition.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_effect_transition.v",
+    "source_sha256": "025c42815f314e21187ef690b6d7677661b54f1449d092903407069da209babc",
+    "packaged_sha256": "025c42815f314e21187ef690b6d7677661b54f1449d092903407069da209babc"
+  },
+  {
+    "destination": "fpga/current/sim/tb_effects_audition.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_effects_audition.v",
+    "source_sha256": "8381a9cf560ff82de17aaceb6839de7d3af0de008a4c5a7fde58cec5750ea56d",
+    "packaged_sha256": "8381a9cf560ff82de17aaceb6839de7d3af0de008a4c5a7fde58cec5750ea56d"
+  },
+  {
+    "destination": "fpga/current/sim/tb_expression_audition.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_expression_audition.v",
+    "source_sha256": "f8b9a9172fa19eea736b34ba85f8e8c7c67e9efee75c25c829a1be0f9b2167eb",
+    "packaged_sha256": "f8b9a9172fa19eea736b34ba85f8e8c7c67e9efee75c25c829a1be0f9b2167eb"
+  },
+  {
+    "destination": "fpga/current/sim/tb_expression_slew.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_expression_slew.v",
+    "source_sha256": "d904d0a402338207c7b6f9dd3b2d87f84e9f7a58b37984b0d7e45fc48d8ecccb",
+    "packaged_sha256": "d904d0a402338207c7b6f9dd3b2d87f84e9f7a58b37984b0d7e45fc48d8ecccb"
+  },
+  {
+    "destination": "fpga/current/sim/tb_fsr_instrument.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_fsr_instrument.v",
+    "source_sha256": "e7f469c6515f49859607b3d7e3868b6df99dd1cfe18c8f64f6d60abeee692a0a",
+    "packaged_sha256": "e7f469c6515f49859607b3d7e3868b6df99dd1cfe18c8f64f6d60abeee692a0a"
+  },
+  {
+    "destination": "fpga/current/sim/tb_fsr_production_latency.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_fsr_production_latency.v",
+    "source_sha256": "1227c6bd747b486c8f2c4cd6fcee9d8c4c53615ddb59621d2f5b6dd0df05f4f3",
+    "packaged_sha256": "1227c6bd747b486c8f2c4cd6fcee9d8c4c53615ddb59621d2f5b6dd0df05f4f3"
+  },
+  {
+    "destination": "fpga/current/sim/tb_gt911_reset.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_gt911_reset.sv",
+    "source_sha256": "28e6b9b8fca84e1dd0158ecd4007e6aead4f0a6209410424a216b11253ca08a8",
+    "packaged_sha256": "28e6b9b8fca84e1dd0158ecd4007e6aead4f0a6209410424a216b11253ca08a8"
+  },
+  {
+    "destination": "fpga/current/sim/tb_gt911_touch.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_gt911_touch.sv",
+    "source_sha256": "54c5cd0eeae9d43a5e7bdf1cfd9471e216a62cc68ba8a085e6884ae1d62f36f3",
+    "packaged_sha256": "54c5cd0eeae9d43a5e7bdf1cfd9471e216a62cc68ba8a085e6884ae1d62f36f3"
+  },
+  {
+    "destination": "fpga/current/sim/tb_half_rate_datapaths.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_half_rate_datapaths.sv",
+    "source_sha256": "02082af073d38a44a07743f0890af1155de2d15a1e7e0271ba3cd4644b7744af",
+    "packaged_sha256": "02082af073d38a44a07743f0890af1155de2d15a1e7e0271ba3cd4644b7744af"
+  },
+  {
+    "destination": "fpga/current/sim/tb_hc05_link.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_hc05_link.sv",
+    "source_sha256": "1f8888287c0516c40409fae521c0c156149982a485d6843f085eb933f71ffa4a",
+    "packaged_sha256": "1f8888287c0516c40409fae521c0c156149982a485d6843f085eb933f71ffa4a"
+  },
+  {
+    "destination": "fpga/current/sim/tb_hc05_top.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_hc05_top.sv",
+    "source_sha256": "a739432bde0cec41a444ac4e3c2660e835cd60604b2f79c98c5f674e7cb141f9",
+    "packaged_sha256": "a739432bde0cec41a444ac4e3c2660e835cd60604b2f79c98c5f674e7cb141f9"
+  },
+  {
+    "destination": "fpga/current/sim/tb_hdmi_clock_startup.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_hdmi_clock_startup.sv",
+    "source_sha256": "01d6822cca2267aaf7cb325e91ef5f7de2b8f4bebecf652c7f8e52f9402a4823",
+    "packaged_sha256": "01d6822cca2267aaf7cb325e91ef5f7de2b8f4bebecf652c7f8e52f9402a4823"
+  },
+  {
+    "destination": "fpga/current/sim/tb_hdmi_instrument_pins.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_hdmi_instrument_pins.sv",
+    "source_sha256": "695eccac037fd69204d99e354b3dd73516ecb023bb4a34e5565ab98a069336fe",
+    "packaged_sha256": "695eccac037fd69204d99e354b3dd73516ecb023bb4a34e5565ab98a069336fe"
+  },
+  {
+    "destination": "fpga/current/sim/tb_hdmi_panel_equivalence.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_hdmi_panel_equivalence.sv",
+    "source_sha256": "ff4b8ea75f0124c18c39e0f5d3a8485d9e8b4cdd1091ab0f3a0fd480098e8c66",
+    "packaged_sha256": "ff4b8ea75f0124c18c39e0f5d3a8485d9e8b4cdd1091ab0f3a0fd480098e8c66"
+  },
+  {
+    "destination": "fpga/current/sim/tb_hdmi_serializer.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_hdmi_serializer.sv",
+    "source_sha256": "d657fdece78c6ca7a5d65d43048c1e7421dc4ce547c65b3f901a14deea049462",
+    "packaged_sha256": "d657fdece78c6ca7a5d65d43048c1e7421dc4ce547c65b3f901a14deea049462"
+  },
+  {
+    "destination": "fpga/current/sim/tb_hdmi_startup_contract.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_hdmi_startup_contract.sv",
+    "source_sha256": "2d806097e72ec10fcb99fb874685a69864f96d2c5349b7f006ae276ba0d22aef",
+    "packaged_sha256": "2d806097e72ec10fcb99fb874685a69864f96d2c5349b7f006ae276ba0d22aef"
+  },
+  {
+    "destination": "fpga/current/sim/tb_hdmi_timing_800x600.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_hdmi_timing_800x600.sv",
+    "source_sha256": "1896a2bd093da6f18e7fb5ffd2299b4d57d551a7c17d86c75c096e492003e7a2",
+    "packaged_sha256": "1896a2bd093da6f18e7fb5ffd2299b4d57d551a7c17d86c75c096e492003e7a2"
+  },
+  {
+    "destination": "fpga/current/sim/tb_i2c_register.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_i2c_register.sv",
+    "source_sha256": "68984894f71aa4045f4fec066d37131986be5e8ef05ca1bb745de7a4b8a733ba",
+    "packaged_sha256": "68984894f71aa4045f4fec066d37131986be5e8ef05ca1bb745de7a4b8a733ba"
+  },
+  {
+    "destination": "fpga/current/sim/tb_instrument_shared_uart.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_instrument_shared_uart.sv",
+    "source_sha256": "3786c0f94dc4ec77d7d78b5225254bf9890739f40caa514d7b20994dde3a19b9",
+    "packaged_sha256": "3786c0f94dc4ec77d7d78b5225254bf9890739f40caa514d7b20994dde3a19b9"
+  },
+  {
+    "destination": "fpga/current/sim/tb_instrumental_envelope.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_instrumental_envelope.sv",
+    "source_sha256": "1f175ece259d0daf78b81b53550cb913f31e09172bfe0334770bc309ea34877e",
+    "packaged_sha256": "1f175ece259d0daf78b81b53550cb913f31e09172bfe0334770bc309ea34877e"
+  },
+  {
+    "destination": "fpga/current/sim/tb_integration_control.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_integration_control.v",
+    "source_sha256": "58bd23cd89c71f6af66bad162d382e2a4fa622f105bd5193b02235fa7a2eb695",
+    "packaged_sha256": "58bd23cd89c71f6af66bad162d382e2a4fa622f105bd5193b02235fa7a2eb695"
+  },
+  {
+    "destination": "fpga/current/sim/tb_integration_routing.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_integration_routing.v",
+    "source_sha256": "0e4be5231885cf29c2b7b17289ab35d149eca971036705adbefa58cbed40dcbf",
+    "packaged_sha256": "0e4be5231885cf29c2b7b17289ab35d149eca971036705adbefa58cbed40dcbf"
+  },
+  {
+    "destination": "fpga/current/sim/tb_keyboard_light_status.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_keyboard_light_status.v",
+    "source_sha256": "88690499eb2652f1499b4860fc37f69e5afa0f687df16454f3656baebe9fba3e",
+    "packaged_sha256": "88690499eb2652f1499b4860fc37f69e5afa0f687df16454f3656baebe9fba3e"
+  },
+  {
+    "destination": "fpga/current/sim/tb_keyboard_modes_menu.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_keyboard_modes_menu.sv",
+    "source_sha256": "361d4e4dc0cd9dcde4a28b37f3bacfedf0aeb11c3aa973d5961b01c52ac39655",
+    "packaged_sha256": "361d4e4dc0cd9dcde4a28b37f3bacfedf0aeb11c3aa973d5961b01c52ac39655"
+  },
+  {
+    "destination": "fpga/current/sim/tb_keyboard_modes_pins.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_keyboard_modes_pins.sv",
+    "source_sha256": "675a048ea0add7b3a5689be7901b002a61a3e42aeb67c83411fef8349523e5b9",
+    "packaged_sha256": "675a048ea0add7b3a5689be7901b002a61a3e42aeb67c83411fef8349523e5b9"
+  },
+  {
+    "destination": "fpga/current/sim/tb_keyboard_modes_pitch.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_keyboard_modes_pitch.sv",
+    "source_sha256": "537a4f1b24debad5dabe3bbfec5d3a7b324849b2af3908bb9c0cfdbeb2a4d38d",
+    "packaged_sha256": "537a4f1b24debad5dabe3bbfec5d3a7b324849b2af3908bb9c0cfdbeb2a4d38d"
+  },
+  {
+    "destination": "fpga/current/sim/tb_keyboard_note_events.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_keyboard_note_events.sv",
+    "source_sha256": "bb1c88648abf8f2fd90b764b129f2f50db638278565c5f8cb8516c1e1f3d8325",
+    "packaged_sha256": "bb1c88648abf8f2fd90b764b129f2f50db638278565c5f8cb8516c1e1f3d8325"
+  },
+  {
+    "destination": "fpga/current/sim/tb_keypad_165.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_keypad_165.sv",
+    "source_sha256": "91f71e8bfa4bac738f6e244b0828d61d4578cb5626711f3f54a9a4426ab0717a",
+    "packaged_sha256": "91f71e8bfa4bac738f6e244b0828d61d4578cb5626711f3f54a9a4426ab0717a"
+  },
+  {
+    "destination": "fpga/current/sim/tb_latency_audit.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_latency_audit.v",
+    "source_sha256": "d538331f65f32c8d6988b204b4b96ddcddb23f72dc1d66b930589f00ad7fe72c",
+    "packaged_sha256": "d538331f65f32c8d6988b204b4b96ddcddb23f72dc1d66b930589f00ad7fe72c"
+  },
+  {
+    "destination": "fpga/current/sim/tb_lcd_pipeline.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_lcd_pipeline.v",
+    "source_sha256": "6eb335edc4ed55f81a54a7e2e898fa24a51953244950e9d824b37616532f80fb",
+    "packaged_sha256": "6eb335edc4ed55f81a54a7e2e898fa24a51953244950e9d824b37616532f80fb"
+  },
+  {
+    "destination": "fpga/current/sim/tb_lcd_polyphony_count.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_lcd_polyphony_count.v",
+    "source_sha256": "ef823314209ddf2695c261795f2e6447abbff19c79690f73feedef7f01923c7b",
+    "packaged_sha256": "ef823314209ddf2695c261795f2e6447abbff19c79690f73feedef7f01923c7b"
+  },
+  {
+    "destination": "fpga/current/sim/tb_mcp3008_scanner.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_mcp3008_scanner.sv",
+    "source_sha256": "d1f0eaa96474f7fd8ae13f427c17f6b44e469e2dc953907678d9a10eb4a25338",
+    "packaged_sha256": "d1f0eaa96474f7fd8ae13f427c17f6b44e469e2dc953907678d9a10eb4a25338"
+  },
+  {
+    "destination": "fpga/current/sim/tb_menu_delay_contract.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_menu_delay_contract.sv",
+    "source_sha256": "8dd15986ffb939ae57b070299eb99ba34b822013ec65ec4a6aa5aeb615cacb54",
+    "packaged_sha256": "8dd15986ffb939ae57b070299eb99ba34b822013ec65ec4a6aa5aeb615cacb54"
+  },
+  {
+    "destination": "fpga/current/sim/tb_mixer_pipeline.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_mixer_pipeline.v",
+    "source_sha256": "0cdcffe39a984420e06e5112a95d63d356a96ab8ad4fc94bb9210ff805a28e1f",
+    "packaged_sha256": "0cdcffe39a984420e06e5112a95d63d356a96ab8ad4fc94bb9210ff805a28e1f"
+  },
+  {
+    "destination": "fpga/current/sim/tb_note_event_voice.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_note_event_voice.v",
+    "source_sha256": "d6319295119dbd98d4cbcceb35620a0764efbe69d01406e37bbb1fc4e10039df",
+    "packaged_sha256": "d6319295119dbd98d4cbcceb35620a0764efbe69d01406e37bbb1fc4e10039df"
+  },
+  {
+    "destination": "fpga/current/sim/tb_p2_audio.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_p2_audio.v",
+    "source_sha256": "4d70196cb2d3e9c47300560645ed651803ade30983c47139c6540a84399a011c",
+    "packaged_sha256": "4d70196cb2d3e9c47300560645ed651803ade30983c47139c6540a84399a011c"
+  },
+  {
+    "destination": "fpga/current/sim/tb_performance_controls.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_performance_controls.v",
+    "source_sha256": "6503b0ea5ae064915f8ac8866a28981db272d9f3536968f08cca845beff1f67c",
+    "packaged_sha256": "6503b0ea5ae064915f8ac8866a28981db272d9f3536968f08cca845beff1f67c"
+  },
+  {
+    "destination": "fpga/current/sim/tb_physical_strings.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_physical_strings.v",
+    "source_sha256": "597c715cf71f0b9d8f754d428b8c85de5c264d63fc4bd669a20f5a04fe0c1068",
+    "packaged_sha256": "597c715cf71f0b9d8f754d428b8c85de5c264d63fc4bd669a20f5a04fe0c1068"
+  },
+  {
+    "destination": "fpga/current/sim/tb_piano_lookup_exact.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_piano_lookup_exact.v",
+    "source_sha256": "5d5979f783756f3ac092b1f0032d83ec20daa14927822f3401f43f4f5cc1cb74",
+    "packaged_sha256": "5d5979f783756f3ac092b1f0032d83ec20daa14927822f3401f43f4f5cc1cb74"
+  },
+  {
+    "destination": "fpga/current/sim/tb_pitch_arithmetic_exact.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_pitch_arithmetic_exact.v",
+    "source_sha256": "871d66ec4a6a8e00c61f4e95b531e034fdc84b17b6d47ea19a59b7c995bef1c3",
+    "packaged_sha256": "871d66ec4a6a8e00c61f4e95b531e034fdc84b17b6d47ea19a59b7c995bef1c3"
+  },
+  {
+    "destination": "fpga/current/sim/tb_pitch_expression.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_pitch_expression.v",
+    "source_sha256": "0a8d1941636007965ce20564c15924203a2499efd9bf18509f67ae1b7123dd84",
+    "packaged_sha256": "0a8d1941636007965ce20564c15924203a2499efd9bf18509f67ae1b7123dd84"
+  },
+  {
+    "destination": "fpga/current/sim/tb_playability_menu_lcd.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_playability_menu_lcd.sv",
+    "source_sha256": "4b4e075b68db3c7d5f24c8031dc9e028fa8065c81482e6dc5ca73b3e83bde585",
+    "packaged_sha256": "4b4e075b68db3c7d5f24c8031dc9e028fa8065c81482e6dc5ca73b3e83bde585"
+  },
+  {
+    "destination": "fpga/current/sim/tb_poly_adsr.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_poly_adsr.v",
+    "source_sha256": "8d2dd2794cf3a656218e19e15ed13877f54f525cc32365dc457c61e0d24fe423",
+    "packaged_sha256": "8d2dd2794cf3a656218e19e15ed13877f54f525cc32365dc457c61e0d24fe423"
+  },
+  {
+    "destination": "fpga/current/sim/tb_poly_control_pipeline.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_poly_control_pipeline.v",
+    "source_sha256": "e388de2ff889617dc278029c3acd5c49829c046c87b20806553fb2cefe179029",
+    "packaged_sha256": "e388de2ff889617dc278029c3acd5c49829c046c87b20806553fb2cefe179029"
+  },
+  {
+    "destination": "fpga/current/sim/tb_poly_expression_top.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_poly_expression_top.v",
+    "source_sha256": "32960b30dead958ca779fa7955f1d96ffd5e88c0b67f87c4e46d43456af34151",
+    "packaged_sha256": "32960b30dead958ca779fa7955f1d96ffd5e88c0b67f87c4e46d43456af34151"
+  },
+  {
+    "destination": "fpga/current/sim/tb_poly_expression.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_poly_expression.v",
+    "source_sha256": "e43b7df6730d0ca2cf111cf821a2188342b237c3e5736abd7cbd5c4d15b4380a",
+    "packaged_sha256": "e43b7df6730d0ca2cf111cf821a2188342b237c3e5736abd7cbd5c4d15b4380a"
+  },
+  {
+    "destination": "fpga/current/sim/tb_poly_force_shared.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_poly_force_shared.sv",
+    "source_sha256": "1667909a436966f802eefc183451d664fc5abf2dcf8cfd64e780bcefa1ba7b0e",
+    "packaged_sha256": "1667909a436966f802eefc183451d664fc5abf2dcf8cfd64e780bcefa1ba7b0e"
+  },
+  {
+    "destination": "fpga/current/sim/tb_poly_force_top.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_poly_force_top.v",
+    "source_sha256": "a4436dda615a604bf0e61a29b7decee0298270a74fe0911e9e86556b34a1a9ea",
+    "packaged_sha256": "a4436dda615a604bf0e61a29b7decee0298270a74fe0911e9e86556b34a1a9ea"
+  },
+  {
+    "destination": "fpga/current/sim/tb_poly_force.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_poly_force.v",
+    "source_sha256": "fe97dc5135d8d92649a04c223924ce25f36248860304e6f491db2aa698e14d1c",
+    "packaged_sha256": "fe97dc5135d8d92649a04c223924ce25f36248860304e6f491db2aa698e14d1c"
+  },
+  {
+    "destination": "fpga/current/sim/tb_poly_glide_top.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_poly_glide_top.v",
+    "source_sha256": "61bed3991549627589bf7acbc626232ae27cfe9aa3d36a1baee73ba032c6c062",
+    "packaged_sha256": "61bed3991549627589bf7acbc626232ae27cfe9aa3d36a1baee73ba032c6c062"
+  },
+  {
+    "destination": "fpga/current/sim/tb_poly_glide.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_poly_glide.v",
+    "source_sha256": "fe4d12bce941047fa1c4659a88da2b538aad9d47bf1b3439e501ca4575ac2fbf",
+    "packaged_sha256": "fe4d12bce941047fa1c4659a88da2b538aad9d47bf1b3439e501ca4575ac2fbf"
+  },
+  {
+    "destination": "fpga/current/sim/tb_poly_mix_fast_strobe.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_poly_mix_fast_strobe.v",
+    "source_sha256": "ce35a0e8b45a1973f818eb33e76a55b9d9f2715b158a4b00401beb6d714f669e",
+    "packaged_sha256": "ce35a0e8b45a1973f818eb33e76a55b9d9f2715b158a4b00401beb6d714f669e"
+  },
+  {
+    "destination": "fpga/current/sim/tb_poly_mix_pipeline.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_poly_mix_pipeline.v",
+    "source_sha256": "abe9cc92bcf31d83afe478c2d695059b8e1f4b534692bcdf0fdac78acbb5b617",
+    "packaged_sha256": "abe9cc92bcf31d83afe478c2d695059b8e1f4b534692bcdf0fdac78acbb5b617"
+  },
+  {
+    "destination": "fpga/current/sim/tb_poly_pitch_shared.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_poly_pitch_shared.sv",
+    "source_sha256": "70dad83709407a0dc0a842ff0dc2f942c917b287dd956226a9becdf1ad780748",
+    "packaged_sha256": "70dad83709407a0dc0a842ff0dc2f942c917b287dd956226a9becdf1ad780748"
+  },
+  {
+    "destination": "fpga/current/sim/tb_poly_stage54_exact.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_poly_stage54_exact.sv",
+    "source_sha256": "4e933c0700447c5e006964acf111d168770d22fc3e2e8b514107070d804cc142",
+    "packaged_sha256": "4e933c0700447c5e006964acf111d168770d22fc3e2e8b514107070d804cc142"
+  },
+  {
+    "destination": "fpga/current/sim/tb_polyphony_bank_32.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_polyphony_bank_32.v",
+    "source_sha256": "7be204b69dd8aaa0e92e3c62d343bcd8065e04d19472140cd82af285a9841f36",
+    "packaged_sha256": "7be204b69dd8aaa0e92e3c62d343bcd8065e04d19472140cd82af285a9841f36"
+  },
+  {
+    "destination": "fpga/current/sim/tb_polyphony_events.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_polyphony_events.v",
+    "source_sha256": "965352b5ca2333b41745de42f3ef389e7dcaa0fa2e913c6df2faecb2c70a1487",
+    "packaged_sha256": "965352b5ca2333b41745de42f3ef389e7dcaa0fa2e913c6df2faecb2c70a1487"
+  },
+  {
+    "destination": "fpga/current/sim/tb_production_legacy_cdc.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_production_legacy_cdc.sv",
+    "source_sha256": "88acb04da6d8c282e9c4a885c1eef13c85d7be8e21b393a6159a0abadc05136b",
+    "packaged_sha256": "88acb04da6d8c282e9c4a885c1eef13c85d7be8e21b393a6159a0abadc05136b"
+  },
+  {
+    "destination": "fpga/current/sim/tb_scope_115200.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_scope_115200.sv",
+    "source_sha256": "868b448d4a5fc94b946e198428125315c32f4c4e9d5de09bb720c15d67db96c6",
+    "packaged_sha256": "868b448d4a5fc94b946e198428125315c32f4c4e9d5de09bb720c15d67db96c6"
+  },
+  {
+    "destination": "fpga/current/sim/tb_scope_production_uart.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_scope_production_uart.sv",
+    "source_sha256": "3cb453c48d9c66e8785e50c75bdfd3dbde4eaa5f6cf0890fe7fd66083ddb5561",
+    "packaged_sha256": "3cb453c48d9c66e8785e50c75bdfd3dbde4eaa5f6cf0890fe7fd66083ddb5561"
+  },
+  {
+    "destination": "fpga/current/sim/tb_settings_pages.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_settings_pages.v",
+    "source_sha256": "b5f97f371c95004d066b802e9e6cbb4ffabc84f06f5788c2b70ef5d7e83c9cab",
+    "packaged_sha256": "b5f97f371c95004d066b802e9e6cbb4ffabc84f06f5788c2b70ef5d7e83c9cab"
+  },
+  {
+    "destination": "fpga/current/sim/tb_smooth_audio.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_smooth_audio.v",
+    "source_sha256": "0b12e59a1d900828aa8c4cdf83b288fcaf293aa6c52d6c2e4928aa4068263990",
+    "packaged_sha256": "0b12e59a1d900828aa8c4cdf83b288fcaf293aa6c52d6c2e4928aa4068263990"
+  },
+  {
+    "destination": "fpga/current/sim/tb_song_capacity4096.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_song_capacity4096.sv",
+    "source_sha256": "d4fb1f9ce5fd5ab8c2c82c9834367a44979412ac259ad0f80143b1d481d821f3",
+    "packaged_sha256": "d4fb1f9ce5fd5ab8c2c82c9834367a44979412ac259ad0f80143b1d481d821f3"
+  },
+  {
+    "destination": "fpga/current/sim/tb_song_control_uart.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_song_control_uart.sv",
+    "source_sha256": "3e283cab7f7797306c78c4bb1b85f4ad7cbd8900318c1a33adf69cb3449d29a2",
+    "packaged_sha256": "3e283cab7f7797306c78c4bb1b85f4ad7cbd8900318c1a33adf69cb3449d29a2"
+  },
+  {
+    "destination": "fpga/current/sim/tb_song_ensemble.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_song_ensemble.v",
+    "source_sha256": "52329f68e81722580530b164aa64923631c6fd73df0ac53a2427f745c25384d8",
+    "packaged_sha256": "52329f68e81722580530b164aa64923631c6fd73df0ac53a2427f745c25384d8"
+  },
+  {
+    "destination": "fpga/current/sim/tb_song_event_path.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_song_event_path.v",
+    "source_sha256": "a8e895d2002d535ced0df06a0aa7fa094731bfa5e1fea43f38a6c7d50ffea1d8",
+    "packaged_sha256": "a8e895d2002d535ced0df06a0aa7fa094731bfa5e1fea43f38a6c7d50ffea1d8"
+  },
+  {
+    "destination": "fpga/current/sim/tb_song_lcd.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_song_lcd.v",
+    "source_sha256": "4b7856b4f20327b4a5ddfcd74a9a505ce948b9f5dac01c646314ec2b8ab9e549",
+    "packaged_sha256": "4b7856b4f20327b4a5ddfcd74a9a505ce948b9f5dac01c646314ec2b8ab9e549"
+  },
+  {
+    "destination": "fpga/current/sim/tb_song_local_control.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_song_local_control.sv",
+    "source_sha256": "61db111c66bb25b27e7d3b88b054bd8baab0b9c3cabfa84e6a0d608ec6f848e4",
+    "packaged_sha256": "61db111c66bb25b27e7d3b88b054bd8baab0b9c3cabfa84e6a0d608ec6f848e4"
+  },
+  {
+    "destination": "fpga/current/sim/tb_song_page_mirror.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_song_page_mirror.v",
+    "source_sha256": "9b3c5c37911b5995ba36e95c94a807b81c8994ddf2bc4e27dc73bd16def9f7cb",
+    "packaged_sha256": "9b3c5c37911b5995ba36e95c94a807b81c8994ddf2bc4e27dc73bd16def9f7cb"
+  },
+  {
+    "destination": "fpga/current/sim/tb_song_player_data.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_song_player_data.v",
+    "source_sha256": "033055dff9571cdf6262fdfe38ca290152cc1ac2b153cf5219c9b8fae4548de4",
+    "packaged_sha256": "033055dff9571cdf6262fdfe38ca290152cc1ac2b153cf5219c9b8fae4548de4"
+  },
+  {
+    "destination": "fpga/current/sim/tb_song_player.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_song_player.v",
+    "source_sha256": "b51d467112c2f7f8ebb424db3562a8d1f81e3b78641e4c1f57540cc7bbfbee7e",
+    "packaged_sha256": "b51d467112c2f7f8ebb424db3562a8d1f81e3b78641e4c1f57540cc7bbfbee7e"
+  },
+  {
+    "destination": "fpga/current/sim/tb_song_poly_display.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_song_poly_display.v",
+    "source_sha256": "9df381845903b995cc3568796a5fa58b9ef8c29df5acb9ef6929911391b373be",
+    "packaged_sha256": "9df381845903b995cc3568796a5fa58b9ef8c29df5acb9ef6929911391b373be"
+  },
+  {
+    "destination": "fpga/current/sim/tb_song_production_top.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_song_production_top.sv",
+    "source_sha256": "88375e2f82c9a48ec404a77b9f79ff61e8df12abeb74f7d778a2eb73f7fce91f",
+    "packaged_sha256": "88375e2f82c9a48ec404a77b9f79ff61e8df12abeb74f7d778a2eb73f7fce91f"
+  },
+  {
+    "destination": "fpga/current/sim/tb_song_progress4096.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_song_progress4096.sv",
+    "source_sha256": "da7b916256b2920705e8bcfe04dfe888cfb2e586ff0d85292921d7d44cc9355a",
+    "packaged_sha256": "da7b916256b2920705e8bcfe04dfe888cfb2e586ff0d85292921d7d44cc9355a"
+  },
+  {
+    "destination": "fpga/current/sim/tb_song_reply_exact.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_song_reply_exact.sv",
+    "source_sha256": "2d82ea273c5954540491082119ef96ec4480fac448a613e03c4a7f0f9bfe9ac8",
+    "packaged_sha256": "2d82ea273c5954540491082119ef96ec4480fac448a613e03c4a7f0f9bfe9ac8"
+  },
+  {
+    "destination": "fpga/current/sim/tb_song_score_rom.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_song_score_rom.v",
+    "source_sha256": "2d70889d95295278afcddf43cfb52f643efee1af2ddecf1f00a00bb002d2a0b6",
+    "packaged_sha256": "2d70889d95295278afcddf43cfb52f643efee1af2ddecf1f00a00bb002d2a0b6"
+  },
+  {
+    "destination": "fpga/current/sim/tb_song_select.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_song_select.v",
+    "source_sha256": "b722ab4f58c6766f8c360d7c1fd73be579a64c8fcd4374df2609983080c34f62",
+    "packaged_sha256": "b722ab4f58c6766f8c360d7c1fd73be579a64c8fcd4374df2609983080c34f62"
+  },
+  {
+    "destination": "fpga/current/sim/tb_song_tempo.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_song_tempo.v",
+    "source_sha256": "b829c92c81df05e032ed18c602675617e03e722a20cdcd87a8e748abaa632afd",
+    "packaged_sha256": "b829c92c81df05e032ed18c602675617e03e722a20cdcd87a8e748abaa632afd"
+  },
+  {
+    "destination": "fpga/current/sim/tb_song_timeline_capacity.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_song_timeline_capacity.v",
+    "source_sha256": "05692b355f18efadc8e59bd5412296af0f3231a85229be307fb46153a2dd1d11",
+    "packaged_sha256": "05692b355f18efadc8e59bd5412296af0f3231a85229be307fb46153a2dd1d11"
+  },
+  {
+    "destination": "fpga/current/sim/tb_song_timeline.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_song_timeline.v",
+    "source_sha256": "62ef52a6dade16be1b5c55511620d1499e212bf5a95ddd8661ba6478e32875c0",
+    "packaged_sha256": "62ef52a6dade16be1b5c55511620d1499e212bf5a95ddd8661ba6478e32875c0"
+  },
+  {
+    "destination": "fpga/current/sim/tb_song_top.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_song_top.v",
+    "source_sha256": "89ead87e7049934db4bd951c33ca94de75e60732ce23490c0190cc27bebffce0",
+    "packaged_sha256": "89ead87e7049934db4bd951c33ca94de75e60732ce23490c0190cc27bebffce0"
+  },
+  {
+    "destination": "fpga/current/sim/tb_song_transport.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_song_transport.v",
+    "source_sha256": "3ddea65e4af50acffaf2f4fb9d04fceff5f4b23ccfc4acb57a7bf75d5b0261ac",
+    "packaged_sha256": "3ddea65e4af50acffaf2f4fb9d04fceff5f4b23ccfc4acb57a7bf75d5b0261ac"
+  },
+  {
+    "destination": "fpga/current/sim/tb_song_upload_frame_rx.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_song_upload_frame_rx.sv",
+    "source_sha256": "6338bc30d4fd0415700af65cba8c46aeb0b0642bbe40cd9a93f9c941cc905c2f",
+    "packaged_sha256": "6338bc30d4fd0415700af65cba8c46aeb0b0642bbe40cd9a93f9c941cc905c2f"
+  },
+  {
+    "destination": "fpga/current/sim/tb_song_upload_link.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_song_upload_link.sv",
+    "source_sha256": "c9b23d4055a453eb9a3d1d77c0013bd0d35a5be97a1cf21cc63a3c5463dfbeb4",
+    "packaged_sha256": "c9b23d4055a453eb9a3d1d77c0013bd0d35a5be97a1cf21cc63a3c5463dfbeb4"
+  },
+  {
+    "destination": "fpga/current/sim/tb_song_upload_pcm.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_song_upload_pcm.sv",
+    "source_sha256": "de44a392fa39261d4dcf2f01f3f40f6d01efa15c2816839647c316be7fe67da0",
+    "packaged_sha256": "de44a392fa39261d4dcf2f01f3f40f6d01efa15c2816839647c316be7fe67da0"
+  },
+  {
+    "destination": "fpga/current/sim/tb_song_upload_store.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_song_upload_store.sv",
+    "source_sha256": "bfeec63c82aa672f4307978fa2b581804c52aac444942ea924488b83f0d17610",
+    "packaged_sha256": "bfeec63c82aa672f4307978fa2b581804c52aac444942ea924488b83f0d17610"
+  },
+  {
+    "destination": "fpga/current/sim/tb_song_upload_timeline.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_song_upload_timeline.sv",
+    "source_sha256": "c3731d3fbf2b6b9f85dcf5ccddf2481cddb774647c9e9978b1286c7590cabaf2",
+    "packaged_sha256": "c3731d3fbf2b6b9f85dcf5ccddf2481cddb774647c9e9978b1286c7590cabaf2"
+  },
+  {
+    "destination": "fpga/current/sim/tb_song_uploaded_player.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_song_uploaded_player.sv",
+    "source_sha256": "f4c9aead3e055610add766d6f8daef4e9077345e510b51c5aed232e925f69c59",
+    "packaged_sha256": "f4c9aead3e055610add766d6f8daef4e9077345e510b51c5aed232e925f69c59"
+  },
+  {
+    "destination": "fpga/current/sim/tb_spectrum_gap.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_spectrum_gap.v",
+    "source_sha256": "26810f323952c31ba4e637620a7084a7fcb930bf84ada3826a33da909fba4a3f",
+    "packaged_sha256": "26810f323952c31ba4e637620a7084a7fcb930bf84ada3826a33da909fba4a3f"
+  },
+  {
+    "destination": "fpga/current/sim/tb_spectrum_stop.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_spectrum_stop.v",
+    "source_sha256": "10c683c3d9ff64fe9f995bc1e144b5738e0912a562b14402b9c90e47330708fe",
+    "packaged_sha256": "10c683c3d9ff64fe9f995bc1e144b5738e0912a562b14402b9c90e47330708fe"
+  },
+  {
+    "destination": "fpga/current/sim/tb_spectrum.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_spectrum.v",
+    "source_sha256": "831708c05cd75806c1b26101fc47a1f904ce4c0a85411da576847e2592f28371",
+    "packaged_sha256": "831708c05cd75806c1b26101fc47a1f904ce4c0a85411da576847e2592f28371"
+  },
+  {
+    "destination": "fpga/current/sim/tb_string_decay.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_string_decay.v",
+    "source_sha256": "b72f3b6e73c7e6f61d34a992613276dff48c7cece70d0c2fd386e119e225e050",
+    "packaged_sha256": "b72f3b6e73c7e6f61d34a992613276dff48c7cece70d0c2fd386e119e225e050"
+  },
+  {
+    "destination": "fpga/current/sim/tb_string_expression_top.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_string_expression_top.v",
+    "source_sha256": "be0037a496e718e73889e1e88b860072719e08744b3167929e895741145ebfb1",
+    "packaged_sha256": "be0037a496e718e73889e1e88b860072719e08744b3167929e895741145ebfb1"
+  },
+  {
+    "destination": "fpga/current/sim/tb_string_expression.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_string_expression.v",
+    "source_sha256": "7cc7d348f8fd25486635939ad89906d2bdc528bd7557f8edb9a6c481ab6bc975",
+    "packaged_sha256": "7cc7d348f8fd25486635939ad89906d2bdc528bd7557f8edb9a6c481ab6bc975"
+  },
+  {
+    "destination": "fpga/current/sim/tb_string_keyboard_events.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_string_keyboard_events.sv",
+    "source_sha256": "5084bfece7ab6668615e4ada48dc6870503caefb54fb8091bc023ac80a11a446",
+    "packaged_sha256": "5084bfece7ab6668615e4ada48dc6870503caefb54fb8091bc023ac80a11a446"
+  },
+  {
+    "destination": "fpga/current/sim/tb_string_load_top.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_string_load_top.v",
+    "source_sha256": "5a29e97e97910f52afd1211731d67062687a895b9a8513da821bedbe64fe436b",
+    "packaged_sha256": "5a29e97e97910f52afd1211731d67062687a895b9a8513da821bedbe64fe436b"
+  },
+  {
+    "destination": "fpga/current/sim/tb_string_load.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_string_load.v",
+    "source_sha256": "51cfbd4f53a14dfdc1f15f7dafa549c1e368c77925e22a2238370c0851c8a430",
+    "packaged_sha256": "51cfbd4f53a14dfdc1f15f7dafa549c1e368c77925e22a2238370c0851c8a430"
+  },
+  {
+    "destination": "fpga/current/sim/tb_string_menu.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_string_menu.sv",
+    "source_sha256": "8343b11319fbe952c91b53bdba801fb6d2117e064ada065bbba459bb69880680",
+    "packaged_sha256": "8343b11319fbe952c91b53bdba801fb6d2117e064ada065bbba459bb69880680"
+  },
+  {
+    "destination": "fpga/current/sim/tb_string_route_exact.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_string_route_exact.v",
+    "source_sha256": "50c73c637b7766112da4d2a9c36370b8f429ec0073188e2f40b2874be689a817",
+    "packaged_sha256": "50c73c637b7766112da4d2a9c36370b8f429ec0073188e2f40b2874be689a817"
+  },
+  {
+    "destination": "fpga/current/sim/tb_tmds_encoder.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_tmds_encoder.sv",
+    "source_sha256": "40e6edccd018737bf2b392e05f3ac8e6f345bc8b4bab253c40074460dc5791bd",
+    "packaged_sha256": "40e6edccd018737bf2b392e05f3ac8e6f345bc8b4bab253c40074460dc5791bd"
+  },
+  {
+    "destination": "fpga/current/sim/tb_touch_preview.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_touch_preview.sv",
+    "source_sha256": "5d2bae6c43aa260ad1fca76ba4fce4a0f14c5f4e2d5eca6ccca2bdba4b947d43",
+    "packaged_sha256": "5d2bae6c43aa260ad1fca76ba4fce4a0f14c5f4e2d5eca6ccca2bdba4b947d43"
+  },
+  {
+    "destination": "fpga/current/sim/tb_uart_byte_cdc.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_uart_byte_cdc.sv",
+    "source_sha256": "ba2d55dbe1ecd13cbae29ce49db0fb50c66daba91572f5e479d6feb5d57c155e",
+    "packaged_sha256": "ba2d55dbe1ecd13cbae29ce49db0fb50c66daba91572f5e479d6feb5d57c155e"
+  },
+  {
+    "destination": "fpga/current/sim/tb_uart_high_baud.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_uart_high_baud.sv",
+    "source_sha256": "aabea4036c71037727829f48ff46fc27c6ea38c879a2a5a99c93932256c4c649",
+    "packaged_sha256": "aabea4036c71037727829f48ff46fc27c6ea38c879a2a5a99c93932256c4c649"
+  },
+  {
+    "destination": "fpga/current/sim/tb_uart_line_router.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_uart_line_router.sv",
+    "source_sha256": "c9a73d1033c20d73156f49829040cda458bea6febfe09eddd74dc8f1af09e17c",
+    "packaged_sha256": "c9a73d1033c20d73156f49829040cda458bea6febfe09eddd74dc8f1af09e17c"
+  },
+  {
+    "destination": "fpga/current/sim/tb_uart_line_tx_mux.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_uart_line_tx_mux.sv",
+    "source_sha256": "b9f83ec258a27f7ce5cd33c354fc0943b698e0326d4d85ba20697ec312f65609",
+    "packaged_sha256": "b9f83ec258a27f7ce5cd33c354fc0943b698e0326d4d85ba20697ec312f65609"
+  },
+  {
+    "destination": "fpga/current/sim/tb_v3_analog_input.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_v3_analog_input.sv",
+    "source_sha256": "2b1cc0b739b2094c9a1ba81f7a3cf2d834a3f4c0058a879b67386ce838fbdcbb",
+    "packaged_sha256": "2b1cc0b739b2094c9a1ba81f7a3cf2d834a3f4c0058a879b67386ce838fbdcbb"
+  },
+  {
+    "destination": "fpga/current/sim/tb_v3_hardware_top.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_v3_hardware_top.sv",
+    "source_sha256": "de03585bc82bbd9a6174d51fd5c03cb0830d2396d64ea0749de7b859bba14d54",
+    "packaged_sha256": "de03585bc82bbd9a6174d51fd5c03cb0830d2396d64ea0749de7b859bba14d54"
+  },
+  {
+    "destination": "fpga/current/sim/tb_v3_key_force.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_v3_key_force.sv",
+    "source_sha256": "2803377aeb9b5fecc97474bc1027ca91c105c8cc867a8d1d21e4884a6e8f86b3",
+    "packaged_sha256": "2803377aeb9b5fecc97474bc1027ca91c105c8cc867a8d1d21e4884a6e8f86b3"
+  },
+  {
+    "destination": "fpga/current/sim/tb_v3_performance_input.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_v3_performance_input.sv",
+    "source_sha256": "7e9f6f667da240f9dfb7f3ad6fa5743a4214a8fdd5786d45bf8729cc07592130",
+    "packaged_sha256": "7e9f6f667da240f9dfb7f3ad6fa5743a4214a8fdd5786d45bf8729cc07592130"
+  },
+  {
+    "destination": "fpga/current/sim/tb_v3_playability_pins.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_v3_playability_pins.sv",
+    "source_sha256": "d16e747dda7adff6e4b441f12c795590e28f781e27a1f08b8615dd2bb746c492",
+    "packaged_sha256": "d16e747dda7adff6e4b441f12c795590e28f781e27a1f08b8615dd2bb746c492"
+  },
+  {
+    "destination": "fpga/current/sim/tb_v3_production_latency.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_v3_production_latency.sv",
+    "source_sha256": "b1a312dc7b506edbab14942c0b80bb6f8375af19c4975d57dd643026733ffdd1",
+    "packaged_sha256": "b1a312dc7b506edbab14942c0b80bb6f8375af19c4975d57dd643026733ffdd1"
+  },
+  {
+    "destination": "fpga/current/sim/tb_v3_production_top.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_v3_production_top.sv",
+    "source_sha256": "c116b7ffbba467b1a7556cef1258b88ba6a1ac9aaeaf62239d3e36d615ccd38c",
+    "packaged_sha256": "c116b7ffbba467b1a7556cef1258b88ba6a1ac9aaeaf62239d3e36d615ccd38c"
+  },
+  {
+    "destination": "fpga/current/sim/tb_v3_string_pins.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_v3_string_pins.sv",
+    "source_sha256": "1718cb836618e592062122fe9c87c922e86bb8f62928a4b1cda47082f9671a55",
+    "packaged_sha256": "1718cb836618e592062122fe9c87c922e86bb8f62928a4b1cda47082f9671a55"
+  },
+  {
+    "destination": "fpga/current/sim/tb_visual_feedback.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_visual_feedback.v",
+    "source_sha256": "a298d48db25adc7ac812ad0ee9e5eabadbd6cd9650d14ee8a6e4561d9bbc02aa",
+    "packaged_sha256": "a298d48db25adc7ac812ad0ee9e5eabadbd6cd9650d14ee8a6e4561d9bbc02aa"
+  },
+  {
+    "destination": "fpga/current/sim/tb_visual_freshness.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_visual_freshness.v",
+    "source_sha256": "add64d55dc7d631ee8c50c1c89059ab700b99840d15007099641ab0dccd086dc",
+    "packaged_sha256": "add64d55dc7d631ee8c50c1c89059ab700b99840d15007099641ab0dccd086dc"
+  },
+  {
+    "destination": "fpga/current/sim/tb_visual_latency.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_visual_latency.v",
+    "source_sha256": "08bf4ff8360d60c82528c2fc3be7095d0a2f2ab9ae0416eed9e783def45d16fe",
+    "packaged_sha256": "08bf4ff8360d60c82528c2fc3be7095d0a2f2ab9ae0416eed9e783def45d16fe"
+  },
+  {
+    "destination": "fpga/current/sim/tb_visual_top.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_visual_top.v",
+    "source_sha256": "2a01408853b82767771743c36fa34a522ebed68d14239efc72843bf2dd693286",
+    "packaged_sha256": "2a01408853b82767771743c36fa34a522ebed68d14239efc72843bf2dd693286"
+  },
+  {
+    "destination": "fpga/current/sim/tb_ws2812_12.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_ws2812_12.v",
+    "source_sha256": "6ac601c5a1d62e526e11dbf3e1fc401fa1d30bfb2774c0b2cce21a3ea44154ef",
+    "packaged_sha256": "6ac601c5a1d62e526e11dbf3e1fc401fa1d30bfb2774c0b2cce21a3ea44154ef"
+  },
+  {
+    "destination": "fpga/current/sim/tb_ws2812_chain.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_ws2812_chain.v",
+    "source_sha256": "46442fb8c46f66de625cd4001bcf27bbef3d8847a9487fb93a66c03adfb11884",
+    "packaged_sha256": "46442fb8c46f66de625cd4001bcf27bbef3d8847a9487fb93a66c03adfb11884"
+  },
+  {
+    "destination": "fpga/current/sim/tb_ws2812_hdmi_clock.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_ws2812_hdmi_clock.sv",
+    "source_sha256": "0983be632768ff923a057eb17edfc1e20088a46a7051951a08815ba4f766e24f",
+    "packaged_sha256": "0983be632768ff923a057eb17edfc1e20088a46a7051951a08815ba4f766e24f"
+  },
+  {
+    "destination": "fpga/current/sim/tb_ws2812_timing.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\tb_ws2812_timing.v",
+    "source_sha256": "36a998e46a202301a279c95089227162719614076606bea94093928940fc6c77",
+    "packaged_sha256": "36a998e46a202301a279c95089227162719614076606bea94093928940fc6c77"
+  },
+  {
+    "destination": "fpga/current/sim/upload_vectors/bad_crc.hex",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\upload_vectors\\bad_crc.hex",
+    "source_sha256": "f676ad48a4f2152050d48532dbe9c531fde6bc3122456427a25e3c10cd90985c",
+    "packaged_sha256": "f676ad48a4f2152050d48532dbe9c531fde6bc3122456427a25e3c10cd90985c"
+  },
+  {
+    "destination": "fpga/current/sim/upload_vectors/capacity_512.hex",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\upload_vectors\\capacity_512.hex",
+    "source_sha256": "1a5ac795a1f2a2c1149ff5af3ba6b45a09c7f01c0ef78c6d852de89604bd86b2",
+    "packaged_sha256": "1a5ac795a1f2a2c1149ff5af3ba6b45a09c7f01c0ef78c6d852de89604bd86b2"
+  },
+  {
+    "destination": "fpga/current/sim/upload_vectors/cases.vh",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\upload_vectors\\cases.vh",
+    "source_sha256": "4f4526e3cd557f0179551161b669b1895039e1c8e74271ae96c70c8092db0424",
+    "packaged_sha256": "4f4526e3cd557f0179551161b669b1895039e1c8e74271ae96c70c8092db0424"
+  },
+  {
+    "destination": "fpga/current/sim/upload_vectors/descending_tick.hex",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\upload_vectors\\descending_tick.hex",
+    "source_sha256": "dad39dfa588493f4f4cacf79cd3bdbaf84e0c4c54d34394ed382bdb0d404ef3e",
+    "packaged_sha256": "dad39dfa588493f4f4cacf79cd3bdbaf84e0c4c54d34394ed382bdb0d404ef3e"
+  },
+  {
+    "destination": "fpga/current/sim/upload_vectors/different_off_force.hex",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\upload_vectors\\different_off_force.hex",
+    "source_sha256": "73f9e3439a8e2fb6bb814f08a033832dc6055a95540c1252f3b33a7ed315be05",
+    "packaged_sha256": "73f9e3439a8e2fb6bb814f08a033832dc6055a95540c1252f3b33a7ed315be05"
+  },
+  {
+    "destination": "fpga/current/sim/upload_vectors/different_off_pitch.hex",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\upload_vectors\\different_off_pitch.hex",
+    "source_sha256": "6ccfea820e8e272ab2d49a98f3f647a8efe66f1795b5107aef873662b6498589",
+    "packaged_sha256": "6ccfea820e8e272ab2d49a98f3f647a8efe66f1795b5107aef873662b6498589"
+  },
+  {
+    "destination": "fpga/current/sim/upload_vectors/early_group_tail.hex",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\upload_vectors\\early_group_tail.hex",
+    "source_sha256": "15e67e611f4e0d21d564fbeb8c8d4c6bae447d2b80914da232f3de642438878a",
+    "packaged_sha256": "15e67e611f4e0d21d564fbeb8c8d4c6bae447d2b80914da232f3de642438878a"
+  },
+  {
+    "destination": "fpga/current/sim/upload_vectors/last_tick_tail.hex",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\upload_vectors\\last_tick_tail.hex",
+    "source_sha256": "f4e0b997a15c3b77e0d61b4013470c99308b253efeed7d52f0119c2f0e23e177",
+    "packaged_sha256": "f4e0b997a15c3b77e0d61b4013470c99308b253efeed7d52f0119c2f0e23e177"
+  },
+  {
+    "destination": "fpga/current/sim/upload_vectors/melody_count.hex",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\upload_vectors\\melody_count.hex",
+    "source_sha256": "f676ad48a4f2152050d48532dbe9c531fde6bc3122456427a25e3c10cd90985c",
+    "packaged_sha256": "f676ad48a4f2152050d48532dbe9c531fde6bc3122456427a25e3c10cd90985c"
+  },
+  {
+    "destination": "fpga/current/sim/upload_vectors/melody_progress.hex",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\upload_vectors\\melody_progress.hex",
+    "source_sha256": "bdae6db7c5312c1da9ab037e9c09e672b7abd68c66448aa512e8639233d2f198",
+    "packaged_sha256": "bdae6db7c5312c1da9ab037e9c09e672b7abd68c66448aa512e8639233d2f198"
+  },
+  {
+    "destination": "fpga/current/sim/upload_vectors/missing_group_tail.hex",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\upload_vectors\\missing_group_tail.hex",
+    "source_sha256": "d088df13639ad20e2dd05a8c9df423658564466cb320f2bc5de827749ba77fe1",
+    "packaged_sha256": "d088df13639ad20e2dd05a8c9df423658564466cb320f2bc5de827749ba77fe1"
+  },
+  {
+    "destination": "fpga/current/sim/upload_vectors/octave_3.hex",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\upload_vectors\\octave_3.hex",
+    "source_sha256": "ad19f8d1b4d536d629bacd87d25949cde5d1429df0a81e972263d39688c0a94c",
+    "packaged_sha256": "ad19f8d1b4d536d629bacd87d25949cde5d1429df0a81e972263d39688c0a94c"
+  },
+  {
+    "destination": "fpga/current/sim/upload_vectors/ode.hex",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\upload_vectors\\ode.hex",
+    "source_sha256": "e645fde8f0ae91703161b48e830042b0dff3af6f3c237250e3075aa0468ab1ba",
+    "packaged_sha256": "e645fde8f0ae91703161b48e830042b0dff3af6f3c237250e3075aa0468ab1ba"
+  },
+  {
+    "destination": "fpga/current/sim/upload_vectors/overlap_melody.hex",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\upload_vectors\\overlap_melody.hex",
+    "source_sha256": "acb7ce42a1c31fffe7a966ec05152e02ada041db13a8f501593914611ba36db5",
+    "packaged_sha256": "acb7ce42a1c31fffe7a966ec05152e02ada041db13a8f501593914611ba36db5"
+  },
+  {
+    "destination": "fpga/current/sim/upload_vectors/pair.hex",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\upload_vectors\\pair.hex",
+    "source_sha256": "f676ad48a4f2152050d48532dbe9c531fde6bc3122456427a25e3c10cd90985c",
+    "packaged_sha256": "f676ad48a4f2152050d48532dbe9c531fde6bc3122456427a25e3c10cd90985c"
+  },
+  {
+    "destination": "fpga/current/sim/upload_vectors/past_end.hex",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\upload_vectors\\past_end.hex",
+    "source_sha256": "f676ad48a4f2152050d48532dbe9c531fde6bc3122456427a25e3c10cd90985c",
+    "packaged_sha256": "f676ad48a4f2152050d48532dbe9c531fde6bc3122456427a25e3c10cd90985c"
+  },
+  {
+    "destination": "fpga/current/sim/upload_vectors/pitch_12.hex",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\upload_vectors\\pitch_12.hex",
+    "source_sha256": "bcf23a89de5a72c584ee2fcba7f98875ba228e007f5c3934bb3aa79569cafdc5",
+    "packaged_sha256": "bcf23a89de5a72c584ee2fcba7f98875ba228e007f5c3934bb3aa79569cafdc5"
+  },
+  {
+    "destination": "fpga/current/sim/upload_vectors/seventeen_events.hex",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\upload_vectors\\seventeen_events.hex",
+    "source_sha256": "b8f2a17bd8be97a85c5a08655cc00a26e4745b1c244dd73bab81f074c082ea74",
+    "packaged_sha256": "b8f2a17bd8be97a85c5a08655cc00a26e4745b1c244dd73bab81f074c082ea74"
+  },
+  {
+    "destination": "fpga/current/sim/upload_vectors/sixteen_voices.hex",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\upload_vectors\\sixteen_voices.hex",
+    "source_sha256": "e81e655b84291b3aee3fec8427c1000c2cacfc061e96ca70406d8a05783b971d",
+    "packaged_sha256": "e81e655b84291b3aee3fec8427c1000c2cacfc061e96ca70406d8a05783b971d"
+  },
+  {
+    "destination": "fpga/current/sim/upload_vectors/tail_7.hex",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\upload_vectors\\tail_7.hex",
+    "source_sha256": "946aeb02e0237d2376c15bf4db4aa62e0114c1bd07ddfd3de1465db385c76323",
+    "packaged_sha256": "946aeb02e0237d2376c15bf4db4aa62e0114c1bd07ddfd3de1465db385c76323"
+  },
+  {
+    "destination": "fpga/current/sim/upload_vectors/tail_8.hex",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\upload_vectors\\tail_8.hex",
+    "source_sha256": "6f1a2ab41239ed30b397c65cade66c5a0e999f6eb21dd9c09a1278924600bce5",
+    "packaged_sha256": "6f1a2ab41239ed30b397c65cade66c5a0e999f6eb21dd9c09a1278924600bce5"
+  },
+  {
+    "destination": "fpga/current/sim/upload_vectors/timeline.hex",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\upload_vectors\\timeline.hex",
+    "source_sha256": "5468a50ca44bf1bb92c312e18b4766b6227a5ff4d40c413a02065e1df5451051",
+    "packaged_sha256": "5468a50ca44bf1bb92c312e18b4766b6227a5ff4d40c413a02065e1df5451051"
+  },
+  {
+    "destination": "fpga/current/sim/upload_vectors/twinkle.hex",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\upload_vectors\\twinkle.hex",
+    "source_sha256": "12f842989c0571df091e4532c4f95781ef56511ffa90d384e39959887f977627",
+    "packaged_sha256": "12f842989c0571df091e4532c4f95781ef56511ffa90d384e39959887f977627"
+  },
+  {
+    "destination": "fpga/current/sim/upload_vectors/unclosed_on.hex",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\upload_vectors\\unclosed_on.hex",
+    "source_sha256": "fd3c14db6fa336d8a40b9e4e0cde998cc2cf3737a10b9e3ce65db48c6d2f793c",
+    "packaged_sha256": "fd3c14db6fa336d8a40b9e4e0cde998cc2cf3737a10b9e3ce65db48c6d2f793c"
+  },
+  {
+    "destination": "fpga/current/sim/upload_vectors/unflagged_progress.hex",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\upload_vectors\\unflagged_progress.hex",
+    "source_sha256": "63611d1930a610c847b9140fdc42a938bbc06a224a70d2e6a3e450750b83fb5c",
+    "packaged_sha256": "63611d1930a610c847b9140fdc42a938bbc06a224a70d2e6a3e450750b83fb5c"
+  },
+  {
+    "destination": "fpga/current/sim/upload_vectors/unmatched_off.hex",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\upload_vectors\\unmatched_off.hex",
+    "source_sha256": "9955701735f7dfec50cfa95817f71bbfe0345d93dddce189952a591287e40a9d",
+    "packaged_sha256": "9955701735f7dfec50cfa95817f71bbfe0345d93dddce189952a591287e40a9d"
+  },
+  {
+    "destination": "fpga/current/sim/upload_vectors/velocity_overflow.hex",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\upload_vectors\\velocity_overflow.hex",
+    "source_sha256": "1be8d1aea5a2196b50349cfd3f88dc15f63e8c18cfda5cd23f20c25a2e2b68aa",
+    "packaged_sha256": "1be8d1aea5a2196b50349cfd3f88dc15f63e8c18cfda5cd23f20c25a2e2b68aa"
+  },
+  {
+    "destination": "fpga/current/sim/upload_vectors/wrong_id.hex",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\upload_vectors\\wrong_id.hex",
+    "source_sha256": "c9685a10b471d276ee6a8c013e96244d9dbb967853c364779f487fe87b17c298",
+    "packaged_sha256": "c9685a10b471d276ee6a8c013e96244d9dbb967853c364779f487fe87b17c298"
+  },
+  {
+    "destination": "fpga/current/sim/upload_vectors/zero_duration.hex",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\upload_vectors\\zero_duration.hex",
+    "source_sha256": "797504c5ae0c02f8ca2bdeabd8d61ff5b039323d9a2d9942277f92535b7ff881",
+    "packaged_sha256": "797504c5ae0c02f8ca2bdeabd8d61ff5b039323d9a2d9942277f92535b7ff881"
+  },
+  {
+    "destination": "fpga/current/sim/upload_vectors/zero_force.hex",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\upload_vectors\\zero_force.hex",
+    "source_sha256": "971715c91667ac5aa9a8a35708e6182fbb38966cd7be5cb6a1a31a9c18d5f9fc",
+    "packaged_sha256": "971715c91667ac5aa9a8a35708e6182fbb38966cd7be5cb6a1a31a9c18d5f9fc"
+  },
+  {
+    "destination": "fpga/current/sim/v3_dual_adc_model.sv",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\v3_dual_adc_model.sv",
+    "source_sha256": "618290581cf405b096dc448ebd82e65d1ebc938df5a499e8a3b9cf9db6c6ffe1",
+    "packaged_sha256": "618290581cf405b096dc448ebd82e65d1ebc938df5a499e8a3b9cf9db6c6ffe1"
+  },
+  {
+    "destination": "fpga/current/sim/v3_input_models.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\sim\\v3_input_models.v",
+    "source_sha256": "8f5b990cb23a7048c63f1e89eaabb7d81810d246bd625a2b3f2dc99c1a211520",
+    "packaged_sha256": "8f5b990cb23a7048c63f1e89eaabb7d81810d246bd625a2b3f2dc99c1a211520"
+  },
+  {
+    "destination": "fpga/current/src/pll_init.v",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\src\\pll_init.v",
+    "source_sha256": "3ef05a1ba92157d73e3c54ed9d589645508a4ae332d8bcf133a0457cc3e866c8",
+    "packaged_sha256": "3ef05a1ba92157d73e3c54ed9d589645508a4ae332d8bcf133a0457cc3e866c8"
+  },
+  {
+    "destination": "fpga/current/v3_hardware_top.gprj",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\v3_hardware_top.gprj",
+    "source_sha256": "f6b92b9466a1c4b64da5581ec1430495348d8fdbf764e093a490f0192aecfdcb",
+    "packaged_sha256": "f6b92b9466a1c4b64da5581ec1430495348d8fdbf764e093a490f0192aecfdcb"
+  },
+  {
+    "destination": "fpga/current/v3_hdmi_top.gprj",
+    "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\v3_hdmi_top.gprj",
+    "source_sha256": "ba83161a05d9b5397db329dd425001bbc604e79f15d73066ee61926dd506e515",
+    "packaged_sha256": "ba83161a05d9b5397db329dd425001bbc604e79f15d73066ee61926dd506e515"
+  },
+  {
     "destination": "fpga/stage64/constraints/half_rate_enumerated.sdc",
     "source": "work/v3_uart115200_stage64_20261023/constraints/half_rate_enumerated.sdc",
     "source_sha256": "b70de4a2d654d308a9e4fc2f947cf0585aab71b08e4363ca44c20a696767e5fe",
@@ -14223,13 +16491,13 @@
     "destination": "host/instrument-web/README.md",
     "source": "host/instrument-web/README.md",
     "source_sha256": "b5401ae9c91431bbd9857b4aa775292103ecc63ed130e149e0a16b21a0296415",
-    "packaged_sha256": "9ac15675df07229ab7353ef2b6c3ba5c91d2b898af3a7665a06653952eba11c6"
+    "packaged_sha256": "5ba59394cbd5bc640d48add7e5ec82b0ccb965211026e3089f0e33b8560f2eba"
   },
   {
     "destination": "host/instrument-web/src/app.js",
     "source": "host/instrument-web/src/app.js",
     "source_sha256": "b748f8ce8b67cab670048e1c85cc8656f1814d0bd3f4aaa3dde5cdf1e1de6c90",
-    "packaged_sha256": "506c09bf95b694f50c15c9c88ed4e0f72a81975c7d80417f6cf4e835cb26777c"
+    "packaged_sha256": "047acaf92db223adc5b97873a3e6bc5c992428a3bf3e0a125cb64ba5125f2a53"
   },
   {
     "destination": "host/instrument-web/src/audio-arrangement.js",
@@ -16401,7 +18669,7 @@
     "destination": "README.md",
     "source": null,
     "source_sha256": null,
-    "packaged_sha256": "6478a8e9e90dfe5d8f377bdf1d9181790c110fc2d3d834222ab53e2af04fd8bf"
+    "packaged_sha256": "bd49fc4a12cc8fe5c4ae942aa558687688804f4fd38ced48a1c2320560ecf798"
   },
   {
     "destination": "tests/fixtures/rtl-stage47/control_vectors/cases.vh",
@@ -16971,7 +19239,7 @@
     "destination": "tools/build-fpga.tcl",
     "source": null,
     "source_sha256": null,
-    "packaged_sha256": "e720a8586a95e5d24395e3f2a716182d3c3fe501303b59e92421575db442bb66"
+    "packaged_sha256": "faceb81d701b60c600d379e829e77e6ceb4b718391a18c477454c83e00fbfcf7"
   },
   {
     "destination": "tools/gowin-mcp/board-profile.schema.json",
@@ -17103,7 +19371,7 @@
     "destination": "tools/test-fpga.ps1",
     "source": null,
     "source_sha256": null,
-    "packaged_sha256": "39d4bbfde6eaad8224c1b6e3d595995411004006bb5e2d0ebf76379df453f651"
+    "packaged_sha256": "34f39984f1125017f9e7edbc66d363c1fc7f8ab44140cd4347fca09efb5877e3"
   },
   {
     "destination": "tools/update-manifest.ps1",

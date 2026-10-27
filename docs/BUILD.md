@@ -33,41 +33,21 @@ Android 构建工具及路径见 [README-FPGA.md](../host/mineradio/README-FPGA.
 
 ## FPGA
 
-当前工程为 `fpga/stage68/v3_hdmi_top.gprj`，顶层 `v3_hdmi_top`，31 引脚、4 时钟。
-当前测试入口 `tools/test-fpga.ps1` 默认复制 stage68 到独立目录，完整回归 143 项。
-官方模型另外运行复制目录里的 `sim/run_hdmi_phy.ps1`，传入本机 ModelSim 与 Gowin `prim_sim.v` 路径。
-`tools/build-fpga.tcl` 仅执行当前 HDMI 工程综合；后续必须针对新网表重做 CE/SDC 审计，再运行 P&R。
-
-stage68 的 RTL、PLL、约束及仿真输入保持原样；其历史准备/压缩脚本包含旧绝对路径，
-不能不检查便运行。尤其 `compact_queries.py` 默认网表仍指旧版，`prepare_hdmi_constraints.ps1`
-在原机同路径复制时报错。已有位流和原始报告可直接核验，尚未将构建流程改造成跨机器一键发布。
-源码/证据说明见 [stage68 README](../fpga/stage68/README.md)。
-
-### stage65 历史构建说明（以下路径仅用于 LCD 基线）
-
-工具：PowerShell 7、ModelSim（验收机 `E:/modelsim/win64`）、Gowin V1.9.12.03。先仿真再构建：
+当前工程为 `fpga/current/v3_hdmi_top.gprj`，顶层 `v3_hdmi_top`，31 引脚、4 时钟。工具为 PowerShell 7、ModelSim 与 Gowin V1.9.12.03。先仿真，再综合和审计，最后运行 P&R。
 
 ```powershell
 pwsh -NoProfile -File tools/test-fpga.ps1 -BuildRoot E:/Gowin/workspace/fpga-instrument-test -ModelSimBin E:/modelsim/win64
 ```
 
-该通用入口当前默认 stage68；如复测本节 stage65，请传 `-Stage stage65`。完整 stage65 套件 138 项，不能为通过而删减。
+测试入口默认复制当前工程到独立 ASCII 路径，完整回归 143 项。官方器件模型另外运行复制目录内的 `sim/run_hdmi_phy.ps1`，传入本机 ModelSim 与 Gowin prim_sim.v 路径。历史版本仍可通过测试入口的 Version 参数选择，不能删减套件求通过。
 
-在 Gowin IDE 打开 `fpga/stage65/v3_hardware_top.gprj`，保留当前器件、PLL、CST、SDC，place_option=3 / route_option=2；同目录只运行一个构建。`tools/build-fpga.tcl` 默认只综合，先核对本机工具路径与当前工程选项。
+`tools/build-fpga.tcl` 默认只运行当前 HDMI 工程综合。随后必须针对新综合网表重新执行 CE 审计、SDC 压缩和集合等价验证，核对 setup/hold 成对，再单独运行 P&R。实际使用 place_option=3 / route_option=2；同目录不能并发构建。
 
-SDC 已是经过等价证明的压缩版本，不能改为无保护的全层级通配。构建顺序是：完整仿真 → 综合 → 用新鲜网表重新审计并压缩 SDC → 集合等价及负向控制 → P&R → 时序/引脚审计。不能用旧审计结果声称新网表通过。
+生产快照中的准备与压缩脚本包含旧绝对路径，特别是 compact_queries.py 默认网表路径须先核对，不能误用旧网表。原机 prepare_hdmi_constraints.ps1 在末尾同路径复制时报错，尚未整理为跨机器一键发布流程。详细限制见 [当前工程说明](../fpga/current/README.md)。
 
-审计入口如下，`<new-netlist.vg>` 替换为本次综合生成的网表绝对路径；输出目录须事先存在：
+SDC 不能改为不经证明的全层级通配，不能把旧审计冒充新网表结果。连续串化时钟下保留的复位多周期例外尚需重新论证，见 [验证边界](../artifacts/current/validation.md)。当前工具报告正余量不代表这项审核已结束。
 
-```powershell
-python fpga/stage65/scripts/audit_half_rate.py --netlist <new-netlist.vg> --output <audit.json> --sdc fpga/stage65/constraints/half_rate_enumerated.sdc --contest-strings
-python fpga/stage65/scripts/compact_queries.py
-python fpga/stage65/scripts/compact_queries.py --verify-netlist <new-netlist.vg>
-```
-
-这是保留的本机审计脚本，不是跨机器一键构建器：`compact_queries.py` 的默认网表路径和 Gowin `prim_sim.v` 路径须先按本机安装调整；其首个生成命令使用默认网表，不能误用旧网表。`audit_half_rate.py` 已使用同目录的 `constraints/base_hardware.sdc`，不依赖缺失的历史工程。确认 setup/hold 成对、引脚集合等价后，单独执行 `run pnr`（可将 Tcl 模板最后一行由 `run syn` 改为 `run pnr`）。从最终报告核对实际生效约束，归档时序/引脚/资源报告、位流 SHA256 后才考虑烧录。
-
-`fpga/stage65/scripts/` 保留历史审计/诊断脚本，其中部分仍指向旧实验目录。当前测试入口以上述 tools/test-fpga.ps1 为准；旧 archive/prepare/restart 等脚本不作为一键构建入口。`fpga/stage64/` 保留上版原始源码，不覆盖。
+新位流须核对 setup ≥ +0.03 ns、hold ≥ 0、建立/保持/恢复/移除检查、引脚与时钟，以及实际生效约束；归档资源/时序/引脚报告和位流 SHA256 后才能交付。旧源码、日志及失败证据保留，不覆盖原构建目录。
 
 ## ESP32
 
@@ -81,8 +61,8 @@ python firmware/xiaozhi-v3/tests/run.py
 
 脚本从板型 config.json 生成 fpga.defaults，使用当前板型、N16R8 配置与锁定依赖，不需要原开发机的 E 盘基线。主机 C/C++ 测试在 Windows 需要 Visual Studio 2022 C++ 与 CMake。
 
-当前源代码含 BLE 主用 / USB 备用候选，必须保留板型配置 `CONFIG_ESP_CONSOLE_SECONDARY_NONE=y`，避免 USB Serial/JTAG 驱动与调试控制台竞争；UART0 调试保留。验证机启用 `CONFIG_BT_NIMBLE_USE_ESP_TIMER=y`，2 ms 桥接泵间隔经 NPL/esp_timer 调度，不能据此宣称硬件实际吞吐。固件候选与地址表见 `artifacts/ble_primary_usb_backup_20261024/firmware/`；尚未烧录。stage64 已验证镜像仍保留。
+当前源代码含 BLE 主用 / USB 备用候选，必须保留板型配置 `CONFIG_ESP_CONSOLE_SECONDARY_NONE=y`，避免 USB Serial/JTAG 驱动与调试控制台竞争；UART0 调试保留。验证机启用 `CONFIG_BT_NIMBLE_USE_ESP_TIMER=y`，2 ms 桥接泵间隔经 NPL/esp_timer 调度，不能据此宣称硬件实际吞吐。固件候选与地址表见 `artifacts/ble_primary_usb_backup_20261024/firmware/`；尚未烧录。历史已验证镜像仍保留。
 
-独立 V3 桥接工程可在 IDF 环境中进入 `firmware/esp32s3-bridge` 执行 `idf.py set-target esp32s3` 和 `idf.py build`，但 stage64 尚未对其独立镜像完成硬件验收。不得将 fpga-bread-s3 镜像刷到不匹配的 V3 PCB。
+独立 V3 桥接工程可在 IDF 环境中进入 `firmware/esp32s3-bridge` 执行 `idf.py set-target esp32s3` 和 `idf.py build`，但历史验收尚未覆盖其独立镜像。不得将 fpga-bread-s3 镜像刷到不匹配的 V3 PCB。
 
-ESP 构建不包含设备 NVS/激活信息。首台设备需自行配网和绑定，不能在源码写入密钥。历史 build_uart_stage64.ps1 依赖原开发机已解析目录，只保留供追溯，不作为新机器入口。
+ESP 构建不包含设备 NVS/激活信息。首台设备需自行配网和绑定，不能在源码写入密钥。历史串口构建脚本依赖原开发机已解析目录，只保留供追溯，不作为新机器入口。
