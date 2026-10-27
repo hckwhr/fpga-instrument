@@ -1,0 +1,16 @@
+/* Single scrolling surface on phones; reuse every desktop control. */
+html.android-workbench body { overflow: auto; }
+.android-workbench.desktop-workbench .shell { display: flex; flex-direction: column; height: auto; padding: 0 12px 24px; gap: 12px; }
+.android-workbench .function-rail { position: sticky; top: 0; z-index: 30; display: flex; flex-direction: row; height: auto; width: 100%; overflow-x: auto; border-radius: 14px; padding: 4px; background: #15232b; }
+.android-workbench .function-rail .rail-brand { display: none; }
+.android-workbench .function-rail a, .android-workbench .function-rail button { flex: 0 0 70px; min-height: 54px; margin: 0; padding: 6px; font-size: 10px; }
+.android-workbench .function-rail a > span, .android-workbench .function-rail button > span { font-size: 17px; }
+.android-workbench .desktop-main { height: auto; overflow: visible; padding: 0; width: 100%; }
+.android-workbench .ble-sidebar { overflow: visible; width: 100%; padding: 18px; }
+.android-workbench .desktop-main .source-panel, .android-workbench .desktop-main .result-panel,
+.android-workbench .desktop-main .device-panel { padding: 16px; }
+.android-workbench .desktop-main .monitor-grid canvas { height: 240px; }
+.android-workbench .desktop-main #piano-roll { height: 260px; }
+.android-workbench .workflow-steps { position: static; gap: 5px; font-size: 11px; }
+.android-workbench .desktop-main .monitor-grid { grid-template-columns: minmax(0, 1fr); }
+.android-workbench #ble-devices[hidden] { display: none; }

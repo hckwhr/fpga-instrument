@@ -81,6 +81,16 @@ final class AssetServer implements Closeable {
         socket.getOutputStream().write(("HTTP/1.1 " + status + " Error\r\nContent-Length: 0\r\nConnection: close\r\n\r\n").getBytes(StandardCharsets.US_ASCII));
     }
     private String mime(String path) {
+        path = path.toLowerCase(Locale.ROOT);
+        if (path.endsWith(".png")) return "image/png";
+        if (path.endsWith(".jpg") || path.endsWith(".jpeg")) return "image/jpeg";
+        if (path.endsWith(".svg")) return "image/svg+xml";
+        if (path.endsWith(".webp")) return "image/webp";
+        if (path.endsWith(".gif")) return "image/gif";
+        if (path.endsWith(".woff2")) return "font/woff2";
+        if (path.endsWith(".woff")) return "font/woff";
+        if (path.endsWith(".mp4")) return "video/mp4";
+        if (path.endsWith(".webm")) return "video/webm";
         if (path.endsWith(".html")) return "text/html; charset=utf-8";
         if (path.endsWith(".js")) return "text/javascript; charset=utf-8";
         if (path.endsWith(".css")) return "text/css; charset=utf-8";

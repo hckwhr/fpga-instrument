@@ -69,7 +69,9 @@ $('#rail-player').onclick = () => window.top.document.querySelector('#mode-playe
 function jump(target, link) {
   if (target === devicePanel) devicePanel.open = true;
   const container = aside.contains(target) ? aside : content;
-  if (matchMedia('(max-width: 800px)').matches) window.scrollTo({ top: container === aside ? aside.offsetTop : 0, behavior: 'smooth' });
+  if (document.documentElement.classList.contains('android-workbench')) {
+    window.scrollTo({ top: window.scrollY + target.getBoundingClientRect().top - navigation.offsetHeight - 12, behavior: 'smooth' });
+  } else if (matchMedia('(max-width: 800px)').matches) window.scrollTo({ top: container === aside ? aside.offsetTop : 0, behavior: 'smooth' });
   // Scroll only our pane: scrollIntoView also scrolls the host iframe's ancestors.
   const inset = container === content ? workflow.offsetHeight + 16 : 8;
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -103,7 +105,7 @@ content.addEventListener('scroll', () => {
 $('#ble-scan-actions').append(connectionContent.querySelector('.connection-controls'));
 $('#connect').textContent = '扫描 BLE 设备';
 $('#connect').classList.add('primary');
-$('#serial-help').textContent = '使用 ESP32-S3 BLE 桥接。无需在 Windows 设置中配对；连接后请识别设备、确认板端响应。';
+$('#serial-help').textContent = window.top.mineradioNative ? '使用手机原生 BLE 连接 ESP32-S3。点击扫描，在设备列表选择“行者无疆”。' : '使用 ESP32-S3 BLE 桥接。无需在 Windows 设置中配对；连接后请识别设备、确认板端响应。';
 const cancel = document.createElement('button');
 cancel.id = 'ble-scan-stop'; cancel.type = 'button'; cancel.className = 'button plain';
 cancel.textContent = '停止扫描'; cancel.hidden = true;
@@ -111,6 +113,11 @@ $('#ble-scan-actions .connection-controls').append(cancel);
 document.documentElement.classList.add('desktop-workbench');
 devicePanel.open = true;
 const list = $('#ble-devices');
+if (window.top.mineradioNative) {
+  $('#ble-scan-count').textContent = '手机蓝牙';
+  $('#ble-scan-message').textContent = '点击扫描，授权附近设备后选择你的乐器。';
+  list.hidden = true;
+}
 let scan = null;
 const connectionMessage = () => {
   if (!scan || scan.scanning || scan.reason !== 'selected') return;

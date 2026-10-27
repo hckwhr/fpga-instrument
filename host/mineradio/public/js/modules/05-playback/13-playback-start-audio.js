@@ -815,7 +815,7 @@ async function scheduleAlbumGaplessPreloadForCurrent(token, reason) {
       || !albumGaplessQueueCanAdvance(currentIdx)
     ) return false;
     if (!data || !data.url) return false;
-    var proxyAudioUrl = '/api/audio?url=' + encodeURIComponent(data.url);
+    var proxyAudioUrl = window.androidAudioUrl ? window.androidAudioUrl(data.url) : '/api/audio?url=' + encodeURIComponent(data.url);
     var media = new Audio();
     media.crossOrigin = 'anonymous';
     media.preload = 'auto';
@@ -1260,7 +1260,7 @@ async function playQueueAt(idx, opts) {
         document.getElementById('trial-banner').classList.add('show');
       }
       markPlayPhase('audio-element');
-      var proxyAudioUrl = opts.preloadedProxyAudioUrl || '/api/audio?url=' + encodeURIComponent(data.url);
+      var proxyAudioUrl = opts.preloadedProxyAudioUrl || (window.androidAudioUrl ? window.androidAudioUrl(data.url) : '/api/audio?url=' + encodeURIComponent(data.url));
       if (albumGaplessHandoff) {
         audioFadeSerial++;
         clearAudioFadeTimers();

@@ -46,6 +46,9 @@ function applyControlGlassChromaticOffset() {
   );
 }
 function supportsControlGlassSvgFilter() {
+  // WebView tile budgets are smaller than desktop Chromium; SVG backdrop
+  // displacement produced missing tiles on the Android target.
+  if (window.mineradioNative) return false;
   try {
     var ua = navigator.userAgent || '';
     if ((/Safari/.test(ua) && !/Chrome/.test(ua)) || /Firefox/.test(ua)) return false;

@@ -36,6 +36,7 @@ function coverProxySrc(url, cacheBust) {
   if (!url) return '';
   if (isInlineCoverSrc(url)) return url;
   if (!isProxyableCoverUrl(url)) return '';
+  if (window.mineradioNative) return url.replace(/^http:/i, 'https:');
   return '/api/cover?url=' + encodeURIComponent(url) + (cacheBust ? '&v=' + Date.now() : '');
 }
 function coverUrlWithSize(url, size) {

@@ -133,7 +133,7 @@ function renderQualityProfile() {
   return { cap: lowSpec ? 1.12 : RENDER_DPR_CAP, min: lowSpec ? 0.66 : RENDER_MIN_DPR, budget: lowSpec ? 3600000 : RENDER_PIXEL_BUDGET };
 }
 function getRenderPixelRatio() {
-  var device = window.devicePixelRatio || 1;
+  var device = window.mineradioNative ? Math.min(window.devicePixelRatio || 1, 1.5) : window.devicePixelRatio || 1;
   if (isDeepBackgroundMode()) return Math.min(device, 0.30);
   var cssPixels = Math.max(1, innerWidth * innerHeight);
   var quality = renderQualityProfile();

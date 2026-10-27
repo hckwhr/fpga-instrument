@@ -92,6 +92,12 @@ frame.addEventListener('load', () => {
   skin.onerror = reveal;
   skin.onload = reveal;
   doc.head.append(skin);
+  if (window.androidAudioUrl) {
+    doc.documentElement.classList.add('android-workbench');
+    const mobileSkin = doc.createElement('link');
+    mobileSkin.rel = 'stylesheet'; mobileSkin.href = '../fpga/android-workbench.css';
+    doc.head.append(mobileSkin);
+  }
   const integration = doc.createElement('script');
   integration.type = 'module';
   integration.src = '../fpga/desktop-workbench.js';
@@ -114,7 +120,18 @@ window.addEventListener('message', event => {
     else request.reject(new Error(event.data.message || '工作台拒绝了导入'));
   }
 });
-panel.querySelector('#fpga-current').onclick = async () => {
+function waitForWorkbench() {
+  if (ready) return Promise.resolve();
+  return new Promise((resolve, reject) => {
+    const cleanup = () => { clearTimeout(timer); window.removeEventListener('message', listener); };
+    const listener = event => {
+      if (event.origin === location.origin && event.source === frame.contentWindow && event.data?.type === 'instrument-ready') { cleanup(); resolve(); }
+    };
+    const timer = setTimeout(() => { cleanup(); reject(new Error('工作台加载超时，请重试')); }, 15000);
+    window.addEventListener('message', listener);
+  });
+}
+async function importCurrentSongToFpga() {
   const status = panel.querySelector('#fpga-source-status');
   const button = panel.querySelector('#fpga-current');
   if (button.disabled) return;
@@ -122,12 +139,18 @@ panel.querySelector('#fpga-current').onclick = async () => {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 30000);
   try {
-    if (!ready) throw new Error('工作台仍在加载，请稍候');
     const player = window.audio;
     const song = typeof window.currentCoverSong === 'function' ? window.currentCoverSong() : window.playQueue?.[window.currentIdx];
     if (!player?.currentSrc || !song) throw new Error('请先切到播放器，选择并播放一首歌曲');
+    // Snapshot both before the asynchronous first frame load, so a track switch
+    // cannot attach the next song's audio to the previous song's name.
+    const source = player.currentSrc;
+    const name = song.name || '当前歌曲';
+    setMode(true);
+    status.textContent = '正在打开 FPGA 工作台…';
+    await waitForWorkbench();
     status.textContent = '正在读取当前歌曲音频…';
-    const response = await fetch(player.currentSrc, { signal: controller.signal });
+    const response = await fetch(source, { signal: controller.signal });
     if (!response.ok) throw new Error(`音频读取失败 ${response.status}`);
     if (Number(response.headers.get('content-length')) > 80 * 1024 * 1024) throw new Error('文件超过 80 MB');
     const blob = await response.blob();
@@ -137,8 +160,10 @@ panel.querySelector('#fpga-current').onclick = async () => {
       const id = crypto.randomUUID();
       const timer = setTimeout(() => { importRequest = null; reject(new Error('工作台未确认导入，请重试')); }, 5000);
       importRequest = { id, resolve, reject, timer };
-      frame.contentWindow.postMessage({ type: 'mineradio-audio', requestId: id, file: new File([blob], `${song.name || '当前歌曲'}.${extension}`, { type: blob.type || 'audio/mpeg' }) }, location.origin);
+      frame.contentWindow.postMessage({ type: 'mineradio-audio', requestId: id, file: new File([blob], `${name}.${extension}`, { type: blob.type || 'audio/mpeg' }) }, location.origin);
     });
   } catch (error) { status.textContent = error.name === 'AbortError' ? '读取音频超时，请重试或导入本地文件' : error.message; }
   finally { clearTimeout(timeout); button.disabled = false; }
-};
+}
+panel.querySelector('#fpga-current').onclick = importCurrentSongToFpga;
+window.importCurrentSongToFpga = importCurrentSongToFpga;

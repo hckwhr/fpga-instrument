@@ -40,7 +40,11 @@ public final class MainActivity extends Activity {
         ble = new BleCentral(this); web = new WebView(this);
         WebSettings settings = web.getSettings(); settings.setJavaScriptEnabled(true); settings.setDomStorageEnabled(true);
         settings.setAllowFileAccess(false); settings.setAllowContentAccess(true);
-        settings.setMixedContentMode(WebSettings.MIXED_CONTENT_NEVER_ALLOW); settings.setMediaPlaybackRequiresUserGesture(true);
+        settings.setMixedContentMode(WebSettings.MIXED_CONTENT_NEVER_ALLOW);
+        // The explicit player action waits for native HTTPS download first.
+        // Its user activation has expired by the time media.play() runs.
+        // Only our local app UI is loaded in this WebView.
+        settings.setMediaPlaybackRequiresUserGesture(false);
         web.addJavascriptInterface(new Bridge(), "NativeApp");
         web.setWebViewClient(new WebViewClient() {
             @Override public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
@@ -59,13 +63,14 @@ public final class MainActivity extends Activity {
                 if (chooser != null) chooser.onReceiveValue(null); chooser = callback;
                 Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT); intent.addCategory(Intent.CATEGORY_OPENABLE);
                 intent.setType("*/*");
+                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, params.getMode() == FileChooserParams.MODE_OPEN_MULTIPLE);
                 // Android's picker interprets MIME types, not browser .mid/.json
                 // extension accept tokens. Let the established JS parsers validate.
                 try { startActivityForResult(intent, 21); } catch (ActivityNotFoundException e) { chooser.onReceiveValue(null); chooser = null; }
                 return true;
             }
         });
-        setContentView(web); web.loadUrl(server.base() + "mobile.html"); handleIntent(getIntent());
+        setContentView(web); web.loadUrl(server.base() + "android.html"); handleIntent(getIntent());
     }
     private final class Bridge {
         @JavascriptInterface public void request(String id, String operation, String payload) {
@@ -80,8 +85,16 @@ public final class MainActivity extends Activity {
                         case "ble-connect": requestBle(id, body); break;
                         case "ble-write": ble.write(id, Base64.decode(body.getString("data"), Base64.DEFAULT)); break;
                         case "ble-disconnect": ble.close(); success(id, new JSONObject()); break;
-                        case "music-search": work(id, () -> MusicSource.search(body.optString("query"))); break;
+                        case "music-search": work(id, () -> MusicSource.search(body.optString("query"), body.optInt("offset"), body.optInt("limit", 20))); break;
+                        case "music-lyric": work(id, () -> MusicSource.lyric(body.optString("id"))); break;
                         case "music-download": work(id, () -> MusicSource.download(body, incoming, server.base())); break;
+                        case "music-login-key": work(id, MusicSource::loginKey); break;
+                        case "music-login-check": work(id, () -> MusicSource.loginCheck(body.optString("key"))); break;
+                        case "music-status": work(id, MusicSource::status); break;
+                        case "music-playlists": work(id, () -> MusicSource.playlists(body.optInt("offset"), body.optInt("limit", 48))); break;
+                        case "music-playlist-tracks": work(id, () -> MusicSource.tracks(body.optString("id"), body.optInt("offset"), body.optInt("limit", 48))); break;
+                        case "music-logout": work(id, MusicSource::logout); break;
+                        case "save-login-qr": work(id, () -> saveLoginQr(body.getString("data"))); break;
                         case "save-file":
                             if (saveId != null) throw new IllegalStateException("请先完成上一次保存");
                             saveBytes = Base64.decode(body.getString("data"), Base64.DEFAULT);
@@ -97,6 +110,24 @@ public final class MainActivity extends Activity {
         }
     }
     private interface Job { JSONObject run() throws Exception; }
+    private JSONObject saveLoginQr(String encoded) throws Exception {
+        byte[] bytes = Base64.decode(encoded, Base64.DEFAULT);
+        if (bytes.length > 128 * 1024 || bytes.length < 8 || bytes[0] != (byte)137 || bytes[1] != 80 || bytes[2] != 78 || bytes[3] != 71) throw new IOException("二维码图片无效");
+        if (Build.VERSION.SDK_INT < 29) throw new IOException("请截屏后使用网易云扫一扫从相册识别");
+        ContentValues values = new ContentValues();
+        values.put(android.provider.MediaStore.Images.Media.DISPLAY_NAME, "FPGAvedio-网易云登录-" + System.currentTimeMillis() + ".png");
+        values.put(android.provider.MediaStore.Images.Media.MIME_TYPE, "image/png");
+        values.put(android.provider.MediaStore.Images.Media.RELATIVE_PATH, "Pictures/FPGAvedio");
+        values.put(android.provider.MediaStore.Images.Media.IS_PENDING, 1);
+        Uri uri = getContentResolver().insert(android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+        if (uri == null) throw new IOException("无法保存二维码到相册");
+        try {
+            try (OutputStream out = getContentResolver().openOutputStream(uri)) { if (out == null) throw new IOException("无法写入相册"); out.write(bytes); }
+            ContentValues ready = new ContentValues(); ready.put(android.provider.MediaStore.Images.Media.IS_PENDING, 0);
+            getContentResolver().update(uri, ready, null, null);
+        } catch (Exception e) { getContentResolver().delete(uri, null, null); throw e; }
+        return BleCentral.object("saved", true);
+    }
     private void work(String id, Job job) { workers.execute(() -> { try { success(id, job.run()); } catch (Exception e) { failure(id, e.getMessage()); } }); }
     private void requestBle(String id, JSONObject config) {
         if (permissionId != null) { failure(id, "请先完成蓝牙授权"); return; }
@@ -142,7 +173,16 @@ public final class MainActivity extends Activity {
     }
     @Override protected void onActivityResult(int request, int result, Intent data) {
         super.onActivityResult(request, result, data);
-        if (request == 21 && chooser != null) { chooser.onReceiveValue(result == RESULT_OK && data != null ? new Uri[]{data.getData()} : null); chooser = null; }
+        if (request == 21 && chooser != null) {
+            Uri[] selected = null;
+            if (result == RESULT_OK && data != null) {
+                if (data.getClipData() != null) {
+                    ClipData files = data.getClipData(); selected = new Uri[files.getItemCount()];
+                    for (int i = 0; i < selected.length; i++) selected[i] = files.getItemAt(i).getUri();
+                } else if (data.getData() != null) selected = new Uri[]{data.getData()};
+            }
+            chooser.onReceiveValue(selected); chooser = null;
+        }
         if (request == 22 && saveId != null) {
             String id = saveId; byte[] bytes = saveBytes; saveId = null; saveBytes = null;
             if (result != RESULT_OK || data == null || data.getData() == null) { failure(id, "已取消保存"); return; }
@@ -157,9 +197,9 @@ public final class MainActivity extends Activity {
     }
     @Override public void onBackPressed() {
         if (web == null) { super.onBackPressed(); return; }
-        web.evaluateJavascript("document.getElementById('music-tab').getAttribute('aria-pressed') === 'true'", result -> {
+        web.evaluateJavascript("!document.body.classList.contains('fpga-playback-mode')", result -> {
             if ("true".equals(result)) super.onBackPressed();
-            else web.evaluateJavascript("document.getElementById('music-tab').click()", null);
+            else web.evaluateJavascript("document.getElementById('mode-player').click()", null);
         });
     }
     @Override protected void onDestroy() {

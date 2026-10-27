@@ -9,7 +9,8 @@ import assert from 'node:assert/strict';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const assets = resolve(root, 'android/app/src/main/assets');
-const evidence = resolve(root, '../../artifacts/mineradio_app_20261021');
+const fullPlayer = process.argv.includes('--player');
+const evidence = resolve(root, fullPlayer ? '../../artifacts/fpgavedio_android_20261027' : '../../artifacts/mineradio_app_20261021');
 // Match Android's token-prefixed loopback origin, not just root hosting.
 const basePath = '/android-test-token';
 await mkdir(evidence, { recursive: true });
@@ -63,7 +64,7 @@ try {
   };
   const waitFor = async (expression, seconds = 10) => {
     const limit = Date.now() + seconds * 1000;
-    while (Date.now() < limit) { if (await evaluate(expression)) return; await new Promise(done => setTimeout(done, 100)); }
+    while (Date.now() < limit) { if (await evaluate(`Boolean(${expression})`)) return; await new Promise(done => setTimeout(done, 100)); }
     throw Error(`UI timeout: ${expression}`);
   };
   await page('Runtime.enable'); await page('Page.enable');
@@ -76,6 +77,11 @@ try {
         const value=JSON.parse(payload); window.nativeCalls.push({op,value});
         let result={};
         if(op==='music-search') result={songs:[{id:1451396976,name:'联调参考音符',artist:'本地合成测试'}]};
+        else if(op==='music-status') result={loggedIn:!!window.testLoggedIn,nickname:'测试账号'};
+        else if(op==='music-login-key') result={key:'mock-key',url:'https://music.163.com/login?codekey=mock-key'};
+        else if(op==='music-login-check') { const code=window.testLoginCode||801; if(code===803)window.testLoggedIn=true; result={code,loggedIn:code===803,nickname:'测试账号'}; }
+        else if(op==='music-logout') { window.testLoggedIn=false;result={loggedIn:false}; }
+        else if(op==='save-login-qr') result={saved:true};
         else if(op==='music-download') result={url:'${basePath}/fixture.mp3',name:'reference-notes.mp3',mime:'audio/mpeg'};
         else if(op==='ble-connect'){window.nativeSession=value.sessionId;result={name:'行者无疆'};}
         else if(op==='ble-write'){
@@ -112,6 +118,53 @@ try {
     }
   ` });
   await page('Emulation.setDeviceMetricsOverride', { width: 390, height: 844, deviceScaleFactor: 1, mobile: true });
+  if (fullPlayer) {
+    await page('Page.navigate', { url: `http://127.0.0.1:${server.address().port}${basePath}/android.html` });
+    await waitFor(`typeof window.handleFiles==='function' && !!document.querySelector('#mode-fpga')`, 30);
+    await waitFor(`window.splashReadyToEnter`, 15);
+    await evaluate(`document.querySelector('#splash').click()`);
+    await waitFor(`!document.body.classList.contains('splash-active')`, 15);
+    await evaluate(`document.querySelector('#android-menu').click()`);
+    assert.equal(await evaluate(`document.querySelector('#android-account').getBoundingClientRect().width>0`), true, 'Login entry is visible inside drawer');
+    await evaluate(`document.querySelector('#android-account').click()`);
+    await waitFor(`document.querySelector('#android-login').open && !document.querySelector('#android-login-qr').hidden`);
+    await evaluate(`document.querySelector('#android-login-save').click()`);
+    await waitFor(`window.nativeCalls.some(c=>c.op==='save-login-qr' && c.value.data.length>100)`);
+    await evaluate(`window.testLoginCode=800`);
+    await waitFor(`document.querySelector('#android-login-status').textContent.includes('过期')`);
+    assert.equal(await evaluate(`window.testLoggedIn===true`), false, 'Expired QR must not log in');
+    await evaluate(`window.testLoginCode=803;document.querySelector('#android-login-refresh').click()`);
+    await waitFor(`document.querySelector('#android-account').textContent==='测试账号'`);
+    await evaluate(`document.querySelector('#android-login-logout').click()`);
+    await waitFor(`document.querySelector('#android-account').textContent==='网易云登录'`);
+    await evaluate(`document.querySelector('#android-login').close()`);
+    await evaluate(`document.querySelector('#android-menu').click();document.querySelector('#android-drawer [data-page="queue"]').click()`);
+    assert.equal(await evaluate(`(()=>{const p=document.querySelector('#playlist-panel').getBoundingClientRect(),s=document.querySelector('#search-box').getBoundingClientRect();return p.top>=s.bottom && document.elementFromPoint(s.left+s.width/2,s.top+s.height/2).id==='search-input';})()`), true, 'Queue must never cover search');
+    await writeFile(resolve(evidence, 'phone-queue.png'), Buffer.from((await page('Page.captureScreenshot', { format: 'png' })).data, 'base64'));
+    await evaluate(`document.querySelector('#android-menu').click();document.querySelector('#android-drawer [data-page="home"]').click();setPeek(document.querySelector('#playlist-panel'),true,'pl')`);
+    assert.equal(await evaluate(`getComputedStyle(document.querySelector('#playlist-panel')).display`), 'none', 'Desktop hover must not open phone library');
+    await writeFile(resolve(evidence, 'phone-home.png'), Buffer.from((await page('Page.captureScreenshot', { format: 'png' })).data, 'base64'));
+    await evaluate(`document.querySelector('#android-menu').click()`);
+    await writeFile(resolve(evidence, 'phone-drawer.png'), Buffer.from((await page('Page.captureScreenshot', { format: 'png' })).data, 'base64'));
+    await evaluate(`document.querySelector('#android-menu-close').click()`);
+    assert.equal(await evaluate(`document.querySelector('#mode-player').getAttribute('aria-pressed')`), 'true');
+    assert.equal(await evaluate(`document.querySelector('#android-send-current').disabled`), true, 'No audio means no misleading transfer action');
+    await evaluate(`document.querySelector('#search-input').value='小星星';document.querySelector('#search-input').dispatchEvent(new Event('input',{bubbles:true}))`);
+    await waitFor(`document.querySelector('#search-results .search-result')`, 20);
+    await evaluate(`playSearchResult(0)`);
+    await waitFor(`window.audio?.currentSrc && window.audio.readyState >= 2 && !window.audio.paused && window.audio.currentTime > 0.2`, 30);
+    await waitFor(`!document.querySelector('#android-send-current').disabled`);
+    assert.match(await evaluate(`document.querySelector('#android-now-title').textContent`), /联调参考音符/);
+    await evaluate(`document.querySelector('#search-input').blur();document.querySelector('#search-results').classList.remove('show')`);
+    assert.equal(await evaluate(`document.querySelector('#search-area').getBoundingClientRect().top >= document.querySelector('#fpga-mode-switch').getBoundingClientRect().bottom`), true, 'Phone search must not overlap the mode switch');
+    await writeFile(resolve(evidence, 'full-player.png'), Buffer.from((await page('Page.captureScreenshot', { format: 'png' })).data, 'base64'));
+    // Cold workbench: one button must load the iframe, then import and confirm.
+    assert.equal(await evaluate(`document.querySelector('#fpga-playback iframe').hasAttribute('src')`), false);
+    await evaluate(`document.querySelector('#android-send-current').click()`);
+    await waitFor(`document.querySelector('#fpga-playback iframe')?.contentDocument?.querySelector('.function-rail')`, 30);
+    await evaluate(`document.querySelector('#fpga-playback iframe').id='instrument'`);
+    await waitFor(`document.querySelector('#instrument').contentDocument.querySelector('#audio-file-name').textContent.includes('联调参考音符')`);
+  } else {
   await page('Page.navigate', { url: `http://127.0.0.1:${server.address().port}${basePath}/mobile.html` });
   await waitFor(`document.querySelector('#instrument')?.contentDocument?.querySelector('#status')?.textContent.includes('不会自动发送')`);
   assert.equal(await evaluate(`document.documentElement.scrollWidth<=innerWidth`), true);
@@ -122,6 +175,7 @@ try {
   await writeFile(resolve(evidence, 'music-mobile.png'), Buffer.from((await page('Page.captureScreenshot', { format: 'png' })).data, 'base64'));
   await evaluate(`document.querySelector('#convert-current').click()`);
   await waitFor(`document.querySelector('#instrument').contentDocument.querySelector('#audio-file-name').textContent.includes('reference-notes')`);
+  }
   const inside = expression => evaluate(`(()=>{const document=window.document.querySelector('#instrument').contentDocument;return (${expression})})()`);
   assert.equal(await inside(`document.querySelector('#connect').disabled`), false, 'Native BLE must work with navigator.bluetooth absent');
   await inside(`document.querySelector('#transcribe-audio').click()`);
@@ -161,6 +215,7 @@ try {
   assert.equal(await inside(`document.querySelector('#upload-play').disabled`), true);
   assert.deepEqual(errors, []);
   const result = { passed: true, recognizedNotes: 6, arrangedNotes: 6, uploadedEventWords: 12, browser: 'installed Microsoft Edge', realModel: true, nativeBleAndFpga: 'MOCKED, not physical hardware', checks: ['music source RPC -> decoded MP3 -> iframe import', 'no Web Bluetooth API required', 'model/worker/WASM transcription', 'polyphonic arrangement and unchanged hardware compiler', 'CAPS/DATA/COMMIT CRC and PLAY/STOP ACK', 'Android save-file RPC includes two-track arrangement', 'mobile layout and zero runtime exceptions'] };
+  if (fullPlayer) result.checks.push('visible account entry; QR render/save, expiry, authorization and logout (mocked provider)', 'actual player media time advances', 'drawer navigation keeps search reachable', 'current song button loads cold workbench and imports matching audio');
   await writeFile(resolve(evidence, 'app-smoke.json'), JSON.stringify(result, null, 2));
   console.log(JSON.stringify(result, null, 2));
   await command('Browser.close');

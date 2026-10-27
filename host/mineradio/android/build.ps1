@@ -27,7 +27,7 @@ foreach ($folder in @($output, "$output/generated", "$output/classes", "$output/
 }
 $main = 'app/src/main'
 Invoke-Checked "$sdkTools/aapt2.exe" @('compile', '--dir', "$main/res", '-o', "$output/resources.zip")
-Invoke-Checked "$sdkTools/aapt2.exe" @('link', '-o', "$output/unsigned.apk", '-I', $androidJar, '--manifest', "$main/AndroidManifest.xml", '-A', "$main/assets", '--java', "$output/generated", '--version-code', '100', '--version-name', '1.0.0-v3', '--min-sdk-version', '26', '--target-sdk-version', '34', "$output/resources.zip")
+Invoke-Checked "$sdkTools/aapt2.exe" @('link', '-o', "$output/unsigned.apk", '-I', $androidJar, '--manifest', "$main/AndroidManifest.xml", '-A', "$main/assets", '--java', "$output/generated", '--version-code', '104', '--version-name', '1.1.3', '--min-sdk-version', '26', '--target-sdk-version', '34', "$output/resources.zip")
 $sources = @(Get-ChildItem "$main/java", "$output/generated" -Filter '*.java' -File -Recurse | ForEach-Object FullName)
 Invoke-Checked "$jdk/bin/javac.exe" (@('-encoding', 'UTF-8', '-source', '8', '-target', '8', '-classpath', $androidJar, '-d', "$output/classes") + $sources)
 Invoke-Checked "$jdk/bin/jar.exe" @('cf', "$output/classes.jar", '-C', "$output/classes", '.')
@@ -48,7 +48,7 @@ try {
         $stream = $replacement.Open()
         try { $buffer.Position = 0; $buffer.CopyTo($stream) } finally { $stream.Dispose(); $buffer.Dispose() }
     }
-    foreach ($name in @('assets/mobile.html', 'assets/fpga/mobile.js', 'assets/instrument/src/app.js', 'assets/instrument/model/model.json', 'assets/instrument/wasm/tfjs-backend-wasm.wasm', 'classes.dex')) {
+    foreach ($name in @('assets/android.html', 'assets/js/index-loader.js', 'assets/fpga/android-player.js', 'assets/instrument/src/app.js', 'assets/instrument/model/model.json', 'assets/instrument/wasm/tfjs-backend-wasm.wasm', 'classes.dex')) {
         if (-not $archive.GetEntry($name)) { throw "APK is missing $name" }
     }
 } finally { $archive.Dispose() }
@@ -60,7 +60,7 @@ $key = Join-Path $signing 'demo.keystore'
 if (-not (Test-Path $key)) {
     Invoke-Checked "$jdk/bin/keytool.exe" @('-genkeypair', '-keystore', $key, '-storepass', 'android', '-keypass', 'android', '-alias', 'mineradio-demo', '-keyalg', 'RSA', '-keysize', '2048', '-validity', '10000', '-dname', 'CN=Mineradio FPGA Demo,O=Xingzhewujiang,C=CN')
 }
-$apk = Join-Path $output 'xingzhewujiang-mineradio-v3.apk'
+$apk = Join-Path $output 'FPGAvedio-Android.apk'
 Invoke-Checked "$jdk/bin/java.exe" @('-jar', "$sdkTools/lib/apksigner.jar", 'sign', '--ks', $key, '--ks-key-alias', 'mineradio-demo', '--ks-pass', 'pass:android', '--key-pass', 'pass:android', '--out', $apk, "$output/aligned.apk")
 Invoke-Checked "$jdk/bin/java.exe" @('-jar', "$sdkTools/lib/apksigner.jar", 'verify', '--verbose', '--print-certs', $apk)
 Get-FileHash -LiteralPath $apk -Algorithm SHA256
