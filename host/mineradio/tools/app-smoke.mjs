@@ -73,6 +73,7 @@ try {
     if(window.top===window){
       window.nativeCalls=[]; window.nativeSession=null; window.receivedWords=0;
       let buffer='',bytes=[],meta,stored,playing=0;
+      let performanceMap=null,performanceCustom=false,recordingId=null;
       window.NativeApp={request(id,op,payload){(async()=>{
         const value=JSON.parse(payload); window.nativeCalls.push({op,value});
         let result={};
@@ -90,6 +91,20 @@ try {
           buffer+=atob(value.data);
           while(buffer.includes('\\n')){
             const end=buffer.indexOf('\\n'),line=buffer.slice(0,end);buffer=buffer.slice(end+1);
+            if(line.startsWith('PERF1,')){
+              const {performanceLine,performanceCrc,packKeymap}=await import('${basePath}/instrument/src/performance-protocol.js');
+              const fields=line.split(',');if(performanceCrc(line.slice(0,-5))!==fields.at(-1))throw Error('Performance request CRC');
+              const identity=fields[1],operation=+fields[2];
+              performanceMap??=packKeymap(Array.from({length:12},(_,i)=>60+i));
+              if(operation===1){performanceMap=fields[3];performanceCustom=true;}
+              if(operation===2)performanceCustom=false;
+              if(operation===3)recordingId=identity;
+              const emit=body=>{const text=performanceLine(body);for(let i=0;i<text.length;i+=17)window.mineradioNative.deliver({type:'ble-data',sessionId:window.nativeSession,data:btoa(text.slice(i,i+17))});};
+              emit('PERF1,'+identity+',A,'+operation+','+(operation<=2&&performanceCustom?1:0)+','+performanceMap);
+              if(operation===3)setTimeout(()=>{if(recordingId===identity)emit('PERF1,'+identity+',D,0000,0000,00,'+'A'.repeat(160));},20);
+              if(operation===4){emit('PERF1,'+identity+',E,0001,0');recordingId=null;}
+              continue;
+            }
             const frame=decodeScoreFrame(line);if(!frame)throw Error('Request CRC');
             const [,sid,seq,operation,...v]=frame;let reply=[];
             if(operation==='CAPS')reply=[12,512,8,1];
@@ -206,6 +221,31 @@ try {
   assert.equal(backup.project.arrangement.melodyNotes, 6);
   assert.equal(backup.project.arrangement.mode, 'polyphonic');
   assert.equal(backup.project.tracks.length, 2);
+  await inside(`document.querySelector('#performance-probe').click()`);
+  await waitFor(`!document.querySelector('#instrument').contentDocument.querySelector('#keymap-apply').disabled`);
+  assert.equal(await inside(`document.querySelectorAll('#keymap-grid select').length`),12);
+  await inside(`(()=>{document.querySelector('#keymap-grid select').value='83';document.querySelector('#keymap-grid select').dispatchEvent(new Event('change'));document.querySelector('#keymap-apply').click();})()`);
+  await waitFor(`document.querySelector('#instrument').contentDocument.querySelector('#performance-message').textContent.includes('已在 FPGA 生效')`);
+  await inside(`document.querySelector('#record-start').click()`);
+  await waitFor(`!document.querySelector('#instrument').contentDocument.querySelector('#record-stop').disabled`);
+  await new Promise(resolve=>setTimeout(resolve,100));
+  await inside(`document.querySelector('#record-stop').click()`);
+  await waitFor(`!document.querySelector('#instrument').contentDocument.querySelector('#record-result').hidden`);
+  await inside(`document.querySelector('#record-save').click()`);
+  await waitFor(`window.savedFile?.mime==='audio/wav'`);
+  const recorded=Buffer.from(await evaluate('window.savedFile.data'),'base64');
+  assert.equal(recorded.toString('ascii',0,4),'RIFF');assert.equal(recorded.readUInt32LE(24),12000);assert.equal(recorded.readUInt32LE(40),480);
+  if(fullPlayer)await inside(`document.querySelector('.function-rail a[href="#live-performance"]').click()`);
+  if(fullPlayer)await waitFor(`(()=>{const d=document.querySelector('#instrument').contentDocument,r=d.querySelector('#live-performance').getBoundingClientRect();return r.top>=0 && r.top<140;})()`);
+  await writeFile(resolve(evidence,'performance-mobile.png'),Buffer.from((await page('Page.captureScreenshot',{format:'png'})).data,'base64'));
+  assert.equal(await inside(`document.documentElement.scrollWidth<=document.documentElement.clientWidth`),true,'Performance editor must fit phone');
+  if(fullPlayer){
+    await page('Emulation.setDeviceMetricsOverride',{width:1440,height:1000,deviceScaleFactor:1,mobile:false});
+    await inside(`document.querySelector('#live-performance').scrollIntoView()`);
+    await new Promise(resolve=>setTimeout(resolve,300));
+    await writeFile(resolve(evidence,'performance-wide.png'),Buffer.from((await page('Page.captureScreenshot',{format:'png'})).data,'base64'));
+    await page('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});
+  }
   await writeFile(resolve(evidence, 'arranged-score.json'), JSON.stringify(backup, null, 2));
   assert.equal(await inside(`document.documentElement.scrollWidth<=document.documentElement.clientWidth`), true);
   await writeFile(resolve(evidence, 'workbench-mobile.png'), Buffer.from((await page('Page.captureScreenshot', { format: 'png', captureBeyondViewport: true })).data, 'base64'));
@@ -216,6 +256,7 @@ try {
   assert.deepEqual(errors, []);
   const result = { passed: true, recognizedNotes: 6, arrangedNotes: 6, uploadedEventWords: 12, browser: 'installed Microsoft Edge', realModel: true, nativeBleAndFpga: 'MOCKED, not physical hardware', checks: ['music source RPC -> decoded MP3 -> iframe import', 'no Web Bluetooth API required', 'model/worker/WASM transcription', 'polyphonic arrangement and unchanged hardware compiler', 'CAPS/DATA/COMMIT CRC and PLAY/STOP ACK', 'Android save-file RPC includes two-track arrangement', 'mobile layout and zero runtime exceptions'] };
   if (fullPlayer) result.checks.push('visible account entry; QR render/save, expiry, authorization and logout (mocked provider)', 'actual player media time advances', 'drawer navigation keeps search reachable', 'current song button loads cold workbench and imports matching audio');
+  result.checks.push('12-key map read/apply ACK and recording START/DATA/STOP/END to native WAV save (mock FPGA)');
   await writeFile(resolve(evidence, 'app-smoke.json'), JSON.stringify(result, null, 2));
   console.log(JSON.stringify(result, null, 2));
   await command('Browser.close');

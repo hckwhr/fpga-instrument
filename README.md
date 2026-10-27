@@ -41,6 +41,7 @@ flowchart LR
 | 目录 | 职责 |
 | --- | --- |
 | [fpga/current](fpga/current/README.md) | 当前 Verilog 工程、音频与显示模块、约束、ROM 和仿真 |
+| [fpga/performance](docs/PERFORMANCE.md) | 独立演奏扩展工程：12 键音高映射与真实混音录音回传 |
 | [host/mineradio](docs/HOST.md) | FPGAvedio 双模式桌面播放器及 Android 工程 |
 | [host/instrument-web](host/instrument-web/README.md) | 共用转谱、上传、曲谱库和可视化逻辑 |
 | firmware/xiaozhi-v3 | 小智语音及通用 ESP32-S3 套件适配 |

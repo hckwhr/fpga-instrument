@@ -1,0 +1,202 @@
+{
+  "build_id": "33389b4e1c114ef3960ed2bf5663e9b5",
+  "project_file": "E:\\Gowin\\workspace\\v3_performance_20261027\\v3_hdmi_top.gprj",
+  "stage": "pnr",
+  "budget_seconds": 7200,
+  "options": {
+    "place_option": 3,
+    "route_option": 2
+  },
+  "started_epoch": 1793103226.7732363,
+  "heartbeat_epoch": 1793104020.021606,
+  "state": "completed",
+  "success": true,
+  "evidence_level": "bitstream-generated",
+  "fingerprint_scope": "enabled inputs plus in-project headers/memory/constraints/IP config; external implicit includes not covered",
+  "requires_report_review": true,
+  "worker_pid": 30780,
+  "tool_pid": 19244,
+  "return_code": 0,
+  "inputs_unchanged": true,
+  "new_bitstreams": [
+    {
+      "path": "E:\\Gowin\\workspace\\v3_performance_20261027\\impl\\pnr\\v3_hdmi_top.fs",
+      "relative_path": "impl\\pnr\\v3_hdmi_top.fs",
+      "bytes": 40195679,
+      "modified_epoch": 1793104012.9340684,
+      "sha256": "26444678a9f1e200074ae5af04d74d471bc9ddaf7b852c6304590a82635892c9"
+    }
+  ],
+  "new_artifacts": [
+    {
+      "path": "E:\\Gowin\\workspace\\v3_performance_20261027\\impl\\v3_hdmi_top_process_config.json",
+      "relative_path": "impl\\v3_hdmi_top_process_config.json",
+      "bytes": 3239,
+      "modified_epoch": 1793104019.6236439,
+      "sha256": "3811a0f5568fb48ccdcca8db5bfbcf8b7589f585e8d6181bcba596d9bbee1ee1"
+    },
+    {
+      "path": "E:\\Gowin\\workspace\\v3_performance_20261027\\impl\\pnr\\v3_hdmi_top.log",
+      "relative_path": "impl\\pnr\\v3_hdmi_top.log",
+      "bytes": 1617,
+      "modified_epoch": 1793104018.6467028,
+      "sha256": "ad62115536a6a31dd691de4531c13c59789a867ba6237c55f6cbb0ef93da0732"
+    },
+    {
+      "path": "E:\\Gowin\\workspace\\v3_performance_20261027\\impl\\pnr\\v3_hdmi_top.tr.html",
+      "relative_path": "impl\\pnr\\v3_hdmi_top.tr.html",
+      "bytes": 357,
+      "modified_epoch": 1793104018.5643291,
+      "sha256": "d18b671633c8dac8bb2ee3146e8283fa8cebeeb1d1060022e5e8af6703f116cf"
+    },
+    {
+      "path": "E:\\Gowin\\workspace\\v3_performance_20261027\\impl\\pnr\\v3_hdmi_top_tr_cata.html",
+      "relative_path": "impl\\pnr\\v3_hdmi_top_tr_cata.html",
+      "bytes": 7892,
+      "modified_epoch": 1793104018.5643291,
+      "sha256": "10a9f7846d459459a52b5c587f5c150cd89161d560e6e4dcbccc4deff39b21d3"
+    },
+    {
+      "path": "E:\\Gowin\\workspace\\v3_performance_20261027\\impl\\pnr\\v3_hdmi_top_tr_content.html",
+      "relative_path": "impl\\pnr\\v3_hdmi_top_tr_content.html",
+      "bytes": 6274011,
+      "modified_epoch": 1793104018.5633237,
+      "sha256": "3da18f8b48740d4f8c33b95a51900c497f42500aa04835e719c6bc9896174aed"
+    },
+    {
+      "path": "E:\\Gowin\\workspace\\v3_performance_20261027\\impl\\pnr\\v3_hdmi_top.timing_paths",
+      "relative_path": "impl\\pnr\\v3_hdmi_top.timing_paths",
+      "bytes": 741942,
+      "modified_epoch": 1793104016.7675622,
+      "sha256": "91a8a1e4b9f981dd09d939b510ef6540cf7523b6a245713fa952844732fc491b"
+    },
+    {
+      "path": "E:\\Gowin\\workspace\\v3_performance_20261027\\impl\\pnr\\v3_hdmi_top.rpt.txt",
+      "relative_path": "impl\\pnr\\v3_hdmi_top.rpt.txt",
+      "bytes": 87958,
+      "modified_epoch": 1793104013.9858215,
+      "sha256": "ebf1c9ddcbd21dd1e2a9b6598eb9fca78b11a07ee7f5b29e7bd6d597a871e999"
+    },
+    {
+      "path": "E:\\Gowin\\workspace\\v3_performance_20261027\\impl\\pnr\\v3_hdmi_top.rpt.html",
+      "relative_path": "impl\\pnr\\v3_hdmi_top.rpt.html",
+      "bytes": 109915,
+      "modified_epoch": 1793104013.977788,
+      "sha256": "e82758b6d21abf23a1df6cf8eec12c4573dd7f8ce43cbc4f3cf554534d237697"
+    },
+    {
+      "path": "E:\\Gowin\\workspace\\v3_performance_20261027\\impl\\pnr\\v3_hdmi_top.pin.html",
+      "relative_path": "impl\\pnr\\v3_hdmi_top.pin.html",
+      "bytes": 103791,
+      "modified_epoch": 1793104013.6224482,
+      "sha256": "df4f83050ed88105af5a11d53d0095c482ac35ac7799430b95cd738ea1de3322"
+    },
+    {
+      "path": "E:\\Gowin\\workspace\\v3_performance_20261027\\impl\\pnr\\v3_hdmi_top.power.html",
+      "relative_path": "impl\\pnr\\v3_hdmi_top.power.html",
+      "bytes": 16678,
+      "modified_epoch": 1793104013.5765917,
+      "sha256": "b0c187d163eefe98797b7ab39e77f19b6fbe0772b72a2df9665fdbedb1c5f1f8"
+    },
+    {
+      "path": "E:\\Gowin\\workspace\\v3_performance_20261027\\impl\\pnr\\v3_hdmi_top.fs",
+      "relative_path": "impl\\pnr\\v3_hdmi_top.fs",
+      "bytes": 40195679,
+      "modified_epoch": 1793104012.9340684,
+      "sha256": "26444678a9f1e200074ae5af04d74d471bc9ddaf7b852c6304590a82635892c9"
+    },
+    {
+      "path": "E:\\Gowin\\workspace\\v3_performance_20261027\\impl\\pnr\\v3_hdmi_top.pr",
+      "relative_path": "impl\\pnr\\v3_hdmi_top.pr",
+      "bytes": 223055604,
+      "modified_epoch": 1793103997.1632967,
+      "sha256": "87f7ac898c646d4672e1813d049c0045ebb65a7ede090f72e6019af6e92b0fda"
+    },
+    {
+      "path": "E:\\Gowin\\workspace\\v3_performance_20261027\\impl\\pnr\\v3_hdmi_top.p",
+      "relative_path": "impl\\pnr\\v3_hdmi_top.p",
+      "bytes": 9093106,
+      "modified_epoch": 1793103737.3409894,
+      "sha256": "c43fa06a369e48af11c93d09b92cf7bfa066a497b3a0a8bf4b1c5659d8609f81"
+    }
+  ],
+  "stage_outputs": {
+    "synthesis": [],
+    "placement": [
+      "impl\\pnr\\v3_hdmi_top.p"
+    ],
+    "route": [
+      "impl\\pnr\\v3_hdmi_top.pr"
+    ],
+    "timing": [
+      "impl\\pnr\\v3_hdmi_top_tr_content.html"
+    ],
+    "pins": [
+      "impl\\pnr\\v3_hdmi_top.pin.html"
+    ],
+    "bitstream": [
+      "impl\\pnr\\v3_hdmi_top.fs"
+    ]
+  },
+  "missing_outputs": [],
+  "applied_options": {
+    "place_option": 3,
+    "route_option": 2
+  },
+  "options_applied": true,
+  "report_archive": "E:\\Gowin\\workspace\\v3_performance_20261027\\.gowin-mcp\\33389b4e1c114ef3960ed2bf5663e9b5\\reports",
+  "finished_epoch": 1793104020.021606,
+  "elapsed_seconds": 793.248,
+  "budget_exceeded": false,
+  "receipt_path": "E:\\Gowin\\workspace\\v3_performance_20261027\\.gowin-mcp\\33389b4e1c114ef3960ed2bf5663e9b5\\receipt.json",
+  "heartbeat_age_seconds": 173.964,
+  "log": {
+    "path": "E:\\Gowin\\workspace\\v3_performance_20261027\\.gowin-mcp\\33389b4e1c114ef3960ed2bf5663e9b5\\build.log",
+    "bytes": 1742,
+    "log_age_seconds": 175.341,
+    "error_count": 0,
+    "warning_count": 1,
+    "groups": {
+      "warning:PR1014": 1
+    },
+    "messages": [
+      {
+        "line": 17,
+        "severity": "warning",
+        "code": "PR1014",
+        "text": "WARN  (PR1014) : Generic routing resource will be used to clock signal 'sys_clk_d' by the specified constraint. And then it may lead to the excessive delay or skew"
+      }
+    ],
+    "messages_truncated": false,
+    "first_error": null,
+    "last_progress": {
+      "line": 30,
+      "text": "Generate file \"E:\\Gowin\\workspace\\v3_performance_20261027\\impl\\pnr\\v3_hdmi_top.tr.html\" completed"
+    },
+    "last_stage": {
+      "name": "power",
+      "line": 25,
+      "text": "[100%] Power analysis completed"
+    },
+    "unrouted_nets": null,
+    "unrouted_evidence": null,
+    "tail": [
+      "Placement and routing completed",
+      "Bitstream generation in progress......",
+      "Bitstream generation completed",
+      "Running power analysis......",
+      "[100%] Power analysis completed",
+      "Generate file \"E:\\Gowin\\workspace\\v3_performance_20261027\\impl\\pnr\\v3_hdmi_top.power.html\" completed",
+      "Generate file \"E:\\Gowin\\workspace\\v3_performance_20261027\\impl\\pnr\\v3_hdmi_top.pin.html\" completed",
+      "Generate file \"E:\\Gowin\\workspace\\v3_performance_20261027\\impl\\pnr\\v3_hdmi_top.rpt.html\" completed",
+      "Generate file \"E:\\Gowin\\workspace\\v3_performance_20261027\\impl\\pnr\\v3_hdmi_top.rpt.txt\" completed",
+      "Generate file \"E:\\Gowin\\workspace\\v3_performance_20261027\\impl\\pnr\\v3_hdmi_top.tr.html\" completed",
+      "Tue Oct 27 20:26:58 2026",
+      ""
+    ],
+    "process_state": "not-probed",
+    "evidence_level": "log-only"
+  },
+  "inputs_match_now": true,
+  "artifacts_match_now": true
+}

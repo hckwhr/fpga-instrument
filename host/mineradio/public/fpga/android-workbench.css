@@ -1,5 +1,6 @@
 /* Single scrolling surface on phones; reuse every desktop control. */
-html.android-workbench body { overflow: auto; }
+html.android-workbench { height: auto; overflow: auto; }
+html.android-workbench body { height: auto; min-height: 100vh; overflow: visible; }
 .android-workbench.desktop-workbench .shell { display: flex; flex-direction: column; height: auto; padding: 0 12px 24px; gap: 12px; }
 .android-workbench .function-rail { position: sticky; top: 0; z-index: 30; display: flex; flex-direction: row; height: auto; width: 100%; overflow-x: auto; border-radius: 14px; padding: 4px; background: #15232b; }
 .android-workbench .function-rail .rail-brand { display: none; }

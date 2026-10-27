@@ -21,6 +21,7 @@ final class BleCentral {
     private byte[] outgoing;
     private int offset;
     private boolean noResponse;
+    private boolean discovering;
     private AlertDialog dialog;
     private Runnable deadline;
     private final List<BluetoothDevice> devices = new ArrayList<>();
@@ -63,8 +64,15 @@ final class BleCentral {
         public void onConnectionStateChange(BluetoothGatt g, int status, int state) { handler.post(() -> {
             if (g != gatt) { g.close(); return; }
             if (status != BluetoothGatt.GATT_SUCCESS || state == BluetoothProfile.STATE_DISCONNECTED) { fail("BLE 连接已断开（" + status + "）"); return; }
-            if (state == BluetoothProfile.STATE_CONNECTED && !g.discoverServices()) fail("无法发现 BLE 服务");
+            if (state == BluetoothProfile.STATE_CONNECTED) {
+                // One 196-byte recording line fits in a negotiated ATT packet.
+                // Small-MTU peers remain supported; framing/CRC detects any gap.
+                g.requestConnectionPriority(BluetoothGatt.CONNECTION_PRIORITY_HIGH);
+                if (!g.requestMtu(247)) discover(g);
+                else handler.postDelayed(() -> discover(g), 3000);
+            }
         }); }
+        public void onMtuChanged(BluetoothGatt g, int mtu, int status) { handler.post(() -> discover(g)); }
         public void onServicesDiscovered(BluetoothGatt g, int status) { handler.post(() -> {
             if (g != gatt) return;
             try {
@@ -103,6 +111,11 @@ final class BleCentral {
             nextChunk();
         }); }
     };
+    private void discover(BluetoothGatt g) {
+        if (g != gatt || discovering) return;
+        discovering = true;
+        if (!g.discoverServices()) fail("无法发现 BLE 服务");
+    }
     private void notifyData(BluetoothGatt g, BluetoothGattCharacteristic characteristic, byte[] bytes) {
         handler.post(() -> { if (g == gatt && characteristic.getUuid().equals(notifyUuid)) activity.event(object("type", "ble-data", "sessionId", sessionId, "data", android.util.Base64.encodeToString(bytes, android.util.Base64.NO_WRAP))); });
     }
@@ -137,7 +150,7 @@ final class BleCentral {
         if (scanner != null) { try { scanner.stopScan(scanCallback); } catch (Exception ignored) {} scanner = null; }
         if (dialog != null) { dialog.dismiss(); dialog = null; }
         if (gatt != null) { BluetoothGatt old = gatt; gatt = null; old.disconnect(); old.close(); }
-        writer = null; outgoing = null;
+        writer = null; outgoing = null; discovering = false;
         if (connectId != null) activity.failure(connectId, "已断开 BLE");
         if (writeId != null) activity.failure(writeId, "已断开 BLE，写入未完成");
         connectId = null; writeId = null;

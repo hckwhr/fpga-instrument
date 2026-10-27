@@ -11,6 +11,7 @@ import { arrangeInstrumentalScore, audioSelectionEnd, INSTRUMENTAL_ARRANGEMENT_D
 import { NativeBleTransport } from './native-ble-transport.js';
 import { createPerformanceMonitor } from './performance-monitor.js';
 import { createBoardMonitor } from './board-monitor.js';
+import { createPerformanceView } from './performance-view.js';
 
 const $ = (selector) => document.querySelector(selector);
 const state = { project: null, events: [], selectedTracks: [], audioFile: null, transcription: null };
@@ -52,6 +53,7 @@ const deviceSession = new DeviceSession(activeTransport);
 const uploadSession = new ScoreUploadSession(deviceSession);
 let compiledUpload = null;
 const boardMonitor = createBoardMonitor(deviceSession, uploadSession);
+const performanceSession = createPerformanceView(deviceSession);
 const activeSession = () => deviceSession;
 const activeUpload = () => uploadSession;
 function renderDeviceState() {
@@ -197,6 +199,7 @@ function updateConnectionUi({ state = activeTransport.state, connected = activeT
 }
 function bindTransport(transport) {
   let decoder = new TextDecoder();
+  let recordingLogAt = 0;
   transport.onStatus((event) => {
     if (transport !== activeTransport) return;
     if (event.state === 'connecting' || event.state === 'disconnected') decoder = new TextDecoder();
@@ -206,7 +209,13 @@ function bindTransport(transport) {
   transport.onData((data) => {
     if (transport !== activeTransport) return;
     const text = data instanceof Uint8Array ? decoder.decode(data, { stream: true }) : data;
-    if (text) logLink('收到', text);
+    // The recording parser receives every byte independently. Summarize only
+    // the diagnostic UI: rewriting a 100-line DOM log per BLE fragment janks phones.
+    if (performanceSession.snapshot().recording) {
+      if (Date.now() - recordingLogAt > 1000) {
+        recordingLogAt = Date.now(); logLink('收到', 'FPGA 连续录音数据（完整性由录音协议检查）');
+      }
+    } else if (text) logLink('收到', text);
   });
 }
 bindTransport(activeTransport);

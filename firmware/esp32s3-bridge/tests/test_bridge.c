@@ -208,11 +208,45 @@ static int pipe_mode(void)
     return 0;
 }
 
+static bool recording_pump(size_t mtu, unsigned stall_ms)
+{
+    bridge_core b; ready(&b);
+    static uint8_t source[196 * 500]; // Ten seconds, 50 frames/sec.
+    for(size_t i=0;i<sizeof(source);++i)source[i]=i%196==195?'\n':(uint8_t)('A'+i%26);
+    size_t arrived=0,read=0,sent=0;
+    for(unsigned ms=0;ms<14000;++ms){
+        size_t fraction=(size_t)((ms%20+1)*115200/10000);
+        if(fraction>196)fraction=196;
+        arrived=(ms/20)*196+fraction;
+        if(arrived>sizeof(source))arrived=sizeof(source);
+        if(arrived-read>BRIDGE_UART_RX_BYTES)return false;
+        if(ms%10 || (ms>=100 && ms<140))continue;
+        size_t budget=BRIDGE_PUMP_RX_BUDGET;
+        while(budget && read<arrived){
+            size_t n=bridge_uart_read_limit(&b);
+            if(n>budget)n=budget;if(n>arrived-read)n=arrived-read;if(!n)break;
+            if(bridge_receive_uart(&b,source+read,n,ms)!=BRIDGE_OK)return false;
+            read+=n;budget-=n;
+        }
+        if(!(ms>=300 && ms<300+stall_ms))for(unsigned p=0;p<BRIDGE_PUMP_NOTIFY_BUDGET;p++){
+            const uint8_t *data;size_t n=bridge_notify_peek(&b,mtu,&data);if(!n)break;
+            assert(sent+n<=sizeof(source)&&memcmp(data,source+sent,n)==0);
+            bridge_notify_sent(&b,n);sent+=n;
+        }
+        if(bridge_tick(&b,ms)!=BRIDGE_OK)return false;
+        if(sent==sizeof(source))return true;
+    }
+    return false;
+}
+
 int main(int argc, char **argv)
 {
     if (argc == 2 && strcmp(argv[1], "--pipe") == 0) return pipe_mode();
     test_all_splits(); test_queues(); test_validation(); test_lifecycle(); test_notifications();
     test_high_baud_backpressure();
-    puts("PASS bridge core: 6 scenario groups");
+    assert(recording_pump(23,200));assert(recording_pump(247,200));
+    assert(!recording_pump(23,1200));
+    puts("PASS continuous PERF1: 9800 B/s, MTU23/247, 200ms radio stall; 1200ms overflow detected");
+    puts("PASS bridge core: 7 scenario groups");
     return 0;
 }

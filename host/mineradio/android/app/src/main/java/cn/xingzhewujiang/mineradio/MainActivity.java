@@ -95,6 +95,10 @@ public final class MainActivity extends Activity {
                         case "music-playlist-tracks": work(id, () -> MusicSource.tracks(body.optString("id"), body.optInt("offset"), body.optInt("limit", 48))); break;
                         case "music-logout": work(id, MusicSource::logout); break;
                         case "save-login-qr": work(id, () -> saveLoginQr(body.getString("data"))); break;
+                        case "keep-awake":
+                            if (body.optBoolean("enabled")) getWindow().addFlags(android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+                            else getWindow().clearFlags(android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+                            success(id, new JSONObject()); break;
                         case "save-file":
                             if (saveId != null) throw new IllegalStateException("请先完成上一次保存");
                             saveBytes = Base64.decode(body.getString("data"), Base64.DEFAULT);

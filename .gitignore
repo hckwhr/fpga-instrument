@@ -42,4 +42,5 @@
 !/artifacts/stage65/**/*.log
 !/artifacts/stage68/**/*.log
 !/artifacts/current/**/*.log
+!/artifacts/performance_20261027/**/*.log
 **/transcript

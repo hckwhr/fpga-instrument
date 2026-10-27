@@ -1,8 +1,8 @@
-param([switch]$UpdateInterfaceOnly)
+param([switch]$UpdateInterfaceOnly,[string]$PackageDirectory)
 $ErrorActionPreference = 'Stop'
 $project = Split-Path $PSScriptRoot -Parent
 $workspace = Split-Path (Split-Path $project -Parent) -Parent
-$source = Join-Path $project 'dist-fpga/win-unpacked'
+$source = if ($PackageDirectory) { (Resolve-Path -LiteralPath $PackageDirectory).Path } else { Join-Path $project 'dist-fpga/win-unpacked' }
 $evidence = Join-Path $workspace 'artifacts/fpgavedio_desktop_20261021'
 $destination = 'C:/Users/hck/Desktop/FPGAvedio'
 $linkPath = 'C:/Users/hck/Desktop/FPGAvedio.lnk'
@@ -33,6 +33,9 @@ if ($UpdateInterfaceOnly) {
         'resources/app/public/instrument/src/board-monitor.js',
         'resources/app/public/instrument/src/board-audio.js',
         'resources/app/public/instrument/src/board-audio-view.js',
+        'resources/app/public/instrument/src/performance-protocol.js',
+        'resources/app/public/instrument/src/performance-session.js',
+        'resources/app/public/instrument/src/performance-view.js',
         'resources/app/public/instrument/src/score-upload.js',
         'resources/app/public/instrument/src/score-upload-protocol.js',
         'resources/app/public/instrument/src/fpga-score.js',

@@ -1,0 +1,443 @@
+{
+  "raw_mcp_clean": false,
+  "raw_mcp_limit": "Paired CST assignments require expanding both final P/N rows.",
+  "final_report": "E:\\Gowin\\workspace\\v3_performance_20261027\\impl\\pnr\\v3_hdmi_top.pin.html",
+  "final_report_stale": false,
+  "port_count": 31,
+  "checks": [
+    {
+      "port": "sys_clk",
+      "expected": [
+        "V22"
+      ],
+      "actual": [
+        "V22"
+      ],
+      "attributes_checked": {
+        "IO_TYPE": "LVCMOS33",
+        "PULL_MODE": "NONE",
+        "BANK_VCCIO": "3.3"
+      },
+      "valid": true
+    },
+    {
+      "port": "key0_n",
+      "expected": [
+        "AA13"
+      ],
+      "actual": [
+        "AA13"
+      ],
+      "attributes_checked": {
+        "IO_TYPE": "LVCMOS33",
+        "PULL_MODE": "UP",
+        "BANK_VCCIO": "3.3"
+      },
+      "valid": true
+    },
+    {
+      "port": "key1_n",
+      "expected": [
+        "AB13"
+      ],
+      "actual": [
+        "AB13"
+      ],
+      "attributes_checked": {
+        "IO_TYPE": "LVCMOS33",
+        "PULL_MODE": "UP",
+        "BANK_VCCIO": "3.3"
+      },
+      "valid": true
+    },
+    {
+      "port": "key2_n",
+      "expected": [
+        "Y12"
+      ],
+      "actual": [
+        "Y12"
+      ],
+      "attributes_checked": {
+        "IO_TYPE": "LVCMOS33",
+        "PULL_MODE": "UP",
+        "BANK_VCCIO": "3.3"
+      },
+      "valid": true
+    },
+    {
+      "port": "setting_key",
+      "expected": [
+        "F4"
+      ],
+      "actual": [
+        "F4"
+      ],
+      "attributes_checked": {
+        "IO_TYPE": "LVCMOS15",
+        "PULL_MODE": "NONE",
+        "BANK_VCCIO": "1.5"
+      },
+      "valid": true
+    },
+    {
+      "port": "adc_sclk",
+      "expected": [
+        "A15"
+      ],
+      "actual": [
+        "A15"
+      ],
+      "attributes_checked": {
+        "IO_TYPE": "LVCMOS33",
+        "PULL_MODE": "DOWN",
+        "DRIVE": "8",
+        "BANK_VCCIO": "3.3"
+      },
+      "valid": true
+    },
+    {
+      "port": "adc_miso",
+      "expected": [
+        "B20"
+      ],
+      "actual": [
+        "B20"
+      ],
+      "attributes_checked": {
+        "IO_TYPE": "LVCMOS33",
+        "PULL_MODE": "DOWN",
+        "BANK_VCCIO": "3.3"
+      },
+      "valid": true
+    },
+    {
+      "port": "adc_mosi",
+      "expected": [
+        "B21"
+      ],
+      "actual": [
+        "B21"
+      ],
+      "attributes_checked": {
+        "IO_TYPE": "LVCMOS33",
+        "PULL_MODE": "DOWN",
+        "DRIVE": "8",
+        "BANK_VCCIO": "3.3"
+      },
+      "valid": true
+    },
+    {
+      "port": "adc_cs0_n",
+      "expected": [
+        "B17"
+      ],
+      "actual": [
+        "B17"
+      ],
+      "attributes_checked": {
+        "IO_TYPE": "LVCMOS33",
+        "PULL_MODE": "UP",
+        "DRIVE": "8",
+        "BANK_VCCIO": "3.3"
+      },
+      "valid": true
+    },
+    {
+      "port": "adc_cs1_n",
+      "expected": [
+        "D17"
+      ],
+      "actual": [
+        "D17"
+      ],
+      "attributes_checked": {
+        "IO_TYPE": "LVCMOS33",
+        "PULL_MODE": "UP",
+        "DRIVE": "8",
+        "BANK_VCCIO": "3.3"
+      },
+      "valid": true
+    },
+    {
+      "port": "hc05_rx",
+      "expected": [
+        "A20"
+      ],
+      "actual": [
+        "A20"
+      ],
+      "attributes_checked": {
+        "IO_TYPE": "LVCMOS33",
+        "PULL_MODE": "UP",
+        "BANK_VCCIO": "3.3"
+      },
+      "valid": true
+    },
+    {
+      "port": "hc05_tx",
+      "expected": [
+        "A21"
+      ],
+      "actual": [
+        "A21"
+      ],
+      "attributes_checked": {
+        "IO_TYPE": "LVCMOS33",
+        "PULL_MODE": "UP",
+        "DRIVE": "8",
+        "BANK_VCCIO": "3.3"
+      },
+      "valid": true
+    },
+    {
+      "port": "ws2812_data",
+      "expected": [
+        "C17"
+      ],
+      "actual": [
+        "C17"
+      ],
+      "attributes_checked": {
+        "IO_TYPE": "LVCMOS33",
+        "PULL_MODE": "DOWN",
+        "DRIVE": "8",
+        "BANK_VCCIO": "3.3"
+      },
+      "valid": true
+    },
+    {
+      "port": "pluck_debug",
+      "expected": [
+        "C18"
+      ],
+      "actual": [
+        "C18"
+      ],
+      "attributes_checked": {
+        "IO_TYPE": "LVCMOS33",
+        "PULL_MODE": "DOWN",
+        "DRIVE": "8",
+        "BANK_VCCIO": "3.3"
+      },
+      "valid": true
+    },
+    {
+      "port": "adc_led[0]",
+      "expected": [
+        "T18"
+      ],
+      "actual": [
+        "T18"
+      ],
+      "attributes_checked": {
+        "IO_TYPE": "LVCMOS33",
+        "PULL_MODE": "DOWN",
+        "DRIVE": "8",
+        "BANK_VCCIO": "3.3"
+      },
+      "valid": true
+    },
+    {
+      "port": "adc_led[1]",
+      "expected": [
+        "R18"
+      ],
+      "actual": [
+        "R18"
+      ],
+      "attributes_checked": {
+        "IO_TYPE": "LVCMOS33",
+        "PULL_MODE": "DOWN",
+        "DRIVE": "8",
+        "BANK_VCCIO": "3.3"
+      },
+      "valid": true
+    },
+    {
+      "port": "adc_led[2]",
+      "expected": [
+        "R17"
+      ],
+      "actual": [
+        "R17"
+      ],
+      "attributes_checked": {
+        "IO_TYPE": "LVCMOS33",
+        "PULL_MODE": "DOWN",
+        "DRIVE": "8",
+        "BANK_VCCIO": "3.3"
+      },
+      "valid": true
+    },
+    {
+      "port": "adc_led[3]",
+      "expected": [
+        "P16"
+      ],
+      "actual": [
+        "P16"
+      ],
+      "attributes_checked": {
+        "IO_TYPE": "LVCMOS33",
+        "PULL_MODE": "DOWN",
+        "DRIVE": "8",
+        "BANK_VCCIO": "3.3"
+      },
+      "valid": true
+    },
+    {
+      "port": "audio_bck",
+      "expected": [
+        "Y17"
+      ],
+      "actual": [
+        "Y17"
+      ],
+      "attributes_checked": {
+        "IO_TYPE": "LVCMOS33",
+        "PULL_MODE": "NONE",
+        "DRIVE": "8",
+        "BANK_VCCIO": "3.3"
+      },
+      "valid": true
+    },
+    {
+      "port": "audio_ws",
+      "expected": [
+        "AB17"
+      ],
+      "actual": [
+        "AB17"
+      ],
+      "attributes_checked": {
+        "IO_TYPE": "LVCMOS33",
+        "PULL_MODE": "NONE",
+        "DRIVE": "8",
+        "BANK_VCCIO": "3.3"
+      },
+      "valid": true
+    },
+    {
+      "port": "audio_din",
+      "expected": [
+        "AA16"
+      ],
+      "actual": [
+        "AA16"
+      ],
+      "attributes_checked": {
+        "IO_TYPE": "LVCMOS33",
+        "PULL_MODE": "NONE",
+        "DRIVE": "8",
+        "BANK_VCCIO": "3.3"
+      },
+      "valid": true
+    },
+    {
+      "port": "audio_pa_en_n",
+      "expected": [
+        "AB16"
+      ],
+      "actual": [
+        "AB16"
+      ],
+      "attributes_checked": {
+        "IO_TYPE": "LVCMOS33",
+        "PULL_MODE": "UP",
+        "DRIVE": "8",
+        "BANK_VCCIO": "3.3"
+      },
+      "valid": true
+    },
+    {
+      "port": "hdmi_data_p[0]",
+      "expected": [
+        "J14",
+        "H14"
+      ],
+      "actual": [
+        "J14",
+        "H14"
+      ],
+      "attributes_checked": {
+        "IO_TYPE": "LVCMOS33D",
+        "PULL_MODE": "NONE",
+        "DRIVE": "8",
+        "BANK_VCCIO": "3.3"
+      },
+      "valid": true
+    },
+    {
+      "port": "hdmi_data_p[1]",
+      "expected": [
+        "J15",
+        "H15"
+      ],
+      "actual": [
+        "J15",
+        "H15"
+      ],
+      "attributes_checked": {
+        "IO_TYPE": "LVCMOS33D",
+        "PULL_MODE": "NONE",
+        "DRIVE": "8",
+        "BANK_VCCIO": "3.3"
+      },
+      "valid": true
+    },
+    {
+      "port": "hdmi_data_p[2]",
+      "expected": [
+        "K17",
+        "J17"
+      ],
+      "actual": [
+        "K17",
+        "J17"
+      ],
+      "attributes_checked": {
+        "IO_TYPE": "LVCMOS33D",
+        "PULL_MODE": "NONE",
+        "DRIVE": "8",
+        "BANK_VCCIO": "3.3"
+      },
+      "valid": true
+    },
+    {
+      "port": "hdmi_clock_p",
+      "expected": [
+        "G15",
+        "G16"
+      ],
+      "actual": [
+        "G15",
+        "G16"
+      ],
+      "attributes_checked": {
+        "IO_TYPE": "LVCMOS33D",
+        "PULL_MODE": "NONE",
+        "DRIVE": "8",
+        "BANK_VCCIO": "3.3"
+      },
+      "valid": true
+    },
+    {
+      "port": "hdmi_tx_enable",
+      "expected": [
+        "K14"
+      ],
+      "actual": [
+        "K14"
+      ],
+      "attributes_checked": {
+        "IO_TYPE": "LVCMOS33",
+        "PULL_MODE": "UP",
+        "DRIVE": "8",
+        "BANK_VCCIO": "3.3"
+      },
+      "valid": true
+    }
+  ],
+  "clean": true
+}

@@ -29,6 +29,7 @@ navigation.innerHTML = `<span class="rail-brand" aria-hidden="true">F<span>STUDI
   <a href="#performance-home"><span aria-hidden="true">02</span>整理试听</a>
   <a href="#device-panel"><span aria-hidden="true">03</span>上传演奏</a>
   <a href="#library-section"><span aria-hidden="true">♫</span>曲谱库</a>
+  <a href="#live-performance"><span aria-hidden="true">●</span>我的演奏</a>
   <a href="#performance-visuals"><span aria-hidden="true">∿</span>电脑可视化</a>
   <a href="#ble-sidebar-heading"><span aria-hidden="true">ᛒ</span>BLE 连接</a>
   <a href="#board-visuals"><span aria-hidden="true">▥</span>FPGA 联动</a>
@@ -47,7 +48,7 @@ $('.score-library').id = 'library-section';
 // with both optional visualization surfaces AFTER upload instead of between steps.
 const computerVisuals = $('#performance-visuals');
 $('.workspace-grid').replaceWith($('.source-panel'));
-content.append($('.source-panel'), home, devicePanel, $('.score-library'), computerVisuals, $('#board-visuals'), $('footer'));
+content.append($('.source-panel'), home, devicePanel, $('.score-library'), $('#live-performance'), computerVisuals, $('#board-visuals'), $('footer'));
 const workflow = document.createElement('nav');
 workflow.className = 'workflow-steps'; workflow.setAttribute('aria-label', '歌曲上传流程');
 workflow.innerHTML = '<a href="#source-section"><span>01</span>导入转谱</a><span aria-hidden="true">›</span><a href="#performance-home"><span>02</span>整理试听</a><span aria-hidden="true">›</span><a href="#device-panel"><span>03</span>上传演奏</a>';
@@ -73,9 +74,11 @@ function jump(target, link) {
     window.scrollTo({ top: window.scrollY + target.getBoundingClientRect().top - navigation.offsetHeight - 12, behavior: 'smooth' });
   } else if (matchMedia('(max-width: 800px)').matches) window.scrollTo({ top: container === aside ? aside.offsetTop : 0, behavior: 'smooth' });
   // Scroll only our pane: scrollIntoView also scrolls the host iframe's ancestors.
-  const inset = container === content ? workflow.offsetHeight + 16 : 8;
-  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  container.scrollTo({ top: container.scrollTop + target.getBoundingClientRect().top - container.getBoundingClientRect().top - inset, behavior: reducedMotion ? 'instant' : 'smooth' });
+  if (!document.documentElement.classList.contains('android-workbench')) {
+    const inset = container === content ? workflow.offsetHeight + 16 : 8;
+    const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    container.scrollTo({ top: container.scrollTop + target.getBoundingClientRect().top - container.getBoundingClientRect().top - inset, behavior: reducedMotion ? 'instant' : 'smooth' });
+  }
   for (const item of navigation.querySelectorAll('a')) {
     if (item === link) item.setAttribute('aria-current', 'location'); else item.removeAttribute('aria-current');
   }

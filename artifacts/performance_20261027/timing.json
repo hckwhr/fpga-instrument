@@ -1,0 +1,788 @@
+{
+  "project_file": "E:\\Gowin\\workspace\\v3_performance_20261027\\v3_hdmi_top.gprj",
+  "report_path": "E:\\Gowin\\workspace\\v3_performance_20261027\\impl\\pnr\\v3_hdmi_top_tr_content.html",
+  "report_modified_epoch": 1793104018.5633237,
+  "source_newer_than_report": false,
+  "status": "met",
+  "timing_constraints_met": true,
+  "timing_clean": true,
+  "missing_timing_data": [],
+  "sta": {
+    "setup_delay_model": "Slow 0.873V 0C C1/I0",
+    "hold_delay_model": "Fast 0.927V 85C C1/I0",
+    "paths_analyzed": 199567,
+    "endpoints_analyzed": 100452,
+    "setup_violated_endpoints": 0,
+    "hold_violated_endpoints": 0
+  },
+  "worst_setup_slack_ns": 0.108,
+  "worst_hold_slack_ns": 0.187,
+  "clocks": [
+    {
+      "name": "sys_clk",
+      "type": "Base",
+      "period_ns": 20.0,
+      "frequency_mhz": 50.0,
+      "rise_ns": 0.0,
+      "fall_ns": 10.0,
+      "source": "",
+      "master": "",
+      "objects": "sys_clk"
+    },
+    {
+      "name": "audio_clk",
+      "type": "Generated",
+      "period_ns": 20.345,
+      "frequency_mhz": 49.153,
+      "rise_ns": 0.0,
+      "fall_ns": 10.172,
+      "source": "sys_clk",
+      "master": "sys_clk",
+      "objects": "u_instrument/u_audio_pll/u_pll/PLL_inst/CLKOUT0"
+    },
+    {
+      "name": "hdmi_serial_clk",
+      "type": "Generated",
+      "period_ns": 5.556,
+      "frequency_mhz": 180.0,
+      "rise_ns": 0.0,
+      "fall_ns": 2.778,
+      "source": "sys_clk",
+      "master": "sys_clk",
+      "objects": "u_instrument/u_hdmi_clocks/u_video/u_pll/PLL_inst/CLKOUT0"
+    },
+    {
+      "name": "pixel_clk",
+      "type": "Generated",
+      "period_ns": 27.778,
+      "frequency_mhz": 36.0,
+      "rise_ns": 0.0,
+      "fall_ns": 13.889,
+      "source": "sys_clk",
+      "master": "sys_clk",
+      "objects": "u_instrument/u_hdmi_clocks/u_video/u_pll/PLL_inst/CLKOUT1"
+    }
+  ],
+  "max_frequency": [
+    {
+      "clock": "sys_clk",
+      "constraint_mhz": 50.0,
+      "actual_fmax_mhz": 50.27,
+      "margin_mhz": 0.27,
+      "logic_levels": 14,
+      "entity": "TOP"
+    },
+    {
+      "clock": "audio_clk",
+      "constraint_mhz": 49.153,
+      "actual_fmax_mhz": 51.243,
+      "margin_mhz": 2.09,
+      "logic_levels": 21,
+      "entity": "TOP"
+    },
+    {
+      "clock": "pixel_clk",
+      "constraint_mhz": 36.0,
+      "actual_fmax_mhz": 37.782,
+      "margin_mhz": 1.782,
+      "logic_levels": 24,
+      "entity": "TOP"
+    }
+  ],
+  "total_negative_slack": [
+    {
+      "clock": "sys_clk",
+      "analysis": "Setup",
+      "tns_ns": 0.0,
+      "violated_endpoints": 0
+    },
+    {
+      "clock": "sys_clk",
+      "analysis": "Hold",
+      "tns_ns": 0.0,
+      "violated_endpoints": 0
+    },
+    {
+      "clock": "audio_clk",
+      "analysis": "Setup",
+      "tns_ns": 0.0,
+      "violated_endpoints": 0
+    },
+    {
+      "clock": "audio_clk",
+      "analysis": "Hold",
+      "tns_ns": 0.0,
+      "violated_endpoints": 0
+    },
+    {
+      "clock": "hdmi_serial_clk",
+      "analysis": "Setup",
+      "tns_ns": 0.0,
+      "violated_endpoints": 0
+    },
+    {
+      "clock": "hdmi_serial_clk",
+      "analysis": "Hold",
+      "tns_ns": 0.0,
+      "violated_endpoints": 0
+    },
+    {
+      "clock": "pixel_clk",
+      "analysis": "Setup",
+      "tns_ns": 0.0,
+      "violated_endpoints": 0
+    },
+    {
+      "clock": "pixel_clk",
+      "analysis": "Hold",
+      "tns_ns": 0.0,
+      "violated_endpoints": 0
+    }
+  ],
+  "worst_paths": {
+    "setup": [
+      {
+        "number": 1,
+        "slack_ns": 0.108,
+        "from_node": "u_instrument/v3_analog.u_inputs/u_adc/channels_111_s0/Q",
+        "to_node": "u_instrument/v3_analog.u_inputs/forces_sys_77_s0/D",
+        "from_clock": "sys_clk:[R]",
+        "to_clock": "sys_clk:[R]",
+        "relationship_ns": 20.0,
+        "clock_skew_ns": -0.026,
+        "data_delay_ns": 19.861
+      },
+      {
+        "number": 2,
+        "slack_ns": 0.108,
+        "from_node": "u_instrument/v3_analog.u_inputs/u_adc/channels_111_s0/Q",
+        "to_node": "u_instrument/v3_analog.u_inputs/forces_sys_81_s0/D",
+        "from_clock": "sys_clk:[R]",
+        "to_clock": "sys_clk:[R]",
+        "relationship_ns": 20.0,
+        "clock_skew_ns": -0.026,
+        "data_delay_ns": 19.861
+      },
+      {
+        "number": 3,
+        "slack_ns": 0.176,
+        "from_node": "u_instrument/v3_analog.u_inputs/u_adc/channels_111_s0/Q",
+        "to_node": "u_instrument/v3_analog.u_inputs/forces_sys_80_s0/D",
+        "from_clock": "sys_clk:[R]",
+        "to_clock": "sys_clk:[R]",
+        "relationship_ns": 20.0,
+        "clock_skew_ns": -0.026,
+        "data_delay_ns": 19.792
+      },
+      {
+        "number": 4,
+        "slack_ns": 0.337,
+        "from_node": "u_instrument/v3_analog.u_inputs/u_adc/channels_111_s0/Q",
+        "to_node": "u_instrument/v3_analog.u_inputs/forces_sys_78_s0/D",
+        "from_clock": "sys_clk:[R]",
+        "to_clock": "sys_clk:[R]",
+        "relationship_ns": 20.0,
+        "clock_skew_ns": -0.026,
+        "data_delay_ns": 19.637
+      },
+      {
+        "number": 5,
+        "slack_ns": 0.337,
+        "from_node": "u_instrument/v3_analog.u_inputs/u_adc/channels_111_s0/Q",
+        "to_node": "u_instrument/v3_analog.u_inputs/forces_sys_79_s0/D",
+        "from_clock": "sys_clk:[R]",
+        "to_clock": "sys_clk:[R]",
+        "relationship_ns": 20.0,
+        "clock_skew_ns": -0.026,
+        "data_delay_ns": 19.637
+      }
+    ],
+    "hold": [
+      {
+        "number": 1,
+        "slack_ns": 0.187,
+        "from_node": "u_instrument/shared_link.endpoint/uart/rx_data_2_s0/Q",
+        "to_node": "u_instrument/shared_link.endpoint/router/memory_memory_0_0_s/DI[2]",
+        "from_clock": "sys_clk:[R]",
+        "to_clock": "sys_clk:[R]",
+        "relationship_ns": 0.0,
+        "clock_skew_ns": 0.004,
+        "data_delay_ns": 0.216
+      },
+      {
+        "number": 2,
+        "slack_ns": 0.189,
+        "from_node": "u_instrument/shared_link.endpoint/scope_enabled.scope/read_index_8_s3/Q",
+        "to_node": "u_instrument/shared_link.endpoint/scope_enabled.scope/samples_samples_0_0_s/ADB[12]",
+        "from_clock": "sys_clk:[R]",
+        "to_clock": "sys_clk:[R]",
+        "relationship_ns": 0.0,
+        "clock_skew_ns": 0.004,
+        "data_delay_ns": 0.216
+      },
+      {
+        "number": 3,
+        "slack_ns": 0.192,
+        "from_node": "u_instrument/u_panel_renderer/capture_bank_s1/Q",
+        "to_node": "u_instrument/u_panel_renderer/sample_history_sample_history_0_0_s/ADA[11]",
+        "from_clock": "pixel_clk:[R]",
+        "to_clock": "pixel_clk:[R]",
+        "relationship_ns": 0.0,
+        "clock_skew_ns": 0.004,
+        "data_delay_ns": 0.22
+      },
+      {
+        "number": 4,
+        "slack_ns": 0.193,
+        "from_node": "u_instrument/u_panel_renderer/display_bank_s0/Q",
+        "to_node": "u_instrument/u_panel_renderer/sample_history_sample_history_0_0_s/ADB[11]",
+        "from_clock": "pixel_clk:[R]",
+        "to_clock": "pixel_clk:[R]",
+        "relationship_ns": 0.0,
+        "clock_skew_ns": 0.008,
+        "data_delay_ns": 0.216
+      },
+      {
+        "number": 5,
+        "slack_ns": 0.195,
+        "from_node": "u_instrument/shared_link.endpoint/scope_enabled.scope/read_index_4_s3/Q",
+        "to_node": "u_instrument/shared_link.endpoint/scope_enabled.scope/samples_samples_0_0_s/ADB[8]",
+        "from_clock": "sys_clk:[R]",
+        "to_clock": "sys_clk:[R]",
+        "relationship_ns": 0.0,
+        "clock_skew_ns": 0.008,
+        "data_delay_ns": 0.219
+      }
+    ]
+  },
+  "setup_clusters": [
+    {
+      "from": "u_instrument/v3_analog.u_inputs/u_adc/channels",
+      "to": "u_instrument/v3_analog.u_inputs/forces_sys",
+      "paths": 63,
+      "violating_paths": 0,
+      "worst_slack_ns": 0.108,
+      "max_logic_levels": 14,
+      "mean_route_delay_percent": 37.2
+    },
+    {
+      "from": "u_instrument/strings_enabled.u_physical_string_bank/strings[*].voice/loop_value",
+      "to": "u_instrument/strings_enabled.u_physical_string_bank/strings[*].voice/level",
+      "paths": 102,
+      "violating_paths": 0,
+      "worst_slack_ns": 0.83,
+      "max_logic_levels": 21,
+      "mean_route_delay_percent": 35.1
+    },
+    {
+      "from": "u_instrument/uploaded_selected",
+      "to": "u_instrument/shared_link.endpoint/scope_enabled.scope/samples_samples",
+      "paths": 7,
+      "violating_paths": 0,
+      "worst_slack_ns": 1.087,
+      "max_logic_levels": 7,
+      "mean_route_delay_percent": 84.6
+    },
+    {
+      "from": "u_instrument/shared_link.endpoint/sys_release",
+      "to": "u_instrument/shared_link.endpoint/upload/formatter/sid",
+      "paths": 64,
+      "violating_paths": 0,
+      "worst_slack_ns": 1.139,
+      "max_logic_levels": 15,
+      "mean_route_delay_percent": 72.3
+    },
+    {
+      "from": "u_instrument/lcd_active_x",
+      "to": "u_instrument/u_panel_renderer/foreground_q",
+      "paths": 15,
+      "violating_paths": 0,
+      "worst_slack_ns": 1.311,
+      "max_logic_levels": 24,
+      "mean_route_delay_percent": 51.9
+    },
+    {
+      "from": "u_instrument/audio_reset_sync_n",
+      "to": "u_instrument/u_polyphony_bank_32/voice_stealing",
+      "paths": 10,
+      "violating_paths": 0,
+      "worst_slack_ns": 1.471,
+      "max_logic_levels": 8,
+      "mean_route_delay_percent": 81.4
+    },
+    {
+      "from": "u_instrument/lcd_active_x",
+      "to": "u_instrument/u_panel_renderer/text_enable_q",
+      "paths": 1,
+      "violating_paths": 0,
+      "worst_slack_ns": 1.505,
+      "max_logic_levels": 24,
+      "mean_route_delay_percent": 48.6
+    },
+    {
+      "from": "u_instrument/audio_reset_sync_n",
+      "to": "u_instrument/u_polyphony_bank_32/voice_attacking",
+      "paths": 9,
+      "violating_paths": 0,
+      "worst_slack_ns": 1.738,
+      "max_logic_levels": 9,
+      "mean_route_delay_percent": 78.1
+    },
+    {
+      "from": "u_instrument/shared_link.endpoint/sys_release",
+      "to": "u_instrument/shared_link.endpoint/upload/formatter/bcd",
+      "paths": 20,
+      "violating_paths": 0,
+      "worst_slack_ns": 1.765,
+      "max_logic_levels": 16,
+      "mean_route_delay_percent": 70.7
+    },
+    {
+      "from": "u_instrument/shared_link.endpoint/sys_release",
+      "to": "u_instrument/shared_link.endpoint/upload/formatter/text_address",
+      "paths": 8,
+      "violating_paths": 0,
+      "worst_slack_ns": 1.815,
+      "max_logic_levels": 16,
+      "mean_route_delay_percent": 70.7
+    },
+    {
+      "from": "u_instrument/audio_reset_sync_n",
+      "to": "u_instrument/u_polyphony_bank_32/envelope_count[*]",
+      "paths": 52,
+      "violating_paths": 0,
+      "worst_slack_ns": 1.821,
+      "max_logic_levels": 8,
+      "mean_route_delay_percent": 80.1
+    },
+    {
+      "from": "u_instrument/lcd_active_x",
+      "to": "u_instrument/u_panel_renderer/font_memory_font_memory",
+      "paths": 8,
+      "violating_paths": 0,
+      "worst_slack_ns": 1.846,
+      "max_logic_levels": 21,
+      "mean_route_delay_percent": 63.2
+    },
+    {
+      "from": "u_instrument/v3_analog.u_inputs/zeros[*]",
+      "to": "u_instrument/v3_analog.u_inputs/forces_sys",
+      "paths": 21,
+      "violating_paths": 0,
+      "worst_slack_ns": 1.993,
+      "max_logic_levels": 14,
+      "mean_route_delay_percent": 35.5
+    },
+    {
+      "from": "u_instrument/audio_reset_sync_n",
+      "to": "u_instrument/u_polyphony_bank_32/voice_id_valid",
+      "paths": 4,
+      "violating_paths": 0,
+      "worst_slack_ns": 2.095,
+      "max_logic_levels": 8,
+      "mean_route_delay_percent": 81.0
+    },
+    {
+      "from": "u_instrument/poly_vibrato",
+      "to": "u_instrument/u_polyphony_bank_32/phase_accumulator[*]",
+      "paths": 2,
+      "violating_paths": 0,
+      "worst_slack_ns": 2.213,
+      "max_logic_levels": 10,
+      "mean_route_delay_percent": 76.2
+    },
+    {
+      "from": "u_instrument/strings_enabled.u_physical_string_bank/strings[*].voice/loop_value",
+      "to": "u_instrument/strings_enabled.u_physical_string_bank/strings[*].voice/quiet_count",
+      "paths": 24,
+      "violating_paths": 0,
+      "worst_slack_ns": 2.252,
+      "max_logic_levels": 19,
+      "mean_route_delay_percent": 38.8
+    },
+    {
+      "from": "u_instrument/shared_link.endpoint/upload/state",
+      "to": "u_instrument/shared_link.endpoint/upload/parser/session_id",
+      "paths": 54,
+      "violating_paths": 0,
+      "worst_slack_ns": 2.257,
+      "max_logic_levels": 14,
+      "mean_route_delay_percent": 63.3
+    },
+    {
+      "from": "u_instrument/audio_reset_sync_n",
+      "to": "u_instrument/u_polyphony_bank_32/voice_releasing",
+      "paths": 5,
+      "violating_paths": 0,
+      "worst_slack_ns": 2.395,
+      "max_logic_levels": 8,
+      "mean_route_delay_percent": 79.8
+    },
+    {
+      "from": "u_instrument/shared_link.endpoint/sys_release",
+      "to": "u_instrument/shared_link.endpoint/upload/formatter/token",
+      "paths": 7,
+      "violating_paths": 0,
+      "worst_slack_ns": 2.441,
+      "max_logic_levels": 14,
+      "mean_route_delay_percent": 71.5
+    },
+    {
+      "from": "u_instrument/lcd_active_x",
+      "to": "u_instrument/u_panel_renderer/text_force_q",
+      "paths": 1,
+      "violating_paths": 0,
+      "worst_slack_ns": 2.453,
+      "max_logic_levels": 22,
+      "mean_route_delay_percent": 50.2
+    },
+    {
+      "from": "u_instrument/shared_link.endpoint/upload/store/validator/match_slot",
+      "to": "u_instrument/shared_link.endpoint/upload/store/validator/slot_release_slot_release_RAMREG_3_G[*]",
+      "paths": 7,
+      "violating_paths": 0,
+      "worst_slack_ns": 2.538,
+      "max_logic_levels": 11,
+      "mean_route_delay_percent": 73.6
+    },
+    {
+      "from": "u_instrument/shared_link.endpoint/sys_release",
+      "to": "u_instrument/shared_link.endpoint/upload/formatter/remaining",
+      "paths": 3,
+      "violating_paths": 0,
+      "worst_slack_ns": 2.631,
+      "max_logic_levels": 15,
+      "mean_route_delay_percent": 70.0
+    },
+    {
+      "from": "u_instrument/strings_enabled.u_physical_string_bank/strings[*].voice/period_q12",
+      "to": "u_instrument/strings_enabled.u_physical_string_bank/strings[*].voice/delay_q12",
+      "paths": 5,
+      "violating_paths": 0,
+      "worst_slack_ns": 3.155,
+      "max_logic_levels": 21,
+      "mean_route_delay_percent": 38.1
+    },
+    {
+      "from": "u_instrument/shared_link.endpoint/upload/state",
+      "to": "u_instrument/shared_link.endpoint/upload/parser/payload",
+      "paths": 2,
+      "violating_paths": 0,
+      "worst_slack_ns": 3.23,
+      "max_logic_levels": 13,
+      "mean_route_delay_percent": 65.8
+    },
+    {
+      "from": "u_instrument/shared_link.endpoint/sys_release",
+      "to": "u_instrument/shared_link.endpoint/upload/formatter/crc",
+      "paths": 5,
+      "violating_paths": 0,
+      "worst_slack_ns": 3.261,
+      "max_logic_levels": 14,
+      "mean_route_delay_percent": 71.2
+    },
+    {
+      "from": "u_instrument/shared_link.endpoint/upload/store/validator/match_slot",
+      "to": "u_instrument/shared_link.endpoint/upload/store/validator/slot_release_slot_release_RAMREG_6_G[*]",
+      "paths": 1,
+      "violating_paths": 0,
+      "worst_slack_ns": 3.327,
+      "max_logic_levels": 12,
+      "mean_route_delay_percent": 69.0
+    }
+  ],
+  "high_fanout_nets": [
+    {
+      "fanout": 23635,
+      "net": "u_instrument/audio_clk",
+      "worst_slack_ns": 0.83,
+      "max_delay_ns": 3.586
+    },
+    {
+      "fanout": 17389,
+      "net": "u_instrument/audio_reset_sync_n[1]",
+      "worst_slack_ns": 1.471,
+      "max_delay_ns": 4.672
+    },
+    {
+      "fanout": 7041,
+      "net": "sys_clk_d",
+      "worst_slack_ns": 0.108,
+      "max_delay_ns": 4.904
+    },
+    {
+      "fanout": 4625,
+      "net": "u_instrument/half_tick_10",
+      "worst_slack_ns": 16.227,
+      "max_delay_ns": 3.355
+    },
+    {
+      "fanout": 4233,
+      "net": "u_instrument/shared_link.endpoint/sys_release[1]",
+      "worst_slack_ns": 1.139,
+      "max_delay_ns": 4.805
+    },
+    {
+      "fanout": 3619,
+      "net": "u_instrument/pixel_clk",
+      "worst_slack_ns": 1.311,
+      "max_delay_ns": 3.601
+    },
+    {
+      "fanout": 3572,
+      "net": "u_instrument/pixel_reset_sync_n[1]",
+      "worst_slack_ns": 20.252,
+      "max_delay_ns": 2.919
+    },
+    {
+      "fanout": 1792,
+      "net": "u_instrument/spectrum_update_pixel",
+      "worst_slack_ns": 22.489,
+      "max_delay_ns": 4.403
+    },
+    {
+      "fanout": 1025,
+      "net": "u_instrument/lcd_frame_start",
+      "worst_slack_ns": 17.515,
+      "max_delay_ns": 3.768
+    },
+    {
+      "fanout": 960,
+      "net": "u_instrument/poly_tone[0]",
+      "worst_slack_ns": 27.648,
+      "max_delay_ns": 11.628
+    }
+  ],
+  "route_congestion": [
+    {
+      "grid": "R63C147",
+      "congestion_percent": 88.89
+    },
+    {
+      "grid": "R50C130",
+      "congestion_percent": 87.5
+    },
+    {
+      "grid": "R55C154",
+      "congestion_percent": 87.5
+    },
+    {
+      "grid": "R60C127",
+      "congestion_percent": 87.5
+    },
+    {
+      "grid": "R60C129",
+      "congestion_percent": 87.5
+    },
+    {
+      "grid": "R61C132",
+      "congestion_percent": 87.5
+    },
+    {
+      "grid": "R56C137",
+      "congestion_percent": 87.5
+    },
+    {
+      "grid": "R37C170",
+      "congestion_percent": 86.11
+    },
+    {
+      "grid": "R69C147",
+      "congestion_percent": 86.11
+    },
+    {
+      "grid": "R70C118",
+      "congestion_percent": 86.11
+    }
+  ],
+  "setup_paths_reported": 500,
+  "constraints": [
+    {
+      "type": "TC_CLOCK",
+      "state": "Actived",
+      "command": "create_clock -name sys_clk -period 20.000 -waveform {0.000 10.000} [get_ports {sys_clk}]"
+    },
+    {
+      "type": "TC_GENERATED_CLOCK",
+      "state": "Actived",
+      "command": "create_generated_clock -name audio_clk -source [get_ports {sys_clk}] -master_clock sys_clk -divide_by 59 -multiply_by 58 [get_pins {u_instrument/u_audio_pll/u_pll/PLL_inst/CLKOUT0}]"
+    },
+    {
+      "type": "TC_GENERATED_CLOCK",
+      "state": "Actived",
+      "command": "create_generated_clock -name hdmi_serial_clk -source [get_ports {sys_clk}] -master_clock sys_clk -divide_by 5 -multiply_by 18 [get_pins {u_instrument/u_hdmi_clocks/u_video/u_pll/PLL_inst/CLKOUT0}]"
+    },
+    {
+      "type": "TC_GENERATED_CLOCK",
+      "state": "Actived",
+      "command": "create_generated_clock -name pixel_clk -source [get_ports {sys_clk}] -master_clock sys_clk -divide_by 25 -multiply_by 18 [get_pins {u_instrument/u_hdmi_clocks/u_video/u_pll/PLL_inst/CLKOUT1}]"
+    },
+    {
+      "type": "TC_FALSE_PATH",
+      "state": "Actived",
+      "command": "set_false_path -from [get_ports {key0_n key1_n key2_n setting_key}]"
+    },
+    {
+      "type": "TC_FALSE_PATH",
+      "state": "Actived",
+      "command": "set_false_path -from [get_ports {adc_miso}]"
+    },
+    {
+      "type": "TC_FALSE_PATH",
+      "state": "Actived",
+      "command": "set_false_path -to [get_ports {adc_sclk adc_mosi adc_cs0_n adc_cs1_n adc_led[*]}]"
+    },
+    {
+      "type": "TC_FALSE_PATH",
+      "state": "Actived",
+      "command": "set_false_path -from [get_ports {hc05_rx}]"
+    },
+    {
+      "type": "TC_FALSE_PATH",
+      "state": "Actived",
+      "command": "set_false_path -to [get_ports {hc05_tx ws2812_data pluck_debug}]"
+    },
+    {
+      "type": "TC_FALSE_PATH",
+      "state": "Actived",
+      "command": "set_false_path -to [get_ports {hdmi_tx_enable}]"
+    },
+    {
+      "type": "TC_FALSE_PATH",
+      "state": "Actived",
+      "command": "set_false_path -through [get_pins {u_instrument/sys_reset_sync_n_0_s0/CLEAR u_instrument/sys_reset_sync_n_1_s0/CLEAR}]"
+    },
+    {
+      "type": "TC_FALSE_PATH",
+      "state": "Actived",
+      "command": "set_false_path -through [get_pins {u_instrument/audio_reset_sync_n_0_s0/CLEAR u_instrument/audio_reset_sync_n_1_s0/CLEAR}]"
+    },
+    {
+      "type": "TC_FALSE_PATH",
+      "state": "Actived",
+      "command": "set_false_path -through [get_pins {u_instrument/pixel_reset_sync_n_0_s0/CLEAR u_instrument/pixel_reset_sync_n_1_s0/CLEAR}]"
+    },
+    {
+      "type": "TC_FALSE_PATH",
+      "state": "Actived",
+      "command": "set_false_path -through [get_pins {u_instrument/serializer_reset_sync_n_0_s0/CLEAR u_instrument/serializer_reset_sync_n_1_s0/CLEAR}]"
+    },
+    {
+      "type": "TC_FALSE_PATH",
+      "state": "Actived",
+      "command": "set_false_path -through [get_pins {u_instrument/u_hdmi_tx/u_serial_gate/CEN}]"
+    },
+    {
+      "type": "TC_MULTICYCLE",
+      "state": "Actived",
+      "command": "set_multicycle_path -from [get_regs {u_instrument/u_hdmi_tx/serializer_release_n*}] -through [get_pins {u_instrument/u_hdmi_tx/lanes*.u_serializer/RESET}] -to [get_clocks {hdmi_serial_clk}] -setup -end 4"
+    },
+    {
+      "type": "TC_MULTICYCLE",
+      "state": "Actived",
+      "command": "set_multicycle_path -from [get_regs {u_instrument/u_hdmi_tx/serializer_release_n*}] -through [get_pins {u_instrument/u_hdmi_tx/lanes*.u_serializer/RESET}] -to [get_clocks {hdmi_serial_clk}] -hold -end 3"
+    },
+    {
+      "type": "TC_FALSE_PATH",
+      "state": "Actived",
+      "command": "set_false_path -through [get_pins {u_instrument/v3_analog.u_inputs/src_reset_0_s0/CLEAR u_instrument/v3_analog.u_inputs/src_reset_1_s0/CLEAR}]"
+    },
+    {
+      "type": "TC_FALSE_PATH",
+      "state": "Actived",
+      "command": "set_false_path -through [get_pins {u_instrument/v3_analog.u_inputs/dst_reset_0_s0/CLEAR u_instrument/v3_analog.u_inputs/dst_reset_1_s0/CLEAR}]"
+    },
+    {
+      "type": "TC_MULTICYCLE",
+      "state": "Actived",
+      "command": "set_multicycle_path -from [get_regs {"
+    },
+    {
+      "type": "TC_MULTICYCLE",
+      "state": "Actived",
+      "command": "set_multicycle_path -from [get_regs {"
+    },
+    {
+      "type": "TC_MULTICYCLE",
+      "state": "Actived",
+      "command": "set_multicycle_path -from [get_regs {"
+    },
+    {
+      "type": "TC_MULTICYCLE",
+      "state": "Actived",
+      "command": "set_multicycle_path -from [get_regs {"
+    },
+    {
+      "type": "TC_MULTICYCLE",
+      "state": "Actived",
+      "command": "set_multicycle_path -from [get_pins {"
+    },
+    {
+      "type": "TC_MULTICYCLE",
+      "state": "Actived",
+      "command": "set_multicycle_path -from [get_pins {"
+    },
+    {
+      "type": "TC_MULTICYCLE",
+      "state": "Actived",
+      "command": "set_multicycle_path -from [get_pins {"
+    },
+    {
+      "type": "TC_MULTICYCLE",
+      "state": "Actived",
+      "command": "set_multicycle_path -from [get_pins {"
+    },
+    {
+      "type": "TC_CLOCK_GROUP",
+      "state": "Actived",
+      "command": "set_clock_groups -asynchronous -group [get_clocks {audio_clk}] -group [get_clocks {hdmi_serial_clk pixel_clk}]"
+    },
+    {
+      "type": "TC_CLOCK_GROUP",
+      "state": "Actived",
+      "command": "set_clock_groups -asynchronous -group [get_clocks {sys_clk}] -group [get_clocks {audio_clk}]"
+    },
+    {
+      "type": "TC_REPORT_TIMING",
+      "state": "Actived",
+      "command": "report_timing -setup -max_paths 500"
+    },
+    {
+      "type": "TC_REPORT_TIMING",
+      "state": "Actived",
+      "command": "report_timing -hold -max_paths 100"
+    },
+    {
+      "type": "TC_REPORT_EXCEPTION",
+      "state": "Actived",
+      "command": "report_exceptions -setup -from_clock [get_clocks {audio_clk}] -to_clock [get_clocks {audio_clk}] -max_paths 10"
+    },
+    {
+      "type": "TC_REPORT_EXCEPTION",
+      "state": "Actived",
+      "command": "report_exceptions -hold -from_clock [get_clocks {audio_clk}] -to_clock [get_clocks {audio_clk}] -max_paths 10"
+    }
+  ],
+  "explicitly_constrained_clocks": [
+    "adc_miso",
+    "adc_sclk adc_mosi adc_cs0_n adc_cs1_n adc_led[*",
+    "audio_clk",
+    "hc05_rx",
+    "hc05_tx ws2812_data pluck_debug",
+    "hdmi_serial_clk",
+    "hdmi_tx_enable",
+    "key0_n key1_n key2_n setting_key",
+    "pixel_clk",
+    "sys_clk",
+    "u_instrument/audio_reset_sync_n_0_s0/CLEAR u_instrument/audio_reset_sync_n_1_s0/CLEAR",
+    "u_instrument/pixel_reset_sync_n_0_s0/CLEAR u_instrument/pixel_reset_sync_n_1_s0/CLEAR",
+    "u_instrument/serializer_reset_sync_n_0_s0/CLEAR u_instrument/serializer_reset_sync_n_1_s0/CLEAR",
+    "u_instrument/sys_reset_sync_n_0_s0/CLEAR u_instrument/sys_reset_sync_n_1_s0/CLEAR",
+    "u_instrument/u_hdmi_tx/lanes*.u_serializer/RESET",
+    "u_instrument/u_hdmi_tx/u_serial_gate/CEN",
+    "u_instrument/v3_analog.u_inputs/dst_reset_0_s0/CLEAR u_instrument/v3_analog.u_inputs/dst_reset_1_s0/CLEAR",
+    "u_instrument/v3_analog.u_inputs/src_reset_0_s0/CLEAR u_instrument/v3_analog.u_inputs/src_reset_1_s0/CLEAR"
+  ],
+  "clocks_without_explicit_sdc": [],
+  "notes": []
+}

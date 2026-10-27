@@ -11,7 +11,8 @@ await mkdir(evidence, { recursive: true });
 const profile = await mkdtemp(resolve(root, '../../work/fpgavedio-desktop-smoke-'));
 const env = { ...process.env, MINERADIO_STARTUP_QA_HIDDEN: '1', MINERADIO_STARTUP_QA_USER_DATA: profile };
 delete env.ELECTRON_RUN_AS_NODE;
-const child = spawn(resolve(root, 'dist-fpga/win-unpacked/FPGAvedio.exe'), ['--remote-debugging-port=0', '--remote-debugging-address=127.0.0.1'], { env, windowsHide: true });
+const appDirectory = resolve(root, process.env.FPGAVEDIO_PACKAGE_DIR || 'dist-fpga/win-unpacked');
+const child = spawn(resolve(appDirectory, 'FPGAvedio.exe'), ['--remote-debugging-port=0', '--remote-debugging-address=127.0.0.1'], { env, windowsHide: true });
 let output = '', socket;
 child.stdout.on('data', data => output += data);
 child.stderr.on('data', data => output += data);
@@ -212,7 +213,7 @@ try {
   assert.match(await evaluate(`${f}.contentDocument.querySelector('#preview-description').textContent`), /实际上传/);
   await evaluate(`${f}.contentDocument.querySelector('#stop-preview').click()`);
   const workflow = await evaluate(`(()=>{const d=${f}.contentDocument;return {order:[...d.querySelector('.desktop-main').children].filter(e=>e.id).map(e=>e.id),steps:[...d.querySelectorAll('.workflow-steps a')].map(e=>e.hash),boardKeys:d.querySelectorAll('#board-visuals .piano-key').length,position:d.querySelector('#board-visuals').dataset.position};})()`);
-  assert.deepEqual(workflow.order, ['source-section', 'performance-home', 'device-panel', 'library-section', 'performance-visuals', 'board-visuals']);
+    assert.deepEqual(workflow.order, ['source-section', 'performance-home', 'device-panel', 'library-section', 'live-performance', 'performance-visuals', 'board-visuals']);
   assert.deepEqual(workflow.steps, ['#source-section', '#performance-home', '#device-panel']);
   assert.equal(workflow.boardKeys, 36); assert.equal(workflow.position, '-1');
   const boardAudioLayout = await evaluate(`(()=>{const d=${f}.contentDocument;return [...d.querySelectorAll('.board-audio-grid canvas')].map(c=>{const r=c.getBoundingClientRect();return {id:c.id,width:r.width,height:r.height,top:r.top,bottom:r.bottom};});})()`);
@@ -220,7 +221,7 @@ try {
   assert.ok(boardAudioLayout.every(p=>p.height>=300), JSON.stringify(boardAudioLayout));
   assert.ok(boardAudioLayout.slice(1).every((p,i)=>p.top>boardAudioLayout[i].bottom));
   assert.equal(await evaluate(`${f}.contentDocument.querySelector('#board-audio-capture').disabled`), true, 'Disconnected desktop must not invent FPGA data');
-  for (const target of ['source-section', 'library-section', 'device-panel', 'performance-home', 'board-visuals']) {
+    for (const target of ['source-section', 'library-section', 'device-panel', 'performance-home', 'live-performance', 'board-visuals']) {
     await evaluate(`${f}.contentDocument.querySelector('.function-rail a[href="#${target}"]').click()`);
     await waitFor(`(()=>{const d=${f}.contentDocument,r=d.querySelector('#${target}').getBoundingClientRect(),c=d.querySelector('.desktop-main').getBoundingClientRect();return r.top>=c.top-10&&r.top<c.bottom})()`);
   }
