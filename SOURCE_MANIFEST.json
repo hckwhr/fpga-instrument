@@ -234,6 +234,12 @@
     "packaged_sha256": "c70ffe1f2e43df35ff16b0868aa73b645c2eac22640fcf843f049e4f125afc99"
   },
   {
+    "destination": "artifacts/current/README.md",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "132220ee3e0395f8eeb0b45b664c80508dc756740db619f10f554db71e6944ad"
+  },
+  {
     "destination": "artifacts/current/synthesis/project_syn.rpt.html",
     "source": "E:\\Gowin\\workspace\\v3_hdmi_stage67_20261025\\impl\\gwsynthesis\\project_syn.rpt.html",
     "source_sha256": "dc1ccf7bcd8266d4e26a343ca48574026f6bb8f55b4beeb5979af2a0f2ef9c23",
@@ -249,7 +255,7 @@
     "destination": "artifacts/current/validation.md",
     "source": null,
     "source_sha256": null,
-    "packaged_sha256": "c1e5e149b46371474078c1d4aca00cc464129e50414f845b249e1a84aa79cd69"
+    "packaged_sha256": "93cce0ff4754ca557c1535a03f70109f2b2b9bb0f33bb51dc4aa45298bee8227"
   },
   {
     "destination": "artifacts/desktop-20261025/desktop-interface-delivery.json",
@@ -1824,6 +1830,12 @@
     "packaged_sha256": "09b6909eb852e2703bd5cd0b00ae413c78baa6b2aefde68775c26d8b705ba2e0"
   },
   {
+    "destination": "docs/ARCHITECTURE.md",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "801c02a7a35bb61efe8cd2234af87c30811108079a208a7a3f490c207375ec5d"
+  },
+  {
     "destination": "docs/BLE主用_USB备用与热点恢复_20261024.md",
     "source": null,
     "source_sha256": null,
@@ -1833,13 +1845,13 @@
     "destination": "docs/BUILD.md",
     "source": null,
     "source_sha256": null,
-    "packaged_sha256": "a57c9c85d01887ca417b9bd26ea8d997b941966b00f662cb29f9224c0a018b26"
+    "packaged_sha256": "153b29495a5f913b6043e0bcf22c7cb0d19c50f8f2cf3849b06e271c6a5ca3fe"
   },
   {
     "destination": "docs/HARDWARE.md",
     "source": null,
     "source_sha256": null,
-    "packaged_sha256": "89e90dbecb3db0d6432b6d17c85640190a7e84d53e39f662cd0140ac6b9570be"
+    "packaged_sha256": "9f1c83a468234641b88d5ef1a8bfc9e80ace66c81ead2b72f61d78b7f6ee637f"
   },
   {
     "destination": "docs/history/八路动态物理琴弦_20261001.md",
@@ -2265,19 +2277,19 @@
     "destination": "docs/HOST.md",
     "source": null,
     "source_sha256": null,
-    "packaged_sha256": "7955e1ae8fd28d58ba76b67323e80c36c86371f03e81d0fca9bc90689ee18de6"
+    "packaged_sha256": "775d66bacccdfb5924a180dabccaa6ac4f020dc6f2889b44ca709440e4e3fea5"
   },
   {
     "destination": "docs/PACKAGING.md",
     "source": null,
     "source_sha256": null,
-    "packaged_sha256": "00164d451d7eb85b88bf0479bc44f7929660b4055db6bf74f33726bf1a2c8679"
+    "packaged_sha256": "168bcab0bb52834080b8c7dbeb2a90134da4347c31a72ea2264c5210e1374370"
   },
   {
     "destination": "docs/RELEASE.md",
     "source": null,
     "source_sha256": null,
-    "packaged_sha256": "8da80729da800bc8568ab58edd9360cf4bab5368df99b3008af271dee4384df7"
+    "packaged_sha256": "58476d7cf7651a00804602f83868c758a563a04a57bb23f7766a3b5589f56ff3"
   },
   {
     "destination": "firmware/esp32s3-bridge/.gitignore",
@@ -8427,7 +8439,7 @@
     "destination": "fpga/current/README.md",
     "source": null,
     "source_sha256": null,
-    "packaged_sha256": "cf0758df5650bdc6c3577b5935e6b5475d407ec9266bb6e8baef0f919013b0ac"
+    "packaged_sha256": "5a31bc0c15bab2d69dc6ade32ee5a5b6db5d2559c3cefc4415a62679726612ef"
   },
   {
     "destination": "fpga/current/rtl/additive_bank_32.v",
@@ -16491,7 +16503,7 @@
     "destination": "host/instrument-web/README.md",
     "source": "host/instrument-web/README.md",
     "source_sha256": "b5401ae9c91431bbd9857b4aa775292103ecc63ed130e149e0a16b21a0296415",
-    "packaged_sha256": "5ba59394cbd5bc640d48add7e5ec82b0ccb965211026e3089f0e33b8560f2eba"
+    "packaged_sha256": "853f0172e1bbd17d576aafd1aa6cb4abf6d68374eca0ce46b119ce861fc275aa"
   },
   {
     "destination": "host/instrument-web/src/app.js",
@@ -18669,7 +18681,7 @@
     "destination": "README.md",
     "source": null,
     "source_sha256": null,
-    "packaged_sha256": "bd49fc4a12cc8fe5c4ae942aa558687688804f4fd38ced48a1c2320560ecf798"
+    "packaged_sha256": "c8373f879a0bbe510823dcdffaf4127bc03090a02e0ce2bc8cb2b83a52be7bb6"
   },
   {
     "destination": "tests/fixtures/rtl-stage47/control_vectors/cases.vh",
