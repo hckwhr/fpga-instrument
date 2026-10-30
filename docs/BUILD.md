@@ -33,7 +33,18 @@ Android 构建工具及路径见 [README-FPGA.md](../host/mineradio/README-FPGA.
 
 ## FPGA
 
-当前工程为 `fpga/current/v3_hdmi_top.gprj`，顶层 `v3_hdmi_top`，31 引脚、4 时钟。工具为 PowerShell 7、ModelSim 与 Gowin V1.9.12.03。先仿真，再综合和审计，最后运行 P&R。
+当前板上程序对应 `fpga/playability/v3_hdmi_top.gprj`，顶层 `v3_hdmi_top`，31 引脚、4 时钟。工具为 PowerShell 7、ModelSim 与 Gowin V1.9.12.03。先仿真，再综合和审计，最后运行 P&R。
+
+将 `fpga/playability` 复制到独立 ASCII 路径，从复制目录执行：
+
+```powershell
+pwsh -NoProfile -File sim/run_dynamic_regression.ps1 -Jobs 12
+pwsh -NoProfile -File sim/run_hdmi_phy.ps1
+```
+
+综合使用该目录的 `v3_hdmi_top.gprj`。取得实际综合网表后运行 `scripts/prepare_performance_constraints.ps1 -Netlist <本次综合网表路径>`，再以 place3/route2 完成 P&R。完整说明见 [当前演奏工程](../fpga/playability/README.md)，现有结果见 [实施记录](../artifacts/playability/README.md)。
+
+以下旧入口仍针对保留的 `fpga/current` HDMI 工程，不用于构建 `playability`：
 
 ```powershell
 pwsh -NoProfile -File tools/test-fpga.ps1 -BuildRoot E:/Gowin/workspace/fpga-instrument-test -ModelSimBin E:/modelsim/win64

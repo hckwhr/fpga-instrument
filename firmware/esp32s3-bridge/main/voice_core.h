@@ -3,8 +3,10 @@
 #include <stddef.h>
 #include <stdint.h>
 
-// Only commands implemented by the accepted stage62 short-command endpoint.
-typedef enum { VOICE_PING, VOICE_PLAY_DEMO, VOICE_STOP, VOICE_STATUS } voice_action;
+// Named titles require the matching FPGA PLAY,0/1 endpoint. An older endpoint
+// must reject them; never silently fall back to playing an unspecified title.
+typedef enum { VOICE_PING, VOICE_PLAY_DEMO, VOICE_STOP, VOICE_STATUS,
+    VOICE_PLAY_TWINKLE, VOICE_PLAY_ODE } voice_action;
 typedef enum { VOICE_IDLE, VOICE_WAITING, VOICE_CONFIRMED, VOICE_FAILED } voice_state;
 typedef struct {
     voice_action action;

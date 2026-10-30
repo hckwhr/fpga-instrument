@@ -76,8 +76,19 @@ class FpgaBreadS3 : public WifiBoard {
             });
         };
         add("self.fpga.ping", "Check the wired FPGA connection. Query self.fpga.result after enqueue.", VOICE_PING);
-        add("self.fpga.play_demo", "Play the FPGA built-in demonstration (Twinkle/Ode), NOT an uploaded song or arbitrary title. "
-            "Requires companion BLE/USB app disconnected. Query result before announcing success.", VOICE_PLAY_DEMO);
+        mcp.AddTool("self.fpga.play_demo",
+            "在FPGA上选择并播放内置曲目。song_id=0是小星星/Twinkle Twinkle Little Star，"
+            "song_id=1是欢乐颂/Ode to Joy。用户指定曲名时必须选择对应编号，其他歌曲不可冒充这两首。"
+            "未指定曲名时先询问。不是小智扬声器播放，也不是上传歌曲。"
+            "Requires BLE/USB app disconnected. Query self.fpga.result before announcing success.",
+            PropertyList({Property("song_id", kPropertyTypeInteger, 0, 1)}),
+            [](const PropertyList& properties) -> ReturnValue {
+                const int song = properties["song_id"].value<int>();
+                const int ticket = bridge_voice_submit(song == 0 ? VOICE_PLAY_TWINKLE : VOICE_PLAY_ODE);
+                if (!ticket) throw std::runtime_error("FPGA control busy; do not claim execution");
+                return "queued song_id=" + std::to_string(song) + " ticket=" + std::to_string(ticket) +
+                    "; NOT executed yet. Query self.fpga.result; OK,PLAY,0 confirms 小星星; OK,PLAY,1 confirms 欢乐颂.";
+            });
         add("self.fpga.stop", "Stop FPGA song playback, including uploaded playback. BLE/USB app must disconnect first. "
             "Does not mute manually held keys. Query result before announcing success.", VOICE_STOP);
         add("self.fpga.status", "Query built-in FPGA player status. Does not report uploaded SONG2 playback state. "

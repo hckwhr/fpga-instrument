@@ -28,7 +28,7 @@ OLED 缺失时探测后使用 NoDisplay，不阻止语音。未支持 SH1106 的
 | 小智设备 MCP 工具 | 实际发送 | 说明 |
 |---|---|---|
 | self.fpga.ping | PING LF | 返回 PONG 才确认连接 |
-| self.fpga.play_demo | PLAY LF | 播放 FPGA 内置演示，不是任意点歌，也不是上传曲谱 |
+| self.fpga.play_demo(song_id) | PLAY,0 LF / PLAY,1 LF | 0 小星星，1 欢乐颂；收到带相同编号的确认才表示选曲执行 |
 | self.fpga.stop | STOP LF | 停止曲目；stage62 的 remote_song_stop 同时进入上传播放器 local_stop |
 | self.fpga.status | STATUS LF | 内置播放器状态，不包含 SONG2 上传播放器状态 |
 | self.fpga.result | 无串口发送 | 按 ticket 读上一条命令的 queued/waiting/confirmed/failed |
@@ -40,7 +40,8 @@ OLED 缺失时探测后使用 NoDisplay，不阻止语音。未支持 SH1106 的
 
 测试说法：“检查 FPGA 是否连接”“让 FPGA 播放内置演示曲”“停止 FPGA 播放”。
 小智普通扬声器音量工具只调小智喇叭，不等于 FPGA 的 PT8211 音量。
-本版未扩展 FPGA RTL，因此不提供不存在的音色/弯音/音量/按歌名选曲指令。
+选曲需要配套 v5_playability_20261030 或后续 FPGA 固件；旧板端返回 ERR,COMMAND 时不会退回通用 PLAY 冒充选曲成功。
+尚不提供音色/弯音/FPGA音量语音指令。当前播放歌曲切换会重新起播；上传歌曲运行时先停止再选择内置曲目。
 
 ## Wi-Fi 与 BLE
 

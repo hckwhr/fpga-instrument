@@ -618,6 +618,66 @@
     "packaged_sha256": "abd68abf5531d8e185205088ca96cee13f492a15d455c8c8657cb2ab15e784a9"
   },
   {
+    "destination": "artifacts/playability/applied.cst",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "40d0e3c759cc31d60439c30a204d7dc0184d79b01c7d4fcd3e03a6ccf9c41c88"
+  },
+  {
+    "destination": "artifacts/playability/applied.sdc",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "40bbc18bc7096513a79a77c6d13e9d6b52ae374a29a9b6d3c8e0060ff4980ba5"
+  },
+  {
+    "destination": "artifacts/playability/esp_native_tests.txt",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "c32682c007d6420a7bb40bf8d4babdd9f142c930aa4b7c3a79842b123f3012af"
+  },
+  {
+    "destination": "artifacts/playability/full_regression.txt",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "8372870844dce2df7ccd9b66a8152ad4a0abcb424c989a790b9d9abb57342c3d"
+  },
+  {
+    "destination": "artifacts/playability/pin_pair_audit.json",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "3fa6c10d815b03c3cdbe1615deb535c317429946b3d720943dad324a983ec3e2"
+  },
+  {
+    "destination": "artifacts/playability/project.rpt.txt",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "ac0cdd122f19417348510736cf9d02b42ef1d1aa24e837ae84b9a4864ad212f7"
+  },
+  {
+    "destination": "artifacts/playability/README.md",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "484d7dde81a3dffd1a4f83180bcc4fdb62e5d4289a94bbca228bca12d7dfcd0c"
+  },
+  {
+    "destination": "artifacts/playability/recovery_removal_audit.json",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "057fde9b70d8c95dd19c692a893a7e7d92f74b2744e13c2cee2802f306a66668"
+  },
+  {
+    "destination": "artifacts/playability/resynthesis_equivalence.json",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "62c37eda1a9fdab1b301cd07221757b9f332e80e37a4d9190f7cc3799c1ad78a"
+  },
+  {
+    "destination": "artifacts/playability/timing_audit.json",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "f44dd36875f82c034ae7e5393e09f105efea9a0a74f672196738203f2216c3e8"
+  },
+  {
     "destination": "artifacts/stage64/applied.cst",
     "source": "artifacts/v3_uart115200_stage64_20261023/applied.cst",
     "source_sha256": "5367030c1f687132debf47b50af959884282a8d2e4cc80d19a8769bbf1ba6775",
@@ -2121,7 +2181,7 @@
     "destination": "docs/BUILD.md",
     "source": null,
     "source_sha256": null,
-    "packaged_sha256": "153b29495a5f913b6043e0bcf22c7cb0d19c50f8f2cf3849b06e271c6a5ca3fe"
+    "packaged_sha256": "9017679a824dc1a4c2dca24897578eb2336f472cd3e9d7dd03bf6b1cb8f5373f"
   },
   {
     "destination": "docs/HARDWARE.md",
@@ -2574,6 +2634,234 @@
     "packaged_sha256": "58476d7cf7651a00804602f83868c758a563a04a57bb23f7766a3b5589f56ff3"
   },
   {
+    "destination": "docs/submission/灵弦FPGA多维交互乐器_技术设计报告.docx",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "5f4e4bb8a6c4c0617b2f1cc893f8efc6c29e9d050d150f8a29c5eb6aff9c4269"
+  },
+  {
+    "destination": "docs/submission/灵弦FPGA多维交互乐器_技术设计报告.md",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "0c245ee5ae56715c0bdada5bfac4067b1e11ae1ca34fdd60b183546546d99d6b"
+  },
+  {
+    "destination": "docs/submission/灵弦FPGA多维交互乐器_技术设计报告.pdf",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "ebb2eb959d3822c612f5da155bcfc7c9b6c9d82b32711e02683e7f47d678bde2"
+  },
+  {
+    "destination": "docs/submission/assets/adc_schematic.png",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "d2dd2eda71679cb4f183af96c34af5571c7bb34ab2ec9250b1457330e24beb25"
+  },
+  {
+    "destination": "docs/submission/assets/architecture.png",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "9d27594f0d839c401870121046a7e91096bcb4e0cbae4193277d476c32e6c2e2"
+  },
+  {
+    "destination": "docs/submission/assets/design.png",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "34f8f11043ae285670d15f1e4e6dae3f0331724ffcc3565c5f98361688c67558"
+  },
+  {
+    "destination": "docs/submission/assets/desktop.png",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "f572ee2aa5166c30e229f6a07ced501bfcf87efa1385c3e8c386916e1b64b181"
+  },
+  {
+    "destination": "docs/submission/assets/display.png",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "5e2ac9a655cf9840f96a58c34d46053307f1fe99ced2ad96b0034af6e4779c16"
+  },
+  {
+    "destination": "docs/submission/assets/drawer.png",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "a4b0c22af9e91e2fc72151d2c9678ef990a0f3f8d88f90839b17e6195ae308a0"
+  },
+  {
+    "destination": "docs/submission/assets/esp_schematic.png",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "d5e5e33d1b31c762eeb18916b9843a6ae329e47a6ff81a4b3b063ca6dc22edec"
+  },
+  {
+    "destination": "docs/submission/assets/events.png",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "ae82e06a3c9cfcc9b5c5665671a9af89bdfa5fe03ffa736ab54b527ba7a07ce8"
+  },
+  {
+    "destination": "docs/submission/assets/mobile_workbench.png",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "dfa6bd611e47642b4b1a66353dbddf94dc604f9099bd2f1ab98b99ff8a53076e"
+  },
+  {
+    "destination": "docs/submission/assets/pcb.png",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "014cf127864534624b0392ad13f9b377a4e1aa3c3521e987873a0f8e4b67ce75"
+  },
+  {
+    "destination": "docs/submission/assets/performance.png",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "daeacfc0dce912b4dd03e636b462daa9e183a89e36777a5154aa365e82ddc0bf"
+  },
+  {
+    "destination": "docs/submission/assets/phone.png",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "128a47068c28bc3337ec5e75d51be696f4ccaf574a2c82d1df0ffd8d4f591239"
+  },
+  {
+    "destination": "docs/submission/assets/pressure_schematic.png",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "97badb19ebd5f3a6642761697982d6de1738889ba3777dd23371b183402514e8"
+  },
+  {
+    "destination": "docs/submission/assets/recording.png",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "ceee524c87b6200be3a1c7bb4a494af9366608ad2bb4ea59304122fa085955fb"
+  },
+  {
+    "destination": "docs/submission/assets/rgb_schematic.png",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "5ee4c026dbe07af35e7420b9fcc6d6d8c0bd269dd0d5e1d017eae8ab4bc68231"
+  },
+  {
+    "destination": "docs/submission/assets/string.png",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "bc9b445236d74dfc7bf4ab5a43f6a52dc07a0615d5320ee1de181e124b153743"
+  },
+  {
+    "destination": "docs/submission/assets/upload.png",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "1ad4bb6cd3dd0f36c1186a4560b13075c668eca4c3c3418564bc7b253dfce442"
+  },
+  {
+    "destination": "docs/submission/assets/voice.png",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "556d5b6d94814655f34e58ea7e128febb8dc1dedc6218af1bdfa274aaefd2e45"
+  },
+  {
+    "destination": "docs/submission/figures/architecture.pdf",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "4df61e1b1cd4b6246d2202ab826baefb7c21f1ab0244ac218f21d8926205b8d8"
+  },
+  {
+    "destination": "docs/submission/figures/architecture.svg",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "9704a7398d19b4c0e52b9cf8acaca82e6887408c3406eed7c896994f8f4164f3"
+  },
+  {
+    "destination": "docs/submission/figures/design.pdf",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "5552256a942f096459cd77eb94757bbd6a389f64ba8b166eae4e4aac146ed0ec"
+  },
+  {
+    "destination": "docs/submission/figures/design.svg",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "e8a102276250cbe722e6c1b6212f9c608cba15c201d253f1c9e1b1f5693129b0"
+  },
+  {
+    "destination": "docs/submission/figures/display.pdf",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "a12ec260b4989694df6d2aa856d621cd95b311ac911e42d22bb4f53ef46d2c6d"
+  },
+  {
+    "destination": "docs/submission/figures/display.svg",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "f50bf9426921c56ee5b18b35a785add127dd13cb56a73307c5e5d07ca5cff267"
+  },
+  {
+    "destination": "docs/submission/figures/events.pdf",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "bc5ed907d6f26900053ee33efa8c0ba99a6e7568fad16dfc7eeafc9eea37f679"
+  },
+  {
+    "destination": "docs/submission/figures/events.svg",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "cb4398168d67d2633983596d99cdac8b2ff163914ed66bda0076ef1c8bde51bc"
+  },
+  {
+    "destination": "docs/submission/figures/recording.pdf",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "c7ee4608b1639897b18f7e8e6abe1dbedd256efbc97f88ed519a699b04a9099e"
+  },
+  {
+    "destination": "docs/submission/figures/recording.svg",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "cbeb670d2d5e520905b3ff2660fe6e0e5d6f0366ee9b97547bde542e184f1309"
+  },
+  {
+    "destination": "docs/submission/figures/string.pdf",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "989dde33be76e76b44e7c34e9d991139a58cfce33852138f62350d5910306572"
+  },
+  {
+    "destination": "docs/submission/figures/string.svg",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "3c2afadabcaa342c116832bcc583df06f9678e2d1b4dec16689ad2c37319585a"
+  },
+  {
+    "destination": "docs/submission/figures/upload.pdf",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "c5923543627f4b91d04479c156d5de37e75ce938edd976d9ff0f137ce00f6a01"
+  },
+  {
+    "destination": "docs/submission/figures/upload.svg",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "060cb7e91955a5344f63a95ec168f33575e9c789a03e04b6019c3666b9d8838e"
+  },
+  {
+    "destination": "docs/submission/figures/voice.pdf",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "21046bc9103fa7714bdc7855301aa1ba9ce5be4d79ef06b1fef9370fd78caa40"
+  },
+  {
+    "destination": "docs/submission/figures/voice.svg",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "8333d4ce3bba4aa66d3a402d3d90029a65e1455aa2e4d05a3c6c03881b1d81c5"
+  },
+  {
+    "destination": "docs/submission/README.md",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "0c8c71ce6379d30fa11308ba26215574c2c9a708485230252b39849ce2afbf85"
+  },
+  {
     "destination": "firmware/esp32s3-bridge/.gitignore",
     "source": "firmware/esp32s3-bridge/.gitignore",
     "source_sha256": "7fa9463984a7720a22f802074e15fda1ed3f4016460816da0982090c631c850d",
@@ -2649,13 +2937,13 @@
     "destination": "firmware/esp32s3-bridge/main/voice_core.c",
     "source": "firmware/esp32s3-bridge/main/voice_core.c",
     "source_sha256": "2acec41b781c8717a4a96b09423073a10de85c8a9c3fac87d238bb8f5b54bd2e",
-    "packaged_sha256": "2acec41b781c8717a4a96b09423073a10de85c8a9c3fac87d238bb8f5b54bd2e"
+    "packaged_sha256": "d2030363398f87982effae84a745e7b81c66b300f546348bbceefe70631a8d52"
   },
   {
     "destination": "firmware/esp32s3-bridge/main/voice_core.h",
     "source": "firmware/esp32s3-bridge/main/voice_core.h",
     "source_sha256": "899d8b29f027c2aa1ead95f9525db4d480fadd7f0aafbba86b2c12f58f8e1eaa",
-    "packaged_sha256": "899d8b29f027c2aa1ead95f9525db4d480fadd7f0aafbba86b2c12f58f8e1eaa"
+    "packaged_sha256": "2689db1b9376cb9b5cd652d146894b5eb1a790cd5b65214ef1f30790f748d8e2"
   },
   {
     "destination": "firmware/esp32s3-bridge/pinmap.json",
@@ -2709,7 +2997,7 @@
     "destination": "firmware/esp32s3-bridge/tests/test_voice.c",
     "source": "firmware/esp32s3-bridge/tests/test_voice.c",
     "source_sha256": "6d1baa2cfbd4357e0b0282b3e5eea6dec7409d9e521b822b3dc9668bdcad4052",
-    "packaged_sha256": "6d1baa2cfbd4357e0b0282b3e5eea6dec7409d9e521b822b3dc9668bdcad4052"
+    "packaged_sha256": "ec44f7833ac8902888c94f8d4d49ae51d177f71dea192c3c2dc0d3febadfece2"
   },
   {
     "destination": "firmware/xiaozhi-v3/.clangd",
@@ -6693,13 +6981,13 @@
     "destination": "firmware/xiaozhi-v3/main/boards/fpga-bread-s3/fpga_bread_s3.cc",
     "source": "firmware/xiaozhi-v3/main/boards/fpga-bread-s3/fpga_bread_s3.cc",
     "source_sha256": "5fdac9f5ccbfb05a2c8b43d1072a48f38ed972ca002bbfed8e47a4b63102124d",
-    "packaged_sha256": "b91b883c00c78acb076ad3a8ff43696eb51dbe6f110965bbca4875bc19bc9205"
+    "packaged_sha256": "0b7c87f30aa933847519b128756ecfa48e011b177443f1b9aab32f186e8fc642"
   },
   {
     "destination": "firmware/xiaozhi-v3/main/boards/fpga-bread-s3/README.md",
     "source": "firmware/xiaozhi-v3/main/boards/fpga-bread-s3/README.md",
     "source_sha256": "72064462270172d3553f3af205723aba21c59fe553525217e82f1a907d07048b",
-    "packaged_sha256": "72064462270172d3553f3af205723aba21c59fe553525217e82f1a907d07048b"
+    "packaged_sha256": "3803cdbfe4cc6ca4b9050557682f174abb5bea9b3c20ba2317a5e9b9db695824"
   },
   {
     "destination": "firmware/xiaozhi-v3/main/boards/genjutech-s3-1.54tft/config.h",
@@ -12973,6 +13261,2052 @@
   },
   {
     "destination": "fpga/performance/v3_hdmi_top.gprj",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "d28c9c4f389f2e37215a8684abeeb4ee9d25ee71f2b4ea8a76322a733c544ef3"
+  },
+  {
+    "destination": "fpga/playability/constraints/base_hardware.sdc",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "9bd8ac9c5de36071331eb026f0ea503f85ea3bdb80026b2930cd22bd99301a71"
+  },
+  {
+    "destination": "fpga/playability/constraints/half_rate_enumerated.sdc",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "12c9aec0cbc4984fd0331b1fc06ea08e1ae2a571bd81804f947fa68f30235d31"
+  },
+  {
+    "destination": "fpga/playability/constraints/v3_hardware.cst",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "5367030c1f687132debf47b50af959884282a8d2e4cc80d19a8769bbf1ba6775"
+  },
+  {
+    "destination": "fpga/playability/constraints/v3_hardware.sdc",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "276180bd310818bde42655a914a4e68820ead9309c719eed73a62db72d187089"
+  },
+  {
+    "destination": "fpga/playability/constraints/v3_hdmi.cst",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "40d0e3c759cc31d60439c30a204d7dc0184d79b01c7d4fcd3e03a6ccf9c41c88"
+  },
+  {
+    "destination": "fpga/playability/constraints/v3_hdmi.sdc",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "40bbc18bc7096513a79a77c6d13e9d6b52ae374a29a9b6d3c8e0060ff4980ba5"
+  },
+  {
+    "destination": "fpga/playability/fpga_instrument_av.gprj",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "ab3666ed0092b4a256d88a8a5c8068262cc28bec4ea2d833f1c0156fb0115d65"
+  },
+  {
+    "destination": "fpga/playability/README.md",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "ccbede45a3c1e693bf2edecdb017b6dad7dddd309d86d87efc3c51707c1ba96a"
+  },
+  {
+    "destination": "fpga/playability/rtl/additive_bank_32.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "bae39af5cd44a23df303687c8e92195a3a0559d6449d378c80ee540434bd52e1"
+  },
+  {
+    "destination": "fpga/playability/rtl/audio_effects.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "d4b0c952878c5fd6366f862cad94728a7f0a7600cc1be6a8a5f3ace51d40bed0"
+  },
+  {
+    "destination": "fpga/playability/rtl/audio_pll/audio_pll_mod_tmp.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "7a41990e47a35d2c9526a3f2a9a8677bc99aa36ae634921291c5984c9cb903db"
+  },
+  {
+    "destination": "fpga/playability/rtl/audio_pll/audio_pll_mod.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "94ab7975088698a4fa52c986ee4af400ffdd7bc9f23fa1b9c5e0ef41dc7b96eb"
+  },
+  {
+    "destination": "fpga/playability/rtl/audio_pll/audio_pll_tmp.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "caaa2cd4dcafbf192ffd0ff6d7510bd9495c96f48a6ce50a3653059b54a2aeb3"
+  },
+  {
+    "destination": "fpga/playability/rtl/audio_pll/audio_pll.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "4b5b0953bc2d5f4c64734ce0c81904219c598915ff2adb189ea44030107f003f"
+  },
+  {
+    "destination": "fpga/playability/rtl/audio_sample_cdc.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "f99ad7742561c52808251a72d8229e4753aeaa916a1d37ee48c85f1839dcdf45"
+  },
+  {
+    "destination": "fpga/playability/rtl/audio_scope_uart.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "531d56ff2c1566cf8ee70fb7948ed57388184442aaec480a4b3fab2b2f6c8640"
+  },
+  {
+    "destination": "fpga/playability/rtl/audio_voice_mixer.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "429f9bad6bf24b45c6cbea7c54f21b8731d46e1bdb20fa81abe09f00bc443df7"
+  },
+  {
+    "destination": "fpga/playability/rtl/av_hdmi_top.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "2e864e7a5fb74b68315eb8cea00790b55bce9eee233c1ef38cf6dca7582d56f7"
+  },
+  {
+    "destination": "fpga/playability/rtl/av_top.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "15c564b11d2595a4d997ea99a7d5a09fd5dca79cc6a3ff48e22a250863f9fcaf"
+  },
+  {
+    "destination": "fpga/playability/rtl/bend_curve.vh",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "4b46f9eddda4ae208be86c372a659a359a960a5ac9e0799ba406fca5f837a022"
+  },
+  {
+    "destination": "fpga/playability/rtl/chinese_font_24x24.vh",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "5b7be49177a2b0170e153853ce70aed02eaac570345a123b7f59d4e54e422aa6"
+  },
+  {
+    "destination": "fpga/playability/rtl/chinese_font_rom_init.vh",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "03eb487ac6eae841458b2883828ad2cb2543780e7c96d27074b42da16f5b3987"
+  },
+  {
+    "destination": "fpga/playability/rtl/concurrent_test_source.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "6489234f6d4178340078b2254db348d268084375c1127f9fc8b299af7caca1b6"
+  },
+  {
+    "destination": "fpga/playability/rtl/dds_tone_generator.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "b66b0c0e446453c1a441b5fa87261e6aef77048513194f7a6799eb0feed3e898"
+  },
+  {
+    "destination": "fpga/playability/rtl/expression_audition.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "95ab63b978aee0beb8906b91db98c7c2de74e0b8f7faedb5c3b5fa2faef81ded"
+  },
+  {
+    "destination": "fpga/playability/rtl/fsr_instrument_top.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "8f26376c7eda2755f4fbf66ad8f4d3dd2ea3d8942118bc0fd3e214b1713f3285"
+  },
+  {
+    "destination": "fpga/playability/rtl/fsr_performance_input.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "bcdd23de20f2957a5b569c50318f6ef49c01a20164b3e3b89d2c9b239da4a83c"
+  },
+  {
+    "destination": "fpga/playability/rtl/gt911_touch.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "54cb237d8d0bb1efcaaefe40795764a8434dce17f4738dd282c5f88782967564"
+  },
+  {
+    "destination": "fpga/playability/rtl/hc05_commands.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "b42d807c331c788b757334d39d47e6b7d68b8088972468707ca0215672cb8af7"
+  },
+  {
+    "destination": "fpga/playability/rtl/hc05_link.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "a363ab34cf9ecfb28a15d7e9c3b691037dac5e83767e327e4cb4086026973e1d"
+  },
+  {
+    "destination": "fpga/playability/rtl/hdmi_clocks.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "d0a2e47aa2a3d7c3147b24bbd02f1efbc74bdb2fd363c39ec73cbaad39908202"
+  },
+  {
+    "destination": "fpga/playability/rtl/hdmi_pll/hdmi_pll_mod_tmp.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "a1a182dd23011ac87357a9c644030cfc529c7c96d0a3e77c069bd07b93b093ec"
+  },
+  {
+    "destination": "fpga/playability/rtl/hdmi_pll/hdmi_pll_mod.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "9624c9b1e65f2a0d236e1b2fd6b84cd51445c448247eb102edcb6e5b2cd83ea9"
+  },
+  {
+    "destination": "fpga/playability/rtl/hdmi_pll/hdmi_pll_tmp.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "59e55f76f0895557a5dbaab15143ecf37ebf73b9ceda7ab3e33f16fd91ce0668"
+  },
+  {
+    "destination": "fpga/playability/rtl/hdmi_pll/hdmi_pll.ipc",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "187e23513d9ab7529557f0b73ffd4e525a443af2ac722b2e33c2ff820f99da8f"
+  },
+  {
+    "destination": "fpga/playability/rtl/hdmi_pll/hdmi_pll.mod",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "e0d570f61c408856a5198b59add8e008d9217414f7fe5e9e05eb4df1ba1faad9"
+  },
+  {
+    "destination": "fpga/playability/rtl/hdmi_pll/hdmi_pll.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "e6f0b8e05dc461a73aee2af5dc7b2e8190760f899818336da156fbb90adb39eb"
+  },
+  {
+    "destination": "fpga/playability/rtl/hdmi_timing_800x600.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "492408b6b9bbaebb9d5a4d65d3fe7b49a78f6405b49388e18eddc1ef6d5a4e2f"
+  },
+  {
+    "destination": "fpga/playability/rtl/hdmi_tmds_tx.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "0db6892cd6f97ad5503848db515fd8299b96767f2768c654081ad48760c76718"
+  },
+  {
+    "destination": "fpga/playability/rtl/i2c_byte_master.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "08f3ee7caea31a19755a56fc477a6485706365afa93eb05f5bdf35738e50ce30"
+  },
+  {
+    "destination": "fpga/playability/rtl/i2c_register_master.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "65c1887084ea9996f819a31bf38580572935f34564790f1327665918ab625ccc"
+  },
+  {
+    "destination": "fpga/playability/rtl/instrument_contract.vh",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "2db2ea8b7d71b17c25341963b06d8827e322df40aa88c905c153e6a5ff8a47a4"
+  },
+  {
+    "destination": "fpga/playability/rtl/instrument_control.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "17ede3d3e84f2c8c6456182f27f448e47ad91a68bc260ecc7f3cb10ca0f7ec45"
+  },
+  {
+    "destination": "fpga/playability/rtl/instrument_panel_renderer.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "3057de87e134f03c1cb72c20b8fa8b6bbd901ff403fb695805ce25e0c1567f28"
+  },
+  {
+    "destination": "fpga/playability/rtl/instrument_production_link.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "ba256d76028a8f5eab89e4b2c7ed5bf7d00dc3b31bbcae79f8378411f739c26a"
+  },
+  {
+    "destination": "fpga/playability/rtl/instrument_shared_uart.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "028346531e9085a0eeed66d24722430a544ed88b3f5742e89034e714716d2e35"
+  },
+  {
+    "destination": "fpga/playability/rtl/key_debounce.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "39a39169d24364d2e6214edb31eb4671110e75c71c7a79f15990d76e8aaac5ee"
+  },
+  {
+    "destination": "fpga/playability/rtl/keyboard_light_status.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "3e4e38e2579eeb55bfea5fc671cbd5cbf6e80d2284139d6e7610bb0ee33b5f8a"
+  },
+  {
+    "destination": "fpga/playability/rtl/keyboard_note_events.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "f3c83b9133cb29912a84cb7837155c154278d78ca56cfddfda76300afbfba2dc"
+  },
+  {
+    "destination": "fpga/playability/rtl/keypad_165.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "c998aee6456e0905d9a973edd94271c44c26e7a6071967e15ab4241941957290"
+  },
+  {
+    "destination": "fpga/playability/rtl/lcd_pll/lcd_pll_mod_tmp.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "87f4186837946bef0436f973fabc1fc298bcfa98c17b6315c8a4a540cd4e3ecb"
+  },
+  {
+    "destination": "fpga/playability/rtl/lcd_pll/lcd_pll_mod.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "139d6a32f419ff00ed801cf53113624e9ff68919a51a49d3ad89e73946d2ff85"
+  },
+  {
+    "destination": "fpga/playability/rtl/lcd_pll/lcd_pll_tmp.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "2cdc11625eef5baf0372d226db3f5cb020a4114bdd17532c7906abe6dafa2ec5"
+  },
+  {
+    "destination": "fpga/playability/rtl/lcd_pll/lcd_pll.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "e4360377bc362f5cd8fd187d8543761d542929737044fba33959df190f11d57f"
+  },
+  {
+    "destination": "fpga/playability/rtl/lcd_test_pattern.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "9a297e6fd77f9c53339fc77898dfc22a678be74fa7030b8a3091417dbcf2750d"
+  },
+  {
+    "destination": "fpga/playability/rtl/lcd_timing_800x480.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "9a3c652944b5ba5c3e4faf94597b123324c42965ab7922d17f6577d40c958bca"
+  },
+  {
+    "destination": "fpga/playability/rtl/mcp3008_dual_scanner.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "9549223d41573f5bbec4ca146a317304e7f356bad4c591d101d248a0178153d4"
+  },
+  {
+    "destination": "fpga/playability/rtl/mcp3008_reader.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "345a8a10178a3abaa6eb29ce7617d15eb79c2a93dad29f2e05da0f0c1cbeedac"
+  },
+  {
+    "destination": "fpga/playability/rtl/mcp3008_scanner.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "5b7a0109f55cc624d7f4edc0a2ebed23b585feb25314b5ee653d38d30a3f82b1"
+  },
+  {
+    "destination": "fpga/playability/rtl/note_event_contract.vh",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "53b6ea46733d0ed217fc199bd63fff02d90e12c0cab6c72a2a8fb4e5ec66cb7e"
+  },
+  {
+    "destination": "fpga/playability/rtl/note_event_voice.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "729b121a3b481248d7303135f2ae6ab2f0f3cbb944b88e85c1fe0459d2d33582"
+  },
+  {
+    "destination": "fpga/playability/rtl/performance_controls.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "00122aa1ed094286c1c203be52dddf1e8568d4f935a69be385e3df2a9ead129c"
+  },
+  {
+    "destination": "fpga/playability/rtl/performance_recorder.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "7c553582b6b99eb9ab55030032957419715ddf929fc00a6ce5736ae6021cdceb"
+  },
+  {
+    "destination": "fpga/playability/rtl/performance_uart.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "ed4fe78cc5d6825b71e55c3d961079def5861b2151fbfa3219a7348c84b90667"
+  },
+  {
+    "destination": "fpga/playability/rtl/physical_string_bank.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "4f8a9e31862d4cbcd1599838c79a30c3164e4d3d7c0e7ddb57669c2eca8d4b2b"
+  },
+  {
+    "destination": "fpga/playability/rtl/physical_string_voice.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "88ef5a163d7fb5da43ceb33e41d919b28595db68306bc5909ba90f34bf10c9e5"
+  },
+  {
+    "destination": "fpga/playability/rtl/piano_wave.vh",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "e3979ee3bfe06012cfddf7a230789515ba7ebcc016dcb576a6cb5019fda9425c"
+  },
+  {
+    "destination": "fpga/playability/rtl/pitch_expression.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "d948d63aca3cdedcfb4db01729d6eec6f8b768c5e0751a544b799d74d55cc82a"
+  },
+  {
+    "destination": "fpga/playability/rtl/polyphony_bank_32.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "6a1de611f024cf727208ac241390ae88bd336b84b45eb69a8fa0401f9b0ac1c5"
+  },
+  {
+    "destination": "fpga/playability/rtl/pt8211_tx.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "fed408e801e7eff9facbba1a48500d30b447989e7b39fc86d5adcae3778e883a"
+  },
+  {
+    "destination": "fpga/playability/rtl/reverb_comb.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "ce826ca7696adef836f74bc34a2b9d11de4baea9b7f3fab58aa1adc385e811e5"
+  },
+  {
+    "destination": "fpga/playability/rtl/song_control_uart.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "777c24a8cc360655cb20dfc889810719ce97c1fc297a89e5a68a456ad8d7eb91"
+  },
+  {
+    "destination": "fpga/playability/rtl/song_instrument_top.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "b9f077cbb391dfc474dbae0a3c4b69720fb54619e18112f79c4eac3552e1c793"
+  },
+  {
+    "destination": "fpga/playability/rtl/song_player.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "b6473576e980823c4ae8d1e9767cceaa6039d2f9fbd4c20f1f11547e46b26b87"
+  },
+  {
+    "destination": "fpga/playability/rtl/song_score_ode.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "1d9e9a603c3b81d3ef05d426c68db4086fb2046ae3b613a22ed74338883b770c"
+  },
+  {
+    "destination": "fpga/playability/rtl/song_score_twinkle.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "b9848a5826e1c119dbc246337289fd55ac9b7fc5ae26f30ba2cac3f9d58f1e12"
+  },
+  {
+    "destination": "fpga/playability/rtl/song_score_validator.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "75d41e96011f69bcb4b863716c974667a5d76e6f63bfc85932af7ddb8fca613f"
+  },
+  {
+    "destination": "fpga/playability/rtl/song_timeline_rom.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "0bb42a7f51b53668a07b8f11d3edd39f9002eab0282c50c2b1a8d5326f6e438e"
+  },
+  {
+    "destination": "fpga/playability/rtl/song_timeline.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "2f4b16fb97660c871ebcdb5e1e1bdcd44942ad44b1555c74c5019d3020ec7b55"
+  },
+  {
+    "destination": "fpga/playability/rtl/song_timing.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "c19451bc6be6870a1846208fc2d58124879d10600d7758483ded609bdc33662c"
+  },
+  {
+    "destination": "fpga/playability/rtl/song_upload_frame_rx.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "95c7c930b2c0040b02f32a11e05f461e163b01b1f3a32eb57e54c6c38fb407ad"
+  },
+  {
+    "destination": "fpga/playability/rtl/song_upload_link.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "460771fc76a03738ecd648992f95d88b8aae8ffcfafed10063b9fdb914a06a5f"
+  },
+  {
+    "destination": "fpga/playability/rtl/song_upload_parse.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "2364ca5feee1f24f797a9f175ab9d58ff6428f825317af854540cdb249af7cc6"
+  },
+  {
+    "destination": "fpga/playability/rtl/song_upload_playback.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "0f5494b86b6de2bcdbcab581d78430d27f98832d416470ac17b2e2966aaed206"
+  },
+  {
+    "destination": "fpga/playability/rtl/song_upload_reply.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "0ba58fd14644735f782b1fb51d31954e57420bb70c920f562901eaf3f58367dd"
+  },
+  {
+    "destination": "fpga/playability/rtl/song_upload_store.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "5b9363e9fbd54883ee5d91ded29e5206e1ed5099d6f3513e8b2870ca7ea0cc8c"
+  },
+  {
+    "destination": "fpga/playability/rtl/song_upload_uart.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "0c9ac01d56a1dddd61950684912308dbab45aef128189b97b0bb54a08a302185"
+  },
+  {
+    "destination": "fpga/playability/rtl/song_uploaded_player.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "f90628a090e38ef88250ed7cba0f5fa82692a13b76f6c1e8f9c32a00c2b85cfa"
+  },
+  {
+    "destination": "fpga/playability/rtl/spectrum_analyzer.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "8fb35f86ff7f9e36323972cddf406bba6ad49c1990acfd817dbc1cf96371c356"
+  },
+  {
+    "destination": "fpga/playability/rtl/status_bundle_cdc.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "e8ba5a975b1bc14966afd037f24778b4857503d7586a9f258f9a64cc96a42878"
+  },
+  {
+    "destination": "fpga/playability/rtl/string_interp_serial.vh",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "91b6e0fe65357508085a708230e000781c4f1ad0c80c15d2f8231b4319720bf2"
+  },
+  {
+    "destination": "fpga/playability/rtl/string_interp.vh",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "369b54af6539060c539b28fed44cf4d49f04f87e2cb802610593f81b41341c74"
+  },
+  {
+    "destination": "fpga/playability/rtl/string_pitch_control.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "0a54eb263a5e60a9064b23817e6303b7a59a36feed7bb951922c46df604a6c2c"
+  },
+  {
+    "destination": "fpga/playability/rtl/string_tuning.vh",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "1721a07715fff57ae09fe41898d80a8ddda3b493b3148ffeb6b0c600ca589dc6"
+  },
+  {
+    "destination": "fpga/playability/rtl/tmds_encoder.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "d326d57e175d67d529d57c4676d29769390dd9a9f120fb23f772485529a722ed"
+  },
+  {
+    "destination": "fpga/playability/rtl/touch_preview.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "c0fd68d3dfc6d78ba88570422107ce8239212997d180977ae197d0a5322437ff"
+  },
+  {
+    "destination": "fpga/playability/rtl/uart_8n1.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "fe9d0b75c46716bbafb9b6476adfa1182098ba99620bc2a1de7dba0a7f04ca4b"
+  },
+  {
+    "destination": "fpga/playability/rtl/uart_byte_cdc.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "e6ef6fae17e8b7f7ce6c1e96ba2bc166542d8bb5df966c91b8f3110cde460af1"
+  },
+  {
+    "destination": "fpga/playability/rtl/uart_line_router.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "42463fe0bfdd57bda821fc1eb37e44182e4d1f4995307473766a528b9bf8303a"
+  },
+  {
+    "destination": "fpga/playability/rtl/uart_line_tx_mux.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "30dcb49bdad49dbd062e80eca871e7edc5625bd3316e82d9b18217aeb5841133"
+  },
+  {
+    "destination": "fpga/playability/rtl/v3_analog_input.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "be8d31d3e8648e8c7a78715a310550b096e4c57cde142b5c4f7e7da168429e6a"
+  },
+  {
+    "destination": "fpga/playability/rtl/v3_hardware_top.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "a110476676b8668fcb43ec7c31a9ffd1566d5b81b31c049438ab91f0f9214fa7"
+  },
+  {
+    "destination": "fpga/playability/rtl/v3_hdmi_top.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "99531deea9dab8eb945e692554ef538dd2b050a92e1d1a7d999b6c76b2d6b292"
+  },
+  {
+    "destination": "fpga/playability/rtl/v3_instrument_top.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "4979bf5304f655ab885da1ac38e202fee795eb8453a3514f28d3d15398548aab"
+  },
+  {
+    "destination": "fpga/playability/rtl/v3_performance_input.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "0e3acaea69843977289c0ebec6b5026852a524726539ebc4721a6b3eb3c35f21"
+  },
+  {
+    "destination": "fpga/playability/rtl/visual_coefficients.vh",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "1082ecf7bfc2e4f3c8daf5aad0ca05330fac54af761b0667c39e87044e1b26b8"
+  },
+  {
+    "destination": "fpga/playability/rtl/visual_feedback.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "64e4b3fa24550c96c7f44514b94fc26e5e5821d50f98b19e06be208b18d78131"
+  },
+  {
+    "destination": "fpga/playability/rtl/visual_labels.vh",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "c76fad42f4d2732e068ce61c5c454753d85d734da84330f37e55e435af713c22"
+  },
+  {
+    "destination": "fpga/playability/rtl/ws2812_tx.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "fddedc62f830911ce7e1c370e518e91da7d7054a969965a6a5f5dbc72e93efd0"
+  },
+  {
+    "destination": "fpga/playability/scripts/audit_final_constraints.py",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "32bee8940eef94cabcd2f5fb82ede113febc1dde41cdb8db0303a4048357e083"
+  },
+  {
+    "destination": "fpga/playability/scripts/audit_half_rate.py",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "df3675d99720777bd658ba9704a729aba170646437f4c55f4e07b7ccd9070a82"
+  },
+  {
+    "destination": "fpga/playability/scripts/compact_queries.py",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "7561e61d5778ed2e4705dc67dc93dac5fdbe0a9e4f1a8176d98a92dcd3092ddf"
+  },
+  {
+    "destination": "fpga/playability/scripts/pnr_only.tcl",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "60c30a3e45a458d5b324dd11fa7ed25385d8cd70f6d577af85a7eb8717445389"
+  },
+  {
+    "destination": "fpga/playability/scripts/prepare_performance_constraints.ps1",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "0146c47e4a89b99fbeed09da65bfc8f23d3c226b602853c3ed911a4bfdff2dc9"
+  },
+  {
+    "destination": "fpga/playability/scripts/retained_constraint_omissions.json",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "e35b051deee4d043e3d8e2ce551890cf65883dcf6daf37ca29000e8a4fee2b69"
+  },
+  {
+    "destination": "fpga/playability/scripts/syn_only.tcl",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "d410035f7a500f52668d6b844f47fc0ae45149f32039385b56eba80fe93af86c"
+  },
+  {
+    "destination": "fpga/playability/scripts/test_compact_queries.py",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "ede730fa522efce028b1475aa1840528014082c329b459b9e39072d2fc9aad42"
+  },
+  {
+    "destination": "fpga/playability/scripts/test_half_rate_audit.py",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "c9fc79fe6f18a8e71069ffc7738f8b6e989fc5c00be0b8547008e8e3e881e13e"
+  },
+  {
+    "destination": "fpga/playability/scripts/test_half_tick_hierarchy.py",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "f162aa293dca90ea1c7d4b2b9468ba4b95db7de2b4bf8241d03fcd66c95ba674"
+  },
+  {
+    "destination": "fpga/playability/sim/baseline_audio_effects.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "645bc2d0691b2424a21abb64c99c6e17e67f72d6c48ca959dc21c277795c619b"
+  },
+  {
+    "destination": "fpga/playability/sim/baseline_audio_voice_mixer.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "001f5841e75155613d8d077536746e6f303675d7b55dafd13b01a898eee283d2"
+  },
+  {
+    "destination": "fpga/playability/sim/baseline_expression_mixer.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "ef1bea8aeeb03a4dd1c27af468043e0cd75fa09d0b8290d75118c8085fc17ae8"
+  },
+  {
+    "destination": "fpga/playability/sim/baseline_integration_control.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "684b206e4e32c294da7d2688183b3e2c4dbd6a02daea661252f96c4a32d28679"
+  },
+  {
+    "destination": "fpga/playability/sim/baseline_integration_top.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "801d4eeaeb34a7b03dbc54409ef874899ae57b0d794c0bb209f2d49581a5aec4"
+  },
+  {
+    "destination": "fpga/playability/sim/baseline_piano_wave.vh",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "a3a24f84714bf7251534e3a9a1912a8100304770dedec77bb0880d28091e9afc"
+  },
+  {
+    "destination": "fpga/playability/sim/control_vectors/cases.vh",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "6c53c0eea894cf197d8f8e50d978f149cb5fb55eea7fac1edab557396ed7de32"
+  },
+  {
+    "destination": "fpga/playability/sim/control_vectors/pcm_control.vh",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "779f51fd1438d7f6f9a6456da5ab354681e5d30a8628d35090e4f13493b2b840"
+  },
+  {
+    "destination": "fpga/playability/sim/control_vectors/pcm_upload.vh",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "a6a0040d9bef14b8dc8e37863aacb1983b38e0e2f6877efc677e793f5d1cf067"
+  },
+  {
+    "destination": "fpga/playability/sim/gt911_bus_tasks.vh",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "8aef8b9eda5083d40d5a0b04cb201fbe3eaad1fb2f16f3ddab510c7ef7ae2c14"
+  },
+  {
+    "destination": "fpga/playability/sim/hdmi_functional_stubs.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "0ed81726d32f1957a89598654b0e334a605a0085fe2232706122b6dab1dd36d5"
+  },
+  {
+    "destination": "fpga/playability/sim/link_vectors/cases.vh",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "952a1949d9bddc72a0b7cfff9712c68fea019f81bcaabc3258af87e3c1f3ff1a"
+  },
+  {
+    "destination": "fpga/playability/sim/link_vectors/ode.hex",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "e645fde8f0ae91703161b48e830042b0dff3af6f3c237250e3075aa0468ab1ba"
+  },
+  {
+    "destination": "fpga/playability/sim/performance_expression_probe.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "805efc41ca300c02ab9d4d6b1dc79f18e12bac3128b0b278071855aaffe6e398"
+  },
+  {
+    "destination": "fpga/playability/sim/playability_lcd_reference.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "540eac08d10ab3d4e5824d4c6c11954162bd4133c3bd3e289bbe5c8cc14ebc83"
+  },
+  {
+    "destination": "fpga/playability/sim/playback_vectors/alternate.hex",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "90ca633228c71367211214cb8b079a2d632183da11155765ec998b3253f82e3a"
+  },
+  {
+    "destination": "fpga/playability/sim/playback_vectors/constants.vh",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "c1fdba41c66314e813728a6c17eb08580db50c26bf1f54da115855eb5d25e05f"
+  },
+  {
+    "destination": "fpga/playability/sim/playback_vectors/uart_upload.vh",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "0a463efc191290c6facd419ac5a2c2972a959f822c6f3754d838ecfaeb955823"
+  },
+  {
+    "destination": "fpga/playability/sim/production_vectors/commands.vh",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "cb335c0ecc43cf0359a689f7df4a274be5cfadaa367e87f4719d8604e3c56f17"
+  },
+  {
+    "destination": "fpga/playability/sim/run_dynamic_regression.ps1",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "af44551513642d17bea9dba31d6ac0672da89a4c33eeb2bdc377ef3796c1e944"
+  },
+  {
+    "destination": "fpga/playability/sim/run_hdmi_phy.ps1",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "7535a3000a132d2d6d1e82f63599412ce1585cf80a3c1242471ad806ce2fa8e5"
+  },
+  {
+    "destination": "fpga/playability/sim/run_latency_regression.ps1",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "635bc0e846ed92414282a97a2f370305e2d043b719951d97326a26f24b374510"
+  },
+  {
+    "destination": "fpga/playability/sim/shared_vectors/mixed.vh",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "5c426f79674ca9efe63f6c4ec9e77ca203b80cd2e61f3a7db554ac4df8d3d57a"
+  },
+  {
+    "destination": "fpga/playability/sim/stage12_polyphony_bank_32.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "5d3b68a8f8c18730eca42097e0fc919c3ed1e706a333311a16d07d6262055290"
+  },
+  {
+    "destination": "fpga/playability/sim/stage15_polyphony_bank_32.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "adbc3d93cc08d277339eb23d8182c3ad8b70c3d678fddcec1401e5315aff85a8"
+  },
+  {
+    "destination": "fpga/playability/sim/stage16_polyphony_bank_32.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "c9371e8eed7894e465137b6308d2c995cf436e3a201070b43847f5e9c9ab11aa"
+  },
+  {
+    "destination": "fpga/playability/sim/stage18_polyphony_bank_32.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "c4f3417668de2d807fddd35bb9a18cd3590c481845032c62f2c6da99eba4f07a"
+  },
+  {
+    "destination": "fpga/playability/sim/stage19_polyphony_bank_32.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "3a6d51003c690085090c54285d4c9c2f1fd544b01cef5e1e9898cceefe916cd0"
+  },
+  {
+    "destination": "fpga/playability/sim/stage20_physical_string_voice.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "ba64b42c12abf970bba07538e8f06b5d2736a7dfa237a8b7f9a18f2fff91b3fb"
+  },
+  {
+    "destination": "fpga/playability/sim/stage22_audio_effects.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "6d60a0d6ee0e446d97718666542ceedeb42eae85584ee4a3f269b21cd545f30c"
+  },
+  {
+    "destination": "fpga/playability/sim/stage22_physical_string_voice.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "ebbe7f8b533f347faa486c5914ba3940290c63b3d8e1cf5f426e57c6e903f3a2"
+  },
+  {
+    "destination": "fpga/playability/sim/stage25_physical_string_voice.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "0b7b850fe1ec60166e712ab737972cc6ee829b22d7259c97fb1c3bb9ff596ffe"
+  },
+  {
+    "destination": "fpga/playability/sim/stage25_string_tuning.vh",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "5d9e4d9cde08e98a2352706b59d85adfc9b29ac5ac59c1f8c95f3e03639da85f"
+  },
+  {
+    "destination": "fpga/playability/sim/stage29_instrument_control.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "1ade3b36224f1e50cfcb1dbe9b2fc8ddf922fcdd1b686cedd8fcc46dd8e6e4f8"
+  },
+  {
+    "destination": "fpga/playability/sim/stage5_audio_voice_mixer.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "755a85942696e1c245eb1dad311dee6c6a2f15e0c3ba40474d79ade12a9fe0e5"
+  },
+  {
+    "destination": "fpga/playability/sim/stage51_song_upload_frame_rx.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "588c2f4162916dedbc8c03371af56039f3a5f0c547e6571bd066fe09495ac461"
+  },
+  {
+    "destination": "fpga/playability/sim/stage51_song_upload_parse.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "7f9f2effe7d0ceef503f94a35c32a46861e9a541271281e8b06b385a413e0a60"
+  },
+  {
+    "destination": "fpga/playability/sim/stage54_polyphony_bank_32.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "b140bdf56ffdb67e47bcbe816e21af9af98e7804641dbf18a1542b14add88358"
+  },
+  {
+    "destination": "fpga/playability/sim/stage54c_song_upload_reply.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "c402d4ae03be5ba8ebc8e4fbc011a0d86fe77393f002a3484a3a574b220e2fef"
+  },
+  {
+    "destination": "fpga/playability/sim/stage54e_polyphony_bank_32.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "4040dbc991c29da3c7a616b51e6c7d51b47b48e194de9b3cf7a704b645bae2aa"
+  },
+  {
+    "destination": "fpga/playability/sim/stage67_panel_reference.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "e04667784cba89cbf5fa9d091c5a51eb9a75ba09531f482e66ec857095111bfc"
+  },
+  {
+    "destination": "fpga/playability/sim/stage9_piano_wave.vh",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "7b08138dfb7d561d5ba6c8cc1e803516b464344b1bd6de29cc3588ae57618449"
+  },
+  {
+    "destination": "fpga/playability/sim/stage9_pitch_expression.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "94881fc35277f581791b4a3628b485a46d89f26fe4be18f0def9c3502dfc8b52"
+  },
+  {
+    "destination": "fpga/playability/sim/stage9_polyphony_bank_32.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "a01c9d06754f158eb8f8df6995d98f8e62602d8dc6016a59d5107606ca4f8210"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_additive_bank_32.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "eefb3f4d2ec129db499bceb42d4807a6a1feba5f287887ea3cde1270795abfca"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_allocator_exact.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "9c50b4dbf3c4676c9db83cafc8bef338764348032d78a96dba736b0719fc097a"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_audio_effects.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "e2dced1cf465ade9b80ac9420810060ddc23f2196f86ba9eb9ac6ff323301f2a"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_audio_pair_cdc.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "a9652ac45ddf0f2a594fad9e1bfed7ceccb3536886ef36ea8bb01e9440ba679a"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_audio_sample_cdc.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "7e9b8145324d40449210d6e5084682e370c17a39244499cbcab72291e94bf59c"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_audio_scope_uart.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "6c7ebbb35b3bbe8c1fe5cbe4cdf113af00ae5e38ed8b93971ff79f9700937f04"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_audio_voice_mixer.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "ae4836f6f88b4a6cfb60fe58c7d2af050d15e94a8260cd27ab12e1015a6bdbdb"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_concurrent_engines.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "0b471264e62f1ea71c7c8a80154e65670887cb515d4acee7992bbfefc51d5b2f"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_concurrent_entry.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "f70064c0c3197b48cc779ac4495868372a0babd3e9ec63f2cb9dbfe261e9d663"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_concurrent_top.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "40476b006468b2d1d3ccbb44666be5a94bdaec97764f07450b63489f7fd2d6b3"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_continuous_expression.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "1048664fd1336e8631b35ca5d4e3e7e9850221f910c7f2bf662fb810ac7162b0"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_custom_polyphony.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "7ad7e55e7a06416cd047cf415ea89889e985f5379aeac983bcbd3c247364d7b5"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_dds_control_pipeline.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "5aeb485eb10b61a1567ee9f0cfd08d5d15f4b803efc9fac176fae1282e4a40df"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_dynamic_strings8.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "8300ec9e951dc404d196fa3afd7a339f71bdd84faf73b532975fce419ecfb722"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_effect_strength.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "122ce55416d46e5eb8c76fb3171c01108c587e7e5cedefd68f5af2366ec1613a"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_effect_transition_top.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "18ae12e412a91d1bab1cf406e9c4b34a015bc30b4517bb3e734967ca4ca2538d"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_effect_transition.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "025c42815f314e21187ef690b6d7677661b54f1449d092903407069da209babc"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_effects_audition.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "8381a9cf560ff82de17aaceb6839de7d3af0de008a4c5a7fde58cec5750ea56d"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_expression_audition.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "f8b9a9172fa19eea736b34ba85f8e8c7c67e9efee75c25c829a1be0f9b2167eb"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_expression_slew.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "d904d0a402338207c7b6f9dd3b2d87f84e9f7a58b37984b0d7e45fc48d8ecccb"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_fsr_instrument.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "e7f469c6515f49859607b3d7e3868b6df99dd1cfe18c8f64f6d60abeee692a0a"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_fsr_production_latency.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "1227c6bd747b486c8f2c4cd6fcee9d8c4c53615ddb59621d2f5b6dd0df05f4f3"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_gt911_reset.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "28e6b9b8fca84e1dd0158ecd4007e6aead4f0a6209410424a216b11253ca08a8"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_gt911_touch.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "54c5cd0eeae9d43a5e7bdf1cfd9471e216a62cc68ba8a085e6884ae1d62f36f3"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_half_rate_datapaths.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "02082af073d38a44a07743f0890af1155de2d15a1e7e0271ba3cd4644b7744af"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_hc05_link.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "1f8888287c0516c40409fae521c0c156149982a485d6843f085eb933f71ffa4a"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_hc05_top.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "a739432bde0cec41a444ac4e3c2660e835cd60604b2f79c98c5f674e7cb141f9"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_hdmi_clock_startup.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "01d6822cca2267aaf7cb325e91ef5f7de2b8f4bebecf652c7f8e52f9402a4823"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_hdmi_instrument_pins.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "ee198e28007f98d514556bc6df89ad9c32c99be526462c0c71f026d11f163c4e"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_hdmi_panel_equivalence.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "e05f40b52f89fd9cd3d1e9cdbcf3f15cb9f7ee686571fb492c0f1d8a5cec244e"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_hdmi_serializer.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "d657fdece78c6ca7a5d65d43048c1e7421dc4ce547c65b3f901a14deea049462"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_hdmi_startup_contract.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "05d69d3383e83b03bd6d9e867c9983ac69534aa5a5e96681aefbe49577729265"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_hdmi_timing_800x600.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "1896a2bd093da6f18e7fb5ffd2299b4d57d551a7c17d86c75c096e492003e7a2"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_i2c_register.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "68984894f71aa4045f4fec066d37131986be5e8ef05ca1bb745de7a4b8a733ba"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_instrument_shared_uart.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "3786c0f94dc4ec77d7d78b5225254bf9890739f40caa514d7b20994dde3a19b9"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_instrumental_envelope.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "1f175ece259d0daf78b81b53550cb913f31e09172bfe0334770bc309ea34877e"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_integration_control.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "58bd23cd89c71f6af66bad162d382e2a4fa622f105bd5193b02235fa7a2eb695"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_integration_routing.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "0e4be5231885cf29c2b7b17289ab35d149eca971036705adbefa58cbed40dcbf"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_keyboard_light_status.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "66550a2cd3a7aef43a90d4fa7424949b214f6ee9097b50a63d85b8df59292f61"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_keyboard_modes_menu.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "361d4e4dc0cd9dcde4a28b37f3bacfedf0aeb11c3aa973d5961b01c52ac39655"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_keyboard_modes_pins.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "675a048ea0add7b3a5689be7901b002a61a3e42aeb67c83411fef8349523e5b9"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_keyboard_modes_pitch.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "537a4f1b24debad5dabe3bbfec5d3a7b324849b2af3908bb9c0cfdbeb2a4d38d"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_keyboard_note_events.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "bb1c88648abf8f2fd90b764b129f2f50db638278565c5f8cb8516c1e1f3d8325"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_keypad_165.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "91f71e8bfa4bac738f6e244b0828d61d4578cb5626711f3f54a9a4426ab0717a"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_latency_audit.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "d538331f65f32c8d6988b204b4b96ddcddb23f72dc1d66b930589f00ad7fe72c"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_lcd_pipeline.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "6eb335edc4ed55f81a54a7e2e898fa24a51953244950e9d824b37616532f80fb"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_lcd_polyphony_count.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "ef823314209ddf2695c261795f2e6447abbff19c79690f73feedef7f01923c7b"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_live_articulation_guide.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "6754a2058b7a6538cda890b7490f62eaac59ba83e64007e18797236b61ab98af"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_mcp3008_scanner.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "d1f0eaa96474f7fd8ae13f427c17f6b44e469e2dc953907678d9a10eb4a25338"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_menu_delay_contract.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "8dd15986ffb939ae57b070299eb99ba34b822013ec65ec4a6aa5aeb615cacb54"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_mixer_pipeline.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "0cdcffe39a984420e06e5112a95d63d356a96ab8ad4fc94bb9210ff805a28e1f"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_note_event_voice.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "d6319295119dbd98d4cbcceb35620a0764efbe69d01406e37bbb1fc4e10039df"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_p2_audio.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "4d70196cb2d3e9c47300560645ed651803ade30983c47139c6540a84399a011c"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_performance_controls.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "6503b0ea5ae064915f8ac8866a28981db272d9f3536968f08cca845beff1f67c"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_performance_lease.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "0ee1104c4604f232c206df0f64fdc18e96cf0b5fe650f9a573f9cca1952d28a1"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_performance_pins.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "c6415511bc3a189852fb55f82fbc9df8a674f18978fb738c9e8b753a6fc0450d"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_performance_uart.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "f0a8af979cbf86022d65fdd799a0f6260b1f49520d43998d5c63625cf6d29ab0"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_physical_strings.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "597c715cf71f0b9d8f754d428b8c85de5c264d63fc4bd669a20f5a04fe0c1068"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_piano_lookup_exact.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "5d5979f783756f3ac092b1f0032d83ec20daa14927822f3401f43f4f5cc1cb74"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_pitch_arithmetic_exact.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "871d66ec4a6a8e00c61f4e95b531e034fdc84b17b6d47ea19a59b7c995bef1c3"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_pitch_expression.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "0a8d1941636007965ce20564c15924203a2499efd9bf18509f67ae1b7123dd84"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_playability_hdmi_pins.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "1dad690f4a99173e56788bcfa0b9fdb7a305227a2a10f888dcbb2064c229be10"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_playability_menu_lcd.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "4b4e075b68db3c7d5f24c8031dc9e028fa8065c81482e6dc5ca73b3e83bde585"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_poly_adsr.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "8d2dd2794cf3a656218e19e15ed13877f54f525cc32365dc457c61e0d24fe423"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_poly_control_pipeline.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "e388de2ff889617dc278029c3acd5c49829c046c87b20806553fb2cefe179029"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_poly_expression_top.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "32960b30dead958ca779fa7955f1d96ffd5e88c0b67f87c4e46d43456af34151"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_poly_expression.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "e43b7df6730d0ca2cf111cf821a2188342b237c3e5736abd7cbd5c4d15b4380a"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_poly_force_shared.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "1667909a436966f802eefc183451d664fc5abf2dcf8cfd64e780bcefa1ba7b0e"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_poly_force_top.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "a4436dda615a604bf0e61a29b7decee0298270a74fe0911e9e86556b34a1a9ea"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_poly_force.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "fe97dc5135d8d92649a04c223924ce25f36248860304e6f491db2aa698e14d1c"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_poly_glide_top.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "61bed3991549627589bf7acbc626232ae27cfe9aa3d36a1baee73ba032c6c062"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_poly_glide.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "fe4d12bce941047fa1c4659a88da2b538aad9d47bf1b3439e501ca4575ac2fbf"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_poly_mix_fast_strobe.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "ce35a0e8b45a1973f818eb33e76a55b9d9f2715b158a4b00401beb6d714f669e"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_poly_mix_pipeline.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "abe9cc92bcf31d83afe478c2d695059b8e1f4b534692bcdf0fdac78acbb5b617"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_poly_pitch_shared.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "70dad83709407a0dc0a842ff0dc2f942c917b287dd956226a9becdf1ad780748"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_poly_stage54_exact.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "4e933c0700447c5e006964acf111d168770d22fc3e2e8b514107070d804cc142"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_polyphony_bank_32.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "7be204b69dd8aaa0e92e3c62d343bcd8065e04d19472140cd82af285a9841f36"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_polyphony_events.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "965352b5ca2333b41745de42f3ef389e7dcaa0fa2e913c6df2faecb2c70a1487"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_production_legacy_cdc.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "88acb04da6d8c282e9c4a885c1eef13c85d7be8e21b393a6159a0abadc05136b"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_scope_115200.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "868b448d4a5fc94b946e198428125315c32f4c4e9d5de09bb720c15d67db96c6"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_scope_production_uart.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "3cb453c48d9c66e8785e50c75bdfd3dbde4eaa5f6cf0890fe7fd66083ddb5561"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_settings_pages.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "b5f97f371c95004d066b802e9e6cbb4ffabc84f06f5788c2b70ef5d7e83c9cab"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_smooth_audio.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "0b12e59a1d900828aa8c4cdf83b288fcaf293aa6c52d6c2e4928aa4068263990"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_song_capacity4096.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "d4fb1f9ce5fd5ab8c2c82c9834367a44979412ac259ad0f80143b1d481d821f3"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_song_control_uart.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "3e283cab7f7797306c78c4bb1b85f4ad7cbd8900318c1a33adf69cb3449d29a2"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_song_ensemble.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "52329f68e81722580530b164aa64923631c6fd73df0ac53a2427f745c25384d8"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_song_event_path.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "a8e895d2002d535ced0df06a0aa7fa094731bfa5e1fea43f38a6c7d50ffea1d8"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_song_lcd.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "4b7856b4f20327b4a5ddfcd74a9a505ce948b9f5dac01c646314ec2b8ab9e549"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_song_local_control.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "61db111c66bb25b27e7d3b88b054bd8baab0b9c3cabfa84e6a0d608ec6f848e4"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_song_page_mirror.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "9b3c5c37911b5995ba36e95c94a807b81c8994ddf2bc4e27dc73bd16def9f7cb"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_song_player_data.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "033055dff9571cdf6262fdfe38ca290152cc1ac2b153cf5219c9b8fae4548de4"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_song_player.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "b51d467112c2f7f8ebb424db3562a8d1f81e3b78641e4c1f57540cc7bbfbee7e"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_song_poly_display.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "9df381845903b995cc3568796a5fa58b9ef8c29df5acb9ef6929911391b373be"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_song_production_top.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "88375e2f82c9a48ec404a77b9f79ff61e8df12abeb74f7d778a2eb73f7fce91f"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_song_progress4096.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "da7b916256b2920705e8bcfe04dfe888cfb2e586ff0d85292921d7d44cc9355a"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_song_reply_exact.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "2d82ea273c5954540491082119ef96ec4480fac448a613e03c4a7f0f9bfe9ac8"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_song_score_rom.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "2d70889d95295278afcddf43cfb52f643efee1af2ddecf1f00a00bb002d2a0b6"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_song_select.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "b722ab4f58c6766f8c360d7c1fd73be579a64c8fcd4374df2609983080c34f62"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_song_tempo.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "b829c92c81df05e032ed18c602675617e03e722a20cdcd87a8e748abaa632afd"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_song_timeline_capacity.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "05692b355f18efadc8e59bd5412296af0f3231a85229be307fb46153a2dd1d11"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_song_timeline.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "62ef52a6dade16be1b5c55511620d1499e212bf5a95ddd8661ba6478e32875c0"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_song_top.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "89ead87e7049934db4bd951c33ca94de75e60732ce23490c0190cc27bebffce0"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_song_transport.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "3ddea65e4af50acffaf2f4fb9d04fceff5f4b23ccfc4acb57a7bf75d5b0261ac"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_song_upload_frame_rx.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "6338bc30d4fd0415700af65cba8c46aeb0b0642bbe40cd9a93f9c941cc905c2f"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_song_upload_link.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "c9b23d4055a453eb9a3d1d77c0013bd0d35a5be97a1cf21cc63a3c5463dfbeb4"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_song_upload_pcm.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "de44a392fa39261d4dcf2f01f3f40f6d01efa15c2816839647c316be7fe67da0"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_song_upload_store.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "bfeec63c82aa672f4307978fa2b581804c52aac444942ea924488b83f0d17610"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_song_upload_timeline.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "c3731d3fbf2b6b9f85dcf5ccddf2481cddb774647c9e9978b1286c7590cabaf2"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_song_uploaded_player.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "f4c9aead3e055610add766d6f8daef4e9077345e510b51c5aed232e925f69c59"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_spectrum_gap.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "26810f323952c31ba4e637620a7084a7fcb930bf84ada3826a33da909fba4a3f"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_spectrum_stop.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "10c683c3d9ff64fe9f995bc1e144b5738e0912a562b14402b9c90e47330708fe"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_spectrum.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "831708c05cd75806c1b26101fc47a1f904ce4c0a85411da576847e2592f28371"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_string_decay.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "b72f3b6e73c7e6f61d34a992613276dff48c7cece70d0c2fd386e119e225e050"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_string_expression_top.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "be0037a496e718e73889e1e88b860072719e08744b3167929e895741145ebfb1"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_string_expression.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "7cc7d348f8fd25486635939ad89906d2bdc528bd7557f8edb9a6c481ab6bc975"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_string_keyboard_events.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "5084bfece7ab6668615e4ada48dc6870503caefb54fb8091bc023ac80a11a446"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_string_load_top.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "5a29e97e97910f52afd1211731d67062687a895b9a8513da821bedbe64fe436b"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_string_load.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "51cfbd4f53a14dfdc1f15f7dafa549c1e368c77925e22a2238370c0851c8a430"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_string_menu.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "8343b11319fbe952c91b53bdba801fb6d2117e064ada065bbba459bb69880680"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_string_route_exact.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "50c73c637b7766112da4d2a9c36370b8f429ec0073188e2f40b2874be689a817"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_tmds_encoder.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "40e6edccd018737bf2b392e05f3ac8e6f345bc8b4bab253c40074460dc5791bd"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_touch_preview.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "5d2bae6c43aa260ad1fca76ba4fce4a0f14c5f4e2d5eca6ccca2bdba4b947d43"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_uart_byte_cdc.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "ba2d55dbe1ecd13cbae29ce49db0fb50c66daba91572f5e479d6feb5d57c155e"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_uart_high_baud.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "aabea4036c71037727829f48ff46fc27c6ea38c879a2a5a99c93932256c4c649"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_uart_line_router.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "5ee38782a97555397b094d2d893c6e060b427394ddb1346dcc0ada32573329d8"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_uart_line_tx_mux.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "b9f83ec258a27f7ce5cd33c354fc0943b698e0326d4d85ba20697ec312f65609"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_v3_analog_input.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "2b1cc0b739b2094c9a1ba81f7a3cf2d834a3f4c0058a879b67386ce838fbdcbb"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_v3_hardware_top.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "78aff562e8e4dd72a58e7553162e76631cc487116dbad12bf686ec8880ef67a2"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_v3_key_force.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "2803377aeb9b5fecc97474bc1027ca91c105c8cc867a8d1d21e4884a6e8f86b3"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_v3_performance_input.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "7e9f6f667da240f9dfb7f3ad6fa5743a4214a8fdd5786d45bf8729cc07592130"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_v3_playability_pins.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "d16e747dda7adff6e4b441f12c795590e28f781e27a1f08b8615dd2bb746c492"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_v3_production_latency.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "23186ba4668a260333a62d9c1d8a773052b31600d4db99b9edf6051a506cf0eb"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_v3_production_top.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "bd99cecf9744fb1ca1ebed877857958b59f42711c47646e49c1fd439350bff2d"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_v3_string_pins.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "1718cb836618e592062122fe9c87c922e86bb8f62928a4b1cda47082f9671a55"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_visual_feedback.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "a298d48db25adc7ac812ad0ee9e5eabadbd6cd9650d14ee8a6e4561d9bbc02aa"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_visual_freshness.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "add64d55dc7d631ee8c50c1c89059ab700b99840d15007099641ab0dccd086dc"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_visual_latency.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "08bf4ff8360d60c82528c2fc3be7095d0a2f2ab9ae0416eed9e783def45d16fe"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_visual_top.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "2a01408853b82767771743c36fa34a522ebed68d14239efc72843bf2dd693286"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_ws2812_12.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "6ac601c5a1d62e526e11dbf3e1fc401fa1d30bfb2774c0b2cce21a3ea44154ef"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_ws2812_chain.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "46442fb8c46f66de625cd4001bcf27bbef3d8847a9487fb93a66c03adfb11884"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_ws2812_guide.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "af5488cfcfc3c240a1b43b300ad0c9b65ac139ed918d034d4603d25a86bd6f9f"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_ws2812_hdmi_clock.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "0983be632768ff923a057eb17edfc1e20088a46a7051951a08815ba4f766e24f"
+  },
+  {
+    "destination": "fpga/playability/sim/tb_ws2812_timing.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "36a998e46a202301a279c95089227162719614076606bea94093928940fc6c77"
+  },
+  {
+    "destination": "fpga/playability/sim/upload_vectors/bad_crc.hex",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "f676ad48a4f2152050d48532dbe9c531fde6bc3122456427a25e3c10cd90985c"
+  },
+  {
+    "destination": "fpga/playability/sim/upload_vectors/capacity_512.hex",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "1a5ac795a1f2a2c1149ff5af3ba6b45a09c7f01c0ef78c6d852de89604bd86b2"
+  },
+  {
+    "destination": "fpga/playability/sim/upload_vectors/cases.vh",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "4f4526e3cd557f0179551161b669b1895039e1c8e74271ae96c70c8092db0424"
+  },
+  {
+    "destination": "fpga/playability/sim/upload_vectors/descending_tick.hex",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "dad39dfa588493f4f4cacf79cd3bdbaf84e0c4c54d34394ed382bdb0d404ef3e"
+  },
+  {
+    "destination": "fpga/playability/sim/upload_vectors/different_off_force.hex",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "73f9e3439a8e2fb6bb814f08a033832dc6055a95540c1252f3b33a7ed315be05"
+  },
+  {
+    "destination": "fpga/playability/sim/upload_vectors/different_off_pitch.hex",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "6ccfea820e8e272ab2d49a98f3f647a8efe66f1795b5107aef873662b6498589"
+  },
+  {
+    "destination": "fpga/playability/sim/upload_vectors/early_group_tail.hex",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "15e67e611f4e0d21d564fbeb8c8d4c6bae447d2b80914da232f3de642438878a"
+  },
+  {
+    "destination": "fpga/playability/sim/upload_vectors/last_tick_tail.hex",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "f4e0b997a15c3b77e0d61b4013470c99308b253efeed7d52f0119c2f0e23e177"
+  },
+  {
+    "destination": "fpga/playability/sim/upload_vectors/melody_count.hex",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "f676ad48a4f2152050d48532dbe9c531fde6bc3122456427a25e3c10cd90985c"
+  },
+  {
+    "destination": "fpga/playability/sim/upload_vectors/melody_progress.hex",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "bdae6db7c5312c1da9ab037e9c09e672b7abd68c66448aa512e8639233d2f198"
+  },
+  {
+    "destination": "fpga/playability/sim/upload_vectors/missing_group_tail.hex",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "d088df13639ad20e2dd05a8c9df423658564466cb320f2bc5de827749ba77fe1"
+  },
+  {
+    "destination": "fpga/playability/sim/upload_vectors/octave_3.hex",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "ad19f8d1b4d536d629bacd87d25949cde5d1429df0a81e972263d39688c0a94c"
+  },
+  {
+    "destination": "fpga/playability/sim/upload_vectors/ode.hex",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "e645fde8f0ae91703161b48e830042b0dff3af6f3c237250e3075aa0468ab1ba"
+  },
+  {
+    "destination": "fpga/playability/sim/upload_vectors/overlap_melody.hex",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "acb7ce42a1c31fffe7a966ec05152e02ada041db13a8f501593914611ba36db5"
+  },
+  {
+    "destination": "fpga/playability/sim/upload_vectors/pair.hex",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "f676ad48a4f2152050d48532dbe9c531fde6bc3122456427a25e3c10cd90985c"
+  },
+  {
+    "destination": "fpga/playability/sim/upload_vectors/past_end.hex",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "f676ad48a4f2152050d48532dbe9c531fde6bc3122456427a25e3c10cd90985c"
+  },
+  {
+    "destination": "fpga/playability/sim/upload_vectors/pitch_12.hex",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "bcf23a89de5a72c584ee2fcba7f98875ba228e007f5c3934bb3aa79569cafdc5"
+  },
+  {
+    "destination": "fpga/playability/sim/upload_vectors/seventeen_events.hex",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "b8f2a17bd8be97a85c5a08655cc00a26e4745b1c244dd73bab81f074c082ea74"
+  },
+  {
+    "destination": "fpga/playability/sim/upload_vectors/sixteen_voices.hex",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "e81e655b84291b3aee3fec8427c1000c2cacfc061e96ca70406d8a05783b971d"
+  },
+  {
+    "destination": "fpga/playability/sim/upload_vectors/tail_7.hex",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "946aeb02e0237d2376c15bf4db4aa62e0114c1bd07ddfd3de1465db385c76323"
+  },
+  {
+    "destination": "fpga/playability/sim/upload_vectors/tail_8.hex",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "6f1a2ab41239ed30b397c65cade66c5a0e999f6eb21dd9c09a1278924600bce5"
+  },
+  {
+    "destination": "fpga/playability/sim/upload_vectors/timeline.hex",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "5468a50ca44bf1bb92c312e18b4766b6227a5ff4d40c413a02065e1df5451051"
+  },
+  {
+    "destination": "fpga/playability/sim/upload_vectors/twinkle.hex",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "12f842989c0571df091e4532c4f95781ef56511ffa90d384e39959887f977627"
+  },
+  {
+    "destination": "fpga/playability/sim/upload_vectors/unclosed_on.hex",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "fd3c14db6fa336d8a40b9e4e0cde998cc2cf3737a10b9e3ce65db48c6d2f793c"
+  },
+  {
+    "destination": "fpga/playability/sim/upload_vectors/unflagged_progress.hex",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "63611d1930a610c847b9140fdc42a938bbc06a224a70d2e6a3e450750b83fb5c"
+  },
+  {
+    "destination": "fpga/playability/sim/upload_vectors/unmatched_off.hex",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "9955701735f7dfec50cfa95817f71bbfe0345d93dddce189952a591287e40a9d"
+  },
+  {
+    "destination": "fpga/playability/sim/upload_vectors/velocity_overflow.hex",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "1be8d1aea5a2196b50349cfd3f88dc15f63e8c18cfda5cd23f20c25a2e2b68aa"
+  },
+  {
+    "destination": "fpga/playability/sim/upload_vectors/wrong_id.hex",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "c9685a10b471d276ee6a8c013e96244d9dbb967853c364779f487fe87b17c298"
+  },
+  {
+    "destination": "fpga/playability/sim/upload_vectors/zero_duration.hex",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "797504c5ae0c02f8ca2bdeabd8d61ff5b039323d9a2d9942277f92535b7ff881"
+  },
+  {
+    "destination": "fpga/playability/sim/upload_vectors/zero_force.hex",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "971715c91667ac5aa9a8a35708e6182fbb38966cd7be5cb6a1a31a9c18d5f9fc"
+  },
+  {
+    "destination": "fpga/playability/sim/v3_dual_adc_model.sv",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "618290581cf405b096dc448ebd82e65d1ebc938df5a499e8a3b9cf9db6c6ffe1"
+  },
+  {
+    "destination": "fpga/playability/sim/v3_input_models.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "8f5b990cb23a7048c63f1e89eaabb7d81810d246bd625a2b3f2dc99c1a211520"
+  },
+  {
+    "destination": "fpga/playability/src/pll_init.v",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "3ef05a1ba92157d73e3c54ed9d589645508a4ae332d8bcf133a0457cc3e866c8"
+  },
+  {
+    "destination": "fpga/playability/v3_hardware_top.gprj",
+    "source": null,
+    "source_sha256": null,
+    "packaged_sha256": "9f2a8b93309a9031efa349403e96d39a6249b0815ed0b60b4b1027d5c5b777b7"
+  },
+  {
+    "destination": "fpga/playability/v3_hdmi_top.gprj",
     "source": null,
     "source_sha256": null,
     "packaged_sha256": "d28c9c4f389f2e37215a8684abeeb4ee9d25ee71f2b4ea8a76322a733c544ef3"
@@ -21207,7 +23541,7 @@
     "destination": "README.md",
     "source": null,
     "source_sha256": null,
-    "packaged_sha256": "e6d9b953354e1b68b01d45f46c8a93deee4e6c2e2e1ceabd2d647b2d145e4ebf"
+    "packaged_sha256": "c737361e0dc22b2e93f5b29d392f00e5ae7ec34088d5abf5205861aeaf7e43c5"
   },
   {
     "destination": "tests/fixtures/rtl-stage47/control_vectors/cases.vh",

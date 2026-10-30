@@ -6,6 +6,8 @@ const char *voice_command(voice_action action) {
     switch (action) {
     case VOICE_PING: return "PING\n";
     case VOICE_PLAY_DEMO: return "PLAY\n";
+    case VOICE_PLAY_TWINKLE: return "PLAY,0\n";
+    case VOICE_PLAY_ODE: return "PLAY,1\n";
     case VOICE_STOP: return "STOP\n";
     case VOICE_STATUS: return "STATUS\n";
     default: return NULL;
@@ -44,6 +46,8 @@ void voice_receive(voice_core *v, const uint8_t *data, size_t n) {
             v->reply[v->length] = 0;
             bool match = (v->action == VOICE_PING && !strcmp(v->reply, "PONG")) ||
                 (v->action == VOICE_PLAY_DEMO && !strcmp(v->reply, "OK,PLAY")) ||
+                (v->action == VOICE_PLAY_TWINKLE && !strcmp(v->reply, "OK,PLAY,0")) ||
+                (v->action == VOICE_PLAY_ODE && !strcmp(v->reply, "OK,PLAY,1")) ||
                 (v->action == VOICE_STOP && !strcmp(v->reply, "OK,STOP")) ||
                 (v->action == VOICE_STATUS && status_matches(v->reply));
             if (match) v->state = VOICE_CONFIRMED;

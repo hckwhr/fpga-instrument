@@ -40,13 +40,16 @@ flowchart LR
 
 | 目录 | 职责 |
 | --- | --- |
-| [fpga/current](fpga/current/README.md) | 当前 Verilog 工程、音频与显示模块、约束、ROM 和仿真 |
+| [fpga/current](fpga/current/README.md) | 保留的 HDMI 工程，音频与显示模块、约束、ROM 和仿真 |
 | [fpga/performance](docs/PERFORMANCE.md) | 独立演奏扩展工程：12 键音高映射与真实混音录音回传 |
+| [fpga/playability](fpga/playability/README.md) | 当前板上程序对应源码：压力键拨弦/滑音、明确语音选曲、青蓝色曲目键位指引 |
 | [host/mineradio](docs/HOST.md) | FPGAvedio 双模式桌面播放器及 Android 工程 |
 | [host/instrument-web](host/instrument-web/README.md) | 共用转谱、上传、曲谱库和可视化逻辑 |
 | firmware/xiaozhi-v3 | 小智语音及通用 ESP32-S3 套件适配 |
 | firmware/esp32s3-bridge | BLE、USB、UART 桥接及共用命令处理核心 |
 | [docs](docs/ARCHITECTURE.md) | 工程原理、模块划分、构建与使用说明 |
+| [docs/submission](docs/submission/README.md) | 官方模板技术报告、原理流程图和可编辑矢量图 |
+| [artifacts/playability](artifacts/playability/README.md) | 当前工程的功能测试及实施报告 |
 | [artifacts/current](artifacts/current/README.md) | FPGA 输出文件、网表和工具报告 |
 | tests / tools | 固定参考、自动化脚本与开发辅助工具 |
 
@@ -65,6 +68,7 @@ flowchart LR
 3. [FPGAvedio 操作流程](docs/HOST.md)
 4. [构建方法](docs/BUILD.md)
 5. [工程功能说明](docs/RELEASE.md)
+6. [作品技术设计报告（Word / PDF）](docs/submission/README.md)
 
 ## 项目来源
 

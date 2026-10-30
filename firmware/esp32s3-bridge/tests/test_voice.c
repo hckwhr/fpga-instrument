@@ -12,6 +12,8 @@ int main(void) {
     const struct {voice_action action; const char *tx; const char *rx;} cases[] = {
         {VOICE_PING, "PING\n", "PONG\n"},
         {VOICE_PLAY_DEMO, "PLAY\n", "OK,PLAY\n"},
+        {VOICE_PLAY_TWINKLE, "PLAY,0\n", "OK,PLAY,0\n"},
+        {VOICE_PLAY_ODE, "PLAY,1\n", "OK,PLAY,1\n"},
         {VOICE_STOP, "STOP\n", "OK,STOP\n"},
         {VOICE_STATUS, "STATUS\n", "STATUS,PLAYING,085/085\n"},
         {VOICE_STATUS, "STATUS\n", "STATUS,STOPPED,030/030\n"},
@@ -31,6 +33,10 @@ int main(void) {
         }
     }
     voice_core v = {0};
+    assert(voice_begin(&v, VOICE_PLAY_ODE, 0));
+    feed(&v, "OK,PLAY,0\n"); assert(v.state == VOICE_FAILED);
+    assert(voice_begin(&v, VOICE_PLAY_TWINKLE, 0));
+    feed(&v, "OK,PLAY\n"); assert(v.state == VOICE_FAILED);
     assert(!voice_begin(&v, (voice_action)99, 0));
     assert(voice_begin(&v, VOICE_PLAY_DEMO, 0));
     feed(&v, "ERR,LOCAL\n"); assert(v.state == VOICE_FAILED);

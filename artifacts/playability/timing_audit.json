@@ -1,0 +1,1293 @@
+{
+  "project_file": "E:\\Gowin\\workspace\\v5_playability_20261030\\v3_hdmi_top.gprj",
+  "report_path": "E:\\Gowin\\workspace\\v5_playability_20261030\\impl\\pnr\\project_tr_content.html",
+  "report_modified_epoch": 1793330704.484183,
+  "source_newer_than_report": false,
+  "status": "met",
+  "timing_constraints_met": true,
+  "timing_clean": true,
+  "missing_timing_data": [],
+  "sta": {
+    "setup_delay_model": "Slow 0.873V 0C C1/I0",
+    "hold_delay_model": "Fast 0.927V 85C C1/I0",
+    "paths_analyzed": 202195,
+    "endpoints_analyzed": 101268,
+    "setup_violated_endpoints": 0,
+    "hold_violated_endpoints": 0
+  },
+  "worst_setup_slack_ns": 0.019,
+  "worst_hold_slack_ns": 0.189,
+  "clocks": [
+    {
+      "name": "sys_clk",
+      "type": "Base",
+      "period_ns": 20.0,
+      "frequency_mhz": 50.0,
+      "rise_ns": 0.0,
+      "fall_ns": 10.0,
+      "source": "",
+      "master": "",
+      "objects": "sys_clk"
+    },
+    {
+      "name": "audio_clk",
+      "type": "Generated",
+      "period_ns": 20.345,
+      "frequency_mhz": 49.153,
+      "rise_ns": 0.0,
+      "fall_ns": 10.172,
+      "source": "sys_clk",
+      "master": "sys_clk",
+      "objects": "u_instrument/u_audio_pll/u_pll/PLL_inst/CLKOUT0"
+    },
+    {
+      "name": "hdmi_serial_clk",
+      "type": "Generated",
+      "period_ns": 5.556,
+      "frequency_mhz": 180.0,
+      "rise_ns": 0.0,
+      "fall_ns": 2.778,
+      "source": "sys_clk",
+      "master": "sys_clk",
+      "objects": "u_instrument/u_hdmi_clocks/u_video/u_pll/PLL_inst/CLKOUT0"
+    },
+    {
+      "name": "pixel_clk",
+      "type": "Generated",
+      "period_ns": 27.778,
+      "frequency_mhz": 36.0,
+      "rise_ns": 0.0,
+      "fall_ns": 13.889,
+      "source": "sys_clk",
+      "master": "sys_clk",
+      "objects": "u_instrument/u_hdmi_clocks/u_video/u_pll/PLL_inst/CLKOUT1"
+    }
+  ],
+  "max_frequency": [
+    {
+      "clock": "sys_clk",
+      "constraint_mhz": 50.0,
+      "actual_fmax_mhz": 50.046,
+      "margin_mhz": 0.046,
+      "logic_levels": 14,
+      "entity": "TOP"
+    },
+    {
+      "clock": "audio_clk",
+      "constraint_mhz": 49.153,
+      "actual_fmax_mhz": 49.808,
+      "margin_mhz": 0.655,
+      "logic_levels": 20,
+      "entity": "TOP"
+    },
+    {
+      "clock": "pixel_clk",
+      "constraint_mhz": 36.0,
+      "actual_fmax_mhz": 36.545,
+      "margin_mhz": 0.545,
+      "logic_levels": 26,
+      "entity": "TOP"
+    }
+  ],
+  "total_negative_slack": [
+    {
+      "clock": "sys_clk",
+      "analysis": "Setup",
+      "tns_ns": 0.0,
+      "violated_endpoints": 0
+    },
+    {
+      "clock": "sys_clk",
+      "analysis": "Hold",
+      "tns_ns": 0.0,
+      "violated_endpoints": 0
+    },
+    {
+      "clock": "audio_clk",
+      "analysis": "Setup",
+      "tns_ns": 0.0,
+      "violated_endpoints": 0
+    },
+    {
+      "clock": "audio_clk",
+      "analysis": "Hold",
+      "tns_ns": 0.0,
+      "violated_endpoints": 0
+    },
+    {
+      "clock": "hdmi_serial_clk",
+      "analysis": "Setup",
+      "tns_ns": 0.0,
+      "violated_endpoints": 0
+    },
+    {
+      "clock": "hdmi_serial_clk",
+      "analysis": "Hold",
+      "tns_ns": 0.0,
+      "violated_endpoints": 0
+    },
+    {
+      "clock": "pixel_clk",
+      "analysis": "Setup",
+      "tns_ns": 0.0,
+      "violated_endpoints": 0
+    },
+    {
+      "clock": "pixel_clk",
+      "analysis": "Hold",
+      "tns_ns": 0.0,
+      "violated_endpoints": 0
+    }
+  ],
+  "worst_paths": {
+    "setup": [
+      {
+        "number": 1,
+        "slack_ns": 0.019,
+        "from_node": "u_instrument/v3_analog.u_inputs/zeros[6]_1_s0/Q",
+        "to_node": "u_instrument/v3_analog.u_inputs/forces_sys_48_s0/D",
+        "from_clock": "sys_clk:[R]",
+        "to_clock": "sys_clk:[R]",
+        "relationship_ns": 20.0,
+        "clock_skew_ns": -0.021,
+        "data_delay_ns": 19.945
+      },
+      {
+        "number": 2,
+        "slack_ns": 0.092,
+        "from_node": "u_instrument/v3_analog.u_inputs/zeros[7]_6_s0/Q",
+        "to_node": "u_instrument/v3_analog.u_inputs/forces_sys_54_s0/D",
+        "from_clock": "sys_clk:[R]",
+        "to_clock": "sys_clk:[R]",
+        "relationship_ns": 20.0,
+        "clock_skew_ns": 0.002,
+        "data_delay_ns": 19.849
+      },
+      {
+        "number": 3,
+        "slack_ns": 0.104,
+        "from_node": "u_instrument/v3_analog.u_inputs/zeros[7]_6_s0/Q",
+        "to_node": "u_instrument/v3_analog.u_inputs/forces_sys_55_s0/D",
+        "from_clock": "sys_clk:[R]",
+        "to_clock": "sys_clk:[R]",
+        "relationship_ns": 20.0,
+        "clock_skew_ns": -0.001,
+        "data_delay_ns": 19.839
+      },
+      {
+        "number": 4,
+        "slack_ns": 0.174,
+        "from_node": "u_instrument/shared_link.endpoint/sys_release_1_s0/Q",
+        "to_node": "u_instrument/shared_link.endpoint/upload/formatter/sid_3_s0/CE",
+        "from_clock": "sys_clk:[R]",
+        "to_clock": "sys_clk:[R]",
+        "relationship_ns": 20.0,
+        "clock_skew_ns": 0.001,
+        "data_delay_ns": 19.545
+      },
+      {
+        "number": 5,
+        "slack_ns": 0.174,
+        "from_node": "u_instrument/shared_link.endpoint/sys_release_1_s0/Q",
+        "to_node": "u_instrument/shared_link.endpoint/upload/formatter/sid_7_s0/CE",
+        "from_clock": "sys_clk:[R]",
+        "to_clock": "sys_clk:[R]",
+        "relationship_ns": 20.0,
+        "clock_skew_ns": 0.001,
+        "data_delay_ns": 19.545
+      },
+      {
+        "number": 6,
+        "slack_ns": 0.174,
+        "from_node": "u_instrument/shared_link.endpoint/sys_release_1_s0/Q",
+        "to_node": "u_instrument/shared_link.endpoint/upload/formatter/sid_11_s0/CE",
+        "from_clock": "sys_clk:[R]",
+        "to_clock": "sys_clk:[R]",
+        "relationship_ns": 20.0,
+        "clock_skew_ns": 0.001,
+        "data_delay_ns": 19.545
+      },
+      {
+        "number": 7,
+        "slack_ns": 0.174,
+        "from_node": "u_instrument/shared_link.endpoint/sys_release_1_s0/Q",
+        "to_node": "u_instrument/shared_link.endpoint/upload/formatter/sid_15_s0/CE",
+        "from_clock": "sys_clk:[R]",
+        "to_clock": "sys_clk:[R]",
+        "relationship_ns": 20.0,
+        "clock_skew_ns": 0.001,
+        "data_delay_ns": 19.545
+      },
+      {
+        "number": 8,
+        "slack_ns": 0.207,
+        "from_node": "u_instrument/v3_analog.u_inputs/zeros[6]_1_s0/Q",
+        "to_node": "u_instrument/v3_analog.u_inputs/forces_sys_42_s0/D",
+        "from_clock": "sys_clk:[R]",
+        "to_clock": "sys_clk:[R]",
+        "relationship_ns": 20.0,
+        "clock_skew_ns": -0.029,
+        "data_delay_ns": 19.765
+      },
+      {
+        "number": 9,
+        "slack_ns": 0.207,
+        "from_node": "u_instrument/v3_analog.u_inputs/zeros[6]_1_s0/Q",
+        "to_node": "u_instrument/v3_analog.u_inputs/forces_sys_43_s0/D",
+        "from_clock": "sys_clk:[R]",
+        "to_clock": "sys_clk:[R]",
+        "relationship_ns": 20.0,
+        "clock_skew_ns": -0.029,
+        "data_delay_ns": 19.765
+      },
+      {
+        "number": 10,
+        "slack_ns": 0.207,
+        "from_node": "u_instrument/v3_analog.u_inputs/zeros[6]_1_s0/Q",
+        "to_node": "u_instrument/v3_analog.u_inputs/forces_sys_44_s0/D",
+        "from_clock": "sys_clk:[R]",
+        "to_clock": "sys_clk:[R]",
+        "relationship_ns": 20.0,
+        "clock_skew_ns": -0.029,
+        "data_delay_ns": 19.765
+      },
+      {
+        "number": 11,
+        "slack_ns": 0.207,
+        "from_node": "u_instrument/v3_analog.u_inputs/zeros[6]_1_s0/Q",
+        "to_node": "u_instrument/v3_analog.u_inputs/forces_sys_46_s0/D",
+        "from_clock": "sys_clk:[R]",
+        "to_clock": "sys_clk:[R]",
+        "relationship_ns": 20.0,
+        "clock_skew_ns": -0.029,
+        "data_delay_ns": 19.765
+      },
+      {
+        "number": 12,
+        "slack_ns": 0.268,
+        "from_node": "u_instrument/strings_enabled.u_physical_string_bank/strings[0].voice/loop_value_1_s0/Q",
+        "to_node": "u_instrument/strings_enabled.u_physical_string_bank/strings[0].voice/level_1_s0/D",
+        "from_clock": "audio_clk:[R]",
+        "to_clock": "audio_clk:[R]",
+        "relationship_ns": 20.345,
+        "clock_skew_ns": 0.003,
+        "data_delay_ns": 20.016
+      },
+      {
+        "number": 13,
+        "slack_ns": 0.283,
+        "from_node": "u_instrument/strings_enabled.u_physical_string_bank/strings[0].voice/loop_value_1_s0/Q",
+        "to_node": "u_instrument/strings_enabled.u_physical_string_bank/strings[0].voice/level_9_s0/D",
+        "from_clock": "audio_clk:[R]",
+        "to_clock": "audio_clk:[R]",
+        "relationship_ns": 20.345,
+        "clock_skew_ns": 0.013,
+        "data_delay_ns": 19.992
+      },
+      {
+        "number": 14,
+        "slack_ns": 0.286,
+        "from_node": "u_instrument/v3_analog.u_inputs/zeros[7]_6_s0/Q",
+        "to_node": "u_instrument/v3_analog.u_inputs/forces_sys_53_s0/D",
+        "from_clock": "sys_clk:[R]",
+        "to_clock": "sys_clk:[R]",
+        "relationship_ns": 20.0,
+        "clock_skew_ns": -0.007,
+        "data_delay_ns": 19.664
+      },
+      {
+        "number": 15,
+        "slack_ns": 0.324,
+        "from_node": "u_instrument/strings_enabled.u_physical_string_bank/strings[2].voice/active_s0/Q",
+        "to_node": "u_instrument/u_status_bundle_cdc/src_payload_hold_13_s0/CE",
+        "from_clock": "audio_clk:[R]",
+        "to_clock": "audio_clk:[R]",
+        "relationship_ns": 20.345,
+        "clock_skew_ns": -0.025,
+        "data_delay_ns": 19.766
+      },
+      {
+        "number": 16,
+        "slack_ns": 0.324,
+        "from_node": "u_instrument/strings_enabled.u_physical_string_bank/strings[2].voice/active_s0/Q",
+        "to_node": "u_instrument/u_status_bundle_cdc/src_payload_hold_30_s0/CE",
+        "from_clock": "audio_clk:[R]",
+        "to_clock": "audio_clk:[R]",
+        "relationship_ns": 20.345,
+        "clock_skew_ns": -0.025,
+        "data_delay_ns": 19.766
+      },
+      {
+        "number": 17,
+        "slack_ns": 0.324,
+        "from_node": "u_instrument/strings_enabled.u_physical_string_bank/strings[2].voice/active_s0/Q",
+        "to_node": "u_instrument/u_status_bundle_cdc/src_payload_hold_53_s0/CE",
+        "from_clock": "audio_clk:[R]",
+        "to_clock": "audio_clk:[R]",
+        "relationship_ns": 20.345,
+        "clock_skew_ns": -0.025,
+        "data_delay_ns": 19.766
+      },
+      {
+        "number": 18,
+        "slack_ns": 0.332,
+        "from_node": "u_instrument/strings_enabled.u_physical_string_bank/strings[2].voice/active_s0/Q",
+        "to_node": "u_instrument/u_status_bundle_cdc/src_payload_hold_55_s0/CE",
+        "from_clock": "audio_clk:[R]",
+        "to_clock": "audio_clk:[R]",
+        "relationship_ns": 20.345,
+        "clock_skew_ns": -0.034,
+        "data_delay_ns": 19.766
+      },
+      {
+        "number": 19,
+        "slack_ns": 0.332,
+        "from_node": "u_instrument/strings_enabled.u_physical_string_bank/strings[2].voice/active_s0/Q",
+        "to_node": "u_instrument/u_status_bundle_cdc/src_payload_hold_56_s0/CE",
+        "from_clock": "audio_clk:[R]",
+        "to_clock": "audio_clk:[R]",
+        "relationship_ns": 20.345,
+        "clock_skew_ns": -0.034,
+        "data_delay_ns": 19.766
+      },
+      {
+        "number": 20,
+        "slack_ns": 0.332,
+        "from_node": "u_instrument/strings_enabled.u_physical_string_bank/strings[2].voice/active_s0/Q",
+        "to_node": "u_instrument/u_status_bundle_cdc/src_payload_hold_57_s0/CE",
+        "from_clock": "audio_clk:[R]",
+        "to_clock": "audio_clk:[R]",
+        "relationship_ns": 20.345,
+        "clock_skew_ns": -0.034,
+        "data_delay_ns": 19.766
+      },
+      {
+        "number": 21,
+        "slack_ns": 0.332,
+        "from_node": "u_instrument/strings_enabled.u_physical_string_bank/strings[2].voice/active_s0/Q",
+        "to_node": "u_instrument/u_status_bundle_cdc/src_payload_hold_58_s0/CE",
+        "from_clock": "audio_clk:[R]",
+        "to_clock": "audio_clk:[R]",
+        "relationship_ns": 20.345,
+        "clock_skew_ns": -0.034,
+        "data_delay_ns": 19.766
+      },
+      {
+        "number": 22,
+        "slack_ns": 0.332,
+        "from_node": "u_instrument/strings_enabled.u_physical_string_bank/strings[2].voice/active_s0/Q",
+        "to_node": "u_instrument/u_status_bundle_cdc/src_payload_hold_59_s0/CE",
+        "from_clock": "audio_clk:[R]",
+        "to_clock": "audio_clk:[R]",
+        "relationship_ns": 20.345,
+        "clock_skew_ns": -0.034,
+        "data_delay_ns": 19.766
+      },
+      {
+        "number": 23,
+        "slack_ns": 0.332,
+        "from_node": "u_instrument/strings_enabled.u_physical_string_bank/strings[2].voice/active_s0/Q",
+        "to_node": "u_instrument/u_status_bundle_cdc/src_payload_hold_63_s0/CE",
+        "from_clock": "audio_clk:[R]",
+        "to_clock": "audio_clk:[R]",
+        "relationship_ns": 20.345,
+        "clock_skew_ns": -0.034,
+        "data_delay_ns": 19.766
+      },
+      {
+        "number": 24,
+        "slack_ns": 0.362,
+        "from_node": "u_instrument/strings_enabled.u_physical_string_bank/strings[2].voice/active_s0/Q",
+        "to_node": "u_instrument/u_status_bundle_cdc/src_payload_hold_10_s0/CE",
+        "from_clock": "audio_clk:[R]",
+        "to_clock": "audio_clk:[R]",
+        "relationship_ns": 20.345,
+        "clock_skew_ns": -0.025,
+        "data_delay_ns": 19.728
+      },
+      {
+        "number": 25,
+        "slack_ns": 0.364,
+        "from_node": "u_instrument/strings_enabled.u_physical_string_bank/strings[2].voice/active_s0/Q",
+        "to_node": "u_instrument/u_status_bundle_cdc/src_payload_hold_9_s0/CE",
+        "from_clock": "audio_clk:[R]",
+        "to_clock": "audio_clk:[R]",
+        "relationship_ns": 20.345,
+        "clock_skew_ns": -0.028,
+        "data_delay_ns": 19.728
+      },
+      {
+        "number": 26,
+        "slack_ns": 0.364,
+        "from_node": "u_instrument/strings_enabled.u_physical_string_bank/strings[2].voice/active_s0/Q",
+        "to_node": "u_instrument/u_status_bundle_cdc/src_payload_hold_11_s0/CE",
+        "from_clock": "audio_clk:[R]",
+        "to_clock": "audio_clk:[R]",
+        "relationship_ns": 20.345,
+        "clock_skew_ns": -0.028,
+        "data_delay_ns": 19.728
+      },
+      {
+        "number": 27,
+        "slack_ns": 0.371,
+        "from_node": "u_instrument/shared_link.endpoint/sys_release_1_s0/Q",
+        "to_node": "u_instrument/shared_link.endpoint/upload/formatter/sid_0_s0/CE",
+        "from_clock": "sys_clk:[R]",
+        "to_clock": "sys_clk:[R]",
+        "relationship_ns": 20.0,
+        "clock_skew_ns": -0.006,
+        "data_delay_ns": 19.354
+      },
+      {
+        "number": 28,
+        "slack_ns": 0.371,
+        "from_node": "u_instrument/shared_link.endpoint/sys_release_1_s0/Q",
+        "to_node": "u_instrument/shared_link.endpoint/upload/formatter/sid_1_s0/CE",
+        "from_clock": "sys_clk:[R]",
+        "to_clock": "sys_clk:[R]",
+        "relationship_ns": 20.0,
+        "clock_skew_ns": -0.006,
+        "data_delay_ns": 19.354
+      },
+      {
+        "number": 29,
+        "slack_ns": 0.371,
+        "from_node": "u_instrument/shared_link.endpoint/sys_release_1_s0/Q",
+        "to_node": "u_instrument/shared_link.endpoint/upload/formatter/sid_5_s0/CE",
+        "from_clock": "sys_clk:[R]",
+        "to_clock": "sys_clk:[R]",
+        "relationship_ns": 20.0,
+        "clock_skew_ns": -0.006,
+        "data_delay_ns": 19.354
+      },
+      {
+        "number": 30,
+        "slack_ns": 0.371,
+        "from_node": "u_instrument/shared_link.endpoint/sys_release_1_s0/Q",
+        "to_node": "u_instrument/shared_link.endpoint/upload/formatter/sid_39_s0/CE",
+        "from_clock": "sys_clk:[R]",
+        "to_clock": "sys_clk:[R]",
+        "relationship_ns": 20.0,
+        "clock_skew_ns": -0.006,
+        "data_delay_ns": 19.354
+      }
+    ],
+    "hold": [
+      {
+        "number": 1,
+        "slack_ns": 0.189,
+        "from_node": "u_instrument/strings_enabled.u_physical_string_bank/strings[2].voice/delay_q12_7_s0/Q",
+        "to_node": "u_instrument/strings_enabled.u_physical_string_bank/strings[2].voice/interp_coefficient_0_s1/AD[7]",
+        "from_clock": "audio_clk:[R]",
+        "to_clock": "audio_clk:[R]",
+        "relationship_ns": 0.0,
+        "clock_skew_ns": 0.001,
+        "data_delay_ns": 0.22
+      },
+      {
+        "number": 2,
+        "slack_ns": 0.19,
+        "from_node": "u_instrument/shared_link.endpoint/performance_enabled.performance/read_address_4_s1/Q",
+        "to_node": "u_instrument/shared_link.endpoint/performance_enabled.performance/recorder/memory_memory_0_0_s/ADB[7]",
+        "from_clock": "sys_clk:[R]",
+        "to_clock": "sys_clk:[R]",
+        "relationship_ns": 0.0,
+        "clock_skew_ns": 0.001,
+        "data_delay_ns": 0.22
+      },
+      {
+        "number": 3,
+        "slack_ns": 0.192,
+        "from_node": "u_instrument/shared_link.endpoint/performance_enabled.performance/read_address_1_s1/Q",
+        "to_node": "u_instrument/shared_link.endpoint/performance_enabled.performance/recorder/memory_memory_0_0_s/ADB[4]",
+        "from_clock": "sys_clk:[R]",
+        "to_clock": "sys_clk:[R]",
+        "relationship_ns": 0.0,
+        "clock_skew_ns": 0.005,
+        "data_delay_ns": 0.219
+      },
+      {
+        "number": 4,
+        "slack_ns": 0.194,
+        "from_node": "u_instrument/shared_link.endpoint/performance_enabled.performance/read_address_6_s1/Q",
+        "to_node": "u_instrument/shared_link.endpoint/performance_enabled.performance/recorder/memory_memory_0_0_s/ADB[9]",
+        "from_clock": "sys_clk:[R]",
+        "to_clock": "sys_clk:[R]",
+        "relationship_ns": 0.0,
+        "clock_skew_ns": 0.001,
+        "data_delay_ns": 0.224
+      },
+      {
+        "number": 5,
+        "slack_ns": 0.199,
+        "from_node": "u_instrument/strings_enabled.u_physical_string_bank/strings[3].voice/pending_note_2_s0/Q",
+        "to_node": "u_instrument/strings_enabled.u_physical_string_bank/strings[3].voice/period_q12_0_s10/AD[7]",
+        "from_clock": "audio_clk:[R]",
+        "to_clock": "audio_clk:[R]",
+        "relationship_ns": 0.0,
+        "clock_skew_ns": 0.008,
+        "data_delay_ns": 0.222
+      },
+      {
+        "number": 6,
+        "slack_ns": 0.208,
+        "from_node": "u_instrument/u_spectrum/bin_index_0_s6/Q",
+        "to_node": "u_instrument/u_spectrum/accum_re_accum_re_0_1_s/ADB[5]",
+        "from_clock": "audio_clk:[R]",
+        "to_clock": "audio_clk:[R]",
+        "relationship_ns": 0.0,
+        "clock_skew_ns": 0.004,
+        "data_delay_ns": 0.235
+      },
+      {
+        "number": 7,
+        "slack_ns": 0.211,
+        "from_node": "u_instrument/u_spectrum/bin_index_5_s1/Q",
+        "to_node": "u_instrument/u_spectrum/accum_re_accum_re_0_2_s/ADA[10]",
+        "from_clock": "audio_clk:[R]",
+        "to_clock": "audio_clk:[R]",
+        "relationship_ns": 0.0,
+        "clock_skew_ns": 0.004,
+        "data_delay_ns": 0.239
+      },
+      {
+        "number": 8,
+        "slack_ns": 0.212,
+        "from_node": "u_instrument/shared_link.endpoint/upload/formatter/text_address_5_s0/Q",
+        "to_node": "u_instrument/shared_link.endpoint/upload/formatter/text_rom_text_rom_0_0_s/AD[8]",
+        "from_clock": "sys_clk:[R]",
+        "to_clock": "sys_clk:[R]",
+        "relationship_ns": 0.0,
+        "clock_skew_ns": 0.015,
+        "data_delay_ns": 0.229
+      },
+      {
+        "number": 9,
+        "slack_ns": 0.215,
+        "from_node": "u_instrument/u_audio_effects/c3/pointer_8_s0/Q",
+        "to_node": "u_instrument/u_audio_effects/c3/memory_memory_0_1_s/ADB[11]",
+        "from_clock": "audio_clk:[R]",
+        "to_clock": "audio_clk:[R]",
+        "relationship_ns": 0.0,
+        "clock_skew_ns": -0.016,
+        "data_delay_ns": 0.263
+      },
+      {
+        "number": 10,
+        "slack_ns": 0.216,
+        "from_node": "u_instrument/u_spectrum/bin_index_5_s1/Q",
+        "to_node": "u_instrument/u_spectrum/accum_re_accum_re_0_2_s/ADB[10]",
+        "from_clock": "audio_clk:[R]",
+        "to_clock": "audio_clk:[R]",
+        "relationship_ns": 0.0,
+        "clock_skew_ns": 0.008,
+        "data_delay_ns": 0.239
+      },
+      {
+        "number": 11,
+        "slack_ns": 0.22,
+        "from_node": "u_instrument/shared_link.endpoint/scope_enabled.scope/read_index_2_s3/Q",
+        "to_node": "u_instrument/shared_link.endpoint/scope_enabled.scope/samples_samples_0_0_s/ADB[6]",
+        "from_clock": "sys_clk:[R]",
+        "to_clock": "sys_clk:[R]",
+        "relationship_ns": 0.0,
+        "clock_skew_ns": -0.009,
+        "data_delay_ns": 0.261
+      },
+      {
+        "number": 12,
+        "slack_ns": 0.226,
+        "from_node": "u_instrument/strings_enabled.u_physical_string_bank/strings[7].voice/pending_note_1_s0/Q",
+        "to_node": "u_instrument/strings_enabled.u_physical_string_bank/strings[7].voice/period_q12_0_s9/AD[6]",
+        "from_clock": "audio_clk:[R]",
+        "to_clock": "audio_clk:[R]",
+        "relationship_ns": 0.0,
+        "clock_skew_ns": -0.004,
+        "data_delay_ns": 0.262
+      },
+      {
+        "number": 13,
+        "slack_ns": 0.227,
+        "from_node": "u_instrument/u_audio_effects/c3/pointer_3_s0/Q",
+        "to_node": "u_instrument/u_audio_effects/c3/memory_memory_0_1_s/ADA[6]",
+        "from_clock": "audio_clk:[R]",
+        "to_clock": "audio_clk:[R]",
+        "relationship_ns": 0.0,
+        "clock_skew_ns": -0.004,
+        "data_delay_ns": 0.265
+      },
+      {
+        "number": 14,
+        "slack_ns": 0.228,
+        "from_node": "u_instrument/shared_link.endpoint/performance_enabled.performance/recorder/index_1_s0/Q",
+        "to_node": "u_instrument/shared_link.endpoint/performance_enabled.performance/recorder/step_0_s9/AD[5]",
+        "from_clock": "sys_clk:[R]",
+        "to_clock": "sys_clk:[R]",
+        "relationship_ns": 0.0,
+        "clock_skew_ns": -0.004,
+        "data_delay_ns": 0.264
+      },
+      {
+        "number": 15,
+        "slack_ns": 0.235,
+        "from_node": "u_instrument/u_audio_effects/pointer_1_s0/Q",
+        "to_node": "u_instrument/u_audio_effects/delay_ram_delay_ram_0_0_s/ADA[2]",
+        "from_clock": "audio_clk:[R]",
+        "to_clock": "audio_clk:[R]",
+        "relationship_ns": 0.0,
+        "clock_skew_ns": -0.001,
+        "data_delay_ns": 0.269
+      },
+      {
+        "number": 16,
+        "slack_ns": 0.246,
+        "from_node": "u_instrument/u_hdmi_tx/serializer_release_n_s1/Q",
+        "to_node": "u_instrument/u_hdmi_tx/serializer_release_n_s1/D",
+        "from_clock": "pixel_clk:[F]",
+        "to_clock": "pixel_clk:[F]",
+        "relationship_ns": 0.0,
+        "clock_skew_ns": 0.0,
+        "data_delay_ns": 0.283
+      },
+      {
+        "number": 17,
+        "slack_ns": 0.247,
+        "from_node": "u_instrument/u_polyphony_bank_32/envelope_count[29]_4_s0/Q",
+        "to_node": "u_instrument/u_polyphony_bank_32/envelope_count[29]_4_s0/D",
+        "from_clock": "audio_clk:[R]",
+        "to_clock": "audio_clk:[R]",
+        "relationship_ns": 0.0,
+        "clock_skew_ns": 0.0,
+        "data_delay_ns": 0.27
+      },
+      {
+        "number": 18,
+        "slack_ns": 0.247,
+        "from_node": "u_instrument/u_polyphony_bank_32/envelope_count[22]_2_s0/Q",
+        "to_node": "u_instrument/u_polyphony_bank_32/envelope_count[22]_2_s0/D",
+        "from_clock": "audio_clk:[R]",
+        "to_clock": "audio_clk:[R]",
+        "relationship_ns": 0.0,
+        "clock_skew_ns": 0.0,
+        "data_delay_ns": 0.27
+      },
+      {
+        "number": 19,
+        "slack_ns": 0.247,
+        "from_node": "u_instrument/u_polyphony_bank_32/u_voice_bank[16].sustain_gain_q_2_s0/Q",
+        "to_node": "u_instrument/u_polyphony_bank_32/u_voice_bank[16].sustain_gain_q_2_s0/D",
+        "from_clock": "audio_clk:[R]",
+        "to_clock": "audio_clk:[R]",
+        "relationship_ns": 0.0,
+        "clock_skew_ns": 0.0,
+        "data_delay_ns": 0.27
+      },
+      {
+        "number": 20,
+        "slack_ns": 0.247,
+        "from_node": "u_instrument/strings_enabled.u_physical_string_bank/strings[7].voice/period_q12_12_s9/Q",
+        "to_node": "u_instrument/strings_enabled.u_physical_string_bank/strings[7].voice/period_q12_12_s9/D",
+        "from_clock": "audio_clk:[R]",
+        "to_clock": "audio_clk:[R]",
+        "relationship_ns": 0.0,
+        "clock_skew_ns": 0.0,
+        "data_delay_ns": 0.27
+      },
+      {
+        "number": 21,
+        "slack_ns": 0.247,
+        "from_node": "u_instrument/strings_enabled.u_physical_string_bank/strings[7].voice/period_q12_10_s9/Q",
+        "to_node": "u_instrument/strings_enabled.u_physical_string_bank/strings[7].voice/period_q12_10_s9/D",
+        "from_clock": "audio_clk:[R]",
+        "to_clock": "audio_clk:[R]",
+        "relationship_ns": 0.0,
+        "clock_skew_ns": 0.0,
+        "data_delay_ns": 0.27
+      },
+      {
+        "number": 22,
+        "slack_ns": 0.247,
+        "from_node": "u_instrument/strings_enabled.u_physical_string_bank/strings[5].voice/age_3_s0/Q",
+        "to_node": "u_instrument/strings_enabled.u_physical_string_bank/strings[5].voice/age_3_s0/D",
+        "from_clock": "audio_clk:[R]",
+        "to_clock": "audio_clk:[R]",
+        "relationship_ns": 0.0,
+        "clock_skew_ns": 0.0,
+        "data_delay_ns": 0.27
+      },
+      {
+        "number": 23,
+        "slack_ns": 0.247,
+        "from_node": "u_instrument/strings_enabled.u_physical_string_bank/strings[2].voice/age_6_s0/Q",
+        "to_node": "u_instrument/strings_enabled.u_physical_string_bank/strings[2].voice/age_6_s0/D",
+        "from_clock": "audio_clk:[R]",
+        "to_clock": "audio_clk:[R]",
+        "relationship_ns": 0.0,
+        "clock_skew_ns": 0.0,
+        "data_delay_ns": 0.27
+      },
+      {
+        "number": 24,
+        "slack_ns": 0.247,
+        "from_node": "u_instrument/strings_enabled.u_physical_string_bank/strings[1].voice/delay_length_7_s21/Q",
+        "to_node": "u_instrument/strings_enabled.u_physical_string_bank/strings[1].voice/delay_length_7_s21/D",
+        "from_clock": "audio_clk:[R]",
+        "to_clock": "audio_clk:[R]",
+        "relationship_ns": 0.0,
+        "clock_skew_ns": 0.0,
+        "data_delay_ns": 0.27
+      },
+      {
+        "number": 25,
+        "slack_ns": 0.247,
+        "from_node": "u_instrument/strings_enabled.u_physical_string_bank/strings[1].voice/fill_increment_27_s9/Q",
+        "to_node": "u_instrument/strings_enabled.u_physical_string_bank/strings[1].voice/fill_increment_27_s9/D",
+        "from_clock": "audio_clk:[R]",
+        "to_clock": "audio_clk:[R]",
+        "relationship_ns": 0.0,
+        "clock_skew_ns": 0.0,
+        "data_delay_ns": 0.27
+      },
+      {
+        "number": 26,
+        "slack_ns": 0.247,
+        "from_node": "u_instrument/strings_enabled.u_physical_string_bank/strings[1].voice/quiet_count_2_s0/Q",
+        "to_node": "u_instrument/strings_enabled.u_physical_string_bank/strings[1].voice/quiet_count_2_s0/D",
+        "from_clock": "audio_clk:[R]",
+        "to_clock": "audio_clk:[R]",
+        "relationship_ns": 0.0,
+        "clock_skew_ns": 0.0,
+        "data_delay_ns": 0.27
+      },
+      {
+        "number": 27,
+        "slack_ns": 0.247,
+        "from_node": "u_instrument/strings_enabled.u_physical_string_bank/strings[1].voice/quiet_count_11_s0/Q",
+        "to_node": "u_instrument/strings_enabled.u_physical_string_bank/strings[1].voice/quiet_count_11_s0/D",
+        "from_clock": "audio_clk:[R]",
+        "to_clock": "audio_clk:[R]",
+        "relationship_ns": 0.0,
+        "clock_skew_ns": 0.0,
+        "data_delay_ns": 0.27
+      },
+      {
+        "number": 28,
+        "slack_ns": 0.247,
+        "from_node": "u_instrument/v3_analog.u_inputs/u_adc/u_reader/div_count_3_s0/Q",
+        "to_node": "u_instrument/v3_analog.u_inputs/u_adc/u_reader/div_count_3_s0/D",
+        "from_clock": "sys_clk:[R]",
+        "to_clock": "sys_clk:[R]",
+        "relationship_ns": 0.0,
+        "clock_skew_ns": 0.0,
+        "data_delay_ns": 0.27
+      },
+      {
+        "number": 29,
+        "slack_ns": 0.247,
+        "from_node": "u_instrument/v3_analog.u_inputs/u_adc/index_3_s1/Q",
+        "to_node": "u_instrument/v3_analog.u_inputs/u_adc/index_3_s1/D",
+        "from_clock": "sys_clk:[R]",
+        "to_clock": "sys_clk:[R]",
+        "relationship_ns": 0.0,
+        "clock_skew_ns": 0.0,
+        "data_delay_ns": 0.27
+      },
+      {
+        "number": 30,
+        "slack_ns": 0.247,
+        "from_node": "u_instrument/v3_analog.u_inputs/u_adc/idle_count_2_s0/Q",
+        "to_node": "u_instrument/v3_analog.u_inputs/u_adc/idle_count_2_s0/D",
+        "from_clock": "sys_clk:[R]",
+        "to_clock": "sys_clk:[R]",
+        "relationship_ns": 0.0,
+        "clock_skew_ns": 0.0,
+        "data_delay_ns": 0.27
+      }
+    ]
+  },
+  "setup_clusters": [
+    {
+      "from": "u_instrument/v3_analog.u_inputs/zeros[*]",
+      "to": "u_instrument/v3_analog.u_inputs/forces_sys",
+      "paths": 14,
+      "violating_paths": 0,
+      "worst_slack_ns": 0.019,
+      "max_logic_levels": 14,
+      "mean_route_delay_percent": 37.0
+    },
+    {
+      "from": "u_instrument/shared_link.endpoint/sys_release",
+      "to": "u_instrument/shared_link.endpoint/upload/formatter/sid",
+      "paths": 56,
+      "violating_paths": 0,
+      "worst_slack_ns": 0.174,
+      "max_logic_levels": 15,
+      "mean_route_delay_percent": 68.4
+    },
+    {
+      "from": "u_instrument/strings_enabled.u_physical_string_bank/strings[*].voice/loop_value",
+      "to": "u_instrument/strings_enabled.u_physical_string_bank/strings[*].voice/level",
+      "paths": 25,
+      "violating_paths": 0,
+      "worst_slack_ns": 0.268,
+      "max_logic_levels": 22,
+      "mean_route_delay_percent": 37.0
+    },
+    {
+      "from": "u_instrument/strings_enabled.u_physical_string_bank/strings[*].voice/active",
+      "to": "u_instrument/u_status_bundle_cdc/src_payload_hold",
+      "paths": 92,
+      "violating_paths": 0,
+      "worst_slack_ns": 0.324,
+      "max_logic_levels": 14,
+      "mean_route_delay_percent": 68.4
+    },
+    {
+      "from": "u_instrument/lcd_active_x",
+      "to": "u_instrument/u_panel_renderer/foreground_q",
+      "paths": 15,
+      "violating_paths": 0,
+      "worst_slack_ns": 0.415,
+      "max_logic_levels": 26,
+      "mean_route_delay_percent": 48.3
+    },
+    {
+      "from": "u_instrument/lcd_active_x",
+      "to": "u_instrument/u_panel_renderer/font_memory_font_memory",
+      "paths": 32,
+      "violating_paths": 0,
+      "worst_slack_ns": 0.451,
+      "max_logic_levels": 21,
+      "mean_route_delay_percent": 64.7
+    },
+    {
+      "from": "u_instrument/half_tick",
+      "to": "u_instrument/u_polyphony_bank_32/voice_id[*]",
+      "paths": 8,
+      "violating_paths": 0,
+      "worst_slack_ns": 0.464,
+      "max_logic_levels": 2,
+      "mean_route_delay_percent": 95.6
+    },
+    {
+      "from": "u_instrument/v3_analog.u_inputs/u_adc/channels",
+      "to": "u_instrument/v3_analog.u_inputs/forces_sys",
+      "paths": 63,
+      "violating_paths": 0,
+      "worst_slack_ns": 0.464,
+      "max_logic_levels": 14,
+      "mean_route_delay_percent": 39.7
+    },
+    {
+      "from": "u_instrument/audio_reset_sync_n",
+      "to": "u_instrument/u_polyphony_bank_32/envelope_count[*]",
+      "paths": 97,
+      "violating_paths": 0,
+      "worst_slack_ns": 0.711,
+      "max_logic_levels": 9,
+      "mean_route_delay_percent": 79.2
+    },
+    {
+      "from": "u_instrument/audio_reset_sync_n",
+      "to": "u_instrument/u_polyphony_bank_32/voice_id_valid",
+      "paths": 13,
+      "violating_paths": 0,
+      "worst_slack_ns": 0.747,
+      "max_logic_levels": 9,
+      "mean_route_delay_percent": 79.1
+    },
+    {
+      "from": "u_instrument/audio_reset_sync_n",
+      "to": "u_instrument/u_polyphony_bank_32/voice_stealing",
+      "paths": 16,
+      "violating_paths": 0,
+      "worst_slack_ns": 0.765,
+      "max_logic_levels": 9,
+      "mean_route_delay_percent": 79.3
+    },
+    {
+      "from": "u_instrument/u_instrument_control/remote_select_ok",
+      "to": "u_instrument/u_polyphony_bank_32/batch_glide_origin",
+      "paths": 29,
+      "violating_paths": 0,
+      "worst_slack_ns": 0.784,
+      "max_logic_levels": 14,
+      "mean_route_delay_percent": 67.3
+    },
+    {
+      "from": "u_instrument/audio_reset_sync_n",
+      "to": "u_instrument/u_polyphony_bank_32/voice_attacking",
+      "paths": 7,
+      "violating_paths": 0,
+      "worst_slack_ns": 0.823,
+      "max_logic_levels": 10,
+      "mean_route_delay_percent": 76.2
+    },
+    {
+      "from": "u_instrument/strings_enabled.u_physical_string_bank/strings[*].voice/active",
+      "to": "u_instrument/u_status_bundle_cdc/src_initialized",
+      "paths": 1,
+      "violating_paths": 0,
+      "worst_slack_ns": 0.961,
+      "max_logic_levels": 14,
+      "mean_route_delay_percent": 68.3
+    },
+    {
+      "from": "u_instrument/audio_reset_sync_n",
+      "to": "u_instrument/u_polyphony_bank_32/voice_releasing",
+      "paths": 11,
+      "violating_paths": 0,
+      "worst_slack_ns": 1.039,
+      "max_logic_levels": 9,
+      "mean_route_delay_percent": 79.2
+    },
+    {
+      "from": "u_instrument/lcd_active_x",
+      "to": "u_instrument/u_panel_renderer/text_enable_q",
+      "paths": 1,
+      "violating_paths": 0,
+      "worst_slack_ns": 1.157,
+      "max_logic_levels": 24,
+      "mean_route_delay_percent": 48.9
+    },
+    {
+      "from": "u_instrument/poly_event_mode",
+      "to": "u_instrument/u_polyphony_bank_32/phase_accumulator[*]",
+      "paths": 11,
+      "violating_paths": 0,
+      "worst_slack_ns": 1.303,
+      "max_logic_levels": 7,
+      "mean_route_delay_percent": 82.0
+    },
+    {
+      "from": "u_instrument/strings_enabled.u_physical_string_bank/strings[*].voice/loop_value",
+      "to": "u_instrument/strings_enabled.u_physical_string_bank/strings[*].voice/quiet_count",
+      "paths": 4,
+      "violating_paths": 0,
+      "worst_slack_ns": 1.555,
+      "max_logic_levels": 19,
+      "mean_route_delay_percent": 37.9
+    },
+    {
+      "from": "u_instrument/strings_enabled.u_physical_string_bank/strings[*].voice/active",
+      "to": "u_instrument/u_status_bundle_cdc/src_last_sent",
+      "paths": 1,
+      "violating_paths": 0,
+      "worst_slack_ns": 1.626,
+      "max_logic_levels": 14,
+      "mean_route_delay_percent": 67.1
+    },
+    {
+      "from": "u_instrument/lcd_active_x",
+      "to": "u_instrument/u_panel_renderer/text_force_q",
+      "paths": 1,
+      "violating_paths": 0,
+      "worst_slack_ns": 1.712,
+      "max_logic_levels": 21,
+      "mean_route_delay_percent": 51.9
+    },
+    {
+      "from": "u_instrument/audio_reset_sync_n",
+      "to": "u_instrument/u_v3_events/ids[*]",
+      "paths": 3,
+      "violating_paths": 0,
+      "worst_slack_ns": 1.827,
+      "max_logic_levels": 7,
+      "mean_route_delay_percent": 83.5
+    }
+  ],
+  "high_fanout_nets": [
+    {
+      "fanout": 24064,
+      "net": "u_instrument/audio_clk",
+      "worst_slack_ns": 0.268,
+      "max_delay_ns": 3.586
+    },
+    {
+      "fanout": 17817,
+      "net": "u_instrument/audio_reset_sync_n[1]",
+      "worst_slack_ns": 0.711,
+      "max_delay_ns": 4.516
+    },
+    {
+      "fanout": 7041,
+      "net": "sys_clk_d",
+      "worst_slack_ns": 0.019,
+      "max_delay_ns": 4.904
+    },
+    {
+      "fanout": 4637,
+      "net": "u_instrument/half_tick_10",
+      "worst_slack_ns": 15.805,
+      "max_delay_ns": 3.742
+    },
+    {
+      "fanout": 4233,
+      "net": "u_instrument/shared_link.endpoint/sys_release[1]",
+      "worst_slack_ns": 0.174,
+      "max_delay_ns": 3.349
+    },
+    {
+      "fanout": 3604,
+      "net": "u_instrument/pixel_clk",
+      "worst_slack_ns": 0.415,
+      "max_delay_ns": 3.586
+    },
+    {
+      "fanout": 3557,
+      "net": "u_instrument/pixel_reset_sync_n[1]",
+      "worst_slack_ns": 20.237,
+      "max_delay_ns": 3.602
+    },
+    {
+      "fanout": 1792,
+      "net": "u_instrument/spectrum_update_pixel",
+      "worst_slack_ns": 21.953,
+      "max_delay_ns": 4.831
+    },
+    {
+      "fanout": 1025,
+      "net": "u_instrument/lcd_frame_start",
+      "worst_slack_ns": 16.132,
+      "max_delay_ns": 4.664
+    },
+    {
+      "fanout": 960,
+      "net": "u_instrument/poly_tone[0]",
+      "worst_slack_ns": 25.475,
+      "max_delay_ns": 10.934
+    }
+  ],
+  "route_congestion": [
+    {
+      "grid": "R17C129",
+      "congestion_percent": 93.06
+    },
+    {
+      "grid": "R19C122",
+      "congestion_percent": 88.89
+    },
+    {
+      "grid": "R54C131",
+      "congestion_percent": 88.89
+    },
+    {
+      "grid": "R24C158",
+      "congestion_percent": 87.5
+    },
+    {
+      "grid": "R19C123",
+      "congestion_percent": 87.5
+    },
+    {
+      "grid": "R68C128",
+      "congestion_percent": 87.5
+    },
+    {
+      "grid": "R18C129",
+      "congestion_percent": 87.5
+    },
+    {
+      "grid": "R59C133",
+      "congestion_percent": 87.5
+    },
+    {
+      "grid": "R54C133",
+      "congestion_percent": 87.5
+    },
+    {
+      "grid": "R47C136",
+      "congestion_percent": 86.11
+    }
+  ],
+  "setup_paths_reported": 500,
+  "constraints": [
+    {
+      "type": "TC_CLOCK",
+      "state": "Actived",
+      "command": "create_clock -name sys_clk -period 20.000 -waveform {0.000 10.000} [get_ports {sys_clk}]"
+    },
+    {
+      "type": "TC_GENERATED_CLOCK",
+      "state": "Actived",
+      "command": "create_generated_clock -name audio_clk -source [get_ports {sys_clk}] -master_clock sys_clk -divide_by 59 -multiply_by 58 [get_pins {u_instrument/u_audio_pll/u_pll/PLL_inst/CLKOUT0}]"
+    },
+    {
+      "type": "TC_GENERATED_CLOCK",
+      "state": "Actived",
+      "command": "create_generated_clock -name hdmi_serial_clk -source [get_ports {sys_clk}] -master_clock sys_clk -divide_by 5 -multiply_by 18 [get_pins {u_instrument/u_hdmi_clocks/u_video/u_pll/PLL_inst/CLKOUT0}]"
+    },
+    {
+      "type": "TC_GENERATED_CLOCK",
+      "state": "Actived",
+      "command": "create_generated_clock -name pixel_clk -source [get_ports {sys_clk}] -master_clock sys_clk -divide_by 25 -multiply_by 18 [get_pins {u_instrument/u_hdmi_clocks/u_video/u_pll/PLL_inst/CLKOUT1}]"
+    },
+    {
+      "type": "TC_FALSE_PATH",
+      "state": "Actived",
+      "command": "set_false_path -from [get_ports {key0_n key1_n key2_n setting_key}]"
+    },
+    {
+      "type": "TC_FALSE_PATH",
+      "state": "Actived",
+      "command": "set_false_path -from [get_ports {adc_miso}]"
+    },
+    {
+      "type": "TC_FALSE_PATH",
+      "state": "Actived",
+      "command": "set_false_path -to [get_ports {adc_sclk adc_mosi adc_cs0_n adc_cs1_n adc_led[*]}]"
+    },
+    {
+      "type": "TC_FALSE_PATH",
+      "state": "Actived",
+      "command": "set_false_path -from [get_ports {hc05_rx}]"
+    },
+    {
+      "type": "TC_FALSE_PATH",
+      "state": "Actived",
+      "command": "set_false_path -to [get_ports {hc05_tx ws2812_data pluck_debug}]"
+    },
+    {
+      "type": "TC_FALSE_PATH",
+      "state": "Actived",
+      "command": "set_false_path -to [get_ports {hdmi_tx_enable}]"
+    },
+    {
+      "type": "TC_FALSE_PATH",
+      "state": "Actived",
+      "command": "set_false_path -through [get_pins {u_instrument/sys_reset_sync_n_0_s0/CLEAR u_instrument/sys_reset_sync_n_1_s0/CLEAR}]"
+    },
+    {
+      "type": "TC_FALSE_PATH",
+      "state": "Actived",
+      "command": "set_false_path -through [get_pins {u_instrument/audio_reset_sync_n_0_s0/CLEAR u_instrument/audio_reset_sync_n_1_s0/CLEAR}]"
+    },
+    {
+      "type": "TC_FALSE_PATH",
+      "state": "Actived",
+      "command": "set_false_path -through [get_pins {u_instrument/pixel_reset_sync_n_0_s0/CLEAR u_instrument/pixel_reset_sync_n_1_s0/CLEAR}]"
+    },
+    {
+      "type": "TC_FALSE_PATH",
+      "state": "Actived",
+      "command": "set_false_path -through [get_pins {u_instrument/serializer_reset_sync_n_0_s0/CLEAR u_instrument/serializer_reset_sync_n_1_s0/CLEAR}]"
+    },
+    {
+      "type": "TC_FALSE_PATH",
+      "state": "Actived",
+      "command": "set_false_path -through [get_pins {u_instrument/u_hdmi_tx/u_serial_gate/CEN}]"
+    },
+    {
+      "type": "TC_MULTICYCLE",
+      "state": "Actived",
+      "command": "set_multicycle_path -from [get_regs {u_instrument/u_hdmi_tx/serializer_release_n*}] -through [get_pins {u_instrument/u_hdmi_tx/lanes*.u_serializer/RESET}] -to [get_clocks {hdmi_serial_clk}] -setup -end 4"
+    },
+    {
+      "type": "TC_MULTICYCLE",
+      "state": "Actived",
+      "command": "set_multicycle_path -from [get_regs {u_instrument/u_hdmi_tx/serializer_release_n*}] -through [get_pins {u_instrument/u_hdmi_tx/lanes*.u_serializer/RESET}] -to [get_clocks {hdmi_serial_clk}] -hold -end 3"
+    },
+    {
+      "type": "TC_FALSE_PATH",
+      "state": "Actived",
+      "command": "set_false_path -through [get_pins {u_instrument/v3_analog.u_inputs/src_reset_0_s0/CLEAR u_instrument/v3_analog.u_inputs/src_reset_1_s0/CLEAR}]"
+    },
+    {
+      "type": "TC_FALSE_PATH",
+      "state": "Actived",
+      "command": "set_false_path -through [get_pins {u_instrument/v3_analog.u_inputs/dst_reset_0_s0/CLEAR u_instrument/v3_analog.u_inputs/dst_reset_1_s0/CLEAR}]"
+    },
+    {
+      "type": "TC_MULTICYCLE",
+      "state": "Actived",
+      "command": "set_multicycle_path -from [get_regs {"
+    },
+    {
+      "type": "TC_MULTICYCLE",
+      "state": "Actived",
+      "command": "set_multicycle_path -from [get_regs {"
+    },
+    {
+      "type": "TC_MULTICYCLE",
+      "state": "Actived",
+      "command": "set_multicycle_path -from [get_regs {"
+    },
+    {
+      "type": "TC_MULTICYCLE",
+      "state": "Actived",
+      "command": "set_multicycle_path -from [get_regs {"
+    },
+    {
+      "type": "TC_MULTICYCLE",
+      "state": "Actived",
+      "command": "set_multicycle_path -from [get_pins {"
+    },
+    {
+      "type": "TC_MULTICYCLE",
+      "state": "Actived",
+      "command": "set_multicycle_path -from [get_pins {"
+    },
+    {
+      "type": "TC_MULTICYCLE",
+      "state": "Actived",
+      "command": "set_multicycle_path -from [get_pins {"
+    },
+    {
+      "type": "TC_MULTICYCLE",
+      "state": "Actived",
+      "command": "set_multicycle_path -from [get_pins {"
+    },
+    {
+      "type": "TC_CLOCK_GROUP",
+      "state": "Actived",
+      "command": "set_clock_groups -asynchronous -group [get_clocks {audio_clk}] -group [get_clocks {hdmi_serial_clk pixel_clk}]"
+    },
+    {
+      "type": "TC_CLOCK_GROUP",
+      "state": "Actived",
+      "command": "set_clock_groups -asynchronous -group [get_clocks {sys_clk}] -group [get_clocks {audio_clk}]"
+    },
+    {
+      "type": "TC_REPORT_TIMING",
+      "state": "Actived",
+      "command": "report_timing -setup -max_paths 500"
+    },
+    {
+      "type": "TC_REPORT_TIMING",
+      "state": "Actived",
+      "command": "report_timing -hold -max_paths 100"
+    },
+    {
+      "type": "TC_REPORT_EXCEPTION",
+      "state": "Actived",
+      "command": "report_exceptions -setup -from_clock [get_clocks {audio_clk}] -to_clock [get_clocks {audio_clk}] -max_paths 10"
+    },
+    {
+      "type": "TC_REPORT_EXCEPTION",
+      "state": "Actived",
+      "command": "report_exceptions -hold -from_clock [get_clocks {audio_clk}] -to_clock [get_clocks {audio_clk}] -max_paths 10"
+    }
+  ],
+  "explicitly_constrained_clocks": [
+    "adc_miso",
+    "adc_sclk adc_mosi adc_cs0_n adc_cs1_n adc_led[*",
+    "audio_clk",
+    "hc05_rx",
+    "hc05_tx ws2812_data pluck_debug",
+    "hdmi_serial_clk",
+    "hdmi_tx_enable",
+    "key0_n key1_n key2_n setting_key",
+    "pixel_clk",
+    "sys_clk",
+    "u_instrument/audio_reset_sync_n_0_s0/CLEAR u_instrument/audio_reset_sync_n_1_s0/CLEAR",
+    "u_instrument/pixel_reset_sync_n_0_s0/CLEAR u_instrument/pixel_reset_sync_n_1_s0/CLEAR",
+    "u_instrument/serializer_reset_sync_n_0_s0/CLEAR u_instrument/serializer_reset_sync_n_1_s0/CLEAR",
+    "u_instrument/sys_reset_sync_n_0_s0/CLEAR u_instrument/sys_reset_sync_n_1_s0/CLEAR",
+    "u_instrument/u_hdmi_tx/lanes*.u_serializer/RESET",
+    "u_instrument/u_hdmi_tx/u_serial_gate/CEN",
+    "u_instrument/v3_analog.u_inputs/dst_reset_0_s0/CLEAR u_instrument/v3_analog.u_inputs/dst_reset_1_s0/CLEAR",
+    "u_instrument/v3_analog.u_inputs/src_reset_0_s0/CLEAR u_instrument/v3_analog.u_inputs/src_reset_1_s0/CLEAR"
+  ],
+  "clocks_without_explicit_sdc": [],
+  "notes": []
+}

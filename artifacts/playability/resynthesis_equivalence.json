@@ -1,0 +1,17 @@
+{
+  "implementation_netlist": "E:\\Gowin\\workspace\\v5_playability_20261030\\impl\\gwsynthesis\\project.vg",
+  "implementation_netlist_sha256": "c98738569cfdb548a21d02d17292e72feff7198a0bd7400097a16a25bf65e606",
+  "initial_netlist_sha256": "c98738569cfdb548a21d02d17292e72feff7198a0bd7400097a16a25bf65e606",
+  "netlist_text_equal": true,
+  "comparisons": {
+    "patterns": true,
+    "half_rate_ffs": true,
+    "single_cycle_ffs": true,
+    "manual_launch_patterns": true,
+    "primitive_scopes": true,
+    "independent_phases": true,
+    "independent_envelopes": true,
+    "independent_voice_instances": true
+  },
+  "regenerated_sdc_equal_except_netlist_hash_comment": true
+}

@@ -1,0 +1,60 @@
+Start testing: Oct 30 10:38 中国标准时间
+----------------------------------------------------------
+1/3 Testing: bridge_core
+1/3 Test: bridge_core
+Command: "C:/Users/hck/Desktop/楂樹簯/firmware/esp32s3-bridge/build-host/Debug/bridge_tests.exe"
+Directory: C:/Users/hck/Desktop/楂樹簯/firmware/esp32s3-bridge/build-host
+"bridge_core" start time: Oct 30 10:38 中国标准时间
+Output:
+----------------------------------------------------------
+PASS all BLE split positions, no partial UART writes
+PASS concatenated lines, FIFO order, wrap and both queue overflow paths
+PASS 256-byte boundary, every forbidden byte, embedded CR, reply bounds
+PASS subscribe gating, disconnect clears both queues/partials, timeout and clock wrap
+PASS UART reply atomicity, negotiated MTU, retry preserves exact bytes
+PASS 115200 scope, MTU23, scheduler gap and 200ms BLE stall: 490 ms simulated
+PASS 230400 scope, MTU23, scheduler gap and 200ms BLE stall: 440 ms simulated
+PASS short-line worst case, full-queue pause, disconnect resumes drain; old pump negative control fails
+PASS continuous PERF1: 9800 B/s, MTU23/247, 200ms radio stall; 1200ms overflow detected
+PASS bridge core: 7 scenario groups
+<end of output>
+Test time =   0.18 sec
+----------------------------------------------------------
+Test Passed.
+"bridge_core" end time: Oct 30 10:38 中国标准时间
+"bridge_core" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/3 Testing: voice_core
+2/3 Test: voice_core
+Command: "C:/Users/hck/Desktop/楂樹簯/firmware/esp32s3-bridge/build-host/Debug/voice_tests.exe"
+Directory: C:/Users/hck/Desktop/楂樹簯/firmware/esp32s3-bridge/build-host
+"voice_core" start time: Oct 30 10:38 中国标准时间
+Output:
+----------------------------------------------------------
+PASS: voice commands, all reply splits, refusal/mismatch, CRLF, overflow, timeout wrap and late replies
+<end of output>
+Test time =   0.17 sec
+----------------------------------------------------------
+Test Passed.
+"voice_core" end time: Oct 30 10:38 中国标准时间
+"voice_core" time elapsed: 00:00:00
+----------------------------------------------------------
+
+3/3 Testing: usb_link
+3/3 Test: usb_link
+Command: "C:/Users/hck/Desktop/楂樹簯/firmware/esp32s3-bridge/build-host/Debug/usb_tests.exe"
+Directory: C:/Users/hck/Desktop/楂樹簯/firmware/esp32s3-bridge/build-host
+"usb_link" start time: Oct 30 10:38 中国标准时间
+Output:
+----------------------------------------------------------
+PASS USB framing, session exclusion, queue ACK vs FPGA reply, sequence, invalid hex, wraparound lease, partial writes, close/fault cleanup
+<end of output>
+Test time =   0.20 sec
+----------------------------------------------------------
+Test Passed.
+"usb_link" end time: Oct 30 10:38 中国标准时间
+"usb_link" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Oct 30 10:38 中国标准时间
