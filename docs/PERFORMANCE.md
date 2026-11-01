@@ -1,6 +1,6 @@
 # 自定义键位与演奏录音
 
-电脑与 Android 在 FPGA 播放模式提供“我的演奏”入口。连接设备后点击“读取设备设置”，设备确认支持后即可修改键位或开始录音。该功能需要配套的 [演奏扩展 FPGA 工程](../fpga/performance/v3_hdmi_top.gprj)，旧版设备会提示更新。
+电脑与 Android 在 FPGA 播放模式提供“我的演奏”入口。连接设备后点击“读取设备设置”，设备确认支持后即可修改键位或开始录音。该功能需要配套的 [演奏扩展 FPGA 工程](../fpga/playability/v3_hdmi_top.gprj)，旧版设备会提示更新。
 
 ## 十二键音高
 
@@ -28,6 +28,6 @@ App 保存编辑草稿；FPGA 设置在断电后恢复默认。重新连接时�
 
 ## 构建入口
 
-在独立 ASCII 路径复制 `fpga/performance`，先执行 `sim/run_dynamic_regression.ps1 -Jobs 12`，再对 `v3_hdmi_top.gprj` 综合。完成综合后，执行 `scripts/prepare_performance_constraints.ps1`，用实际网表生成并检查压缩约束，最后以 place3/route2 进行 P&R。不要把复制来的旧约束直接当成新综合网表的依据。
+在独立 ASCII 路径复制 `fpga/playability`，先执行 `sim/run_dynamic_regression.ps1 -Jobs 12`，再对 `v3_hdmi_top.gprj` 综合。完成综合后，执行 `scripts/prepare_performance_constraints.ps1`，用实际网表生成并检查压缩约束，最后以 place3/route2 进行 P&R。不要把复制来的旧约束直接当成新综合网表的依据。
 
 电脑与 Android 共用 `host/instrument-web/src/performance-*.js`。先构建共用页面，再运行 `host/mineradio/tools/prepare-app.mjs`；电脑按 `build:fpga:dir` 打包，Android 按 `android/build.ps1` 打包。签名私钥与设备数据不进入仓库。

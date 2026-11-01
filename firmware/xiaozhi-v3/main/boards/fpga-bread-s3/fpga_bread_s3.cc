@@ -1,4 +1,8 @@
 #include "wifi_board.h"
+// Board adaptation owns peripherals and voice tools; bridge_voice arbitrates UART.
+// Voice commands and host uploads cannot own the link simultaneously. A queued
+// ticket is not execution confirmation: explicit song IDs and FPGA replies
+// determine the result reported to the voice tool.
 #include "codecs/no_audio_codec.h"
 #include "display/oled_display.h"
 #include "application.h"

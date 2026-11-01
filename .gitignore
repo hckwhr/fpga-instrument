@@ -44,3 +44,19 @@
 !/artifacts/current/**/*.log
 !/artifacts/performance_20261027/**/*.log
 **/transcript
+
+# Local archives are retained on disk but excluded from the current submission.
+/fpga/current/
+/fpga/performance/
+/fpga/stage64/
+/fpga/stage65/
+/fpga/stage68/
+/artifacts/*
+!/artifacts/playability/
+/docs/history/
+/docs/*20261024.md
+/tools/gowin-mcp/
+/tools/skills/
+/SOURCE_MANIFEST.json
+/tools/update-manifest.ps1
+/tools/verify-manifest.ps1

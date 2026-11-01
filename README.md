@@ -40,8 +40,6 @@ flowchart LR
 
 | 目录 | 职责 |
 | --- | --- |
-| [fpga/current](fpga/current/README.md) | 保留的 HDMI 工程，音频与显示模块、约束、ROM 和仿真 |
-| [fpga/performance](docs/PERFORMANCE.md) | 独立演奏扩展工程：12 键音高映射与真实混音录音回传 |
 | [fpga/playability](fpga/playability/README.md) | 当前板上程序对应源码：压力键拨弦/滑音、明确语音选曲、青蓝色曲目键位指引 |
 | [host/mineradio](docs/HOST.md) | FPGAvedio 双模式桌面播放器及 Android 工程 |
 | [host/instrument-web](host/instrument-web/README.md) | 共用转谱、上传、曲谱库和可视化逻辑 |
@@ -50,7 +48,6 @@ flowchart LR
 | [docs](docs/ARCHITECTURE.md) | 工程原理、模块划分、构建与使用说明 |
 | [docs/submission](docs/submission/README.md) | 官方模板技术报告、原理流程图和可编辑矢量图 |
 | [artifacts/playability](artifacts/playability/README.md) | 当前工程的功能测试及实施报告 |
-| [artifacts/current](artifacts/current/README.md) | FPGA 输出文件、网表和工具报告 |
 | tests / tools | 固定参考、自动化脚本与开发辅助工具 |
 
 ## 主要配置
@@ -75,3 +72,7 @@ flowchart LR
 上位机基于 Mineradio 扩展，小智固件基于其开源工程适配，保留上游许可证和第三方声明，见 [THIRD_PARTY.md](THIRD_PARTY.md)。仓库不包含个人账号凭据、Wi-Fi 密码、设备身份或签名私钥。
 
 本仓库保持私密，比赛提交时需为评审账号提供访问权限。
+
+提交源码包与仓库使用相同目录结构，只包含当前生产工程。`tests/reference`、
+`tests/fixtures` 和仿真目录中的固定参考是自动化测试依赖，不是备用生产版本。
+构建所需工具链和依赖按 [构建方法](docs/BUILD.md) 安装。

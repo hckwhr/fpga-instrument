@@ -91,18 +91,18 @@ SONG2 协议采用分块传输和设备应答，曲谱提交完成后由用户�
 
 | 路径 | 主要职责 |
 | --- | --- |
-| fpga/current/rtl/v3_hdmi_top.v | 板级端口和功能参数 |
-| fpga/current/rtl/av_hdmi_top.v | 输入、事件、音频、显示和曲谱的系统集成 |
-| fpga/current/rtl/keyboard_note_events.v | 压力键到统一音符事件 |
-| fpga/current/rtl/polyphony_bank_32.v | 32 个独立声部状态与采样合成 |
-| fpga/current/rtl/physical_string_bank.v | 8 路物理弦事件分配 |
-| fpga/current/rtl/physical_string_voice.v | 单弦波导与延迟反馈 |
-| fpga/current/rtl/audio_effects.v | 音频效果处理 |
-| fpga/current/rtl/pt8211_tx.v | DAC 串行发送与帧节拍 |
-| fpga/current/rtl/song_timeline.v | 内置曲谱时间线 |
-| fpga/current/rtl/song_upload_link.v | 上传曲谱接收、存储及命令链路 |
-| fpga/current/rtl/instrument_panel_renderer.v | 面板布局、文字与图形 |
-| fpga/current/rtl/hdmi_tmds_tx.v | TMDS 编码及串化集成 |
+| fpga/playability/rtl/v3_hdmi_top.v | 板级端口和功能参数 |
+| fpga/playability/rtl/av_hdmi_top.v | 输入、事件、音频、显示和曲谱的系统集成 |
+| fpga/playability/rtl/keyboard_note_events.v | 压力键到统一音符事件 |
+| fpga/playability/rtl/polyphony_bank_32.v | 32 个独立声部状态与采样合成 |
+| fpga/playability/rtl/physical_string_bank.v | 8 路物理弦事件分配 |
+| fpga/playability/rtl/physical_string_voice.v | 单弦波导与延迟反馈 |
+| fpga/playability/rtl/audio_effects.v | 音频效果处理 |
+| fpga/playability/rtl/pt8211_tx.v | DAC 串行发送与帧节拍 |
+| fpga/playability/rtl/song_timeline.v | 内置曲谱时间线 |
+| fpga/playability/rtl/song_upload_link.v | 上传曲谱接收、存储及命令链路 |
+| fpga/playability/rtl/instrument_panel_renderer.v | 面板布局、文字与图形 |
+| fpga/playability/rtl/hdmi_tmds_tx.v | TMDS 编码及串化集成 |
 | host/instrument-web/src | 转谱、曲谱库、上传协议与可视化 |
 | host/mineradio | 桌面播放器、工作台壳和 Android 工程 |
 | firmware/esp32s3-bridge | 桥接与命令核心 |

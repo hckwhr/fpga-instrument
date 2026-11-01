@@ -1,5 +1,9 @@
 import { encodeScoreRequest, parseScoreReply, prepareScoreUpload, supportsScoreAbi } from './score-upload-protocol.js';
 
+// 上传会话独占传输通道：能力查询、分块上传、提交及取消共用事务编号。
+// BLE/USB 写入完成只表示链路接收，必须匹配 FPGA 应答才能推进进度。
+// 断线使会话失效，不推断板端已停止，也不自动重放播放命令。
+
 function sessionId() {
   return Array.from(crypto.getRandomValues(new Uint8Array(8)), b => b.toString(16).padStart(2, '0')).join('').toUpperCase();
 }

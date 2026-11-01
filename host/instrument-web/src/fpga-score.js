@@ -1,5 +1,10 @@
 import { compileTracks } from './midi.js';
 
+// 把音符起止时间编译成板端事件，而非传送原始 MP3/PCM。
+// 4096 个事件通常对应 2048 个完整音符；每个音符的 ON/OFF 共用身份。
+// 曲谱准入的 16 声部含释放尾音，是调度与混音余量限制，
+// 不等于硬件合成引擎的 32 复音规模。
+
 // ABI 12/13: absolute 6.25 ms ticks at panel speed 100; 512/4096 events.
 // ABI 13 retains the 64-bit layout; progress byte is modulo 256, while board
 // validator/timeline count full progress. Short scores remain ABI 12 byte-exact.

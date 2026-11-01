@@ -20,4 +20,4 @@
 
 上例文件名仅为示例，以本次综合日志为准。脚本检查共同 CE、精确端点集合与负向用例；不扩大例外范围。之后以 place3/route2 运行 P&R。
 
-本目录独立于 `current` 与 `performance`，不覆盖其显示分支；它对应 2026-10-30 已写入板卡的源码。实际测试与时序结果见 [实施记录](../../artifacts/playability/README.md)。
+本目录是提交版唯一的生产 FPGA 工程，对应已写入板卡的功能实现。实际测试与时序结果见 [实施记录](../../artifacts/playability/README.md)。

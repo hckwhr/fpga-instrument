@@ -44,7 +44,7 @@ pwsh -NoProfile -File sim/run_hdmi_phy.ps1
 
 综合使用该目录的 `v3_hdmi_top.gprj`。取得实际综合网表后运行 `scripts/prepare_performance_constraints.ps1 -Netlist <本次综合网表路径>`，再以 place3/route2 完成 P&R。完整说明见 [当前演奏工程](../fpga/playability/README.md)，现有结果见 [实施记录](../artifacts/playability/README.md)。
 
-以下旧入口仍针对保留的 `fpga/current` HDMI 工程，不用于构建 `playability`：
+也可从仓库根使用统一入口复制当前工程并执行完整回归：
 
 ```powershell
 pwsh -NoProfile -File tools/test-fpga.ps1 -BuildRoot E:/Gowin/workspace/fpga-instrument-test -ModelSimBin E:/modelsim/win64
@@ -56,7 +56,7 @@ tools/build-fpga.tcl 运行当前 HDMI 工程的综合。后续处理顺序为�
 
 scripts 目录保留准备与约束压缩工具，使用前应设置当前网表和输出路径。音频共同使能、多周期关系及 HDMI 时钟由 RTL 与 SDC 配合表达；修改模块后，约束集合也应按新网表重新生成。生产脚本中部分路径来自原开发机，需要按本机工具安装位置调整。
 
-FPGA 工程职责划分见 [模块说明](../fpga/current/README.md)，音频和 HDMI 的关系见 [工程原理](ARCHITECTURE.md)。
+FPGA 工程职责划分见 [模块说明](../fpga/playability/README.md)，音频和 HDMI 的关系见 [工程原理](ARCHITECTURE.md)。
 
 ## ESP32
 

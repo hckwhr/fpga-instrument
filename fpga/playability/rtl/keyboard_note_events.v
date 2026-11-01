@@ -1,6 +1,9 @@
 `default_nettype none
 // State reconciliation, not edge pulses: stalled ON is followed by its OFF even
 // if the physical key was released before the bank accepted it.
+// Each ON owns an ID; OFF reuses the accepted ID rather than matching pitch.
+// Hold the payload while valid is stalled; update sounding only on acceptance.
+// After leaving a menu, require a release before rearming a still-held key.
 module keyboard_note_events #(parameter integer CE_ENABLE=0,
     
     parameter integer PER_KEY_FORCE_ENABLE=0

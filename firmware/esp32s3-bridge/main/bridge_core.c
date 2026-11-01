@@ -1,6 +1,12 @@
 #include "bridge_core.h"
 #include <string.h>
 
+/* Reassemble BLE packets and UART fragments into complete protocol lines.
+ * Only complete lines enter the ring queue. Invalid input, overflow or a
+ * partial-line timeout closes the session and discards pending commands,
+ * so fragments cannot become valid-looking commands after reconnection.
+ * The bridge does not interpret notes: numbered FPGA replies confirm execution. */
+
 void bridge_close(bridge_core *b) { memset(b, 0, sizeof(*b)); }
 void bridge_open(bridge_core *b) { bridge_close(b); b->connected = true; }
 void bridge_subscribe(bridge_core *b) { if (b->connected) b->subscribed = true; }

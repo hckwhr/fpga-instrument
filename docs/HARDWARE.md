@@ -1,6 +1,6 @@
 # 硬件、接线与版本配对
 
-FPGA：Tang Mega 138K，SOM30354 + Dock31005，器件 GW5AST-138C / GW5AST-LV138PG484AC1/I0。当前 HDMI 工程使用 31 个顶层引脚，位置与 I/O 属性见 [v3_hdmi.cst](../fpga/current/constraints/v3_hdmi.cst)。
+FPGA：Tang Mega 138K，SOM30354 + Dock31005，器件 GW5AST-138C / GW5AST-LV138PG484AC1/I0。当前 HDMI 工程使用 31 个顶层引脚，位置与 I/O 属性见 [v3_hdmi.cst](../fpga/playability/constraints/v3_hdmi.cst)。
 
 HDMI 接 Dock 板载接口：D0 J14/H14、D1 J15/H15、D2 K17/J17、CLK G15/G16，发送使能 K14。当前输出 800×600 @56.25 Hz，屏幕需独立供电；音频仍走 PT8211，HDMI 不携带音频。界面面板为 800×480，在输出画面中居中。
 
@@ -27,4 +27,4 @@ BLE 上位机连接时语音串口命令拒绝接管；断开后至少等 3 秒�
 
 FPGA 使用 Gowin Programmer V1.9.12.03，目标器件 GW5AST-138C；沿用工程固定的 USB Debugger A、0.5MHz 下载设置。工具操作与接线应匹配当前器件。
 
-ESP 应用地址由分区表决定，地址表见 [配套镜像布局](../artifacts/stage64/esp32/flash_args)。其中 xiaozhi.bin 是偏移 0x100000 的应用镜像，不是从地址 0 开始的合并镜像。配置文件不包含设备 NVS 身份，更换硬件时应保留设备配置并匹配 Flash/PSRAM 容量。
+ESP 应用地址由分区表决定，以本次 IDF 构建生成的 `build/flash_args` 为准。应用镜像不是从地址 0 开始的合并镜像，不能混用两者。配置文件不包含设备 NVS 身份，更换硬件时应保留设备配置并匹配 Flash/PSRAM 容量。

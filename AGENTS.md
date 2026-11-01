@@ -4,4 +4,4 @@
 
 保留当前已验收 RTL、时钟/CDC 与引脚配置。改动按对应组件测试；编译、仿真、P&R 和实物验证分别报告。烧录属于另一个动作，当前整理/上传任务不操作硬件。
 
-FPGA 烧录前阅读 docs/history/固定烧录配置.md；历史脚本默认路径可能不适用于新机器，使用 docs/BUILD.md 的当前入口。不得把旧实验脚本当成当前构建或烧录入口。
+FPGA 烧录前阅读 docs/PROGRAMMING.md；脚本默认路径可能不适用于新机器，使用 docs/BUILD.md 的当前入口。生产工程入口唯一为 fpga/playability/v3_hdmi_top.gprj。

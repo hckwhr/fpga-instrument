@@ -1,17 +1,20 @@
-# 仓库组织
+# 提交源码包
 
-本项目将 FPGA、上位机和 ESP32-S3 固件放在同一个仓库，通过目录分工保持源码独立。三个组件不是子模块，克隆本仓库即可取得相应源码。
+仓库和提交包使用相同目录结构，入口为根目录 README。FPGA、上位机与 ESP32-S3 固件集中在一个仓库，保留组件之间的相对路径即可构建。
 
-## 当前工程入口
+| 目录 | 内容 |
+| --- | --- |
+| fpga/playability | 当前 FPGA 工程、RTL、约束、ROM 与仿真 |
+| host/mineradio | FPGAvedio Windows 播放器及 Android 应用 |
+| host/instrument-web | 共用转谱、上传、曲谱库、录音及可视化 |
+| firmware/xiaozhi-v3 | 小智语音与 ESP32-S3 套件适配 |
+| firmware/esp32s3-bridge | BLE/USB/UART 桥接及小智所需共用核心 |
+| docs/submission | 技术报告 Word、PDF、Markdown 及插图 |
+| artifacts/playability | 当前功能测试和实施结果 |
+| tests / tools | 固定测试输入与构建入口 |
 
-- fpga/current：当前 FPGA 工程及模块。
-- host/mineradio：播放器、FPGA 工作台和 Android 应用工程。
-- host/instrument-web：共用转谱、上传和可视化前端。
-- firmware/xiaozhi-v3：小智语音与套件适配。
-- firmware/esp32s3-bridge：桥接与共用命令核心。
-- artifacts/current：FPGA 输出文件及工具报告。
-- docs：工程原理、接线、构建和操作说明。
+生产 FPGA 只保留一套工程。测试中的冻结参考及兼容配置用于验证协议、时序契约和行为一致性，不能当作当前烧录入口。
 
-current 是当前代码入口。历史源码、固定参考和工具输出保留在各自目录，供开发时查阅；它们不替代当前配置。构建脚本中的本机路径应按工具安装位置设置。
+源码包从 Git 提交导出，不包含 `.git`、旧生产工程、依赖缓存、工具安装包、设备身份或签名私钥。报告中的资源与时序数据来自已实施结果，源码注释整理不产生新的 FPGA 实施结果。安装依赖和构建方法见 [BUILD.md](BUILD.md)。
 
-仓库不包含工具安装包、依赖缓存、个人录音、账号凭据或设备身份数据。上位机与固件共用模块的相对目录关系保持不变，构建时应保留此结构。
+下载仓库或解压源码包后，建议使用 ASCII 工作路径。上位机两个目录及固件两个目录分别保持相邻；不要单独搬走共用组件。第三方许可证及来源见 [THIRD_PARTY.md](../THIRD_PARTY.md)。

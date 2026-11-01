@@ -1,6 +1,9 @@
 `default_nettype none
 // SOM30354 + Dock31005, GW5AST-138C. LCD pins intentionally absent.
-// Accepted LCD build is preserved separately in stage65 and the backup ZIP.
+// V5 board boundary: pressure and RGB wiring directions are reversed separately.
+// Internal keys, HDMI indicators and event indices run left-to-right for the player.
+// hc05_* are legacy UART port names; the peer is the ESP32-S3 BLE/USB bridge.
+// HALF_RATE_ENABLE gates engine progress, not the DAC's 1024-clock sample frame.
 module v3_hdmi_top (
     input wire sys_clk,key0_n,key1_n,key2_n,setting_key,adc_miso,hc05_rx,
     output wire pluck_debug,adc_sclk,adc_mosi,adc_cs0_n,adc_cs1_n,
