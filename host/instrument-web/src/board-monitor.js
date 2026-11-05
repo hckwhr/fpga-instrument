@@ -36,10 +36,11 @@ export function createBoardMonitor(device, upload) {
     $('.keyboard-keys').append(key); keys.set(note, key);
   }
   $('.keyboard-keys').style.setProperty('--white-keys', white);
-  let identity = null, visible = true, polling = false, disposed = false;
+  let identity = null, visible = true, polling = false, disposed = false, manualOperation = false;
+  window.addEventListener('instrument-performance-operation', event => { manualOperation = Boolean(event.detail); });
   const available = () => {
     const d = device.snapshot(), u = upload.snapshot();
-    return d.connected && !d.busy && !d.blocked && !u.busy && Boolean(u.capability?.playback);
+    return !manualOperation && d.connected && !d.busy && !d.blocked && !u.busy && Boolean(u.capability?.playback);
   };
   function render() {
     const d = device.snapshot(), u = upload.snapshot(), p = u.playback;

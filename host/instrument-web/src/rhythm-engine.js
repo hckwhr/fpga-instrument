@@ -2,7 +2,14 @@
 export const HIT_WINDOWS = Object.freeze({ perfect: 70, good: 160 });
 export const KEY_CODES = Object.freeze(['KeyA', 'KeyS', 'KeyD', 'KeyF', 'KeyG', 'KeyH', 'KeyJ', 'KeyK', 'KeyL', 'Semicolon', 'Quote', 'Enter']);
 
-export function buildRhythmChart(events) {
+// Stable left-to-right physical positions, independent of the selected song.
+export const RHYTHM_KEYMAPS = Object.freeze({
+  white: Object.freeze([60,62,64,65,67,69,71,72,74,76,77,79]),
+  chromatic: Object.freeze(Array.from({ length: 12 }, (_, i) => 60 + i)),
+});
+
+export function buildRhythmChart(events, keymap = RHYTHM_KEYMAPS.white) {
+  if (!Array.isArray(keymap) || keymap.length !== 12 || keymap.some(n => !Number.isInteger(n) || n < 48 || n > 83)) throw Error('键阶需要 12 个 C3—B5 范围内的音高');
   if (!Array.isArray(events) || !events.length || events.length > 50000) throw Error('请选择包含 1–50000 个音符的曲谱');
   const notes = events.map(e => {
     if (!Number.isInteger(e.note) || e.note < 0 || e.note > 127 || !Number.isFinite(e.startMs) || e.startMs < 0 ||
@@ -10,8 +17,9 @@ export function buildRhythmChart(events) {
         !Number.isFinite(e.velocity) || e.velocity < 1 || e.velocity > 127) throw Error('曲谱音符无效，或时长超过一小时');
     return { note: e.note, startMs: e.startMs, durationMs: e.durationMs, velocity: e.velocity };
   }).sort((a, b) => a.startMs - b.startMs || a.note - b.note);
-  const pitches = [...new Set(notes.map(n => n.note))].sort((a, b) => a - b);
-  if (pitches.length > 12) throw Error(`这份曲谱有 ${pitches.length} 个不同音高，超过 12 键。请在 FPGA 播放中选择旋律音轨或较短片段；未删减任何音符。`);
+  const pitches = [...keymap];
+  const unavailable = [...new Set(notes.filter(n => !pitches.includes(n.note)).map(n => n.note))];
+  if (unavailable.length) throw Error(`曲谱有 ${unavailable.length} 个音高不在当前 12 键键阶内（MIDI ${unavailable.join('、')}）。请选择匹配键阶或编辑曲谱；未移调、折叠或删减音符。`);
   // Two tracks striking the very same pitch at the same time need one physical
   // action. Preserve the longest sustain / strongest velocity and report the merge.
   const merged = [];

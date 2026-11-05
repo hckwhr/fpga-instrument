@@ -119,6 +119,7 @@ try {
               stored={length:bytes.length/8,crc};window.receivedWords=stored.length;reply=[stored.length,crc];
             }
             if(['PLAY','STOP','STATUS'].includes(operation)){
+              if(operation==='STATUS'&&window.holdStatusReply)await new Promise(resolve=>{window.releaseStatusReply=()=>{window.holdStatusReply=false;window.releaseStatusReply=null;resolve();};});
               if(operation==='PLAY'){if(+v[0]!==stored.length||v[1]!==stored.crc)throw Error('PLAY identity');playing=1;}
               if(operation==='STOP')playing=0;
               reply=[playing,0,stored.length,stored.crc,1,stored.crc];
@@ -221,20 +222,40 @@ try {
   assert.equal(backup.project.arrangement.melodyNotes, 6);
   assert.equal(backup.project.arrangement.mode, 'polyphonic');
   assert.equal(backup.project.tracks.length, 2);
-  await inside(`document.querySelector('#performance-probe').click()`);
-  await waitFor(`!document.querySelector('#instrument').contentDocument.querySelector('#keymap-apply').disabled`);
-  assert.equal(await inside(`document.querySelectorAll('#keymap-grid select').length`),12);
-  await inside(`(()=>{document.querySelector('#keymap-grid select').value='83';document.querySelector('#keymap-grid select').dispatchEvent(new Event('change'));document.querySelector('#keymap-apply').click();})()`);
-  await waitFor(`document.querySelector('#instrument').contentDocument.querySelector('#performance-message').textContent.includes('已在 FPGA 生效')`);
+  // A fresh connection may start recording directly: the view probes first.
+  assert.equal(await inside(`document.querySelector('#record-start').disabled`),false);
   await inside(`document.querySelector('#record-start').click()`);
   await waitFor(`!document.querySelector('#instrument').contentDocument.querySelector('#record-stop').disabled`);
   await new Promise(resolve=>setTimeout(resolve,100));
   await inside(`document.querySelector('#record-stop').click()`);
   await waitFor(`!document.querySelector('#instrument').contentDocument.querySelector('#record-result').hidden`);
+  await waitFor(`!document.querySelector('#instrument').contentDocument.querySelector('#keymap-apply').disabled`);
+  assert.equal(await inside(`document.querySelectorAll('#keymap-grid select').length`),12);
+  await inside(`(()=>{document.querySelector('#keymap-grid select').value='83';document.querySelector('#keymap-grid select').dispatchEvent(new Event('change'));document.querySelector('#keymap-apply').click();})()`);
+  await waitFor(`document.querySelector('#instrument').contentDocument.querySelector('#performance-message').textContent.includes('已在 FPGA 生效')`);
+  // Reproduce the real UI problem: a delayed background STATUS owns the link.
+  // No transient busy event may disable Start, and one click must run once
+  // after that reply without overlapping or starving the manual command.
+  await evaluate(`window.holdStatusReply=true`);
+  await inside(`(()=>{document.querySelector('#board-monitor-auto').checked=true;document.querySelector('#board-monitor-auto').dispatchEvent(new Event('change'));})()`);
+  await waitFor(`typeof window.releaseStatusReply==='function'`);
+  assert.equal(await inside(`document.querySelector('#record-start').disabled`),false,'STATUS must not blink/disable recording button');
+  await inside(`(()=>{document.querySelector('#record-start').click();document.querySelector('#record-start').click();})()`);
+  assert.match(await inside(`document.querySelector('#record-state').textContent`),/等待当前通信/);
+  assert.equal(await inside(`document.querySelector('#record-stop').disabled`),true,'no optimistic recording before ACK');
+  await evaluate(`window.releaseStatusReply()`);
+  await waitFor(`!document.querySelector('#instrument').contentDocument.querySelector('#record-stop').disabled`);
+  await new Promise(resolve=>setTimeout(resolve,100));
+  await inside(`document.querySelector('#record-stop').click()`);
+  await waitFor(`!document.querySelector('#instrument').contentDocument.querySelector('#record-result').hidden`);
+  await waitFor(`!document.querySelector('#instrument').contentDocument.querySelector('#record-start').disabled`);
   await inside(`document.querySelector('#record-save').click()`);
   await waitFor(`window.savedFile?.mime==='audio/wav'`);
   const recorded=Buffer.from(await evaluate('window.savedFile.data'),'base64');
   assert.equal(recorded.toString('ascii',0,4),'RIFF');assert.equal(recorded.readUInt32LE(24),12000);assert.equal(recorded.readUInt32LE(40),480);
+  const recordingStarts=await evaluate(`window.nativeCalls.filter(c=>c.op==='ble-write').map(c=>atob(c.value.data)).filter(s=>/^PERF1,[0-9A-F]{8},3,/.test(s)).length`);
+  assert.equal(recordingStarts,2,'direct start and busy-link start each send exactly one START');
+  await inside(`document.querySelector('#board-monitor-auto').checked=false`);
   if(fullPlayer)await inside(`document.querySelector('.function-rail a[href="#live-performance"]').click()`);
   if(fullPlayer)await waitFor(`(()=>{const d=document.querySelector('#instrument').contentDocument,r=d.querySelector('#live-performance').getBoundingClientRect();return r.top>=0 && r.top<140;})()`);
   await writeFile(resolve(evidence,'performance-mobile.png'),Buffer.from((await page('Page.captureScreenshot',{format:'png'})).data,'base64'));
@@ -274,6 +295,7 @@ try {
   const result = { passed: true, recognizedNotes: 6, arrangedNotes: 6, uploadedEventWords: 12, browser: 'installed Microsoft Edge', realModel: true, nativeBleAndFpga: 'MOCKED, not physical hardware', checks: ['music source RPC -> decoded MP3 -> iframe import', 'no Web Bluetooth API required', 'model/worker/WASM transcription', 'polyphonic arrangement and unchanged hardware compiler', 'CAPS/DATA/COMMIT CRC and PLAY/STOP ACK', 'Android save-file RPC includes two-track arrangement', 'mobile layout and zero runtime exceptions'] };
   if (fullPlayer) result.checks.push('visible account entry; QR render/save, expiry, authorization and logout (mocked provider)', 'actual player media time advances', 'drawer navigation keeps search reachable', 'current song button loads cold workbench and imports matching audio');
   result.checks.push('12-key map read/apply ACK and recording START/DATA/STOP/END to native WAV save (mock FPGA)');
+  result.checks.push('recording button stays clickable during delayed STATUS; automatic capability probe; duplicate clicks send one START after pending reply');
   if (fullPlayer) result.checks.push('third rhythm mode from drawer, real touch hit, pause on leaving, mobile layout');
   await writeFile(resolve(evidence, 'app-smoke.json'), JSON.stringify(result, null, 2));
   console.log(JSON.stringify(result, null, 2));

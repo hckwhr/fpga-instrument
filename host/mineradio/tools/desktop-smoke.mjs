@@ -120,7 +120,8 @@ try {
   await mouseClick('#mode-rhythm');
   await waitFor(`${f}.contentDocument.body.classList.contains('rhythm-mode')`);
   assert.equal(await evaluate('!window.audio || window.audio.paused'), true);
-  assert.equal(await evaluate(`${f}.contentDocument.querySelectorAll('#rhythm-keys button:not(:disabled)').length`), 6);
+  assert.equal(await evaluate(`${f}.contentDocument.querySelectorAll('#rhythm-keys button:not(:disabled)').length`), 12);
+  assert.equal(await evaluate(`${f}.contentDocument.querySelector('#rhythm-keys [data-lane="4"] strong').textContent`), 'G4');
   await evaluate(`${f}.contentDocument.querySelector('#rhythm-start').click()`);
   try { await waitFor(`${f}.contentDocument.querySelector('#rhythm-judgement').textContent==='轮到你了'`); }
   catch (error) { console.log(await evaluate(`${f}.contentDocument.querySelector('#rhythm-root').innerText`)); throw error; }

@@ -1,4 +1,4 @@
-import { buildRhythmChart, demoRhythmEvents, KEY_CODES, RhythmGame } from './rhythm-engine.js';
+import { buildRhythmChart, demoRhythmEvents, KEY_CODES, RHYTHM_KEYMAPS, RhythmGame } from './rhythm-engine.js';
 import { createRhythmAudio } from './rhythm-audio.js';
 import { compileTracks, midiNoteName } from './midi.js';
 
@@ -7,7 +7,7 @@ export function createRhythmView({ currentScore, library, stopPreview }) {
   const root = document.createElement('section'); root.id = 'rhythm-root'; root.hidden = true;
   root.setAttribute('aria-label', '节奏大师');
   root.innerHTML = `
-    <header class="rhythm-heading"><div><p class="rhythm-eyebrow">PLAY THE MOMENT</p><h1>节奏大师<span>让每一个音，由你奏响。</span></h1></div><span class="rhythm-local">● 本机练习 · 键盘 / 触屏</span></header>
+    <header class="rhythm-heading"><div><p class="rhythm-eyebrow">MINERADIO / LIVE STAGE</p><h1>节奏大师<span>十二键，奏出你的节奏。</span></h1></div><span class="rhythm-local">● 本机练习 · 键盘 / 触屏</span></header>
     <div class="rhythm-layout">
       <main class="rhythm-stage">
         <div class="rhythm-scorebar"><div><span>得分</span><strong id="rhythm-points">00000</strong></div><div><span>连击</span><strong id="rhythm-combo">0</strong></div><div><span>完成分</span><strong id="rhythm-accuracy">0%</strong></div><div class="rhythm-timer"><span id="rhythm-song-name">小星星</span><strong id="rhythm-time">0:00 / 0:00</strong></div></div>
@@ -21,14 +21,15 @@ export function createRhythmView({ currentScore, library, stopPreview }) {
       <aside class="rhythm-settings" aria-label="练习设置">
         <p class="rhythm-eyebrow">YOUR SESSION</p><h2>今天，练哪一首？</h2>
         <label>练习曲谱<select id="rhythm-source"><option value="twinkle">小星星 · 入门</option><option value="ode">欢乐颂 · 入门</option><option value="current">FPGA 工作台当前曲谱</option></select></label>
+        <label>固定 12 键<select id="rhythm-keymap"><option value="white">C 大调 · Do Re Mi</option><option value="chromatic">半音阶 · C4—B4</option></select></label>
         <p id="rhythm-chart-info" class="rhythm-note"></p>
         <button type="button" id="rhythm-import" class="button plain">导入 / 整理自己的曲谱 ↗</button>
         <fieldset class="rhythm-choice"><legend>练习方式</legend><label><input type="radio" name="rhythm-mode" value="practice" checked><span>跟练<small>等你按对，再继续</small></span></label><label><input type="radio" name="rhythm-mode" value="challenge"><span>挑战<small>按节拍前进，记录漏音</small></span></label></fieldset>
         <label>速度 <output id="rhythm-speed-label">100%</output><input id="rhythm-speed" type="range" min="50" max="150" step="5" value="100"></label>
-        <p class="rhythm-note">更换曲谱、练习方式或速度会重新开始。竖屏琴键分两排，按音名与亮灯提示演奏。</p>
+        <p class="rhythm-note">轨道 01—12 按键盘从左到右排列。竖屏触键分两排，以编号对应轨道；横屏可展开完整舞台。</p>
         <p id="rhythm-status" class="rhythm-note" role="status">命中才发声，未按或按错保持静音。</p>
         <div class="rhythm-counts"><span>Perfect <b id="rhythm-perfect">0</b></span><span>Good <b id="rhythm-good">0</b></span><span>Miss <b id="rhythm-miss">0</b></span><span>错按 <b id="rhythm-wrong">0</b></span></div>
-        <details class="rhythm-help"><summary>怎么玩 / 硬件联动</summary><p>电脑用 A S D F G H J K L ; ' Enter，手机直接触摸下方琴键。可同时按下多个键；同音重奏需要先松开。当前按起音计分，长音提前松开会停止声音，但不扣保持分。</p><p>挑战判定：Perfect ±70 ms，Good ±160 ms。跟练仅记录命中，不评价快慢。完成分以整曲音符总数计算。</p><p>本轮是上位机练习版，声音来自电脑或手机。琴键颜色是屏幕提示，尚未控制实体 RGB，也不读取压力键。实物联动需要配套 FPGA/ESP 固件扩展。</p><p>键位按本曲音高由低到高分配，不会改写板端键位。先在 FPGA 播放中停止板端曲目，再开始练习；本模式不会发送播放指令。</p></details>
+        <details class="rhythm-help"><summary>怎么玩 / 硬件联动</summary><p>电脑用 A S D F G H J K L ; ' Enter，手机触摸琴键。可同时按下多个键；同音重奏需要先松开。长音提前松开会停止声音，当前仅按起音计分。</p><p>Perfect ±70 ms，Good ±160 ms。跟练等待正确按键，不评价快慢。完成分以整曲音符总数计算。</p><p>当前声音来自电脑或手机，尚未控制实体 RGB 或读取压力键。板端联动需要配套实时演奏协议。</p><p>更换曲目不会改变 12 键的位置。这里的键阶只影响练习界面，不会改写板端设置。超出键阶的曲谱会明确提示，不能静默移调。</p></details>
       </aside>
     </div>`;
   document.body.append(root);
@@ -69,15 +70,15 @@ export function createRhythmView({ currentScore, library, stopPreview }) {
         title = score.title; events = compileTracks(score.project, score.settings.selectedTracks,
           { speed: score.settings.speed / 100, velocityScale: score.settings.velocity / 100 });
       } else { title = source === 'ode' ? '欢乐颂' : '小星星'; events = demoRhythmEvents(source); }
-      const chart = buildRhythmChart(events);
+      const chart = buildRhythmChart(events, RHYTHM_KEYMAPS[$('#rhythm-keymap').value]);
       game = new RhythmGame(chart, { mode: $('input[name="rhythm-mode"]:checked').value, speed: +$('#rhythm-speed').value / 100 });
       $('#rhythm-song-name').textContent = title;
-      $('#rhythm-chart-info').textContent = `${chart.notes.length} 个起音 · ${chart.pitches.length} 个音高 · 按音高升序分配${chart.merged ? ` · ${chart.merged} 个同刻同音合并` : ''}`;
+      $('#rhythm-chart-info').textContent = `${chart.notes.length} 个起音 · 固定 12 键 · 本曲使用 ${new Set(chart.notes.map(n => n.lane)).size} 键${chart.merged ? ` · ${chart.merged} 个同刻同音合并` : ''}`;
       const labels = ['A','S','D','F','G','H','J','K','L',';','\'','↵'];
       for (let lane = 0; lane < 12; lane++) {
         const key = document.createElement('button'); key.type = 'button'; key.dataset.lane = lane;
         key.disabled = lane >= chart.pitches.length;
-        key.innerHTML = `<span class="rhythm-led"></span><strong>${key.disabled ? '—' : midiNoteName(chart.pitches[lane])}</strong><kbd>${labels[lane]}</kbd>`;
+        key.innerHTML = `<span class="rhythm-led"></span><small class="rhythm-key-number">${String(lane + 1).padStart(2, '0')}</small><strong>${midiNoteName(chart.pitches[lane])}</strong><kbd>${labels[lane]}</kbd>`;
         key.setAttribute('aria-label', key.disabled ? '未分配音高' : `${midiNoteName(chart.pitches[lane])}，快捷键 ${labels[lane]}`);
         $('#rhythm-keys').append(key);
       }
@@ -141,6 +142,7 @@ export function createRhythmView({ currentScore, library, stopPreview }) {
   });
   $('#rhythm-start').onclick = start; $('#rhythm-pause').onclick = pause; $('#rhythm-reset').onclick = reset;
   $('#rhythm-source').onchange = reset;
+  $('#rhythm-keymap').onchange = reset;
   for (const radio of root.querySelectorAll('[name="rhythm-mode"]')) radio.onchange = reset;
   $('#rhythm-speed').oninput = () => { $('#rhythm-speed-label').textContent = `${$('#rhythm-speed').value}%`; reset(); };
   $('#rhythm-import').onclick = () => {
@@ -180,26 +182,77 @@ export function createRhythmView({ currentScore, library, stopPreview }) {
     const dpr = Math.min(2, devicePixelRatio || 1), w = box.width, h = box.height;
     if (canvas.width !== Math.round(w * dpr) || canvas.height !== Math.round(h * dpr)) { canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr); }
     context.setTransform(dpr, 0, 0, dpr, 0, 0); context.clearRect(0, 0, w, h);
-    const laneWidth = w / 12, line = h - 30;
+    const horizon = h * .12, line = h - 32;
+    // One projection for lanes, beats, notes and judgement: the same note never
+    // crosses its lane as it approaches. Coordinates are CSS pixels at any DPR.
+    const point = (lane, depth) => {
+      const p = Math.max(0, Math.min(1.06, depth));
+      const z = .22 * p / (1 - .78 * p);
+      return [w / 2 + (lane / 12 - .5) * w * (.22 + .78 * z), horizon + (line - horizon) * z];
+    };
+    const quad = (left, right, far, near, fill, stroke) => {
+      context.beginPath();
+      [point(left, far), point(right, far), point(right, near), point(left, near)].forEach(([x,y], i) => i ? context.lineTo(x,y) : context.moveTo(x,y));
+      context.closePath(); context.fillStyle = fill; context.fill();
+      if (stroke) { context.strokeStyle = stroke; context.stroke(); }
+    };
+    const glow = context.createRadialGradient(w / 2, horizon, 0, w / 2, horizon, w * .7);
+    glow.addColorStop(0, '#715bd040'); glow.addColorStop(.5, '#2d749018'); glow.addColorStop(1, '#14203700');
+    context.fillStyle = glow; context.fillRect(0, 0, w, h);
+    context.lineWidth = 1;
     for (let i = 0; i < 12; i++) {
-      context.fillStyle = i % 2 ? '#ffffff03' : '#ffffff07'; context.fillRect(i * laneWidth, 0, laneWidth - 1, h);
+      quad(i, i+1, 0, 1, i % 2 ? '#131e36e8' : '#1a2941e8', '#9dbde626');
+      if (game?.held.has(i)) {
+        const beam = context.createLinearGradient(0, horizon, 0, line);
+        beam.addColorStop(0, '#60eddf00'); beam.addColorStop(1, '#60eddf55');
+        quad(i+.04, i+.96, .15, 1, beam);
+      }
     }
-    context.strokeStyle = '#91e3d6'; context.lineWidth = 2; context.beginPath(); context.moveTo(0, line); context.lineTo(w, line); context.stroke();
+    context.lineWidth = 2;
+    for (const edge of [0,12]) {
+      const a = point(edge, 0), b = point(edge, 1);
+      context.strokeStyle = edge ? '#ae94ff' : '#60e0ed'; context.shadowColor = context.strokeStyle; context.shadowBlur = 12;
+      context.beginPath(); context.moveTo(...a); context.lineTo(...b); context.stroke();
+    }
+    context.shadowBlur = 0;
+    const rail = context.createLinearGradient(0, 0, w, 0);
+    rail.addColorStop(0,'#64e5ec'); rail.addColorStop(.5,'#e0ffff'); rail.addColorStop(1,'#ad9aff');
+    context.fillStyle = rail; context.fillRect(0,line-2,w,4);
+    context.fillStyle = '#82dbe724'; context.fillRect(0,line+2,w,6);
     if (!game) return;
-    context.fillStyle = '#adc6d4'; context.font = '9px system-ui'; context.textAlign = 'center';
-    game.chart.pitches.forEach((pitch, lane) => context.fillText(midiNoteName(pitch), (lane + .5) * laneWidth, h - 8));
-    const ahead = 2400 * game.speed, scale = line / ahead;
+    context.fillStyle = '#b7cee6'; context.font = '10px ui-monospace,monospace'; context.textAlign = 'center';
+    game.chart.pitches.forEach((pitch, lane) => context.fillText(String(lane+1).padStart(2,'0'), (lane + .5) * w / 12, h - 8));
+    const ahead = 2400 * game.speed;
     for (let beat = Math.ceil(game.time / 500) * 500; beat < game.time + ahead; beat += 500) {
-      const y = line - (beat - game.time) * scale; context.fillStyle = '#ffffff0b'; context.fillRect(0, y, w, 1);
+      const depth = 1 - (beat - game.time) / ahead;
+      const a = point(0,depth), b = point(12,depth);
+      context.strokeStyle = '#c7e8ff20'; context.lineWidth = 1;
+      context.beginPath(); context.moveTo(...a); context.lineTo(...b); context.stroke();
     }
     // Binary search the visible onset window; never redraw a whole long score.
     const notes = game.chart.notes; let lo = 0, hi = notes.length;
     while (lo < hi) { const mid = (lo + hi) >> 1; if (notes[mid].startMs < game.time - 400 * game.speed) lo = mid + 1; else hi = mid; }
-    for (let i = lo; i < notes.length && notes[i].startMs < game.time + ahead; i++) {
-      const n = notes[i], result = game.results[i], y = line - (n.startMs - game.time) * scale;
-      const height = Math.max(12, Math.min(90, n.durationMs * scale));
-      context.fillStyle = result === 'miss' ? '#c48288' : result ? '#91e3b5' : Math.abs(n.startMs - game.time) / game.speed <= 160 ? '#f0cc86' : '#8ebad4';
-      context.beginPath(); context.roundRect(n.lane * laneWidth + 4, y - height, Math.max(3, laneWidth - 8), height, 5); context.fill();
+    let end = lo;
+    while (end < notes.length && notes[end].startMs < game.time + ahead) end++;
+    // Paint distant notes first so close notes occlude them correctly.
+    for (let i = end - 1; i >= lo; i--) {
+      const n = notes[i], result = game.results[i], depth = 1 - (n.startMs - game.time) / ahead;
+      if (depth > 1.04) continue;
+      const color = result === 'miss' ? '#d78b9d' : result ? '#7ef1c7' : Math.abs(n.startMs - game.time) / game.speed <= 160 ? '#ffe1a0' : n.lane % 2 ? '#bba2ff' : '#72dcfa';
+      if (n.durationMs > 220 && !result) quad(n.lane+.3,n.lane+.7,depth-Math.min(.35,n.durationMs/ahead),depth,color+'38');
+      context.shadowColor = color; context.shadowBlur = depth > .8 ? 14 : 4;
+      quad(n.lane+.09,n.lane+.91,depth-.025,depth,color,'#ffffff85');
+      context.shadowBlur = 0;
+    }
+    if (lastFeedback && performance.now() - lastFeedback < 450 && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const fade = 1 - (performance.now() - lastFeedback) / 450;
+      context.globalAlpha = fade;
+      for (const lane of game.held) {
+        const x = (lane+.5)*w/12;
+        context.strokeStyle='#c1fff0'; context.lineWidth=2;
+        context.beginPath(); context.ellipse(x,line,w/30*(1.5-fade),8*(1.5-fade),0,0,Math.PI*2);context.stroke();
+      }
+      context.globalAlpha = 1;
     }
   }
   // RAF's frame timestamp can predate an input handled within that same frame.

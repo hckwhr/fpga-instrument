@@ -13,7 +13,8 @@ export function createBoardAudioView(section, device, upload) {
   section.querySelector('.board-telemetry-note').replaceWith(container);
   const $ = selector => container.querySelector(selector);
   const session = new BoardAudioSession(device);
-  let frame = null, spectrum = null, visible = true, disposed = false, lastRequest = 0;
+  let frame = null, spectrum = null, visible = true, disposed = false, lastRequest = 0, manualOperation = false;
+  window.addEventListener('instrument-performance-operation', event => { manualOperation = Boolean(event.detail); });
   function grid(canvas) {
     const width = Math.max(1, canvas.clientWidth), height = Math.max(1, canvas.clientHeight), ratio = Math.min(devicePixelRatio || 1, 2);
     canvas.width = Math.round(width * ratio); canvas.height = Math.round(height * ratio);
@@ -56,7 +57,7 @@ export function createBoardAudioView(section, device, upload) {
   }
   function available() {
     const d = device.snapshot();
-    return !disposed && d.connected && !d.blocked && !d.busy && !upload.snapshot().busy && !session.snapshot().unsupported;
+    return !disposed && !manualOperation && d.connected && !d.blocked && !d.busy && !upload.snapshot().busy && !session.snapshot().unsupported;
   }
   function render() {
     const d = device.snapshot(), s = session.snapshot();
