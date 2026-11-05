@@ -11,7 +11,8 @@
     "test:audio": "node tools/audio-fixture.mjs && node tools/browser-smoke.mjs --audio",
     "check": "node --check src/midi.js && node --check src/fpga-score.js && node --check src/protocol.js && node --check src/score-upload-protocol.js && node --check src/score-upload.js && node --check src/transport.js && node --check src/ble-transport.js && node --check src/native-ble-transport.js && node --check src/device-session.js && node --check src/score-library.js && node --check src/audio.js && node --check src/audio-arrangement.js && node --check src/audio-worker.js && node --check src/performance-monitor.js && node --check src/board-monitor.js && node --check src/theme.js && node --check src/app.js",
     "check:board": "node --check src/board-audio.js && node --check src/board-audio-view.js && node --check src/usb-transport.js",
-    "build": "npm run check && npm run check:board && npm test && node tools/build.mjs"
+    "check:rhythm": "node --check src/rhythm-engine.js && node --check src/rhythm-audio.js && node --check src/rhythm-view.js",
+    "build": "npm run check && npm run check:board && npm run check:rhythm && npm test && node tools/build.mjs"
   },
   "dependencies": {
     "@spotify/basic-pitch": "1.0.1",

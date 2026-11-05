@@ -20,6 +20,10 @@ switcher.id = 'fpga-mode-switch';
 switcher.setAttribute('aria-label', '播放模式');
 switcher.innerHTML = '<button id="mode-player" type="button" aria-pressed="true" aria-controls="desktop-window-shell"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 9 6-9 6Z"/></svg>播放器</button><button id="mode-fpga" type="button" aria-pressed="false" aria-controls="fpga-playback"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="5" y="5" width="10" height="10" rx="2"/><path d="M8 1v4m4-4v4M8 15v4m4-4v4M1 8h4m-4 4h4m10-4h4m-4 4h4"/></svg>FPGA 播放</button>';
 const panel = document.createElement('section');
+const rhythmButton = document.createElement('button');
+rhythmButton.id = 'mode-rhythm'; rhythmButton.type = 'button'; rhythmButton.textContent = '节奏大师';
+rhythmButton.setAttribute('aria-pressed', 'false'); rhythmButton.setAttribute('aria-controls', 'fpga-playback');
+switcher.append(rhythmButton);
 panel.id = 'fpga-playback';
 panel.hidden = true;
 panel.setAttribute('aria-label', 'FPGA 播放模式');
@@ -33,16 +37,26 @@ const frame = panel.querySelector('iframe');
 let ready = false;
 let importRequest = null;
 const previousInert = new Map();
-function setMode(fpga) {
+let activeMode = 'player';
+function notifyMode() {
+  frame.contentWindow?.dispatchEvent(new CustomEvent('instrument-mode', { detail: activeMode }));
+  frame.contentWindow?.dispatchEvent(new CustomEvent('instrument-visibility', { detail: activeMode !== 'player' }));
+}
+function setMode(mode) {
+  activeMode = mode;
+  const fpga = mode !== 'player';
+  if (mode === 'rhythm') window.audio?.pause();
   if (fpga) window.desktopWindow?.ensureInstrumentWindow().catch(error => {
     panel.querySelector('#fpga-source-status').textContent = `窗口恢复失败：${error.message}`;
   });
   if (fpga && !frame.getAttribute('src')) frame.src = 'instrument/index.html';
   document.body.classList.toggle('fpga-playback-mode', fpga);
+  document.body.classList.toggle('rhythm-playback-mode', mode === 'rhythm');
+  panel.setAttribute('aria-label', mode === 'rhythm' ? '节奏大师模式' : 'FPGA 播放模式');
   panel.hidden = !fpga;
   shell.scrollTop = 0;
   document.scrollingElement.scrollTop = 0;
-  frame.contentWindow?.dispatchEvent(new CustomEvent('instrument-visibility', { detail: fpga }));
+  if (ready) notifyMode();
   for (const node of playerSurfaces) {
     if (fpga) {
       if (!previousInert.has(node)) previousInert.set(node, node.inert);
@@ -52,12 +66,10 @@ function setMode(fpga) {
       previousInert.delete(node);
     }
   }
-  switcher.querySelector('#mode-player').setAttribute('aria-pressed', String(!fpga));
-  switcher.querySelector('#mode-fpga').setAttribute('aria-pressed', String(fpga));
+  for (const name of ['player', 'fpga', 'rhythm']) switcher.querySelector(`#mode-${name}`).setAttribute('aria-pressed', String(name === mode));
   // Hide, never destroy, the frame so conversion and BLE sessions survive.
 }
-switcher.querySelector('#mode-player').onclick = () => setMode(false);
-switcher.querySelector('#mode-fpga').onclick = () => setMode(true);
+for (const name of ['player', 'fpga', 'rhythm']) switcher.querySelector(`#mode-${name}`).onclick = () => setMode(name);
 // Player shortcuts must not intercept arrows/space on the mode buttons or the
 // import toolbar. Keyboard events inside the iframe already stay in its document.
 for (const type of ['keydown', 'keyup']) window.addEventListener(type, event => {
@@ -69,9 +81,10 @@ for (const type of ['keydown', 'keyup']) window.addEventListener(type, event => 
     event.stopImmediatePropagation();
     if (type === 'keydown') {
       event.preventDefault();
-      const fpga = event.key === 'ArrowRight' || event.key === 'End';
-      setMode(fpga);
-      switcher.querySelector(fpga ? '#mode-fpga' : '#mode-player').focus();
+      const modes = ['player', 'fpga', 'rhythm'];
+      const index = modes.indexOf(activeMode);
+      const next = event.key === 'Home' ? 0 : event.key === 'End' ? 2 : (index + (event.key === 'ArrowRight' ? 1 : 2)) % 3;
+      setMode(modes[next]); switcher.querySelector(`#mode-${modes[next]}`).focus();
     }
   }
 }, true);
@@ -111,7 +124,9 @@ frame.addEventListener('load', () => {
 });
 window.addEventListener('message', event => {
   if (event.origin !== location.origin || event.source !== frame.contentWindow) return;
-  if (event.data?.type === 'instrument-ready') ready = true;
+  if (event.data?.type === 'instrument-ready') { ready = true; notifyMode(); }
+  if (event.data?.type === 'instrument-open-workbench') setMode('fpga');
+  if (event.data?.type === 'instrument-open-rhythm') setMode('rhythm');
   if (event.data?.type === 'mineradio-audio-result' && event.data.requestId === importRequest?.id) {
     const request = importRequest;
     importRequest = null;
@@ -146,7 +161,7 @@ async function importCurrentSongToFpga() {
     // cannot attach the next song's audio to the previous song's name.
     const source = player.currentSrc;
     const name = song.name || '当前歌曲';
-    setMode(true);
+    setMode('fpga');
     status.textContent = '正在打开 FPGA 工作台…';
     await waitForWorkbench();
     status.textContent = '正在读取当前歌曲音频…';

@@ -12,6 +12,7 @@ import { NativeBleTransport } from './native-ble-transport.js';
 import { createPerformanceMonitor } from './performance-monitor.js';
 import { createBoardMonitor } from './board-monitor.js';
 import { createPerformanceView } from './performance-view.js';
+import { createRhythmView } from './rhythm-view.js';
 
 const $ = (selector) => document.querySelector(selector);
 const state = { project: null, events: [], selectedTracks: [], audioFile: null, transcription: null };
@@ -54,6 +55,19 @@ const uploadSession = new ScoreUploadSession(deviceSession);
 let compiledUpload = null;
 const boardMonitor = createBoardMonitor(deviceSession, uploadSession);
 const performanceSession = createPerformanceView(deviceSession);
+const rhythm = createRhythmView({
+  currentScore: () => ({ title: state.project?.title, events: state.events }), library,
+  stopPreview: () => { preview.stop(); $('#source-audio').pause(); },
+});
+const rhythmEntry = document.createElement('button');
+rhythmEntry.type = 'button'; rhythmEntry.className = 'button'; rhythmEntry.id = 'open-rhythm';
+rhythmEntry.textContent = '用当前曲谱练习 →';
+rhythmEntry.onclick = () => {
+  const select = document.querySelector('#rhythm-source'); select.value = 'current'; select.dispatchEvent(new Event('change'));
+  if (window.parent !== window) window.parent.postMessage({ type: 'instrument-open-rhythm' }, location.origin);
+  else window.dispatchEvent(new CustomEvent('instrument-mode', { detail: 'rhythm' }));
+};
+$('.preview-controls').append(rhythmEntry);
 const activeSession = () => deviceSession;
 const activeUpload = () => uploadSession;
 function renderDeviceState() {
@@ -113,6 +127,7 @@ function refreshUploadScore() {
   } catch (error) { $('#upload-score').textContent = error.message; }
   $('#preview-upload').disabled = !compiledUpload || Boolean(state.transcription);
   boardMonitor.setScore(compiledUpload);
+  rhythm.scoreChanged();
   renderDeviceState();
 }
 $('#upload-melody').addEventListener('change', refreshUploadScore);

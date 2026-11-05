@@ -253,10 +253,28 @@ try {
   await inside(`document.querySelector('#disconnect').click()`);
   await waitFor(`document.querySelector('#instrument').contentDocument.querySelector('#connection-label').textContent==='未连接硬件'`);
   assert.equal(await inside(`document.querySelector('#upload-play').disabled`), true);
+  if (fullPlayer) {
+    await evaluate(`document.querySelector('#android-menu').click();document.querySelector('#android-drawer [data-page="rhythm"]').click()`);
+    await waitFor(`document.querySelector('#instrument').contentDocument.body.classList.contains('rhythm-mode')`);
+    assert.equal(await evaluate('window.audio.paused'), true);
+    assert.equal(await inside(`document.documentElement.scrollWidth<=document.documentElement.clientWidth`), true);
+    await inside(`document.querySelector('#rhythm-start').click()`);
+    try { await waitFor(`document.querySelector('#instrument').contentDocument.querySelector('#rhythm-judgement').textContent==='轮到你了'`); }
+    catch (error) { console.log(await inside(`document.querySelector('#rhythm-root').innerText`)); throw error; }
+    const point = await evaluate(`(()=>{const f=document.querySelector('#instrument'),d=f.contentDocument;d.scrollingElement.scrollTop=0;const r=d.querySelector('#rhythm-keys button').getBoundingClientRect(),p=f.getBoundingClientRect();return {x:p.x+r.x+r.width/2,y:p.y+r.y+r.height/2};})()`);
+    assert.ok(point.y < 844 && point.y > 0, 'Phone key must be reachable without horizontal scrolling');
+    await page('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ ...point, id: 1 }] });
+    await page('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+    await waitFor(`document.querySelector('#instrument').contentDocument.querySelector('#rhythm-points').textContent==='00100'`);
+    await writeFile(resolve(evidence, 'phone-rhythm.png'), Buffer.from((await page('Page.captureScreenshot', { format: 'png' })).data, 'base64'));
+    await evaluate(`document.querySelector('#android-menu').click();document.querySelector('#android-drawer [data-page="home"]').click()`);
+    assert.equal(await inside(`document.querySelector('#rhythm-start').textContent`), '继续练习');
+  }
   assert.deepEqual(errors, []);
   const result = { passed: true, recognizedNotes: 6, arrangedNotes: 6, uploadedEventWords: 12, browser: 'installed Microsoft Edge', realModel: true, nativeBleAndFpga: 'MOCKED, not physical hardware', checks: ['music source RPC -> decoded MP3 -> iframe import', 'no Web Bluetooth API required', 'model/worker/WASM transcription', 'polyphonic arrangement and unchanged hardware compiler', 'CAPS/DATA/COMMIT CRC and PLAY/STOP ACK', 'Android save-file RPC includes two-track arrangement', 'mobile layout and zero runtime exceptions'] };
   if (fullPlayer) result.checks.push('visible account entry; QR render/save, expiry, authorization and logout (mocked provider)', 'actual player media time advances', 'drawer navigation keeps search reachable', 'current song button loads cold workbench and imports matching audio');
   result.checks.push('12-key map read/apply ACK and recording START/DATA/STOP/END to native WAV save (mock FPGA)');
+  if (fullPlayer) result.checks.push('third rhythm mode from drawer, real touch hit, pause on leaving, mobile layout');
   await writeFile(resolve(evidence, 'app-smoke.json'), JSON.stringify(result, null, 2));
   console.log(JSON.stringify(result, null, 2));
   await command('Browser.close');

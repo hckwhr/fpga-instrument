@@ -27,7 +27,7 @@ foreach ($folder in @($output, "$output/generated", "$output/classes", "$output/
 }
 $main = 'app/src/main'
 Invoke-Checked "$sdkTools/aapt2.exe" @('compile', '--dir', "$main/res", '-o', "$output/resources.zip")
-Invoke-Checked "$sdkTools/aapt2.exe" @('link', '-o', "$output/unsigned.apk", '-I', $androidJar, '--manifest', "$main/AndroidManifest.xml", '-A', "$main/assets", '--java', "$output/generated", '--version-code', '105', '--version-name', '1.1.4', '--min-sdk-version', '26', '--target-sdk-version', '34', "$output/resources.zip")
+Invoke-Checked "$sdkTools/aapt2.exe" @('link', '-o', "$output/unsigned.apk", '-I', $androidJar, '--manifest', "$main/AndroidManifest.xml", '-A', "$main/assets", '--java', "$output/generated", '--version-code', '106', '--version-name', '1.2.0', '--min-sdk-version', '26', '--target-sdk-version', '34', "$output/resources.zip")
 $sources = @(Get-ChildItem "$main/java", "$output/generated" -Filter '*.java' -File -Recurse | ForEach-Object FullName)
 Invoke-Checked "$jdk/bin/javac.exe" (@('-encoding', 'UTF-8', '-source', '8', '-target', '8', '-classpath', $androidJar, '-d', "$output/classes") + $sources)
 Invoke-Checked "$jdk/bin/jar.exe" @('cf', "$output/classes.jar", '-C', "$output/classes", '.')

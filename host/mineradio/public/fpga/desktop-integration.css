@@ -17,7 +17,7 @@ body.desktop-shell.fpga-playback-mode #desktop-titlebar {
 }
 body.fpga-playback-mode { overflow: hidden !important; }
 body.fpga-playback-mode #desktop-window-shell { overflow: clip; }
-body #top-right { right: 280px !important; }
+body #top-right { right: 390px !important; }
 #fpga-mode-switch {
   position: fixed;
   top: 60px;
@@ -94,6 +94,7 @@ body.fpga-playback-mode .fpga-player-surface { display: none !important; }
 #fpga-source-status { margin-top: 8px; overflow-wrap: anywhere; }
 #fpga-playback iframe { flex: 1; min-height: 0; width: 100%; border: 0; background: transparent; color-scheme: dark; opacity: 0; }
 #fpga-playback iframe[data-themed=true] { opacity: 1; }
+body.rhythm-playback-mode .fpga-playback-header { display:none; }
 @media (max-width: 800px) {
   #fpga-mode-switch { right: 18px; top: 54px; }
   #fpga-playback { top: 116px; }

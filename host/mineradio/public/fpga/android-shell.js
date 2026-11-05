@@ -9,6 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const drawer = document.createElement('dialog'); drawer.id = 'android-drawer';
   drawer.innerHTML = '<div class="android-drawer-head"><div><strong>FPGAvedio</strong><small>你的音乐与 FPGA 乐器</small></div><button type="button" aria-label="关闭菜单" id="android-menu-close">×</button></div><div id="android-drawer-account"></div><nav aria-label="功能导航"><button type="button" data-page="home">音乐首页<span>搜索与继续播放</span></button><button type="button" data-page="queue">当前队列<span>查看正在播放的歌曲</span></button><button type="button" data-page="playlists">我的歌单<span>网易云与本地歌单</span></button><button type="button" data-page="fpga">FPGA 播放<span>转谱、上传与 BLE 连接</span></button><button type="button" data-page="visual">视觉设置<span>背景与播放器效果</span></button></nav><div id="android-drawer-import"></div><p class="android-drawer-note">音乐在手机试听，曲谱交给乐器演奏。</p>';
   document.body.append(button, drawer);
+  const rhythmLink = document.createElement('button'); rhythmLink.type = 'button'; rhythmLink.dataset.page = 'rhythm';
+  rhythmLink.innerHTML = '节奏大师<span>下落音符、跟练与节拍挑战</span>';
+  drawer.querySelector('[data-page="fpga"]').after(rhythmLink);
   drawer.querySelector('#android-drawer-account').append(document.querySelector('#android-account'));
   drawer.querySelector('#android-drawer-import').append(document.querySelector('#android-import'));
   button.onclick = () => { drawer.showModal(); button.setAttribute('aria-expanded', 'true'); };
@@ -87,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
   drawer.querySelector('nav').addEventListener('click', event => {
     const page = event.target.closest('[data-page]')?.dataset.page; if (!page) return;
     drawer.close();
-    if (page === 'fpga') { document.querySelector('#mode-fpga').click(); return; }
+    if (page === 'fpga' || page === 'rhythm') { document.querySelector(`#mode-${page}`).click(); return; }
     document.querySelector('#mode-player').click();
     if (page === 'visual') { window.toggleFxPanel(true); return; }
     if (page === 'home') showHome(); else showLibrary(page);

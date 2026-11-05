@@ -112,6 +112,41 @@ try {
   await waitFor(`${f}?.contentDocument?.querySelector('#choose-audio')`);
   await waitFor(`${f}.dataset.themed === 'true'`);
   await waitFor(`${f}.contentDocument.querySelector('.ble-sidebar')`);
+  // One persistent workbench owns all score and BLE state across three modes.
+  await evaluate(`window.__rhythmFrame=${f}.contentWindow;
+    window.__rhythmStarts=0;
+    const proto=${f}.contentWindow.OscillatorNode.prototype, originalStart=proto.start;
+    proto.start=function(...args){window.top.__rhythmStarts++;return originalStart.apply(this,args)};`);
+  await mouseClick('#mode-rhythm');
+  await waitFor(`${f}.contentDocument.body.classList.contains('rhythm-mode')`);
+  assert.equal(await evaluate('!window.audio || window.audio.paused'), true);
+  assert.equal(await evaluate(`${f}.contentDocument.querySelectorAll('#rhythm-keys button:not(:disabled)').length`), 6);
+  await evaluate(`${f}.contentDocument.querySelector('#rhythm-start').click()`);
+  try { await waitFor(`${f}.contentDocument.querySelector('#rhythm-judgement').textContent==='轮到你了'`); }
+  catch (error) { console.log(await evaluate(`${f}.contentDocument.querySelector('#rhythm-root').innerText`)); throw error; }
+  assert.equal(await evaluate('window.__rhythmStarts'), 0, 'Score must stay silent without a correct input');
+  await page('Input.dispatchKeyEvent', { type: 'keyDown', key: 'a', code: 'KeyA' });
+  await waitFor(`${f}.contentDocument.querySelector('#rhythm-points').textContent==='00100'`);
+  await page('Input.dispatchKeyEvent', { type: 'keyDown', key: 'a', code: 'KeyA', autoRepeat: true });
+  await pause(650);
+  assert.equal(await evaluate(`${f}.contentDocument.querySelector('#rhythm-points').textContent`), '00100');
+  await page('Input.dispatchKeyEvent', { type: 'keyUp', key: 'a', code: 'KeyA' });
+  await page('Input.dispatchKeyEvent', { type: 'keyDown', key: 'a', code: 'KeyA' });
+  await page('Input.dispatchKeyEvent', { type: 'keyUp', key: 'a', code: 'KeyA' });
+  await waitFor(`${f}.contentDocument.querySelector('#rhythm-points').textContent==='00200'`);
+  assert.equal(await evaluate('window.__rhythmStarts'), 2, 'Only two accepted presses may sound');
+  await writeFile(resolve(evidence, 'desktop-rhythm.png'), Buffer.from((await page('Page.captureScreenshot', { format: 'png' })).data, 'base64'));
+  await mouseClick('#mode-player');
+  assert.equal(await evaluate(`${f}.contentDocument.querySelector('#rhythm-start').textContent`), '继续练习');
+  await mouseClick('#mode-rhythm');
+  assert.equal(await evaluate(`${f}.contentDocument.querySelector('#rhythm-points').textContent`), '00200');
+  assert.equal(await evaluate(`${f}.contentWindow===window.__rhythmFrame`), true);
+  await page('Emulation.setDeviceMetricsOverride', { width: 760, height: 720, deviceScaleFactor: 1, mobile: false });
+  await pause(300);
+  assert.equal(await evaluate(`${f}.contentDocument.documentElement.scrollWidth <= ${f}.clientWidth`), true);
+  await page('Emulation.clearDeviceMetricsOverride');
+  await mouseClick('#mode-fpga');
+  await waitFor(`!${f}.contentDocument.body.classList.contains('rhythm-mode')`);
   const usbApiAvailable = await evaluate(`typeof ${f}.contentWindow.navigator.serial?.requestPort === 'function'`);
   const blePrimary = await evaluate(`${f}.contentDocument.querySelector('#connection-mode').value === 'ble'`);
   assert.equal(usbApiAvailable, true, 'Desktop USB fallback API must be available');
@@ -206,6 +241,13 @@ try {
   await evaluate(`${f}.contentDocument.querySelector('#arrangement-apply').click()`);
   assert.match(await evaluate(`${f}.contentDocument.querySelector('#arrangement-report').textContent`), /复音重奏/);
   assert.equal(await evaluate(`${f}.contentDocument.querySelector('#preview-upload').disabled`), false);
+  await evaluate(`${f}.contentDocument.querySelector('#open-rhythm').click()`);
+  await waitFor(`document.querySelector('#mode-rhythm').getAttribute('aria-pressed')==='true'`);
+  assert.equal(await evaluate(`${f}.contentDocument.querySelector('#rhythm-source').value`), 'current');
+  const importedCount = await evaluate(`Number(${f}.contentDocument.querySelector('#note-count').textContent)`);
+  assert.equal(await evaluate(`Number(${f}.contentDocument.querySelector('#rhythm-chart-info').textContent.split(' ')[0])`), importedCount);
+  assert.equal(await evaluate(`${f}.contentDocument.querySelector('#rhythm-start').disabled`), false);
+  await mouseClick('#mode-fpga');
   await evaluate(`${f}.contentDocument.querySelector('#arrangement-panel').scrollIntoView({block:'center'})`);
   await writeFile(resolve(evidence, 'desktop-instrumental-settings.png'), Buffer.from((await page('Page.captureScreenshot', { format: 'png' })).data, 'base64'));
   await evaluate(`${f}.contentDocument.querySelector('#preview-upload').click()`);
@@ -250,7 +292,7 @@ try {
   await pause(400);
   const playerScreenshot = await page('Page.captureScreenshot', { format: 'png' });
   await writeFile(resolve(evidence, 'desktop-player.png'), Buffer.from(playerScreenshot.data, 'base64'));
-  await writeFile(resolve(evidence, 'desktop-smoke.json'), JSON.stringify({ packagedApp: true, dualMode: true, mouseSwitch: true, nativeWindowControls: true, navigation: true, workflow, monitor, modeStatePreserved: true, transparentBackground: true, keyboardSwitch: true, narrowLayout: true, layout, version, bluetooth, transcription, errors, blePrimary, usbApiAvailable, hardwareBleTested: false, hardwareUsbTested: false }, null, 2));
+  await writeFile(resolve(evidence, 'desktop-smoke.json'), JSON.stringify({ packagedApp: true, dualMode: true, rhythmMode: true, rhythmSilentUntilHit: true, rhythmRepeatRelease: true, rhythmPauseAndResume: true, mouseSwitch: true, nativeWindowControls: true, navigation: true, workflow, monitor, modeStatePreserved: true, transparentBackground: true, keyboardSwitch: true, narrowLayout: true, layout, version, bluetooth, transcription, errors, blePrimary, usbApiAvailable, hardwareBleTested: false, hardwareUsbTested: false }, null, 2));
   console.log(JSON.stringify({ passed: true, version, bluetooth, transcription }));
   await evaluate(`document.querySelector('[data-window-action="close"]').click()`);
   for (let i=0; i<100 && child.exitCode === null; i++) await pause(200);

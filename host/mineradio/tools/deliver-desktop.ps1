@@ -10,6 +10,7 @@ if (!(Test-Path -LiteralPath (Join-Path $source 'FPGAvedio.exe'))) { throw '缺�
 $test = Get-Content -LiteralPath (Join-Path $evidence 'desktop-smoke.json') -Raw | ConvertFrom-Json
 if (!$test.packagedApp -or $test.errors.Count -ne 0 -or $test.version.productName -ne 'FPGAvedio') { throw '桌面冒烟未通过' }
 if ($UpdateInterfaceOnly) {
+    if (!$test.rhythmMode -or !$test.rhythmSilentUntilHit -or !$test.rhythmRepeatRelease -or !$test.rhythmPauseAndResume) { throw '节奏大师桌面验证未通过' }
     if (!$test.dualMode -or !$test.modeStatePreserved -or !$test.narrowLayout -or !$test.mouseSwitch -or !$test.nativeWindowControls -or !$test.navigation -or $test.monitor.signal -ne 'true') { throw '桌面工作台验证未通过' }
     $installedExe = Join-Path $destination 'FPGAvedio.exe'
     if (!(Test-Path -LiteralPath $installedExe)) { throw '找不到桌面基线程序' }
@@ -25,6 +26,10 @@ if ($UpdateInterfaceOnly) {
         'resources/app/desktop/preload.js',
         'resources/app/desktop/main.js',
         'resources/app/public/instrument/src/app.js',
+        'resources/app/public/instrument/src/rhythm-engine.js',
+        'resources/app/public/instrument/src/rhythm-audio.js',
+        'resources/app/public/instrument/src/rhythm-view.js',
+        'resources/app/public/instrument/src/rhythm.css',
         'resources/app/public/instrument/src/transport.js',
         'resources/app/public/instrument/src/usb-transport.js',
         'resources/app/public/instrument/src/ble-transport.js',

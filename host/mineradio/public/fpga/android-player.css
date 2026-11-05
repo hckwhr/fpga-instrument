@@ -71,6 +71,9 @@ html.android-player { --phone-content-top: 134px; --phone-player-height: 138px; 
 .android-player #android-brand { top: 24px; left: 55px; font-size: 14px; z-index: 10020; }
 .android-player #fpga-mode-switch { top: 16px; right: 12px; z-index: 10020; }
 .android-player #fpga-mode-switch button { padding: 9px 10px; font-size: 11px; }
+.android-player #fpga-mode-switch button[aria-pressed=false] { display: none; }
+.android-player body.rhythm-playback-mode::after { height:68px; }
+.android-player body.rhythm-playback-mode #fpga-playback { top:72px; }
 .android-player body:not(.fpga-playback-mode):not(.splash-active) #search-area { top: 76px !important; left: 18px !important; right: 18px !important; opacity: 1 !important; visibility: visible !important; pointer-events: auto !important; z-index: 10021; transition: none; }
 .android-player #search-box { height: 46px; min-height: 46px; box-sizing: border-box; border-radius: 14px; }
 .android-player body #search-mode-tabs, .android-player body #upload-actions, .android-player body #top-right { display: none !important; }
