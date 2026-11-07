@@ -33,7 +33,12 @@ Android 构建工具及路径见 [README-FPGA.md](../host/mineradio/README-FPGA.
 
 ## FPGA
 
-当前板上程序对应 `fpga/playability/v3_hdmi_top.gprj`，顶层 `v3_hdmi_top`，31 引脚、4 时钟。工具为 PowerShell 7、ModelSim 与 Gowin V1.9.12.03。先仿真，再综合和审计，最后运行 P&R。
+新增独立节奏实体跟练候选位于 [fpga/rhythm](../fpga/rhythm/README.md)，
+其压力流水已完成 159 项回归及 P&R（setup +2.596 ns、hold +0.195 ns）。
+它与上位机实体跟练协议配套，尚未烧录；使用该候选时，将下文复制源改为
+`fpga/rhythm`，不要混用旧工程的 RTL、网表或约束集合。
+
+仓库保留的历史生产入口为 `fpga/playability/v3_hdmi_top.gprj`，顶层 `v3_hdmi_top`，31 引脚、4 时钟。工具为 PowerShell 7、ModelSim 与 Gowin V1.9.12.03。先仿真，再综合和审计，最后运行 P&R。
 
 将 `fpga/playability` 复制到独立 ASCII 路径，从复制目录执行：
 
