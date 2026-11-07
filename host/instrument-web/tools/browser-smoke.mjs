@@ -476,6 +476,7 @@ try {
   assert.equal(await evaluate(`document.querySelector('#board-monitor-auto').checked`), false);
   assert.equal(await evaluate(`document.querySelector('#upload-start').disabled`), true);
   assert.equal(await evaluate(`document.querySelector('#upload-play').disabled && document.querySelector('#upload-stop').disabled && document.querySelector('#upload-status').disabled`), true);
+  await (await import('./rhythm-browser-check.mjs')).checkHardwareRhythm(evaluate);
   await page('Emulation.setDeviceMetricsOverride', { width: 390, height: 844, deviceScaleFactor: 1, mobile: true });
   await evaluate(`window.dispatchEvent(new Event('resize'))`);
   assert.equal(await evaluate(`getComputedStyle(document.querySelector('.grid')).gridTemplateColumns.split(' ').length`), 1, 'Mobile cards must stack');

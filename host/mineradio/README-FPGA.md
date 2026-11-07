@@ -1,6 +1,6 @@
 # FPGAvedio 桌面与 Android 应用
 
-新增第三模式“节奏大师”：桌面顶部切换、手机侧栏进入，支持本机键盘/触屏跟练、挑战计分和共享曲谱。实体压力键/RGB 联动尚未接入，使用方法与边界见 [节奏大师说明](../instrument-web/RHYTHM_MODE.md)。
+第三模式“节奏大师”：桌面顶部切换、手机侧栏进入，支持本机键盘/触屏跟练、挑战计分和共享曲谱。另可选择 FPGA 实体 12 键跟练，通过配套位流实现 RGB 提示、按对后板端发声及命中回传；旧位流需更新。使用方法与验证边界见 [节奏大师说明](../instrument-web/RHYTHM_MODE.md)。
 
 本工程基于 Mineradio 扩展，保留播放器模式，并加入 FPGA 工作台。桌面与 Android 共用播放器页面及 `../instrument-web` 中的转谱、上传、曲谱库和演奏录音逻辑；Android 使用 Java 原生 BLE/GATT 适配。
 

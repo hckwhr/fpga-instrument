@@ -28,6 +28,7 @@ if ($UpdateInterfaceOnly) {
         'resources/app/public/instrument/src/app.js',
         'resources/app/public/instrument/src/rhythm-engine.js',
         'resources/app/public/instrument/src/rhythm-audio.js',
+        'resources/app/public/instrument/src/rhythm-session.js',
         'resources/app/public/instrument/src/rhythm-view.js',
         'resources/app/public/instrument/src/rhythm.css',
         'resources/app/public/instrument/src/transport.js',

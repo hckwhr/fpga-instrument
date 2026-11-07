@@ -25,13 +25,28 @@ export function performanceRequest(id, operation, notes) {
   if (!/^[0-9A-F]{8}$/.test(id) || !Number.isInteger(operation) || operation < 0 || operation > 5) throw new Error('演奏命令无效');
   return performanceLine(`PERF1,${id},${operation},${operation === 1 ? packKeymap(notes) : '0'.repeat(18)}`);
 }
+// PERF1 6/7 use a tagged status payload; they are not key-map responses.
+export function rhythmRequest(id, { cue = 0, mask = 0, enabled = false, poll = false } = {}) {
+  if (!/^[0-9A-F]{8}$/.test(id) || !Number.isInteger(cue) || cue < 0 || cue > 0xffffffff ||
+      !Number.isInteger(mask) || mask < 0 || mask > 4095 || (!enabled && (cue || mask))) throw Error('跟练命令无效');
+  const payload = poll ? 0n : (BigInt(enabled) << 44n) | (BigInt(cue) << 12n) | BigInt(mask);
+  return performanceLine(`PERF1,${id},${poll ? 7 : 6},${hex(payload, 18)}`);
+}
 export function parsePerformanceLine(line) {
   if (line.length > 254 || !/^PERF1,[0-9A-F]{8},/.test(line)) return null;
   const split = line.lastIndexOf(',');
   if (performanceCrc(line.slice(0, split)) !== line.slice(split + 1)) throw new Error('演奏回传校验失败');
   const p = line.slice(0, split).split(',');
-  if (p[2] === 'A' && p.length === 6 && /^[0-5]$/.test(p[3]) && /^[0-3]$/.test(p[4])) {
-    return { type: 'ack', id: p[1], operation: +p[3], status: +p[4], notes: unpackKeymap(p[5]) };
+  if (p[2] === 'A' && p.length === 6 && /^[0-7]$/.test(p[3]) && /^[0-3]$/.test(p[4])) {
+    const result = { type: 'ack', id: p[1], operation: +p[3], status: +p[4] };
+    if (result.operation < 6) return {...result, notes: unpackKeymap(p[5])};
+    if (!/^[0-9A-F]{18}$/.test(p[5])) throw Error('跟练应答格式错误');
+    if (result.status >= 2) return result;
+    const bits = BigInt(`0x${p[5]}`);
+    if (bits >> 70n !== 2n) throw Error('设备不支持实体跟练状态，请更新配套 FPGA 固件');
+    return {...result, guard: Boolean(bits & (1n << 69n)), active: Boolean(bits & (1n << 68n)),
+      cue: Number((bits >> 36n) & 0xffffffffn), keys: Number((bits >> 24n) & 4095n),
+      hits: Number((bits >> 12n) & 4095n), guide: Number(bits & 4095n)};
   }
   if (p[2] === 'E' && p.length === 5 && /^[0-9A-F]{4}$/.test(p[3]) && /^[0-4]$/.test(p[4])) return {type: 'end', id: p[1], count: parseInt(p[3], 16), status: +p[4]};
   if (p[2] === 'D' && p.length === 7 && /^[0-9A-F]{4}$/.test(p[3]) && /^[0-9A-F]{4}$/.test(p[4]) && /^[0-9A-F]{2}$/.test(p[5]) && /^[A-Za-z0-9+/]{160}$/.test(p[6])) {

@@ -56,6 +56,7 @@ let compiledUpload = null;
 const boardMonitor = createBoardMonitor(deviceSession, uploadSession);
 const performanceSession = createPerformanceView(deviceSession);
 const rhythm = createRhythmView({
+  device: deviceSession,
   currentScore: () => ({ title: state.project?.title, events: state.events }), library,
   stopPreview: () => { preview.stop(); $('#source-audio').pause(); },
 });

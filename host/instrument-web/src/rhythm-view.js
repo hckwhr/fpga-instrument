@@ -1,8 +1,9 @@
 import { buildRhythmChart, demoRhythmEvents, KEY_CODES, RHYTHM_KEYMAPS, RhythmGame } from './rhythm-engine.js';
 import { createRhythmAudio } from './rhythm-audio.js';
+import { RhythmSession } from './rhythm-session.js';
 import { compileTracks, midiNoteName } from './midi.js';
 
-export function createRhythmView({ currentScore, library, stopPreview }) {
+export function createRhythmView({ currentScore, library, stopPreview, device }) {
   const css = document.createElement('link'); css.rel = 'stylesheet'; css.href = new URL('./rhythm.css', import.meta.url).href; document.head.append(css);
   const root = document.createElement('section'); root.id = 'rhythm-root'; root.hidden = true;
   root.setAttribute('aria-label', '节奏大师');
@@ -20,6 +21,7 @@ export function createRhythmView({ currentScore, library, stopPreview }) {
       </main>
       <aside class="rhythm-settings" aria-label="练习设置">
         <p class="rhythm-eyebrow">YOUR SESSION</p><h2>今天，练哪一首？</h2>
+        <label>演奏设备<select id="rhythm-device"><option value="local">本机键盘 / 触屏</option><option value="fpga">FPGA 实体 12 键 · RGB 跟练</option></select></label>
         <label>练习曲谱<select id="rhythm-source"><option value="twinkle">小星星 · 入门</option><option value="ode">欢乐颂 · 入门</option><option value="current">FPGA 工作台当前曲谱</option></select></label>
         <label>固定 12 键<select id="rhythm-keymap"><option value="white">C 大调 · Do Re Mi</option><option value="chromatic">半音阶 · C4—B4</option></select></label>
         <p id="rhythm-chart-info" class="rhythm-note"></p>
@@ -29,7 +31,7 @@ export function createRhythmView({ currentScore, library, stopPreview }) {
         <p class="rhythm-note">轨道 01—12 按键盘从左到右排列。竖屏触键分两排，以编号对应轨道；横屏可展开完整舞台。</p>
         <p id="rhythm-status" class="rhythm-note" role="status">命中才发声，未按或按错保持静音。</p>
         <div class="rhythm-counts"><span>Perfect <b id="rhythm-perfect">0</b></span><span>Good <b id="rhythm-good">0</b></span><span>Miss <b id="rhythm-miss">0</b></span><span>错按 <b id="rhythm-wrong">0</b></span></div>
-        <details class="rhythm-help"><summary>怎么玩 / 硬件联动</summary><p>电脑用 A S D F G H J K L ; ' Enter，手机触摸琴键。可同时按下多个键；同音重奏需要先松开。长音提前松开会停止声音，当前仅按起音计分。</p><p>Perfect ±70 ms，Good ±160 ms。跟练等待正确按键，不评价快慢。完成分以整曲音符总数计算。</p><p>当前声音来自电脑或手机，尚未控制实体 RGB 或读取压力键。板端联动需要配套实时演奏协议。</p><p>更换曲目不会改变 12 键的位置。这里的键阶只影响练习界面，不会改写板端设置。超出键阶的曲谱会明确提示，不能静默移调。</p></details>
+        <details class="rhythm-help"><summary>怎么玩 / 硬件联动</summary><p>本机模式：电脑用 A S D F G H J K L ; ' Enter，手机触摸琴键。同音重奏需要先松开。Perfect ±70 ms，Good ±160 ms。</p><p>实体模式：先在 FPGA 工作台连接 BLE 或 USB，再选 FPGA 实体 12 键。RGB 亮起的位置就是要按的压力键，按对才由板端发声，按齐后曲谱继续。实体模式只提供跟练，不把蓝牙延迟算作演奏误差。</p><p>练习当前音乐：在 FPGA 工作台将音乐转换为曲谱，再选“FPGA 工作台当前曲谱”。固定 12 键以屏幕音高为准，超出键阶会提示，不会静默移调。实体跟练会临时配置键位，停止后请松开压力键以恢复原设置。</p></details>
       </aside>
     </div>`;
   document.body.append(root);
@@ -40,6 +42,37 @@ export function createRhythmView({ currentScore, library, stopPreview }) {
   const activeInputs = new Map();
   let savedScores = [], title = '';
   const message = text => { $('#rhythm-status').textContent = text; };
+  const hardwareMode = () => $('#rhythm-device').value === 'fpga';
+  let cueStart = null, cueBusy = false, hardwareStopping = null;
+  const hardware = device ? new RhythmSession(device, {
+    onStatus(status) {
+      if (!hardwareMode() || game?.status !== 'running') return;
+      for (let lane = 0; lane < 12; lane++) {
+        if (status.newHits & (1 << lane)) {
+          // Sticky FPGA hits prove a fresh accepted edge even if a complete
+          // press/release occurred between two BLE polls.
+          game.release(lane);
+          const hit = game.press(lane, performance.now());
+          if (hit?.note) {
+            $('#rhythm-judgement').textContent = '实体命中';
+            $('#rhythm-prompt').textContent = midiNoteName(hit.note.note);
+            lastFeedback = performance.now();
+          }
+        }
+        if (!(status.keys & (1 << lane))) game.release(lane);
+      }
+      render();
+    },
+    onError(error) { game?.pause(performance.now()); releaseAll(); message(error.message); render(); }
+  }) : null;
+  function stopHardware() {
+    cueStart = null;
+    if (!hardware || hardwareStopping) return hardwareStopping;
+    hardwareStopping = hardware.close().catch(error => message(error.message)).finally(() => {
+      hardwareStopping = null; render();
+    });
+    return hardwareStopping;
+  }
   function releaseAll() { activeInputs.clear(); game?.held.clear(); sound.silence(); }
   function loadSources() {
     const value = $('#rhythm-source').value;
@@ -54,6 +87,7 @@ export function createRhythmView({ currentScore, library, stopPreview }) {
     } catch (error) { message(error.message); }
   }
   function reset() {
+    void stopHardware();
     generation++; loading = false; releaseAll(); game = null;
     $('#rhythm-result').hidden = true; $('#rhythm-start').disabled = true; $('#rhythm-pause').disabled = true;
     $('#rhythm-start').textContent = '开始练习'; $('#rhythm-keys').replaceChildren();
@@ -84,7 +118,7 @@ export function createRhythmView({ currentScore, library, stopPreview }) {
       }
       $('#rhythm-start').disabled = false;
       $('#rhythm-judgement').textContent = '准备好了吗'; $('#rhythm-prompt').textContent = '按开始，等待音符到达判定线';
-      message('命中才发声。此模式使用本机音频，不控制 FPGA 自动播放。');
+      message(hardwareMode() ? '先连接 FPGA，退出板端设置并松开压力键。按开始后，依照 RGB 提示弹奏。' : '命中才发声。此模式使用本机音频，不控制 FPGA 自动播放。');
     } catch (error) {
       $('#rhythm-chart-info').textContent = '曲谱暂不可练习'; $('#rhythm-judgement').textContent = '换一份练习曲谱';
       $('#rhythm-prompt').textContent = '可先选小星星，或选择单独旋律音轨'; message(error.message);
@@ -96,19 +130,27 @@ export function createRhythmView({ currentScore, library, stopPreview }) {
     if (game.status === 'finished') reset();
     const token = ++generation; loading = true; $('#rhythm-start').disabled = true;
     try {
-      stopPreview(); await sound.unlock();
+      stopPreview();
+      await hardwareStopping;
       if (token !== generation || !visible || document.hidden) return;
-      game.start(performance.now()); message(game.mode === 'practice' ? '跟练中：黄色键等待你按下；和弦需逐个或同时按齐。' : '挑战中：音符到达判定线时按下对应键。');
+      if (hardwareMode()) {
+        if (!hardware) throw Error('当前页面没有设备连接入口');
+        message('正在停止板端自动播放、配置 12 键并等待 FPGA 确认…');
+        await hardware.open(game.chart.pitches); hardware.schedule(); cueStart = null;
+      } else await sound.unlock();
+      if (token !== generation || !visible || document.hidden) return;
+      game.start(performance.now()); message(hardwareMode() ? '实体跟练中：按下 RGB 提示的压力键，声音由 FPGA 发出。和弦需按齐，同音重奏先松开。' : game.mode === 'practice' ? '跟练中：黄色键等待你按下；和弦需逐个或同时按齐。' : '挑战中：音符到达判定线时按下对应键。');
       canvas.focus({ preventScroll: true });
-    } catch (error) { message(`音频未启动：${error.message}`); }
+    } catch (error) { message(`练习未启动：${error.message}`); }
     finally { if (token === generation) { loading = false; render(); } }
   }
   function pause() {
     generation++; loading = false;
     game?.pause(performance.now()); releaseAll(); render();
+    void stopHardware();
   }
   function press(lane, input) {
-    if (activeInputs.has(input) || game?.status !== 'running') return;
+    if (hardwareMode() || activeInputs.has(input) || game?.status !== 'running') return;
     // Multiple pointers/keyboard inputs holding the same lane count as one press.
     const occupied = [...activeInputs.values()].includes(lane); activeInputs.set(input, lane);
     if (occupied) return;
@@ -142,6 +184,13 @@ export function createRhythmView({ currentScore, library, stopPreview }) {
   });
   $('#rhythm-start').onclick = start; $('#rhythm-pause').onclick = pause; $('#rhythm-reset').onclick = reset;
   $('#rhythm-source').onchange = reset;
+  $('#rhythm-device').onchange = () => {
+    if (hardwareMode()) $('input[value="practice"]').checked = true;
+    $('input[value="challenge"]').disabled = hardwareMode();
+    $('.rhythm-counts').hidden = hardwareMode();
+    $('.rhythm-local').textContent = hardwareMode() ? '● FPGA 实体跟练 · RGB / 压力键' : '● 本机练习 · 键盘 / 触屏';
+    reset();
+  };
   $('#rhythm-keymap').onchange = reset;
   for (const radio of root.querySelectorAll('[name="rhythm-mode"]')) radio.onchange = reset;
   $('#rhythm-speed').oninput = () => { $('#rhythm-speed-label').textContent = `${$('#rhythm-speed').value}%`; reset(); };
@@ -157,7 +206,7 @@ export function createRhythmView({ currentScore, library, stopPreview }) {
       $('#rhythm-time').textContent = `${formatTime(game.time / game.speed)} / ${formatTime(game.chart.durationMs / game.speed)}`;
       $('#rhythm-progress').value = Math.max(0, Math.min(1, game.time / game.chart.durationMs));
       for (const name of ['perfect', 'good', 'miss', 'wrong']) $(`#rhythm-${name}`).textContent = game.counts[name];
-      $('#rhythm-start').disabled = loading || game.status === 'running'; $('#rhythm-pause').disabled = game.status !== 'running';
+      $('#rhythm-start').disabled = loading || Boolean(hardwareStopping) || game.status === 'running'; $('#rhythm-pause').disabled = game.status !== 'running';
       $('#rhythm-start').textContent = game.status === 'paused' ? '继续练习' : game.status === 'finished' ? '再来一次' : '开始练习';
       const next = game.next();
       for (const key of $('#rhythm-keys').children) {
@@ -172,7 +221,7 @@ export function createRhythmView({ currentScore, library, stopPreview }) {
       }
       if (game.status === 'finished') {
         $('#rhythm-result').hidden = false;
-        $('#rhythm-result').textContent = `${game.mode === 'practice' ? '跟练' : '挑战'}完成 · 命中 ${game.counts.hit + game.counts.perfect + game.counts.good}/${game.chart.notes.length} · 最高连击 ${game.bestCombo} · 错按 ${game.counts.wrong} · ${Math.round(game.accuracy)} 分`;
+        $('#rhythm-result').textContent = `${hardwareMode() ? '实体跟练' : game.mode === 'practice' ? '跟练' : '挑战'}完成 · 命中 ${game.counts.hit + game.counts.perfect + game.counts.good}/${game.chart.notes.length} · 最高连击 ${game.bestCombo}${hardwareMode() ? '' : ` · 错按 ${game.counts.wrong}`} · ${Math.round(game.accuracy)} 分`;
       }
     }
     draw();
@@ -257,7 +306,21 @@ export function createRhythmView({ currentScore, library, stopPreview }) {
   }
   // RAF's frame timestamp can predate an input handled within that same frame.
   // Sample the same monotonic clock as press/start instead of mixing timestamps.
-  function tick() { if (!visible) return; game?.advance(performance.now()); render(); animation = requestAnimationFrame(tick); }
+  function tick() {
+    if (!visible) return;
+    game?.advance(performance.now());
+    if (hardwareMode() && hardware?.running && !cueBusy) {
+      const next = game?.next();
+      if (game?.status === 'finished') void stopHardware();
+      else if (game?.status === 'running' && next && game.time >= next.startMs && cueStart !== next.startMs && !hardware.pending) {
+        const start = next.startMs;
+        const mask = game.chart.notes.filter(n => n.startMs === start && !game.results[n.id]).reduce((m, n) => m | (1 << n.lane), 0);
+        cueBusy = true;
+        void hardware.setCue(mask).then(ok => { if (ok) cueStart = start; }).finally(() => { cueBusy = false; });
+      }
+    }
+    render(); animation = requestAnimationFrame(tick);
+  }
   function setVisible(value) {
     pause(); visible = value; cancelAnimationFrame(animation);
     root.hidden = !value; document.body.classList.toggle('rhythm-mode', value);
@@ -267,6 +330,6 @@ export function createRhythmView({ currentScore, library, stopPreview }) {
   window.addEventListener('instrument-visibility', event => { if (!event.detail) { pause(); visible = false; cancelAnimationFrame(animation); } });
   window.addEventListener('blur', pause);
   document.addEventListener('visibilitychange', () => { if (document.hidden) pause(); });
-  window.addEventListener('pagehide', () => { cancelAnimationFrame(animation); sound.close(); });
+  window.addEventListener('pagehide', () => { cancelAnimationFrame(animation); sound.close(); void stopHardware(); });
   return { scoreChanged() { if ($('#rhythm-source').value === 'current') reset(); } };
 }
