@@ -57,7 +57,7 @@ export function createBoardAudioView(section, device, upload) {
   }
   function available() {
     const d = device.snapshot();
-    return !disposed && !manualOperation && d.connected && !d.blocked && !d.busy && !upload.snapshot().busy && !session.snapshot().unsupported;
+    return !document.body.classList.contains('rhythm-mode') && !disposed && !manualOperation && d.connected && !d.blocked && !d.busy && !upload.snapshot().busy && !session.snapshot().unsupported;
   }
   function render() {
     const d = device.snapshot(), s = session.snapshot();

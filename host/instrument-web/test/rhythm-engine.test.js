@@ -5,6 +5,18 @@ import { buildRhythmChart, demoRhythmEvents, RHYTHM_KEYMAPS, RhythmGame } from '
 const note = (pitch = 60, startMs = 0, durationMs = 300) => ({ note: pitch, startMs, durationMs, velocity: 100 });
 const make = (notes, options) => new RhythmGame(buildRhythmChart(notes), options);
 
+test('automatic map preserves chromatic pitches; explicit folding retains timing without changing original score', () => {
+  const source = [note(49),note(61,500),note(85,1000)];
+  const saved = structuredClone(source);
+  assert.equal(buildRhythmChart([note(61)], 'auto').notes[0].note,61);
+  assert.throws(()=>buildRhythmChart(source,'auto'),/12 键/);
+  const chart = buildRhythmChart(source,'fold');
+  assert.equal(chart.folded,2);assert.deepEqual(chart.notes.map(n=>n.note),[61,61,61]);
+  assert.deepEqual(chart.notes.map(n=>n.startMs),[0,500,1000]);assert.deepEqual(source,saved);
+  assert.throws(()=>buildRhythmChart(Array.from({length:13},(_,i)=>note(48+i)),'auto'),/13/);
+  assert.equal(buildRhythmChart(demoRhythmEvents('twinkle'),'auto').notes[2].lane,4);
+});
+
 test('chart preserves pitch, velocity and rhythm without mutating source', () => {
   const events = [note(67, 500), note(60, 0)], saved = structuredClone(events);
   const chart = buildRhythmChart(events);

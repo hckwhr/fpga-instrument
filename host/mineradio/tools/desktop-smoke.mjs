@@ -63,11 +63,14 @@ try {
   };
   const waitFor = async (expression, seconds = 20) => {
     for (let i = 0; i < seconds * 5; i++) { if (await evaluate(expression)) return; await pause(200); }
-    throw Error(`UI timeout: ${expression}`);
+    const state = await evaluate(`({url:location.href,body:document.body.className,frames:[...document.querySelectorAll('iframe')].map(f=>({src:f.src,title:f.title,loaded:f.contentDocument?.readyState,text:f.contentDocument?.body?.innerText?.slice(0,400)})),mode:document.querySelector('#mode-fpga')?.outerHTML})`);
+    await writeFile(resolve(evidence, 'desktop-timeout.png'), Buffer.from((await page('Page.captureScreenshot', {format:'png'})).data, 'base64'));
+    throw Error(`UI timeout: ${expression}\n${JSON.stringify(state)}\n${JSON.stringify(errors)}`);
   };
   const mouseClick = async selector => {
     const point = await evaluate(`(()=>{const b=document.querySelector(${JSON.stringify(selector)}),r=b.getBoundingClientRect(),x=r.x+r.width/2,y=r.y+r.height/2;return {x,y,reachable:x>0&&y>0&&x<innerWidth&&y<innerHeight&&b.contains(document.elementFromPoint(x,y))};})()`);
     assert.equal(point.reachable, true, `Mouse cannot reach ${selector}: ${JSON.stringify(point)}`);
+    await page('Input.dispatchMouseEvent', { type: 'mouseMoved', x: point.x, y: point.y });
     await page('Input.dispatchMouseEvent', { type: 'mousePressed', x: point.x, y: point.y, button: 'left', clickCount: 1 });
     await page('Input.dispatchMouseEvent', { type: 'mouseReleased', x: point.x, y: point.y, button: 'left', clickCount: 1 });
   };

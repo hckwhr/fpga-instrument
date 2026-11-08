@@ -4,6 +4,16 @@ import {RhythmSession} from '../src/rhythm-session.js';
 import {rhythmRequest, parsePerformanceLine, performanceLine, packKeymap} from '../src/performance-protocol.js';
 const pitches = [60,62,64,65,67,69,71,72,74,76,77,79];
 const turn = () => new Promise(resolve => setImmediate(resolve));
+
+test('startup waits for an existing background transaction and refuses disconnected/uncertain links',async()=>{
+  const f=fixture();let busy=true;
+  f.session.device.snapshot=()=>({identity:true,connected:true,busy});
+  const opening=f.session.open(pitches);await turn();assert.equal(f.commands.length,0);
+  busy=false;await opening;assert.ok(f.session.running);await f.session.close();
+  f.session.device.snapshot=()=>({connected:false});await assert.rejects(f.session.open(pitches),/连接/);
+  f.session.device.snapshot=()=>({connected:true,blocked:true});await assert.rejects(f.session.open(pitches),/未得到确认/);
+  f.session.dispose();
+});
 function statusBits({guard=false,active=false,cue=0,keys=0,hits=0,guide=0}={}) {
   return ((2n<<70n)|(BigInt(guard)<<69n)|(BigInt(active)<<68n)|(BigInt(cue)<<36n)|
     (BigInt(keys)<<24n)|(BigInt(hits)<<12n)|BigInt(guide)).toString(16).toUpperCase().padStart(18,'0');

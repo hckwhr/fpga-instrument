@@ -6,7 +6,7 @@ export async function checkHardwareRhythm(evaluate) {
   const wait = expression => evaluate(`new Promise((resolve,reject)=>{let n=0;const p=()=>{if(${expression})resolve();else if(n++>250)reject(Error('Rhythm UI timeout: '+document.querySelector('#rhythm-status').textContent));else setTimeout(p,20)};p()})`);
   await evaluate(`(async()=>{
     const {performanceLine,packKeymap}=await import('./src/performance-protocol.js');
-    let buffer='';window.rhythmPeer={guard:false,active:false,cue:0,keys:0,hits:0,guide:0};window.rhythmOps=[];
+    let buffer='';window.rhythmPeer={guard:false,active:false,cue:0,keys:0,hits:0,guide:0};window.rhythmOps=[];window.rejectRhythmArm=false;
     window.onBleWrite=chunk=>{
       buffer+=new TextDecoder().decode(chunk);
       while(buffer.includes('\\n')){
@@ -20,7 +20,9 @@ export async function checkHardwareRhythm(evaluate) {
           if(op===6){const b=BigInt('0x'+payload);s.guard=s.active=Boolean(b&(1n<<44n));s.cue=Number((b>>12n)&0xffffffffn);s.hits=0;s.guide=Number(b&4095n);}
           const bits=(2n<<70n)|(BigInt(s.guard)<<69n)|(BigInt(s.active)<<68n)|(BigInt(s.cue)<<36n)|(BigInt(s.keys)<<24n)|(BigInt(s.hits)<<12n)|BigInt(s.guide);
           const encoded=op>=6?bits.toString(16).toUpperCase().padStart(18,'0'):packKeymap(Array.from({length:12},(_,i)=>60+i));
-          response=performanceLine('PERF1,'+id+',A,'+op+','+(op===1?1:0)+','+encoded);
+          const rejected=window.rejectRhythmArm&&op===6&&Boolean(BigInt('0x'+payload)&(1n<<44n));
+          if(rejected)s.guard=s.active=false;
+          response=performanceLine('PERF1,'+id+',A,'+op+','+(rejected?2:op===1?1:0)+','+encoded);
         }
         if(response)window.emitBle(new TextEncoder().encode(response));
       }
@@ -48,6 +50,14 @@ export async function checkHardwareRhythm(evaluate) {
   await evaluate(`document.querySelector('#rhythm-pause').click()`);
   await wait(`!window.rhythmPeer.active&&window.rhythmOps.at(-1)===2&&!document.querySelector('#rhythm-start').disabled`);
   assert.equal(await evaluate(`document.querySelector('#rhythm-start').textContent`),'继续练习');
+  // The ready screen must not hide a known device rejection behind the sidebar.
+  await evaluate(`window.rejectRhythmArm=true;document.querySelector('#rhythm-start').click()`);
+  await wait(`document.querySelector('#rhythm-stage-status').textContent.includes('设备忙')&&!document.querySelector('#rhythm-start').disabled`);
+  await new Promise(resolve=>setTimeout(resolve,800));
+  assert.equal(await evaluate(`document.querySelector('#rhythm-judgement').textContent`),'练习未就绪');
+  await evaluate(`document.querySelector('#rhythm-focus').click()`);
+  assert.equal(await evaluate(`getComputedStyle(document.querySelector('.rhythm-settings')).display`),'none');
+  await evaluate(`document.querySelector('#rhythm-focus').click();window.rejectRhythmArm=false`);
   await evaluate(`window.dispatchEvent(new CustomEvent('instrument-mode',{detail:'fpga'}));document.querySelector('#disconnect').click()`);
   await wait(`document.querySelector('#disconnect').disabled`);
   console.log('PASS: production rhythm UI + mocked BLE PERF1: capability, stop autoplay, RGB cues, sticky physical hits, no local fake hits, exclusive ownership, pause/map restore');

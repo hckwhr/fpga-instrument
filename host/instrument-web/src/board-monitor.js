@@ -37,10 +37,12 @@ export function createBoardMonitor(device, upload) {
   }
   $('.keyboard-keys').style.setProperty('--white-keys', white);
   let identity = null, visible = true, polling = false, disposed = false, manualOperation = false;
+  let rhythmMode = false;
+  window.addEventListener('instrument-mode', event => { rhythmMode = event.detail === 'rhythm'; });
   window.addEventListener('instrument-performance-operation', event => { manualOperation = Boolean(event.detail); });
   const available = () => {
     const d = device.snapshot(), u = upload.snapshot();
-    return !manualOperation && d.connected && !d.busy && !d.blocked && !u.busy && Boolean(u.capability?.playback);
+    return !rhythmMode && !manualOperation && d.connected && !d.busy && !d.blocked && !u.busy && Boolean(u.capability?.playback);
   };
   function render() {
     const d = device.snapshot(), u = upload.snapshot(), p = u.playback;

@@ -66,6 +66,7 @@ export class RhythmSession {
   }
   async prepare(pitches) {
     try {
+      await this.waitForIdle();
       if (!this.device.snapshot().identity) await this.device.request('HELLO');
       await this.device.request('STOP'); // stop auto-play before taking exclusive ownership
       this.release = this.device.acquireExclusive(); this.buffer = '';
@@ -82,6 +83,17 @@ export class RhythmSession {
       // have already released/blocked the device and must never auto-replay.
       if (this.release) await this.cleanup().catch(() => {});
       throw error;
+    }
+  }
+  async waitForIdle() {
+    const deadline = Date.now() + 8000;
+    for (;;) {
+      const state = this.device.snapshot();
+      if (state.connected === false) throw Error('请先在 FPGA 工作台连接 BLE 或 USB');
+      if (state.blocked) throw Error('上次通信未得到确认，请断开重连后再开始');
+      if (!state.busy) return;
+      if (Date.now() >= deadline) throw Error('设备仍在上传、录音或查询，请结束当前操作后再开始');
+      await new Promise(resolve => setTimeout(resolve, 50));
     }
   }
   async setCue(mask) {

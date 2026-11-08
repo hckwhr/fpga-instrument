@@ -53,6 +53,18 @@ body.rhythm-mode #rhythm-root { background:radial-gradient(ellipse at 40% 10%,#7
 .rhythm-choice span { font-size:13px; }.rhythm-choice small { display:block; font-size:10px; margin-top:5px; color:var(--muted); }
 .rhythm-actions { display:flex; gap:8px; margin:0 0 16px; }
 .rhythm-actions #rhythm-start { flex:1; min-height:44px; }
+.rhythm-stage-status { margin:0 0 14px; padding:10px 14px; border-left:2px solid #81dcd0; background:#a4d6ef0a; color:#b8d4df; font-size:12px; line-height:1.7; overflow-wrap:anywhere; }
+#rhythm-root[data-error=true] .rhythm-stage-status { border-color:#f0ba91; background:#e9ad7914; color:#ffe1ba; }
+.rhythm-stage { position:relative; border-color:#9dd5f43d; box-shadow:0 24px 80px #07111c40,inset 0 1px #d1e8ff24; }
+.rhythm-roll { background:radial-gradient(ellipse at 50% 5%,#6656a637,transparent 65%),linear-gradient(#0c1429,#16263b); }
+.rhythm-callout strong { letter-spacing:.12em; text-shadow:0 0 24px #81e5da40; }
+.rhythm-actions .button { border-color:#9fbede42; background:#26364d; color:#deedf5; }
+.rhythm-actions .button.primary { background:linear-gradient(115deg,#86ded5,#a9b5ee); border-color:transparent; color:#122332; font-weight:650; }
+.rhythm-actions .button:disabled { opacity:.45; }
+.stage-expanded .rhythm-layout { grid-template-columns:minmax(0,1fr); }
+.stage-expanded .rhythm-settings { display:none; }
+.stage-expanded .rhythm-roll { height:clamp(340px,65vh,780px); }
+.rhythm-stage [hidden],.rhythm-settings [hidden] { display:none !important; }
 .rhythm-settings .button { font-size:12px; padding:10px; }
 .rhythm-counts { display:grid; grid-template-columns:1fr 1fr; gap:12px; padding:18px 0; font-size:11px; color:var(--muted); border-top:1px solid var(--line); }
 .rhythm-counts b { float:right; color:var(--text); }
