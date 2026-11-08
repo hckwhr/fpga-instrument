@@ -5,7 +5,8 @@
 module instrument_panel_renderer #(parameter integer COMPACT_SCOPE=0, parameter integer UPLOAD_UI=0,
     parameter integer LIVE_KEYBOARD=0, parameter integer ADDITIVE_BANK_ENABLE=1,
     parameter integer STRING_BANK_ENABLE=1, parameter integer KEYBOARD_MODE_ENABLE=0,
-    parameter integer MULTI_TIMBRE_ENABLE=0, parameter integer LIGHT_UI_ENABLE=0) (
+    parameter integer MULTI_TIMBRE_ENABLE=0, parameter integer LIGHT_UI_ENABLE=0,
+    parameter integer WHITE_BACKGROUND=0) (
     input  wire               pixel_clk,
     input  wire               reset_n,
     input  wire [10:0]        active_x,
@@ -32,8 +33,8 @@ module instrument_panel_renderer #(parameter integer COMPACT_SCOPE=0, parameter 
     `include "instrument_contract.vh"
     // Compile-time palette: no runtime RGB conversion or extra pixel stage.
     // Warm paper, graphite text and restrained blue/green accents (6-bit RGB).
-    localparam [17:0] UI_BG={6'd60,6'd60,6'd58},
-        UI_SURFACE={6'd63,6'd63,6'd61}, UI_TINT={6'd52,6'd56,6'd56},
+    localparam [17:0] UI_BG=WHITE_BACKGROUND ? 18'h3ffff : {6'd60,6'd60,6'd58},
+        UI_SURFACE=WHITE_BACKGROUND ? 18'h3ffff : {6'd63,6'd63,6'd61}, UI_TINT={6'd52,6'd56,6'd56},
         UI_BORDER={6'd43,6'd47,6'd47}, UI_TEXT={6'd10,6'd14,6'd17},
         UI_MUTED={6'd22,6'd28,6'd30}, UI_ACCENT={6'd21,6'd34,6'd39},
         UI_GREEN={6'd27,6'd41,6'd34}, UI_AMBER={6'd43,6'd34,6'd20},

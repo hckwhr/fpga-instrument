@@ -6,7 +6,9 @@ module tb_performance_uart #(parameter integer RHYTHM_TEST=0);
     always @(negedge audio_clk)ce<=!ce;
     reg sample_strobe=0,busy=0;
     reg [11:0] physical_keys=0;
-    wire rhythm_guard;wire [11:0] rhythm_play,rhythm_guide;
+    wire rhythm_guard,rhythm_takeover;wire [11:0] rhythm_play,rhythm_guide;
+    integer takeovers=0;
+    always @(posedge audio_clk)if(reset_n && ce && rhythm_takeover)takeovers++;
     reg signed [15:0] sample=0;
     integer sample_phase=0,sample_number=0;
     always @(negedge audio_clk)begin
@@ -26,7 +28,7 @@ module tb_performance_uart #(parameter integer RHYTHM_TEST=0);
     performance_uart #(.CE_ENABLE(1),.LEASE_CYCLES(15000000),.MAX_BLOCKS(5),.RHYTHM_ENABLE(RHYTHM_TEST)) dut(
         .sys_clk(sys_clk),.sys_reset_n(reset_n),.audio_clk(audio_clk),.audio_reset_n(reset_n),.clock_enable(ce),
         .sample_strobe(sample_strobe),.sample(sample),.keyboard_busy(busy),.custom_enabled(enabled),.custom_map(mapping),
-        .physical_keys(physical_keys),.rhythm_blocked(1'b0),.rhythm_guard(rhythm_guard),.rhythm_play_keys(rhythm_play),.rhythm_guide_keys(rhythm_guide),
+        .physical_keys(physical_keys),.rhythm_blocked(1'b0),.rhythm_guard(rhythm_guard),.rhythm_takeover(rhythm_takeover),.rhythm_play_keys(rhythm_play),.rhythm_guide_keys(rhythm_guide),
         .rx_data(rx_data),.rx_valid(rx_valid),.tx_data(tx_data),.tx_valid(tx_valid),.tx_ready(tx_ready));
     function automatic [15:0] crc_byte(input [15:0] crc,input [7:0] b);
         reg [15:0] c;integer k;
@@ -76,6 +78,13 @@ module tb_performance_uart #(parameter integer RHYTHM_TEST=0);
             send(6,6,0,1);#100000;if(!rhythm_guard||acks!=5)$fatal(1,"bad CRC stopped session");
             send(7,6,0);wait(acks==6);if(last_status!=0||rhythm_guard||rhythm_play!=0)$fatal(1,"stop CDC");
             send(8,2,0);wait(acks==7);if(last_status!=0)$fatal(1,"map restore");
+            before_ack=takeovers;
+            busy=1;send(9,6,{27'd0,1'b1,32'd9,12'h001});wait(acks==8);
+            if(last_status!=2 || rhythm_guard || takeovers!=before_ack)$fatal(1,"busy arm changed owner");
+            busy=0;send(10,6,{27'd1,1'b1,32'd10,12'h001});wait(acks==9);
+            if(last_status!=3 || rhythm_guard || takeovers!=before_ack)$fatal(1,"malformed arm changed owner");
+            send(11,6,{27'd0,1'b1,32'd11,12'h001},1);#100000;
+            if(acks!=9 || takeovers!=before_ack)$fatal(1,"bad CRC triggered takeover");
             $fclose(log_file);$fclose(pcm_file);
             $display("PASS: rhythm PERF1 CRC, audio CE request/ack, 32-bit cue, sticky hits, map/record exclusivity, stop/restore");$finish;
         end

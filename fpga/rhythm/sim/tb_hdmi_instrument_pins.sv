@@ -3,7 +3,7 @@
 `define S dut.u_instrument.strings_enabled.u_physical_string_bank
 // No event/mode forces: dual ADC pins and debounced physical menu pins are
 // the only stimuli. Only vendor PLL outputs are replaced by simulation clocks.
-module tb_hdmi_instrument_pins #(parameter integer PERFORMANCE_TEST=0, PLAYABILITY_TEST=0, TIMBRE_TEST=0, RHYTHM_TEST=0);
+module tb_hdmi_instrument_pins #(parameter integer PERFORMANCE_TEST=0, PLAYABILITY_TEST=0, TIMBRE_TEST=0, RHYTHM_TEST=0, DUAL_DISPLAY_TEST=0);
     reg sys_clk=0,audio_clk=0,pixel_clk=0,render_clk=0,locked=0;
     always #10 sys_clk=~sys_clk;
     always #10.172414 audio_clk=~audio_clk;
@@ -17,7 +17,7 @@ module tb_hdmi_instrument_pins #(parameter integer PERFORMANCE_TEST=0, PLAYABILI
     wire miso,sclk,mosi,cs0,cs1,bck,ws,din,rgb_data;
     // Retain the original configuration's exact pixel/audio oracle. A separate
     // TIMBRE_TEST instance exercises both newly enabled production features.
-    v3_hdmi_top #(.MULTI_TIMBRE_ENABLE(TIMBRE_TEST),.LIGHT_UI_ENABLE(TIMBRE_TEST)) dut(.sys_clk(sys_clk),.key0_n(keys_n[0]),.key1_n(keys_n[1]),
+    v3_hdmi_top #(.DUAL_DISPLAY_ENABLE(DUAL_DISPLAY_TEST),.MULTI_TIMBRE_ENABLE(TIMBRE_TEST),.LIGHT_UI_ENABLE(TIMBRE_TEST || DUAL_DISPLAY_TEST)) dut(.sys_clk(sys_clk),.key0_n(keys_n[0]),.key1_n(keys_n[1]),
         .key2_n(keys_n[2]),.setting_key(setting),.adc_miso(miso),.hc05_rx(serial_rx),
         .adc_sclk(sclk),.adc_mosi(mosi),.adc_cs0_n(cs0),.adc_cs1_n(cs1),
         .audio_bck(bck),.audio_ws(ws),.audio_din(din),
@@ -42,6 +42,8 @@ module tb_hdmi_instrument_pins #(parameter integer PERFORMANCE_TEST=0, PLAYABILI
         .red(reference_rgb[17:12]),.green(reference_rgb[11:6]),.blue(reference_rgb[5:0]),
         .hsync_out(reference_hs),.vsync_out(reference_vs),.de_out(reference_de));
     integer hdmi_pixels=0,hdmi_panels=0,hdmi_frames=0;
+    integer dual_key_pixels=0,dual_white_pixels=0,dual_lcd_pixels=0;
+    wire [67:0] tested_lcd_status;
     reg [1:0] expected_de=0,expected_hs=0,expected_vs=0;
     reg [36:0] expected_raster;
     always @(posedge `H.pixel_clk)begin
@@ -53,7 +55,7 @@ module tb_hdmi_instrument_pins #(parameter integer PERFORMANCE_TEST=0, PLAYABILI
             expected_hs={expected_hs[0],`H.lcd_hsync_timing};
             expected_vs={expected_vs[0],`H.lcd_vsync_timing};
             #0.01;
-            if(!TIMBRE_TEST && {`H.lcd_r_internal,`H.lcd_g_internal,`H.lcd_b_internal,
+            if(!TIMBRE_TEST && !DUAL_DISPLAY_TEST && {`H.lcd_r_internal,`H.lcd_g_internal,`H.lcd_b_internal,
                 `H.lcd_hsync_internal,`H.lcd_vsync_internal,`H.lcd_de_internal} !==
                 {reference_rgb,reference_hs,reference_vs,reference_de})
                 $fatal(1,"pin-driven pixel differs from frozen stage67 baseline x=%0d y=%0d",`H.lcd_active_x,`H.lcd_active_y);
@@ -202,8 +204,8 @@ module tb_hdmi_instrument_pins #(parameter integer PERFORMANCE_TEST=0, PLAYABILI
         if(serial_tx!==1)$fatal(1,"UART reply framing");
         uart_reply={uart_reply,uart_byte};
     end
-    task named_command(input string command,input string expected_reply);
-        integer a,b;
+    task named_command(input string command,input string expected_reply,input bit prefix_only=0);
+        integer a,b,wait_samples;reg [15:0] crc,reply_crc;
         begin
             uart_reply="";
             for(a=0;a<command.len();a++)begin
@@ -212,7 +214,15 @@ module tb_hdmi_instrument_pins #(parameter integer PERFORMANCE_TEST=0, PLAYABILI
                 serial_rx=1;repeat(434)@(negedge sys_clk);
             end
             samples(120);
-            if(uart_reply!=expected_reply)$fatal(1,"named song reply: %s expected %s",uart_reply,expected_reply);
+            wait_samples=0;
+            while((uart_reply.len()==0 || uart_reply[uart_reply.len()-1]!=10) && wait_samples<1000)begin samples(1);wait_samples++;end
+            if(prefix_only)begin
+                if(uart_reply.substr(0,expected_reply.len()-1)!=expected_reply || uart_reply[uart_reply.len()-1]!=10)
+                    $fatal(1,"uploaded song reply: %s expected prefix %s",uart_reply,expected_reply);
+                crc=16'hffff;for(a=0;a<uart_reply.len()-6;a++)crc=performance_crc(crc,uart_reply[a]);
+                if($sscanf(uart_reply.substr(uart_reply.len()-5,uart_reply.len()-2),"%h",reply_crc)!=1 || crc!==reply_crc)
+                    $fatal(1,"uploaded reply CRC %s",uart_reply);
+            end else if(uart_reply!=expected_reply)$fatal(1,"named song reply: %s expected %s",uart_reply,expected_reply);
         end
     endtask
     integer expected_string_root=0,performance_mapped=0;
@@ -253,12 +263,36 @@ module tb_hdmi_instrument_pins #(parameter integer PERFORMANCE_TEST=0, PLAYABILI
         force `H.pixel_clk=render_clk;
         force `H.audio_pll_locked=locked;force `H.display_pll_locked=locked;
         boot_strings();
+        if(DUAL_DISPLAY_TEST)begin
+            samples(2000);
+            if(!dut.lcd_bl || !tested_lcd_status[23])$fatal(1,"LCD settings missing");
+            if(tested_lcd_status[17+:2]!==`H.tone_select ||
+               !tested_lcd_status[34])$fatal(1,"LCD settings do not match controls");
+            values[119:110]=320;samples(2000);
+            if(!`H.u_stage.active[56] || `H.u_stage.held!==12'h001)$fatal(1,"HDMI physical left key");
+            menu();samples(2000);
+            if(`H.u_stage.held!=0 || !`H.u_visual_feedback.display_enabled)$fatal(1,"menu interrupted HDMI presentation");
+            if(dual_key_pixels==0 || dual_white_pixels==0 || dual_lcd_pixels==0)$fatal(1,"dual pin pixel coverage");
+            $display("PASS: dual production top: physical menu on LCD, ADC left key on HDMI, white letterbox, valid LCD pixels, uninterrupted HDMI visualizer");$finish;
+        end
         if(RHYTHM_TEST)begin
+            // Real serial commands enter the song preset and STOP leaves its
+            // menu ownership intact. Follow-along must then take ownership.
+            named_command("PLAY,0\n","OK,PLAY,0\n");
+            if(!`H.song_active)$fatal(1,"song prerequisite did not start");
+            named_command("STOP\n","OK,STOP\n");
             // UART commands, physical SPI sensor and actual C17/DAC outputs.
             for(k=0;k<12;k++)performance_map[k*6+:6]=16+k;
             performance_command(1,performance_map);
             uart_reply="";performance_command(6,{27'd0,1'b1,32'd1,12'h001});
             if(uart_reply.substr(0,20)!="PERF1,76543210,A,6,0,")$fatal(1,"rhythm arm ACK %s",uart_reply);
+            if(`H.song_active || `H.uploaded_selected || !`H.v3_keyboard_live)$fatal(1,"rhythm did not release song ownership");
+            // PLAY selects piano; choose the string preset again after stopping
+            // the first session so the existing string/DAC oracle still runs.
+            performance_command(6,72'd0);
+            menu();press(1);press(1);press(4);menu();samples(20);
+            if(!`H.string_mode)$fatal(1,"post-song strings selection failed");
+            uart_reply="";performance_command(6,{27'd0,1'b1,32'd1,12'h001});
             if(rgb_frame[23:0]!==24'h100010 || rgb_frame[287:24]!==0)$fatal(1,"rhythm C17 left key guide %h",rgb_frame);
             energy=0;measure=1;old_on=ons;
             values[9:0]=320;samples(180);measure=0;
@@ -289,6 +323,23 @@ module tb_hdmi_instrument_pins #(parameter integer PERFORMANCE_TEST=0, PLAYABILI
             old_on=ons;energy=0;measure=1;values[119:110]=320;samples(180);measure=0;
             if(ons!=old_on+1 || energy==0 || `H.polyphony_active_voice_count==0)$fatal(1,"rhythm 32-voice route silent");
             $display("CHECK: rhythm polyphony instrument -> decoded DAC energy=%0d",energy);
+            values[119:110]=31;samples(180);performance_command(6,0);
+            // Reproduce the reported failure with an actually uploaded score,
+            // not only the built-in song preset. Keep STOP's historical selector
+            // semantics, then prove explicit rhythm arm releases ownership.
+            named_command("SONG2,0123456789ABCDEF,0,CAPS,DC34\n","ACK2,0123456789ABCDEF,0,CAPS,",1);
+            named_command("SONG2,0123456789ABCDEF,1,BEGIN,12,4,10,2,8281,DB28\n","ACK2,0123456789ABCDEF,1,BEGIN,0,9643\n");
+            named_command("SONG2,0123456789ABCDEF,2,DATA,0,4,000000800003430000000200000343000000088000A36B0100000A0000A36B01,526A\n","ACK2,0123456789ABCDEF,2,DATA,4,0A9B\n");
+            named_command("SONG2,0123456789ABCDEF,3,COMMIT,4,8281,08DA\n","ACK2,0123456789ABCDEF,3,COMMIT,4,8281,7E71\n");
+            named_command("SONG2,0123456789ABCDEF,4,PLAY,4,8281,1,320E\n","ACK2,0123456789ABCDEF,4,PLAY,",1);
+            if(!`H.uploaded_selected)$fatal(1,"upload prerequisite not selected");
+            named_command("SONG2,0123456789ABCDEF,5,STOP,0F2F\n","ACK2,0123456789ABCDEF,5,STOP,0,",1);
+            if(!`H.uploaded_selected)$fatal(1,"ordinary STOP changed selector semantics");
+            uart_reply="";performance_command(6,{27'd0,1'b1,32'd5,12'h001});
+            if(uart_reply.substr(0,20)!="PERF1,76543210,A,6,0," || `H.uploaded_selected || !`H.v3_keyboard_live)
+                $fatal(1,"uploaded STOP to rhythm handoff %s",uart_reply);
+            old_on=ons;energy=0;measure=1;values[119:110]=320;samples(180);measure=0;
+            if(ons!=old_on+1 || energy==0)$fatal(1,"uploaded handoff physical DAC silent");
             values[119:110]=31;samples(180);performance_command(6,0);
             $display("PASS: rhythm production UART -> RGB C17 -> physical ADC -> string event -> decoded PT8211; wrong key silence, held retrigger rejection, chord, stop");$finish;
         end
@@ -439,6 +490,24 @@ module tb_hdmi_instrument_pins #(parameter integer PERFORMANCE_TEST=0, PLAYABILI
         $display("PASS: HDMI product physical dual-ADC pins -> all 12 keys -> 8 strings -> exact PT8211 words; ON=%0d OFF=%0d writes=%0d frames=%0d nonzero=%0d force_soft=%0d force_hard=%0d; 16 clocks/BCK half, 1024 clocks/frame",ons,offs,writes,frames,nonzero,soft_energy,hard_energy);
         $finish;
     end
+    reg lcd_clk=0;always #15 lcd_clk=~lcd_clk;
+    generate if(DUAL_DISPLAY_TEST)begin: dual_test
+        assign tested_lcd_status=`H.lcd_enabled.u_lcd.u_menu.status_active;
+        initial begin force `H.lcd_enabled.u_lcd.clk=lcd_clk;force `H.lcd_enabled.u_lcd.locked=locked;end
+        always @(posedge dut.lcd_pclk)if(dut.lcd_de)begin
+            if((^{dut.lcd_r,dut.lcd_g,dut.lcd_b})===1'bx)$fatal(1,"LCD unknown pixel");
+            dual_lcd_pixels++;
+        end
+        always @(negedge render_clk)if(`H.pixel_internal_reset_n)begin
+            if(`H.u_stage.rgb=={6'd31,6'd48,6'd44})dual_key_pixels++;
+            if(`H.de_delay[1] && !`H.panel_enable_delay[1])begin
+                if(`H.hdmi_rgb!==24'hffffff)$fatal(1,"HDMI letterbox not white");
+                dual_white_pixels++;
+            end
+        end
+    end else begin: no_dual_test
+        assign tested_lcd_status=0;
+    end endgenerate
     initial begin #(PLAYABILITY_TEST ? 900000000 : 400000000);$fatal(1,"V3 string pin timeout");end
 endmodule
 `undef H

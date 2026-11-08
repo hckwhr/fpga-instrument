@@ -15,7 +15,7 @@
 //  - A per-frame peak sets a shift so quiet playing still fills the box.
 //    Below the noise floor the trace is suppressed and only the live cursor
 //    remains, which is also what silence should look like.
-module visual_feedback #(parameter integer LIGHT_UI_ENABLE=0) (
+module visual_feedback #(parameter integer LIGHT_UI_ENABLE=0, PERFORMANCE_UI=0) (
     input wire clk,reset_n,frame_start,enable,
     input wire [10:0] x,
     input wire [9:0] y,
@@ -53,14 +53,17 @@ module visual_feedback #(parameter integer LIGHT_UI_ENABLE=0) (
     function signed [10:0] scaled;
         input signed [9:0] value;
         input signed [10:0] limit;
+        input [2:0] left_shift,right_shift;
         reg signed [13:0] wide;
         begin
-            wide = (shift_left!=3'd0) ? (value<<<shift_left) : (value>>>shift_right);
+            wide = (left_shift!=3'd0) ? (value<<<left_shift) : (value>>>right_shift);
             scaled = (wide>limit) ? limit : (wide<-limit) ? -limit : wide[10:0];
         end
     endfunction
-    wire signed [8:0] plot_x=9'sd64+scaled(sample_old,11'sd55);
-    wire signed [8:0] plot_y=9'sd64-scaled(sample_now,11'sd51);
+    // Explicit gain arguments make a gain/reset change reevaluate even while
+    // the audio sample stays at zero; no hidden function sensitivity inputs.
+    wire signed [8:0] plot_x=9'sd64+scaled(sample_old,11'sd55,shift_left,shift_right);
+    wire signed [8:0] plot_y=9'sd64-scaled(sample_now,11'sd51,shift_left,shift_right);
     wire [6:0] point_x=plot_x[6:0];
     wire [6:0] point_y=plot_y[6:0];
     reg [2:0] xy_pixel;
@@ -187,25 +190,35 @@ module visual_feedback #(parameter integer LIGHT_UI_ENABLE=0) (
             xy_region_q<=xy_region;spectrum_region_q<=spectrum_region;
             enable_q<=display_enabled;x_q<=x;y_q<=y;label_bit<=~label_x[4:0];
             overlay<=enable_q && (header_q || xy_region_q || spectrum_region_q);
-            rgb<=(LIGHT_UI_ENABLE ? {6'd63,6'd63,6'd61} : {6'd1,6'd5,6'd8});
+            rgb<=PERFORMANCE_UI ? {6'd63,6'd63,6'd63} : (LIGHT_UI_ENABLE ? {6'd63,6'd63,6'd61} : {6'd1,6'd5,6'd8});
             if(header_q)begin
-                rgb<=label_word[label_bit]?(LIGHT_UI_ENABLE ? {6'd22,6'd28,6'd30} : {6'd38,6'd56,6'd61}):(LIGHT_UI_ENABLE ? {6'd60,6'd60,6'd58} : {6'd1,6'd3,6'd5});
+                rgb<=PERFORMANCE_UI ? {6'd63,6'd63,6'd63} : label_word[label_bit]?(LIGHT_UI_ENABLE ? {6'd22,6'd28,6'd30} : {6'd38,6'd56,6'd61}):(LIGHT_UI_ENABLE ? {6'd60,6'd60,6'd58} : {6'd1,6'd3,6'd5});
             end else if(spectrum_region_q)begin
                 if(y_q==445 || x_q==16 || x_q==527)
                     rgb<=(LIGHT_UI_ENABLE ? {6'd43,6'd47,6'd47} : {6'd4,6'd35,6'd44});
                 else if(height!=0 && y_q>=10'd444-{2'd0,height} && x_q[1:0]!=3)
-                    rgb<=(LIGHT_UI_ENABLE ? {6'd27,6'd41,6'd34} : {6'd7,6'd54,6'd61});
+                    rgb<=PERFORMANCE_UI ? {6'd12,6'd32,6'd55} : (LIGHT_UI_ENABLE ? {6'd27,6'd41,6'd34} : {6'd7,6'd54,6'd61});
                 else if(x_q[6:0]==16 || y_q==404 || y_q==364)
                     rgb<=(LIGHT_UI_ENABLE ? {6'd53,6'd55,6'd54} : {6'd2,6'd14,6'd20});
             end else if(xy_region_q)begin
                 if(x_q==552 || x_q==775 || y_q==256 || y_q==463)
                     rgb<=(LIGHT_UI_ENABLE ? {6'd43,6'd47,6'd47} : {6'd4,6'd35,6'd44});
                 else if(marker_valid && marker_pixel)
-                    rgb<=(LIGHT_UI_ENABLE ? {6'd21,6'd34,6'd39} : {6'd63,6'd63,6'd40});
+                    rgb<=PERFORMANCE_UI ? {6'd35,6'd14,6'd50} : (LIGHT_UI_ENABLE ? {6'd21,6'd34,6'd39} : {6'd63,6'd63,6'd40});
                 else if(xy_pixel!=3'd0)begin
                     // Phosphor ramp: the freshest trace is near white and older
                     // passes fade through violet.
-                    case(xy_pixel)
+                    if(PERFORMANCE_UI)begin
+                        case(xy_pixel)
+                            7:rgb<={6'd35,6'd14,6'd50};
+                            6:rgb<={6'd39,6'd21,6'd52};
+                            5:rgb<={6'd43,6'd28,6'd54};
+                            4:rgb<={6'd47,6'd35,6'd56};
+                            3:rgb<={6'd51,6'd42,6'd58};
+                            2:rgb<={6'd55,6'd49,6'd60};
+                            default:rgb<={6'd59,6'd56,6'd62};
+                        endcase
+                    end else case(xy_pixel)
                         3'd7:rgb<=(LIGHT_UI_ENABLE ? {6'd21,6'd34,6'd39} : {6'd63,6'd52,6'd63});
                         3'd6:rgb<=(LIGHT_UI_ENABLE ? {6'd27,6'd39,6'd43} : {6'd57,6'd34,6'd62});
                         3'd5:rgb<=(LIGHT_UI_ENABLE ? {6'd33,6'd43,6'd46} : {6'd49,6'd22,6'd58});

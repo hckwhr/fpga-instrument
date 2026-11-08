@@ -251,6 +251,11 @@ def netlist_audit(path, processes, contest_32=False, contest_strings=False):
         # CDC modules share their source code but only the audio side is gated.
         if source in scanner.CDC:
             audio_src = prefix in ('u_instrument/u_status_bundle_cdc','u_instrument/u_audio_sample_cdc',
+                                   # LCD has an independent handshake; only its
+                                   # SRC_CE_ENABLE=1 audio side is eligible. The
+                                   # same flattened CE/D=Q proof below is still
+                                   # mandatory; no LCD destination is relaxed.
+                                   'u_instrument/lcd_enabled.u_lcd/u_status',
                                    'u_instrument/shared_link.endpoint/transmit_legacy')
             audio_dst = prefix in ('u_instrument/v3_analog.u_inputs/u_cdc',
                                    'u_instrument/shared_link.endpoint/receive_legacy')

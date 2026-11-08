@@ -1,4 +1,7 @@
 create_clock -name sys_clk -period 20.000 -waveform {0.000 10.000} [get_ports {sys_clk}]
+create_generated_clock -name lcd_pixel_clk -source [get_ports {sys_clk}] -master_clock sys_clk -divide_by 3 -multiply_by 2 [get_pins {u_instrument/lcd_enabled.u_lcd/u_lcd_pll/u_pll/PLL_inst/CLKOUT0}]
+# LCD reuses the accepted 33.333 MHz PLL and a separate stable-bus handshake.
+set_false_path -through [get_pins {u_instrument/lcd_enabled.u_lcd/reset_sync_n_0_s0/CLEAR u_instrument/lcd_enabled.u_lcd/reset_sync_n_1_s0/CLEAR}]
 create_generated_clock -name audio_clk -source [get_ports {sys_clk}] -master_clock sys_clk -divide_by 59 -multiply_by 58 [get_pins {u_instrument/u_audio_pll/u_pll/PLL_inst/CLKOUT0}]
 # Single video PLL: sys_clk *18 = 900 MHz VCO, /5 serializer, /25 pixel.
 # The 1080p30 cascade through a reference PLL is gone, so these clocks derive
@@ -6,6 +9,7 @@ create_generated_clock -name audio_clk -source [get_ports {sys_clk}] -master_clo
 # recovery/removal; do not mark them asynchronous.
 create_generated_clock -name hdmi_serial_clk -source [get_ports {sys_clk}] -master_clock sys_clk -divide_by 5 -multiply_by 18 [get_pins {u_instrument/u_hdmi_clocks/u_video/u_pll/PLL_inst/CLKOUT0}]
 create_generated_clock -name pixel_clk -source [get_ports {sys_clk}] -master_clock sys_clk -divide_by 25 -multiply_by 18 [get_pins {u_instrument/u_hdmi_clocks/u_video/u_pll/PLL_inst/CLKOUT1}]
+set_clock_groups -asynchronous -group [get_clocks {lcd_pixel_clk}] -group [get_clocks {audio_clk pixel_clk hdmi_serial_clk}]
 # The dashboard now maps 1:1, so the renderer shares the physical pixel clock
 # instead of a separate half-rate output. render_clk is pixel_clk.
 

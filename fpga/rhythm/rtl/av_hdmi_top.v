@@ -20,6 +20,7 @@ module av_hdmi_top #(
     parameter integer BRIGHT_OUTPUT_ENABLE = 0,
     parameter integer MULTI_TIMBRE_ENABLE = 0,
     parameter integer LIGHT_UI_ENABLE = 0,
+    parameter integer DUAL_DISPLAY_ENABLE = 0,
     parameter integer RGB_PIXELS_PER_KEY = 3,
     parameter integer RGB_STARTUP_TEST_ENABLE = 0,
     // 50 MHz sys_clk: 250 us idle + 16 us SPI, about 3.76 ksample/s.
@@ -45,7 +46,6 @@ module av_hdmi_top #(
     output wire       audio_ws,
     output wire       audio_din,
     output wire       audio_pa_en_n,
-    /* LCD physical interface disabled in this project.
     output wire       lcd_pclk,
     output wire       lcd_hsync,
     output wire       lcd_vsync,
@@ -53,8 +53,7 @@ module av_hdmi_top #(
     output wire       lcd_bl,
     output wire [5:0] lcd_r,
     output wire [5:0] lcd_g,
-    output wire [5:0] lcd_b
-    */
+    output wire [5:0] lcd_b,
     output wire       hdmi_clock_p, hdmi_clock_n,
     output wire [2:0] hdmi_data_p, hdmi_data_n,
     output wire       hdmi_tx_enable
@@ -176,11 +175,12 @@ module av_hdmi_top #(
     wire remote_play_request, remote_select_request, remote_select_id;
     wire remote_select_done, remote_select_ok;
     assign remote_song_start=remote_play_request || (remote_select_done && remote_select_ok);
+    wire rhythm_guard,rhythm_takeover;
     wire score_active=song_active || uploaded_selected;
-    wire upload_local_stop=key1_pressed || setting_key_pressed || setting_mode || remote_song_start || remote_song_stop || song_active;
+    wire upload_local_stop=key1_pressed || setting_key_pressed || setting_mode || remote_song_start || remote_song_stop || song_active || rhythm_takeover || rhythm_guard;
     always @(posedge audio_clk or negedge audio_internal_reset_n)begin
         if(!audio_internal_reset_n)uploaded_selected<=0;
-        else if (engine_ce) if(SONG_UPLOAD_ENABLE==0 || setting_key_pressed || setting_mode || remote_song_start || song_active)uploaded_selected<=0;
+        else if (engine_ce) if(SONG_UPLOAD_ENABLE==0 || setting_key_pressed || setting_mode || remote_song_start || song_active || rhythm_takeover || rhythm_guard)uploaded_selected<=0;
         else if(uploaded_run)uploaded_selected<=1;
     end
     wire song_gate, song_trigger, song_done;
@@ -252,7 +252,6 @@ module av_hdmi_top #(
     wire fsr_gate, fsr_trigger, fsr_ready;
     wire v3_live;
     wire v3_keyboard_live, v3_string_live, string_event_mode, string_event_ready;
-    wire rhythm_guard;
     wire [11:0] rhythm_play_keys,rhythm_guide_keys;
     assign rgb_status_audio={score_active || rhythm_guard,
         setting_mode ? 12'd0 : rhythm_guard ? rhythm_guide_keys : score_active ? song_guide_keys : v3_keyboard_live ? v3_keys[11:0] : 12'd0};
@@ -464,7 +463,7 @@ module av_hdmi_top #(
     reg [1:0] panel_enable_delay;
     wire [17:0] panel_rgb = panel_enable_delay[1]
         ? (visual_overlay ? visual_rgb : base_rgb_delay)
-        : LIGHT_UI_ENABLE ? {6'd60,6'd60,6'd58} : 18'h02083;
+        : DUAL_DISPLAY_ENABLE ? 18'h3ffff : LIGHT_UI_ENABLE ? {6'd60,6'd60,6'd58} : 18'h02083;
     wire [23:0] hdmi_rgb = {panel_rgb[17:12],panel_rgb[17:16],
         panel_rgb[11:6],panel_rgb[11:10],panel_rgb[5:0],panel_rgb[5:4]};
 
@@ -531,6 +530,9 @@ module av_hdmi_top #(
     assign status_payload_cdc_audio[ST_VOICES +: 6] = displayed_voice_count;
     assign status_payload_cdc_audio[ST_HELD_NOTES +: 12] =
         (KEYBOARD_MODE_ENABLE && setting_mode) ? {keyboard_piano,11'd0} :
+        // The performance page has physical left-to-right key lanes. A custom
+        // practice map changes pitch, not which physical key lights on HDMI.
+        (DUAL_DISPLAY_ENABLE && v3_keyboard_live) ? v3_held_notes :
         v3_string_live ? v3_held_notes : (score_active || v3_live) ? song_held_notes : 12'd0;
     // Uploaded instrumental scores use a repeatable dry sound. Do not inherit
     // the last live-keyboard effect; manual/audition effect choices are retained.
@@ -578,6 +580,35 @@ module av_hdmi_top #(
     assign lcd_b     = pixel_internal_reset_n ? (visual_overlay ? visual_rgb[5:0] : base_rgb_delay[5:0]) : 6'd0;
     */
     assign hdmi_tx_enable=1'b1; // Dock31005 K14: +5V and TX termination.
+    generate if(DUAL_DISPLAY_ENABLE)begin: lcd_enabled
+        // The performance bundle reuses settings fields for song position and
+        // held notes. Build a dedicated settings snapshot instead of relabeling
+        // those live values as parameters when the physical menu is closed.
+        wire [67:0] settings_status;
+        wire settings_song=audition_target==3'd7 &&
+            configured_settings_field_id(settings_page,selected_field,
+                ADDITIVE_BANK_ENABLE!=0,STRING_BANK_ENABLE!=0)==FIELD_AUDITION;
+        assign settings_status[27:0]=status_payload_audio | (28'd1<<ST_SETTING);
+        assign settings_status[ST_VOICES +: 6]=displayed_voice_count;
+        assign settings_status[ST_STRING]=string_mode;
+        assign settings_status[ST_PAGE]=settings_page;
+        assign settings_status[ST_DEADLINES +: 8]=string_deadline_misses;
+        assign settings_status[ST_GLIDE +: 2]=settings_song ? {song_accompaniment,song_select} : glide_select;
+        assign settings_status[ST_VIBRATO +: 2]=settings_song ? song_tempo : vibrato_select;
+        assign settings_status[ST_AUDITION_ARMED]=audition_mode;
+        assign settings_status[ST_AUDITION_ACTIVE]=1'b0;
+        assign settings_status[ST_AUDITION_WET]=audition_wet;
+        assign settings_status[ST_AUDITION_TARGET +: 3]=audition_target;
+        assign settings_status[ST_STRENGTH +: 2]=effect_strength;
+        assign settings_status[ST_HELD_NOTES +: 12]={keyboard_piano,11'd0};
+        lcd_settings_display u_lcd(.sys_clk(sys_clk),.audio_clk(audio_clk),
+            .audio_reset_n(audio_internal_reset_n),.clock_enable(engine_ce),
+            .status_audio({6'd0,instrument_select,4'd0,settings_status}),
+            .lcd_pclk(lcd_pclk),.lcd_hsync(lcd_hsync),.lcd_vsync(lcd_vsync),
+            .lcd_de(lcd_de),.lcd_bl(lcd_bl),.lcd_r(lcd_r),.lcd_g(lcd_g),.lcd_b(lcd_b));
+    end else begin: lcd_disabled
+        assign {lcd_pclk,lcd_hsync,lcd_vsync,lcd_de,lcd_bl,lcd_r,lcd_g,lcd_b}=23'd0;
+    end endgenerate
     // Register the overlay mux and its controls together in the render domain.
     // Only a short registered RGB/control -> TMDS encoder path crosses into
     // the related 74.25 MHz clock; it retains ordinary setup/hold analysis.
@@ -657,7 +688,7 @@ module av_hdmi_top #(
     );
 
     instrument_control #(.CE_ENABLE(HALF_RATE_ENABLE),.ADDITIVE_BANK_ENABLE(ADDITIVE_BANK_ENABLE),
-        .REMOTE_SELECT_ENABLE(SONG_UPLOAD_ENABLE),
+        .REMOTE_SELECT_ENABLE(SONG_UPLOAD_ENABLE),.RHYTHM_ENABLE(SONG_UPLOAD_ENABLE && V3_INPUT_ENABLE),
         .STRING_BANK_ENABLE(STRING_BANK_ENABLE),.LEGACY_VOICE_ENABLE(LEGACY_VOICE_ENABLE),
         .KEYBOARD_MODE_ENABLE(KEYBOARD_MODE_ENABLE),
         .MULTI_TIMBRE_ENABLE(MULTI_TIMBRE_ENABLE)) u_instrument_control (.clock_enable(engine_ce),
@@ -666,6 +697,7 @@ module av_hdmi_top #(
         .key_pressed   (uploaded_selected ? 3'b000 : {key2_pressed, key1_pressed, key0_pressed}),
         .setting_pressed(setting_key_pressed),
         .remote_song_start(remote_song_start),
+        .rhythm_takeover(rhythm_takeover),
         .remote_select_request(remote_select_request),.remote_select_id(remote_select_id),
         .remote_select_done(remote_select_done),.remote_select_ok(remote_select_ok),
         .song_select(song_select), .song_change(song_change),
@@ -749,7 +781,7 @@ module av_hdmi_top #(
         .scope_dry_sample(pre_effect_audio_sample),.scope_wet_sample(audio_sample),
         .keyboard_busy((|v3_keys[11:0]) || (|v3_held_notes) || v3_valid),
         .physical_keys(v3_keys[11:0]),.rhythm_blocked(!v3_keyboard_live),
-        .rhythm_guard(rhythm_guard),.rhythm_play_keys(rhythm_play_keys),.rhythm_guide_keys(rhythm_guide_keys),
+        .rhythm_guard(rhythm_guard),.rhythm_takeover(rhythm_takeover),.rhythm_play_keys(rhythm_play_keys),.rhythm_guide_keys(rhythm_guide_keys),
         .custom_enabled(custom_keymap_enabled),.custom_map(custom_keymap),
         .playback_busy(),.published(),.staging(),.link_fault(),.rx_dropped(),
         .event_flush(uploaded_flush),.event_valid(uploaded_valid),.event_on(uploaded_on),.event_melody(uploaded_melody),
@@ -760,7 +792,7 @@ module av_hdmi_top #(
         .active_audio(uploaded_run),.state_audio(uploaded_state),.note_index_audio(index_audio_raw),
         .melody_count_audio(length_audio_raw),.tempo_audio(uploaded_tempo));
     end else begin: legacy_link
-    assign rhythm_guard=0;assign rhythm_play_keys=v3_keys[11:0];assign rhythm_guide_keys=0;
+    assign rhythm_guard=0;assign rhythm_takeover=0;assign rhythm_play_keys=v3_keys[11:0];assign rhythm_guide_keys=0;
     assign remote_select_request=0;assign remote_select_id=0;
     assign custom_keymap_enabled=0;assign custom_keymap=0;
     assign uploaded_run=0;assign uploaded_state=0;assign uploaded_index=0;
@@ -1202,7 +1234,7 @@ module av_hdmi_top #(
     instrument_panel_renderer #(.COMPACT_SCOPE(1),.UPLOAD_UI(SONG_UPLOAD_ENABLE),.LIVE_KEYBOARD(V3_INPUT_ENABLE),
         .ADDITIVE_BANK_ENABLE(ADDITIVE_BANK_ENABLE),.STRING_BANK_ENABLE(STRING_BANK_ENABLE),
         .KEYBOARD_MODE_ENABLE(KEYBOARD_MODE_ENABLE),
-        .MULTI_TIMBRE_ENABLE(MULTI_TIMBRE_ENABLE),.LIGHT_UI_ENABLE(LIGHT_UI_ENABLE)) u_panel_renderer (
+        .MULTI_TIMBRE_ENABLE(MULTI_TIMBRE_ENABLE),.LIGHT_UI_ENABLE(LIGHT_UI_ENABLE),.WHITE_BACKGROUND(DUAL_DISPLAY_ENABLE)) u_panel_renderer (
         .upload_status(upload_status_pixel),
         .pixel_clk         (pixel_clk),
         .reset_n           (pixel_internal_reset_n),
@@ -1217,7 +1249,7 @@ module av_hdmi_top #(
         .frame_start       (lcd_frame_start),
         .audio_sample      (pixel_audio_sample),
         .audio_sample_valid(pixel_audio_sample_valid),
-        .status_payload    (status_payload_pixel),
+        .status_payload    (DUAL_DISPLAY_ENABLE ? status_payload_pixel & ~(68'd1<<ST_SETTING) : status_payload_pixel),
         .status_update     (status_payload_update_pixel),
         .red               (lcd_r_internal),
         .green             (lcd_g_internal),
@@ -1237,9 +1269,18 @@ module av_hdmi_top #(
         .dst_clk(pixel_clk),.dst_reset_n(pixel_internal_reset_n),
         .dst_sample(spectrum_pixel),.dst_sample_valid(spectrum_update_pixel)
     );
-    visual_feedback #(.LIGHT_UI_ENABLE(LIGHT_UI_ENABLE)) u_visual_feedback (
+    wire [17:0] stage_rgb;
+    reg stage_wave_q;
+    performance_stage_renderer u_stage(.clk(pixel_clk),.reset_n(pixel_internal_reset_n),
+        .frame_start(lcd_frame_start),.status_update(status_payload_update_pixel),
+        .status_payload(status_payload_pixel),.guide_payload(rgb_status_pixel),
+        .x(lcd_active_x),.y(lcd_active_y),.de(panel_enable),.rgb(stage_rgb));
+    always @(posedge pixel_clk or negedge pixel_internal_reset_n)
+        if(!pixel_internal_reset_n)stage_wave_q<=0;
+        else stage_wave_q<=lcd_active_x>=16 && lcd_active_x<528 && lcd_active_y>=252 && lcd_active_y<=333;
+    visual_feedback #(.LIGHT_UI_ENABLE(LIGHT_UI_ENABLE),.PERFORMANCE_UI(DUAL_DISPLAY_ENABLE)) u_visual_feedback (
         .clk(pixel_clk),.reset_n(pixel_internal_reset_n),.frame_start(lcd_frame_start),
-        .enable(!status_payload_pixel[ST_SETTING]),.x(lcd_active_x),.y(lcd_active_y),
+        .enable(DUAL_DISPLAY_ENABLE || !status_payload_pixel[ST_SETTING]),.x(lcd_active_x),.y(lcd_active_y),
         .spectrum(spectrum_pixel),.spectrum_update(spectrum_update_pixel),
         .audio_pair(pixel_audio_pair),.audio_pair_valid(pixel_audio_sample_valid),
         .overlay(visual_overlay),.rgb(visual_rgb)
@@ -1250,7 +1291,7 @@ module av_hdmi_top #(
             base_rgb_delay<=0;hsync_delay<=2'b00;vsync_delay<=2'b00;de_delay<=0;
             panel_enable_delay<=0;
         end else begin
-            base_rgb_delay<={lcd_r_internal,lcd_g_internal,lcd_b_internal};
+            base_rgb_delay<=DUAL_DISPLAY_ENABLE && !stage_wave_q ? stage_rgb : {lcd_r_internal,lcd_g_internal,lcd_b_internal};
             hsync_delay<={hsync_delay[0],lcd_hsync_timing};
             vsync_delay<={vsync_delay[0],lcd_vsync_timing};
             de_delay<={de_delay[0],lcd_de_timing};

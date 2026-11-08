@@ -26,6 +26,7 @@ module instrument_production_link #(parameter integer SCORE_BITS=9, PROGRESS_BIT
     input wire rhythm_blocked,
     input wire [11:0] physical_keys,
     output wire rhythm_guard,
+    output wire rhythm_takeover,
     output wire [11:0] rhythm_play_keys,rhythm_guide_keys,
     output wire custom_enabled,
     output wire [71:0] custom_map,
@@ -106,7 +107,7 @@ module instrument_production_link #(parameter integer SCORE_BITS=9, PROGRESS_BIT
             .sys_clk(sys_clk),.sys_reset_n(sys_release[1]),.audio_clk(audio_clk),.audio_reset_n(audio_release[1]),
             .clock_enable(clock_enable),.sample_strobe(scope_sample_strobe),.sample(scope_wet_sample),
             .keyboard_busy(keyboard_busy),.custom_enabled(custom_enabled),.custom_map(custom_map),
-            .rhythm_blocked(rhythm_blocked),.physical_keys(physical_keys),.rhythm_guard(rhythm_guard),
+            .rhythm_blocked(rhythm_blocked),.physical_keys(physical_keys),.rhythm_guard(rhythm_guard),.rhythm_takeover(rhythm_takeover),
             .rhythm_play_keys(rhythm_play_keys),.rhythm_guide_keys(rhythm_guide_keys),
             .rx_data(line_data),.rx_valid(perf_rx_valid),.tx_data(perf_tx_data),.tx_valid(perf_tx_valid),.tx_ready(perf_tx_ready));
         uart_line_tx_mux performance_replies(
@@ -114,7 +115,7 @@ module instrument_production_link #(parameter integer SCORE_BITS=9, PROGRESS_BIT
             .legacy_ready(combined_tx_ready),.song_data(perf_tx_data),.song_valid(perf_tx_valid),.song_ready(perf_tx_ready),
             .tx_data(tx_data),.tx_valid(tx_valid),.tx_ready(tx_ready),.song_owned());
     end else begin: performance_disabled
-        assign rhythm_guard=0;assign rhythm_play_keys=physical_keys;assign rhythm_guide_keys=0;
+        assign rhythm_guard=0;assign rhythm_takeover=0;assign rhythm_play_keys=physical_keys;assign rhythm_guide_keys=0;
         assign custom_enabled=0;assign custom_map=0;assign perf_tx_data=0;assign perf_tx_valid=0;assign perf_tx_ready=0;
         assign tx_data=combined_tx_data;assign tx_valid=combined_tx_valid;assign combined_tx_ready=tx_ready;
     end endgenerate

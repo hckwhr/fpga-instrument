@@ -12,6 +12,7 @@ module performance_uart #(parameter integer CE_ENABLE=0,
     input wire rhythm_blocked,
     input wire [11:0] physical_keys,
     output wire rhythm_guard,
+    output wire rhythm_takeover,
     output wire [11:0] rhythm_play_keys, rhythm_guide_keys,
     output reg custom_enabled,
     output reg [71:0] custom_map,
@@ -44,14 +45,19 @@ module performance_uart #(parameter integer CE_ENABLE=0,
     reg [71:0] map_payload, result_map;
     reg [2:0] map_operation;
     reg [1:0] map_result;
-    reg rhythm_wait;
+    reg rhythm_wait, rhythm_prepared;
+    // A start transaction first returns the instrument to live mode. The next
+    // common-CE edge checks the resulting blockers; ACK still follows commit.
+    assign rhythm_takeover=RHYTHM_ENABLE && map_req_sync[1]!=map_ack &&
+        map_operation==6 && map_payload[44] && map_payload[71:45]==27'd0 && !rhythm_wait && !keyboard_busy;
     wire [71:0] rhythm_status;
     wire [1:0] rhythm_result;
     wire rhythm_active;
     generate if(RHYTHM_ENABLE) begin: rhythm_enabled
         rhythm_key_gate #(.CE_ENABLE(CE_ENABLE),.LEASE_STEPS(RHYTHM_LEASE_STEPS)) gate(
             .clk(audio_clk),.reset_n(audio_reset_n),.clock_enable(clock_enable),
-            .command_valid(map_req_sync[1]!=map_ack && !rhythm_wait && map_operation>=6),
+            .command_valid(map_req_sync[1]!=map_ack && !rhythm_wait && map_operation>=6 &&
+                (map_operation!=6 || !map_payload[44] || rhythm_prepared)),
             .command_set(map_operation==6),.command_payload(map_payload),
             .blocked(rhythm_blocked),.keyboard_busy(keyboard_busy),.physical_keys(physical_keys),
             .guard(rhythm_guard),.active(rhythm_active),.play_keys(rhythm_play_keys),
@@ -64,17 +70,18 @@ module performance_uart #(parameter integer CE_ENABLE=0,
     always @(posedge audio_clk or negedge audio_reset_n)begin
         if(!audio_reset_n)begin
             map_req_sync<=0;map_ack<=0;custom_enabled<=0;map_result<=0;
-            custom_map<=0;result_map<=0;rhythm_wait<=0;
+            custom_map<=0;result_map<=0;rhythm_wait<=0;rhythm_prepared<=0;
             for(i=0;i<12;i=i+1)begin custom_map[i*6+:6]<=6'd16+i;result_map[i*6+:6]<=6'd16+i;end
         end else if(!CE_ENABLE || clock_enable)begin
             map_req_sync<={map_req_sync[0],map_request};
             if(map_req_sync[1]!=map_ack)begin
                 if(map_operation>=6) begin
+                    if(map_operation==6 && map_payload[44] && !rhythm_prepared) rhythm_prepared<=1;
                     // The gate commits on the first CE edge; snapshot its
                     // post-command result on the next before returning ACK.
-                    if(!rhythm_wait) rhythm_wait<=1;
+                    else if(!rhythm_wait) rhythm_wait<=1;
                     else begin
-                        rhythm_wait<=0;map_ack<=map_req_sync[1];
+                        rhythm_wait<=0;rhythm_prepared<=0;map_ack<=map_req_sync[1];
                         result_map<=rhythm_status;map_result<=rhythm_result;
                     end
                 end else begin

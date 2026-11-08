@@ -2,6 +2,7 @@ param(
     [string]$ModelSimBin = 'E:/modelsim/win64',
     [string[]]$Benches = @(
         'tb_pressure_pipeline_exact',
+        'tb_dual_display', 'tb_dual_display_pins',
         'tb_rhythm_key_gate', 'tb_rhythm_uart', 'tb_rhythm_hdmi_pins',
         'tb_poly_control_timing',
         'tb_instrument_timbres', 'tb_instrument_menu', 'tb_instrument_pins', 'tb_instrument_ui',

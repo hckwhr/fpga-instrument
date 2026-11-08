@@ -5,6 +5,7 @@ module instrument_control #(parameter integer CE_ENABLE=0,
     parameter integer STRING_BANK_ENABLE=1,
     parameter integer LEGACY_VOICE_ENABLE=1,
     parameter integer REMOTE_SELECT_ENABLE=0,
+    parameter integer RHYTHM_ENABLE=0,
     parameter integer KEYBOARD_MODE_ENABLE=0,
     parameter integer MULTI_TIMBRE_ENABLE=0,
     
@@ -18,6 +19,7 @@ module instrument_control #(parameter integer CE_ENABLE=0,
     input  wire [2:0]  key_pressed,
     input  wire        setting_pressed,
     input  wire        remote_song_start,
+    input wire rhythm_takeover,
     input wire remote_select_request, remote_select_id,
     output reg remote_select_done, remote_select_ok,
     output reg  [2:0]  play_trigger,
@@ -400,6 +402,12 @@ module instrument_control #(parameter integer CE_ENABLE=0,
                 note_select<=0; octave_select<=1; force_value<=96;
                 keymap_select<=0; glide_select<=0; vibrato_select<=0; effect_select<=0;
                 play_pending<=0; play_trigger<=0;
+            end
+            // Explicit follow-along handoff; ordinary STOP retains its menu
+            // semantics. Local settings/stop take priority over remote start.
+            if(RHYTHM_ENABLE && rhythm_takeover && !setting_mode_n &&
+                !setting_pressed && !key_pressed[1] && !remote_song_start) begin
+                audition_mode_n=0;test_mode_n=0;play_pending<=0;play_trigger<=0;
             end
             setting_mode    <= setting_mode_n;
             audition_mode   <= audition_mode_n;
