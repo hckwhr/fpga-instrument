@@ -16,11 +16,6 @@
         <File path="rtl/hdmi_clocks.v" type="file.verilog" enable="1"/>
         <File path="rtl/hdmi_timing_800x600.v" type="file.verilog" enable="1"/>
         <File path="rtl/instrument_panel_renderer.v" type="file.verilog" enable="1"/>
-        <File path="rtl/lcd_settings_display.v" type="file.verilog" enable="1"/>
-        <File path="rtl/performance_stage_renderer.v" type="file.verilog" enable="1"/>
-        <File path="rtl/lcd_timing_800x480.v" type="file.verilog" enable="1"/>
-        <File path="rtl/lcd_pll/lcd_pll.v" type="file.verilog" enable="1"/>
-        <File path="rtl/lcd_pll/lcd_pll_mod.v" type="file.verilog" enable="1"/>
         <File path="rtl/tmds_encoder.v" type="file.verilog" enable="1"/>
         <File path="rtl/hdmi_tmds_tx.v" type="file.verilog" enable="1"/>
         <File path="rtl/hdmi_pll/hdmi_pll.v" type="file.verilog" enable="1"/>

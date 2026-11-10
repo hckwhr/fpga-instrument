@@ -42,7 +42,7 @@ flowchart LR
 | --- | --- |
 | [hardware/V5](hardware/V5/README.md) | 当前 V5 键盘板嘉立创 EDA 工程 |
 | [fpga/playability](fpga/playability/README.md) | 当前板上程序对应源码：压力键拨弦/滑音、明确语音选曲、青蓝色曲目键位指引 |
-| [fpga/rhythm](fpga/rhythm/README.md) | 十二键跟练与 LCD 设置 / HDMI 演奏双屏候选；通过仿真和时序，尚未烧录 |
+| [fpga/rhythm](fpga/rhythm/README.md) | 十二键跟练与 HDMI 单屏设置/演奏；163 项回归及时序通过，尚未烧录 |
 | [host/mineradio](docs/HOST.md) | FPGAvedio 播放器、FPGA 播放、节奏跟练三模式桌面及 Android 工程 |
 | [host/instrument-web](host/instrument-web/README.md) | 共用转谱、上传、曲谱库和可视化逻辑 |
 | firmware/xiaozhi-v3 | 小智语音及通用 ESP32-S3 套件适配 |

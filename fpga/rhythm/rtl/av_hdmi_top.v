@@ -1270,14 +1270,23 @@ module av_hdmi_top #(
         .dst_sample(spectrum_pixel),.dst_sample_valid(spectrum_update_pixel)
     );
     wire [17:0] stage_rgb;
-    reg stage_wave_q;
+    wire stage_wave_q;
+    // This optional surface is retained for the historical dual-screen tests.
+    // HDMI-only production uses u_panel_renderer for both menus and performance.
+    generate if(DUAL_DISPLAY_ENABLE)begin: performance_enabled
+    reg stage_wave;
+    assign stage_wave_q=stage_wave;
     performance_stage_renderer u_stage(.clk(pixel_clk),.reset_n(pixel_internal_reset_n),
         .frame_start(lcd_frame_start),.status_update(status_payload_update_pixel),
         .status_payload(status_payload_pixel),.guide_payload(rgb_status_pixel),
         .x(lcd_active_x),.y(lcd_active_y),.de(panel_enable),.rgb(stage_rgb));
     always @(posedge pixel_clk or negedge pixel_internal_reset_n)
-        if(!pixel_internal_reset_n)stage_wave_q<=0;
-        else stage_wave_q<=lcd_active_x>=16 && lcd_active_x<528 && lcd_active_y>=252 && lcd_active_y<=333;
+        if(!pixel_internal_reset_n)stage_wave<=0;
+        else stage_wave<=lcd_active_x>=16 && lcd_active_x<528 && lcd_active_y>=252 && lcd_active_y<=333;
+    end else begin: performance_disabled
+        assign stage_rgb=18'd0;
+        assign stage_wave_q=1'b0;
+    end endgenerate
     visual_feedback #(.LIGHT_UI_ENABLE(LIGHT_UI_ENABLE),.PERFORMANCE_UI(DUAL_DISPLAY_ENABLE)) u_visual_feedback (
         .clk(pixel_clk),.reset_n(pixel_internal_reset_n),.frame_start(lcd_frame_start),
         .enable(DUAL_DISPLAY_ENABLE || !status_payload_pixel[ST_SETTING]),.x(lcd_active_x),.y(lcd_active_y),

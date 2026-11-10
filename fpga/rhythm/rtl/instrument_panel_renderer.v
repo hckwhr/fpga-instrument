@@ -72,6 +72,30 @@ module instrument_panel_renderer #(parameter integer COMPACT_SCOPE=0, parameter 
     wire song_accompaniment = status_active[ST_SONG_ACCOMPANIMENT];
     wire [11:0] song_length = {uploaded_song ? upload_active[7:4] : 4'd0,status_active[ST_SONG_LENGTH +: 8]};
     wire [7:0] tempo_bpm = song_bpm(status_active[ST_SONG_TEMPO +: 2]);
+    // Constant/reset conversion and test oracle entry. Runtime conversion below
+    // reuses one add-3 step per clock instead of unrolling twelve such steps.
+    function [15:0] decimal12;
+        input [11:0] value;
+        reg [15:0] digits;
+        integer bit_index, digit_index;
+        begin
+            digits=16'd0;
+            for(bit_index=11;bit_index>=0;bit_index=bit_index-1)begin
+                for(digit_index=0;digit_index<4;digit_index=digit_index+1)
+                    if(digits[digit_index*4 +: 4]>=4'd5)
+                        digits[digit_index*4 +: 4]=digits[digit_index*4 +: 4]+4'd3;
+                digits={digits[14:0],value[bit_index]};
+            end
+            decimal12=digits;
+        end
+    endfunction
+    reg [15:0] position_digits,length_digits;
+    reg [11:0] tempo_digits,deadline_digits,force_digits;
+    reg [7:0] voice_digits;
+    // Preserve the original 4-bit truncation of position/100 in the short
+    // layout even for a position beyond the declared length (e.g. 4095).
+    wire [3:0] position_short_hundreds=position_digits[11:8]+
+        (position_digits[15:12]<<3)+(position_digits[15:12]<<1);
     wire song_context = audition_target==7 && (audition_active ||
         (status_active[ST_SETTING] && configured_settings_field_id(
             status_active[ST_PAGE],status_active[ST_FIELD +: 3],
@@ -503,12 +527,12 @@ module instrument_panel_renderer #(parameter integer COMPACT_SCOPE=0, parameter 
     assign test_mode_active       = status_active[ST_TEST];
     assign test_polyphony_active  = status_active[ST_POLYPHONY];
     assign polyphony_voice_count_active = status_active[ST_VOICES +: 6];
-    assign polyphony_count_tens = polyphony_voice_count_active / 6'd10;
-    assign polyphony_count_ones = polyphony_voice_count_active % 6'd10;
+    assign polyphony_count_tens = voice_digits[7:4];
+    assign polyphony_count_ones = voice_digits[3:0];
 
-    assign force_hundreds = force_value_active / 7'd100;
-    assign force_tens = (force_value_active / 7'd10) % 7'd10;
-    assign force_ones = force_value_active % 7'd10;
+    assign force_hundreds = force_digits[11:8];
+    assign force_tens = force_digits[7:4];
+    assign force_ones = force_digits[3:0];
     assign audio_sample_abs = audio_sample[15]
                             ? (~audio_sample + 16'd1) : audio_sample;
     assign audio_level_sample = (|audio_sample_abs[15:14])
@@ -1035,18 +1059,18 @@ module instrument_panel_renderer #(parameter integer COMPACT_SCOPE=0, parameter 
                         uploaded_song && upload_active[2:0]==4 ? 8'd97 : audition_wet?8'd24:8'd22;
                     // Long progress uses four digits within the existing 20
                     // complete cells. Cell 20 is clipped by the panel boundary.
-                    8:status_glyph=song_length>=1000 ? digit_glyph(tempo_bpm/8'd100) : 8'd129;
-                    9:status_glyph=song_length>=1000 ? digit_glyph((tempo_bpm/8'd10)%8'd10) : digit_glyph(tempo_bpm/8'd100);
-                    10:status_glyph=song_length>=1000 ? digit_glyph(tempo_bpm%8'd10) : digit_glyph((tempo_bpm/8'd10)%8'd10);
-                    11:status_glyph=song_length>=1000 ? digit_glyph(song_position/12'd1000) : digit_glyph(tempo_bpm%8'd10);
-                    12:status_glyph=song_length>=1000 ? digit_glyph((song_position/12'd100)%12'd10) : 8'd0;
-                    13:status_glyph=song_length>=1000 ? digit_glyph((song_position/12'd10)%12'd10) : digit_glyph(song_position/12'd100);
-                    14:status_glyph=song_length>=1000 ? digit_glyph(song_position%12'd10) : digit_glyph((song_position/12'd10)%12'd10);
-                    15:status_glyph=song_length>=1000 ? 8'd88 : digit_glyph(song_position%12'd10);
-                    16:status_glyph=song_length>=1000 ? digit_glyph(song_length/12'd1000) : 8'd88;
-                    17:status_glyph=digit_glyph((song_length/12'd100)%12'd10);
-                    18:status_glyph=digit_glyph((song_length/12'd10)%12'd10);
-                    19:status_glyph=digit_glyph(song_length%12'd10);
+                    8:status_glyph=song_length>=1000 ? digit_glyph(tempo_digits[11:8]) : 8'd129;
+                    9:status_glyph=song_length>=1000 ? digit_glyph(tempo_digits[7:4]) : digit_glyph(tempo_digits[11:8]);
+                    10:status_glyph=song_length>=1000 ? digit_glyph(tempo_digits[3:0]) : digit_glyph(tempo_digits[7:4]);
+                    11:status_glyph=song_length>=1000 ? digit_glyph(position_digits[15:12]) : digit_glyph(tempo_digits[3:0]);
+                    12:status_glyph=song_length>=1000 ? digit_glyph(position_digits[11:8]) : 8'd0;
+                    13:status_glyph=song_length>=1000 ? digit_glyph(position_digits[7:4]) : digit_glyph(position_short_hundreds);
+                    14:status_glyph=song_length>=1000 ? digit_glyph(position_digits[3:0]) : digit_glyph(position_digits[7:4]);
+                    15:status_glyph=song_length>=1000 ? 8'd88 : digit_glyph(position_digits[3:0]);
+                    16:status_glyph=song_length>=1000 ? digit_glyph(length_digits[15:12]) : 8'd88;
+                    17:status_glyph=digit_glyph(length_digits[11:8]);
+                    18:status_glyph=digit_glyph(length_digits[7:4]);
+                    19:status_glyph=digit_glyph(length_digits[3:0]);
                     default:begin end
                 endcase
                 else if (line_index==1) case(character_index)
@@ -1264,9 +1288,9 @@ module instrument_panel_renderer #(parameter integer COMPACT_SCOPE=0, parameter 
                     5'd13: settings_glyph = 7'd96;
                     5'd14: settings_glyph = 7'd97;
                     5'd15: settings_glyph = 7'd3;
-                    5'd16: settings_glyph = digit_glyph(string_deadline_misses / 8'd100);
-                    5'd17: settings_glyph = digit_glyph((string_deadline_misses / 8'd10) % 8'd10);
-                    5'd18: settings_glyph = digit_glyph(string_deadline_misses % 8'd10);
+                    5'd16: settings_glyph = digit_glyph(deadline_digits[11:8]);
+                    5'd17: settings_glyph = digit_glyph(deadline_digits[7:4]);
+                    5'd18: settings_glyph = digit_glyph(deadline_digits[3:0]);
                     default: settings_glyph = 7'd0;
                 endcase
                 FIELD_EXPRESSION: case (character_index)
@@ -1306,9 +1330,9 @@ module instrument_panel_renderer #(parameter integer COMPACT_SCOPE=0, parameter 
                     10:settings_glyph=song_select?8'd126:8'd124;
                     11:settings_glyph=song_select?8'd127:8'd125;
                     12:settings_glyph=song_select?8'd128:8'd125;
-                    16:settings_glyph=digit_glyph(tempo_bpm/8'd100);
-                    17:settings_glyph=digit_glyph((tempo_bpm/8'd10)%8'd10);
-                    18:settings_glyph=digit_glyph(tempo_bpm%8'd10);
+                    16:settings_glyph=digit_glyph(tempo_digits[11:8]);
+                    17:settings_glyph=digit_glyph(tempo_digits[7:4]);
+                    18:settings_glyph=digit_glyph(tempo_digits[3:0]);
                     19:settings_glyph=8'd31;
                     20:settings_glyph=8'd130;
                     21:settings_glyph=8'd131;
@@ -1486,6 +1510,73 @@ module instrument_panel_renderer #(parameter integer COMPACT_SCOPE=0, parameter 
                 else
                     status_active <= status_shadow;
                 upload_active<=UPLOAD_UI!=0 ? (status_update ? upload_status : upload_shadow) : 4'd0;
+            end
+        end
+    end
+
+    // Frame precompute contract: status_active/upload_active commit at F.
+    // Load their NEW values at F+1, then convert six fields in 78 clocks total.
+    // Inputs are frame-atomic for the entire calculation. Digits must not be
+    // consumed before F+78. Production DMT has 60*1024=61440 clocks before
+    // the dashboard starts (>787x margin); its first text is later still.
+    // No CE exception or extra RGB/HS/VS/DE stage is introduced. A new frame
+    // or reset aborts unfinished work. Regression includes an early-use
+    // negative control, restarted conversion, and frozen-reference digits.
+    reg decimal_pending,decimal_busy;
+    reg [2:0] decimal_slot;
+    reg [3:0] decimal_remaining;
+    reg [11:0] decimal_input;
+    reg [15:0] decimal_work;
+    reg [15:0] decimal_adjusted;
+    integer decimal_digit;
+    wire [15:0] decimal_next={decimal_adjusted[14:0],decimal_input[11]};
+    always @* begin
+        decimal_adjusted=decimal_work;
+        for(decimal_digit=0;decimal_digit<4;decimal_digit=decimal_digit+1)
+            if(decimal_work[decimal_digit*4 +: 4]>=4'd5)
+                decimal_adjusted[decimal_digit*4 +: 4]=decimal_work[decimal_digit*4 +: 4]+4'd3;
+    end
+    always @(posedge pixel_clk or negedge reset_n)begin
+        if(!reset_n)begin
+            decimal_pending<=1'b0;decimal_busy<=1'b0;decimal_slot<=3'd0;
+            decimal_remaining<=4'd0;decimal_input<=12'd0;decimal_work<=16'd0;
+            position_digits<=16'h0001;length_digits<=16'd0;
+            tempo_digits<=decimal12({4'd0,song_bpm(DEFAULT_STATUS[ST_SONG_TEMPO +: 2])});
+            deadline_digits<=decimal12({4'd0,DEFAULT_STATUS[ST_DEADLINES +: 8]});
+            force_digits<=decimal12({5'd0,DEFAULT_STATUS[ST_FORCE +: 7]});
+            voice_digits<=decimal12({6'd0,DEFAULT_STATUS[ST_VOICES +: 6]});
+        end else if(frame_start)begin
+            decimal_pending<=1'b1;decimal_busy<=1'b0;
+        end else if(decimal_pending)begin
+            decimal_pending<=1'b0;decimal_busy<=1'b1;decimal_slot<=3'd0;
+            decimal_input<=song_position;decimal_work<=16'd0;decimal_remaining<=4'd12;
+        end else if(decimal_busy)begin
+            if(decimal_remaining==4'd0)begin
+                case(decimal_slot)
+                    3'd1:decimal_input<=song_length;
+                    3'd2:decimal_input<={4'd0,tempo_bpm};
+                    3'd3:decimal_input<={4'd0,string_deadline_misses};
+                    3'd4:decimal_input<={5'd0,force_value_active};
+                    3'd5:decimal_input<={6'd0,polyphony_voice_count_active};
+                    default:decimal_input<=12'd0;
+                endcase
+                decimal_work<=16'd0;decimal_remaining<=4'd12;
+            end else begin
+                decimal_input<={decimal_input[10:0],1'b0};
+                decimal_work<=decimal_next;decimal_remaining<=decimal_remaining-4'd1;
+                if(decimal_remaining==4'd1)begin
+                    case(decimal_slot)
+                        3'd0:position_digits<=decimal_next;
+                        3'd1:length_digits<=decimal_next;
+                        3'd2:tempo_digits<=decimal_next[11:0];
+                        3'd3:deadline_digits<=decimal_next[11:0];
+                        3'd4:force_digits<=decimal_next[11:0];
+                        3'd5:voice_digits<=decimal_next[7:0];
+                        default:begin end
+                    endcase
+                    if(decimal_slot>=3'd5)decimal_busy<=1'b0;
+                    else decimal_slot<=decimal_slot+3'd1;
+                end
             end
         end
     end

@@ -3,7 +3,8 @@
 `define S dut.u_instrument.strings_enabled.u_physical_string_bank
 // No event/mode forces: dual ADC pins and debounced physical menu pins are
 // the only stimuli. Only vendor PLL outputs are replaced by simulation clocks.
-module tb_hdmi_instrument_pins #(parameter integer PERFORMANCE_TEST=0, PLAYABILITY_TEST=0, TIMBRE_TEST=0, RHYTHM_TEST=0, DUAL_DISPLAY_TEST=0);
+module tb_hdmi_instrument_pins #(parameter integer PERFORMANCE_TEST=0, PLAYABILITY_TEST=0, TIMBRE_TEST=0, RHYTHM_TEST=0, DUAL_DISPLAY_TEST=0, MENU_REFRESH_TEST=0);
+    `include "instrument_contract.vh"
     reg sys_clk=0,audio_clk=0,pixel_clk=0,render_clk=0,locked=0;
     always #10 sys_clk=~sys_clk;
     always #10.172414 audio_clk=~audio_clk;
@@ -44,6 +45,8 @@ module tb_hdmi_instrument_pins #(parameter integer PERFORMANCE_TEST=0, PLAYABILI
     integer hdmi_pixels=0,hdmi_panels=0,hdmi_frames=0;
     integer dual_key_pixels=0,dual_white_pixels=0,dual_lcd_pixels=0;
     wire [67:0] tested_lcd_status;
+    wire [11:0] tested_stage_held;
+    wire tested_stage_left;
     reg [1:0] expected_de=0,expected_hs=0,expected_vs=0;
     reg [36:0] expected_raster;
     always @(posedge `H.pixel_clk)begin
@@ -138,6 +141,37 @@ module tb_hdmi_instrument_pins #(parameter integer PERFORMANCE_TEST=0, PLAYABILI
     endtask
     task menu;
         begin setting=1;samples(300);setting=0;samples(300);end
+    endtask
+    // Physical debounced menu inputs -> production status CDC -> frame commit.
+    // No forced status/frame signals: each selection must appear within two
+    // real HDMI frame edges, without needing a second press to refresh it.
+    task check_menu_frame;
+        integer elapsed_frames;
+        reg [67:0] previous_active;
+        begin
+            elapsed_frames=0;
+            while(elapsed_frames<2)begin
+                @(negedge render_clk);
+                previous_active=`H.u_panel_renderer.status_active;
+                if(`H.lcd_frame_start)begin
+                    elapsed_frames++;
+                    @(posedge render_clk);#2;
+                    if(`H.u_panel_renderer.setting_mode_active &&
+                       `H.u_panel_renderer.tone_select_active===`H.tone_select &&
+                       `H.u_panel_renderer.string_mode_active===`H.string_mode &&
+                       `H.u_panel_renderer.instrument_active===`H.instrument_select)
+                        return;
+                end else begin
+                    @(posedge render_clk);#2;
+                    if(`H.u_panel_renderer.status_active!==previous_active)
+                        $fatal(1,"HDMI menu tore outside a frame boundary");
+                end
+            end
+            $fatal(1,"HDMI menu did not refresh in two frames: tone=%0d/%0d string=%b/%b instrument=%0d/%0d",
+                `H.u_panel_renderer.tone_select_active,`H.tone_select,
+                `H.u_panel_renderer.string_mode_active,`H.string_mode,
+                `H.u_panel_renderer.instrument_active,`H.instrument_select);
+        end
     endtask
     // Expected levels come from physical ADC stimuli below, not DUT gates.
     // Check every audio cycle over a full DAC frame: a short ON pulse fails.
@@ -263,15 +297,38 @@ module tb_hdmi_instrument_pins #(parameter integer PERFORMANCE_TEST=0, PLAYABILI
         force `H.pixel_clk=render_clk;
         force `H.audio_pll_locked=locked;force `H.display_pll_locked=locked;
         boot_strings();
+        if(MENU_REFRESH_TEST)begin
+            menu();press(1);press(1);
+            if(`H.u_instrument_control.edit_field!=FIELD_TONE)$fatal(1,"HDMI tone row unreachable");
+            check_menu_frame();
+            for(k=0;k<5;k++)begin
+                press(4);
+                if(`H.string_mode!=(k==4) || `H.instrument_select!=(k<3?k+1:0))
+                    $fatal(1,"Forward physical instrument press lost %0d",k);
+                check_menu_frame();
+            end
+            for(k=0;k<5;k++)begin
+                press(2);
+                if(`H.string_mode!=(k==4) || `H.instrument_select!=(k==0||k==4?0:4-k))
+                    $fatal(1,"Reverse physical instrument press lost %0d",k);
+                check_menu_frame();
+            end
+            menu();samples(2000);
+            if(`H.u_panel_renderer.setting_mode_active || !`H.v3_string_live)
+                $fatal(1,"HDMI did not return to performance");
+            energy=0;measure=1;values[119:110]=320;samples(180);measure=0;
+            if(energy==0 || `H.v3_held_notes!==12'h001)$fatal(1,"Menu exit lost physical key/DAC route");
+            $display("PASS: HDMI-only physical menu, ten single-press instrument changes refreshed within two real frames, frame-atomic settings, pressure key -> decoded DAC after exit");$finish;
+        end
         if(DUAL_DISPLAY_TEST)begin
             samples(2000);
-            if(!dut.lcd_bl || !tested_lcd_status[23])$fatal(1,"LCD settings missing");
+            if(!`H.lcd_bl || !tested_lcd_status[23])$fatal(1,"LCD settings missing");
             if(tested_lcd_status[17+:2]!==`H.tone_select ||
                !tested_lcd_status[34])$fatal(1,"LCD settings do not match controls");
             values[119:110]=320;samples(2000);
-            if(!`H.u_stage.active[56] || `H.u_stage.held!==12'h001)$fatal(1,"HDMI physical left key");
+            if(!tested_stage_left || tested_stage_held!==12'h001)$fatal(1,"HDMI physical left key");
             menu();samples(2000);
-            if(`H.u_stage.held!=0 || !`H.u_visual_feedback.display_enabled)$fatal(1,"menu interrupted HDMI presentation");
+            if(tested_stage_held!=0 || !`H.u_visual_feedback.display_enabled)$fatal(1,"menu interrupted HDMI presentation");
             if(dual_key_pixels==0 || dual_white_pixels==0 || dual_lcd_pixels==0)$fatal(1,"dual pin pixel coverage");
             $display("PASS: dual production top: physical menu on LCD, ADC left key on HDMI, white letterbox, valid LCD pixels, uninterrupted HDMI visualizer");$finish;
         end
@@ -493,13 +550,15 @@ module tb_hdmi_instrument_pins #(parameter integer PERFORMANCE_TEST=0, PLAYABILI
     reg lcd_clk=0;always #15 lcd_clk=~lcd_clk;
     generate if(DUAL_DISPLAY_TEST)begin: dual_test
         assign tested_lcd_status=`H.lcd_enabled.u_lcd.u_menu.status_active;
+        assign tested_stage_left=`H.performance_enabled.u_stage.active[56];
+        assign tested_stage_held=`H.performance_enabled.u_stage.held;
         initial begin force `H.lcd_enabled.u_lcd.clk=lcd_clk;force `H.lcd_enabled.u_lcd.locked=locked;end
-        always @(posedge dut.lcd_pclk)if(dut.lcd_de)begin
-            if((^{dut.lcd_r,dut.lcd_g,dut.lcd_b})===1'bx)$fatal(1,"LCD unknown pixel");
+        always @(posedge `H.lcd_pclk)if(`H.lcd_de)begin
+            if((^{`H.lcd_r,`H.lcd_g,`H.lcd_b})===1'bx)$fatal(1,"LCD unknown pixel");
             dual_lcd_pixels++;
         end
         always @(negedge render_clk)if(`H.pixel_internal_reset_n)begin
-            if(`H.u_stage.rgb=={6'd31,6'd48,6'd44})dual_key_pixels++;
+            if(`H.performance_enabled.u_stage.rgb=={6'd31,6'd48,6'd44})dual_key_pixels++;
             if(`H.de_delay[1] && !`H.panel_enable_delay[1])begin
                 if(`H.hdmi_rgb!==24'hffffff)$fatal(1,"HDMI letterbox not white");
                 dual_white_pixels++;
@@ -507,8 +566,10 @@ module tb_hdmi_instrument_pins #(parameter integer PERFORMANCE_TEST=0, PLAYABILI
         end
     end else begin: no_dual_test
         assign tested_lcd_status=0;
+        assign tested_stage_left=0;
+        assign tested_stage_held=0;
     end endgenerate
-    initial begin #(PLAYABILITY_TEST ? 900000000 : 400000000);$fatal(1,"V3 string pin timeout");end
+    initial begin #(PLAYABILITY_TEST || MENU_REFRESH_TEST ? 900000000 : 400000000);$fatal(1,"V3 string pin timeout");end
 endmodule
 `undef H
 `undef S

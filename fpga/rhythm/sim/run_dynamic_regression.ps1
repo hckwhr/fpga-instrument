@@ -2,7 +2,7 @@ param(
     [string]$ModelSimBin = 'E:/modelsim/win64',
     [string[]]$Benches = @(
         'tb_pressure_pipeline_exact',
-        'tb_dual_display', 'tb_dual_display_pins',
+        'tb_dual_display', 'tb_dual_display_pins', 'tb_hdmi_menu_refresh', 'tb_panel_decimal_exact',
         'tb_rhythm_key_gate', 'tb_rhythm_uart', 'tb_rhythm_hdmi_pins',
         'tb_poly_control_timing',
         'tb_instrument_timbres', 'tb_instrument_menu', 'tb_instrument_pins', 'tb_instrument_ui',
@@ -62,7 +62,7 @@ $retainedEngineBenches=@('tb_menu_delay_contract','tb_half_rate_datapaths',
     'tb_string_load','tb_string_load_top','tb_dynamic_strings8','tb_physical_strings',
     'tb_additive_bank_32','tb_effects_audition')
 $legacyBenches += $retainedEngineBenches
-Write-Output 'Stage67: 800x600@56 DMT raster replaces 1080p30 and the dashboard now fills all 600 rows; half-rate raster case retired with the half-rate renderer (143 total). The pixel-equivalence reference is the frozen stage67 baseline: the product is the HDMI build, so the 480-row LCD snapshot is archived rather than compared. Vendor PLL/serializer runs separately.'
+Write-Output 'HDMI-only product: preserve all 162 previous checks; add exhaustive decimal and frozen glyph equivalence (163 total). Official PLL/serializer checks run separately.'
 Write-Output ('Suite: {0} current/module checks, {1} retained legacy/module checks, {2} total' -f
     @($Benches | Where-Object {$_ -notin $legacyBenches}).Count,
     @($Benches | Where-Object {$_ -in $legacyBenches}).Count,$Benches.Count)
