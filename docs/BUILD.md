@@ -33,35 +33,34 @@ Android 构建工具及路径见 [README-FPGA.md](../host/mineradio/README-FPGA.
 
 ## FPGA
 
-新增独立节奏实体跟练候选位于 [fpga/rhythm](../fpga/rhythm/README.md)，
-它恢复 HDMI 单屏设置/演奏，保留压力流水和实体跟练协议，完整回归为 163 项。
-本候选实际实施状态见 `fpga/rhythm/VALIDATION.md`；使用时，将下文复制源改为
-`fpga/rhythm`，不要混用旧工程的 RTL、网表或约束集合。
+最新源码位于 [fpga/rhythm](../fpga/rhythm/README.md)，恢复 HDMI 单屏设置/演奏，
+保留压力流水和实体跟练协议，完整回归为 163 项。实际实施状态见
+`fpga/rhythm/VALIDATION.md`；本版已通过 STA，尚未烧录。
 
-仓库保留的历史生产入口为 `fpga/playability/v3_hdmi_top.gprj`，顶层 `v3_hdmi_top`，31 引脚、4 时钟。工具为 PowerShell 7、ModelSim 与 Gowin V1.9.12.03。先仿真，再综合和审计，最后运行 P&R。
+当前重建入口为 `fpga/rhythm/v3_hdmi_top.gprj`，顶层 `v3_hdmi_top`，31 引脚、4 时钟。工具为 PowerShell 7、ModelSim 与 Gowin V1.9.12.03。先仿真，再综合和审计，最后运行 P&R。`fpga/playability` 保留早期已上板基线，不混用它的 RTL、网表或约束集合。
 
-将 `fpga/playability` 复制到独立 ASCII 路径，从复制目录执行：
+将完整 `fpga/rhythm` 目录复制到独立 ASCII 路径，从复制目录执行：
 
 ```powershell
 pwsh -NoProfile -File sim/run_dynamic_regression.ps1 -Jobs 12
 pwsh -NoProfile -File sim/run_hdmi_phy.ps1
 ```
 
-综合使用该目录的 `v3_hdmi_top.gprj`。取得实际综合网表后运行 `scripts/prepare_performance_constraints.ps1 -Netlist <本次综合网表路径>`，再以 place3/route2 完成 P&R。完整说明见 [当前演奏工程](../fpga/playability/README.md)，现有结果见 [实施记录](../artifacts/playability/README.md)。
+综合使用该目录的 `v3_hdmi_top.gprj`。取得实际综合网表后运行 `scripts/prepare_performance_constraints.ps1 -Netlist <本次综合网表路径>`，再以 place3/route2 完成 P&R。完整说明见 [最新演奏工程](../fpga/rhythm/README.md)，现有结果见 [实施记录](../fpga/rhythm/VALIDATION.md)。
 
-也可从仓库根使用统一入口复制当前工程并执行完整回归：
+以下统一脚本仍固定指向旧 `fpga/playability`，仅供重建历史基线；最新版本使用上面的目录内入口：
 
 ```powershell
 pwsh -NoProfile -File tools/test-fpga.ps1 -BuildRoot E:/Gowin/workspace/fpga-instrument-test -ModelSimBin E:/modelsim/win64
 ```
 
-测试入口将当前工程复制到独立 ASCII 路径并运行仿真。官方器件模型入口为复制目录中的 sim/run_hdmi_phy.ps1，工具参数按本机 ModelSim 与 Gowin prim_sim.v 位置设置。
+该历史测试入口将旧基线复制到独立 ASCII 路径并运行仿真。官方器件模型入口为所选工程复制目录中的 sim/run_hdmi_phy.ps1，工具参数按本机 ModelSim 与 Gowin prim_sim.v 位置设置。
 
-tools/build-fpga.tcl 运行当前 HDMI 工程的综合。后续处理顺序为综合网表生成、CE 分析与约束准备、SDC 压缩、布局布线。P&R 使用 place_option=3 / route_option=2；同目录只运行一个构建。
+tools/build-fpga.tcl 同样是历史基线入口。最新工程从自己的 gprj 综合；后续处理顺序为综合网表生成、CE 分析与约束准备、SDC 压缩、布局布线。P&R 使用 place_option=3 / route_option=2；同目录只运行一个构建。
 
 scripts 目录保留准备与约束压缩工具，使用前应设置当前网表和输出路径。音频共同使能、多周期关系及 HDMI 时钟由 RTL 与 SDC 配合表达；修改模块后，约束集合也应按新网表重新生成。生产脚本中部分路径来自原开发机，需要按本机工具安装位置调整。
 
-FPGA 工程职责划分见 [模块说明](../fpga/playability/README.md)，音频和 HDMI 的关系见 [工程原理](ARCHITECTURE.md)。
+FPGA 工程职责划分见 [模块说明](../fpga/rhythm/README.md)，音频和 HDMI 的关系见 [工程原理](ARCHITECTURE.md)。
 
 ## ESP32
 
